@@ -8,7 +8,10 @@
     	<param-name>controllers</param-name>
         <param-value>
         	map.CtrlList,
-        	map.CtrlAdd2
+        	map.CtrlAdd2,
+        	certify.CtrlList,
+            certify.CtrlAdd2,
+            certiry.CtrlDel2
         	
         </param-value>
 	</init-param>
