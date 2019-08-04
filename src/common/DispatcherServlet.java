@@ -71,7 +71,7 @@ public class DispatcherServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("err", e);
 			
-			response.sendRedirect(ctxPath+"/apple_err.jsp");
+			response.sendRedirect(ctxPath+"/err.jsp");
 			e.printStackTrace();                                           
 		}
     }
