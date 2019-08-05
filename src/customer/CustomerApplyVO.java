@@ -1,11 +1,24 @@
 package customer;
+import java.util.Date;
 
 public class CustomerApplyVO {
-	private String serialNo;
-	public String getSerialNo() {
+	private Integer serialNo;
+	private String customer_phone;
+	private String customer_addr_front;
+	private String customer_addr_detail;
+	private Integer bag_num;
+	private Integer trash_type;
+	private Date wanted_time;
+	private Integer price;
+	private String card_num;
+	private String helperID;
+	private String customer_apply_day;
+	private Integer certify_status;
+	private Integer review_status;
+	public Integer getSerialNo() {
 		return serialNo;
 	}
-	public void setSerialNo(String serialNo) {
+	public void setSerialNo(Integer serialNo) {
 		this.serialNo = serialNo;
 	}
 	public String getCustomer_phone() {
@@ -14,23 +27,17 @@ public class CustomerApplyVO {
 	public void setCustomer_phone(String customer_phone) {
 		this.customer_phone = customer_phone;
 	}
-	public String getAddr_front() {
-		return addr_front;
+	public String getCustomer_addr_front() {
+		return customer_addr_front;
 	}
-	public void setAddr_front(String addr_front) {
-		this.addr_front = addr_front;
+	public void setCustomer_addr_front(String customer_addr_front) {
+		this.customer_addr_front = customer_addr_front;
 	}
-	public String getHelperID() {
-		return helperID;
+	public String getCustomer_addr_detail() {
+		return customer_addr_detail;
 	}
-	public void setHelperID(String helperID) {
-		this.helperID = helperID;
-	}
-	public String getAddr_detail() {
-		return addr_detail;
-	}
-	public void setAddr_detail(String addr_detail) {
-		this.addr_detail = addr_detail;
+	public void setCustomer_addr_detail(String customer_addr_detail) {
+		this.customer_addr_detail = customer_addr_detail;
 	}
 	public Integer getBag_num() {
 		return bag_num;
@@ -42,24 +49,13 @@ public class CustomerApplyVO {
 		return trash_type;
 	}
 	public void setTrash_type(Integer trash_type) {
-		this.trash_type =trash_type;
+		this.trash_type = trash_type;
 	}
-	public String getTime_wanted() {
-		return time_wanted;
+	public Date getWanted_time() {
+		return wanted_time;
 	}
-	public void setTime_wanted(String[] time_wanted) {
-		StringBuffer sb=new StringBuffer();
-		for(String l: time_wanted)
-		{
-			sb.append(l);
-		}
-		this.time_wanted = sb.toString();
-	}
-	public Integer getLast_time() {
-		return last_time;
-	}
-	public void setLast_time(Integer last_time) {
-		this.last_time = last_time;
+	public void setWanted_time(Date wanted_time) {
+		this.wanted_time = wanted_time;
 	}
 	public Integer getPrice() {
 		return price;
@@ -73,26 +69,54 @@ public class CustomerApplyVO {
 	public void setCard_num(String card_num) {
 		this.card_num = card_num;
 	}
-	///bag_num,trash_type(0,1),last_time,price
-	private String customer_phone;
-	private String addr_front;
-	private String helperID;
-	private String addr_detail;
-	private Integer bag_num;
-	private Integer trash_type;
-	private String time_wanted;
-	private Integer last_time;
-	private Integer price;
-	private String card_num;
-	private String customer_apply_day;
-	//int vs integer
-	@Override
-	public String toString() {
-		return "customer_applyVO [serialNo=" + serialNo + ", customer_phone=" + customer_phone + ", addr_front="
-				+ addr_front + ", helperID=" + helperID + ", addr_detail=" + addr_detail + ", bag_num=" + bag_num
-				+ ", trash_type=" + trash_type + ", time_wanted=" + time_wanted + ", last_time=" + last_time
-				+ ", price=" + price + ", card_num=" + card_num + "]";
+	public String getHelperID() {
+		return helperID;
+	}
+	public void setHelperID(String helperID) {
+		this.helperID = helperID;
+	}
+	public String getCustomer_apply_day() {
+		return customer_apply_day;
+	}
+	public void setCustomer_apply_day(String customer_apply_day) {
+		this.customer_apply_day = customer_apply_day;
+	}
+	public Integer getCertify_status() {
+		return certify_status;
+	}
+	public void setCertify_status(Integer certify_status) {
+		this.certify_status = certify_status;
+	}
+	public Integer getReview_status() {
+		return review_status;
+	}
+	public void setReview_status(Integer review_status) {
+		this.review_status = review_status;
 	}
 	
-	
 }
+
+/*
+
+	serialNo number not null, // 고객신청 번호 - PK
+	customer_phone varchar2(11) not null, // 고객 전화번호 - FK
+	customer_addr_front varchar2(40) not null , // 본인주소 (상세주소제외)
+	customer_addr_detail varchar2(45) not null, // 상세주소
+	bag_num number not null, // 봉투갯수
+	trash_type number not null, // 분리수거종류
+//오늘날짜 체크해서 해당되는 종류  radio or selectbox
+//혼합:오늘날짜아닌것,섞인것 
+	wanted_time date not null, // 원하는수거시간대
+	
+	// 날짜 선택 할지 말지 정하자 
+
+	price number not null, // 가격
+//당일 수거 물품(클린하우스로 배출 가능한 물품) :  1500
+//당일 수거 이외 물품 & 혼합 : 2500
+
+	card_num varchar2(20) not null // 카드번호
+	helperID varchar2(25), // 대행ID
+customer_apply_day date not null 
+
+
+*/
