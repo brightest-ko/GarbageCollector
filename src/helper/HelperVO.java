@@ -80,7 +80,9 @@ public class HelperVO {
         return helper_Phone;
     }
 
-    public String getHelper_Name() { return helper_name; }
+    public String getHelper_Name() {
+        return helper_name;
+    }
 
     public String getSex() {
         return sex;
@@ -126,3 +128,24 @@ public class HelperVO {
         return want_to_say;
     }
 }
+
+/*
+    create table helper(
+        helperID varchar2(25),//대행아이디 -PK
+        helper_photo_ofn varchar2(100),
+        helper_photo_fsn varchar2(100) ,
+        helper_phone varchar2(11) ,//전화번호
+        helper_name varchar2(25) ,//이름
+        sex varchar2(6) ,//성
+        bank_name varchar2(18) ,//은행이름
+        account varchar2(20) ,//계좌번호
+        account_holder varchar2(25) , // 예금주
+        wish_addr_front1 varchar2(40), //희망근무지1 시
+        wish_addr_detail1 varchar2(45), //희망근무지1 동
+        wish_addr_front2 varchar2(40), //희망근무지2 시
+        wish_addr_detail2 varchar2(45), //희망근무지2 동
+        wish_addr_front3 varchar2(40), //희망근무지3 시
+        wish_addr_detail3 varchar2(45), //희망근무지3 동
+        want_to_say varchar2(300) //하고싶은말
+    );
+*/

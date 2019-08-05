@@ -40,17 +40,6 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             stmt.executeUpdate();
             System.out.println(vo.getHelperId());
 
-            /*
-            String sql = "insert into helper_t values (vo.getHelperId(), helper_Phone, helper_name, sex" +
-                    "bank_Name, account_Holder, wish_Addr_Front1, wish_Addr_Detail1," +
-                    "wish_Addr_Front2, wish_Addr_Detail2, wish_Addr_Front3, wish_Addr_Detail3," +
-                    "want_to_say)";
-
-            String sql = "insert into helper_t values (email, pw, helper_name,phoneNum, sex" +
-                    "bank, account, accountname, null," +
-                    "null, null, null, null," +
-                    "message)";*/
-
             stmt.executeUpdate(sql);
 
         } catch (Exception e) {
