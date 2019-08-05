@@ -1,105 +1,115 @@
-<%@ page contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE >
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"
+   
+    %>
+<%
+	String ctxPath =request.getContextPath();
+%>
+<%--jstl 을 사용하기 위해 추가 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+
+<%--${fn:length(rl)} 를 사용하기 위해 추가 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
+  
+	<title>당신의 쓰레기는 안녕하수깡?</title>
+	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
+	<style>
+  </style>
 </head>
 <body>
-<div class="container">
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">�����ϱ�</button>
+<%@include file="/header.jsp"%>
+<main>
+	<div class="container">
 
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h2 class="modal-title">�и����� �Ϸ��߾��!</h2>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-</div>
-<p><form method="POST" action="certify_add2.do" enctype="multipart/form-data">
-<div class="container">
-<div class="row">
-  <div class="col-sm-4">
-  	<div class="form-group has-success has-feedback">
-    <div class="input-group">
-      <span class="input-group-addon">���� ��û��ȣ</span>
-      <input id="certify_serialNo" type="text" class="form-control" name="certify_serialNo" placeholder="��û��ȣ�� �Է��ϼ���">
-    </div>
-    </div>
-  	</div>
-  	<div class="col-sm-4">
-  	</div>
-  	<div class="col-sm-4">
-  	</div>
- </div>
-  <div class="row">
-  		<div class="col-sm-4">
-  			<div class="form-group has-success has-feedback">
-    		<div class="input-group">
-      		<span class="input-group-addon">��ġ</span>
-      		<input id="housePlace" type="text" class="form-control" name="housePlace" placeholder="��ġ�� ����ּ���">
-    		</div>
-    		</div>
-  		</div>
-  		<div class="col-sm-4">
+		<form method="POST" action="certify_add2.do"
+			enctype="multipart/form-data">
+			<button type="button" class="btn btn-success" data-toggle="modal"
+				data-target="#myModal">인증하기</button>
 
-  		</div>
-  		<div class="col-sm-4">
-  
-  		</div>
-	</div>
-</p>
-		<input type="text" name="title" size="10"/>
-		<input type="file" name="photo" camera="camera"/>
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
 
-  <div class="row">
-  <div class="col-sm-0"></div>
-  <div class="col-sm-4">
-  	<h3>Ư�̻���</h3>    
-    <div class="form-group">
-      <label for="comment"></label>
-      <textarea class="form-control" rows="5" id="details" name="details" ></textarea>
-    </div>
-  	</div>
-  <div class="col-sm-7"></div>
-</div>
-  <h2></h2>
-  <!-- Trigger the modal with a button -->
-  <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal">�����ϱ�</button>
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h2 class="modal-title">분리수거 완료했어요!</h2>
+						</div>
+						<div class="modal-body">
+							<div class="">
+								<div class="form-group has-success has-feedback">
+									<div class="input-group">
+										<span class="input-group-addon">고객 신청번호</span> <input
+											id="certify_serialNo" type="text" class="form-control"
+											name="certify_serialNo" placeholder="신청번호를 입력하세요">
+									</div>
+								</div>
+							</div>
+							<div class="">
+								<div class="form-group has-success has-feedback">
+									<div class="input-group">
+										<span class="input-group-addon">위치</span> <input
+											id="housePlace" type="text" class="form-control"
+											name="housePlace" placeholder="위치를 찍어주세요">
+									</div>
+								</div>
+							</div>
+							<div class="">
+								<div class="form-group has-success has-feedback">
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>�����Ͻðڽ��ϱ�?.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success">Ȯ��</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
+									<div class="input-group">
+									<span class="input-group-addon">사진</span>
+									<input type="file" name="photo" camera="camera" class="form-control"/>
+								</div></div>
+							</div>
+
+							<div class="">
+								<h3>특이사항</h3>
+								<div class="form-group">
+									<label for="comment"></label>
+									<textarea class="form-control" rows="5" id="details"
+										name="details"></textarea>
+								</div>
+							</div>
+
+							<!-- Trigger the modal with a button -->
+							<button type="submit" class="btn btn-success" data-toggle="modal"
+								data-target="#myModal">인증하기</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" role="dialog">
+								<div class="modal-dialog modal-sm">
+									<div class="modal-content">
+										<div class="modal-body">
+											<p>인증하시겠습니까?.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-success">확인</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
 </form>
+	</div>
+</main>
+<%@include file="/footer.jsp"%>
+<%@include file="/script.jsp"%>
+
 </body>
 </html>
