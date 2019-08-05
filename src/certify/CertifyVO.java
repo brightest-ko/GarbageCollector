@@ -3,7 +3,7 @@ import java.util.*;
 
 /* 
 create table certify(
-	serialNo varchar2(8) not null,
+	serialNo number(8) not null,
 	helperID varchar2(25) not null,
 	details varchar2(300) not null,
 	housePlace varchar2(80) not null,
@@ -13,17 +13,19 @@ create table certify(
 );
  */
 public class CertifyVO {
-	private String serialNo = null;
+	private Integer serialNo = null;
 	private String helperID = null;
 	private String details = null;
 	private String housePlace = null;
 	private String certify_photo_ofn  = null;
 	private String certify_photo_fsn  = null;
+	private Integer certify_status  = 0;
 	private Date certify_day = null;
-	public String getSerialNo() {
+	
+	public Integer getSerialNo() {
 		return serialNo;
 	}
-	public void setSerialNo(String serialNo) {
+	public void setSerialNo(Integer serialNo) {
 		this.serialNo = serialNo;
 	}
 	public String getHelperID() {
@@ -55,6 +57,12 @@ public class CertifyVO {
 	}
 	public void setCertify_photo_fsn(String certify_photo_fsn) {
 		this.certify_photo_fsn = certify_photo_fsn;
+	}
+	public Integer getCertify_status() {
+		return certify_status;
+	}
+	public void setCertify_status(Integer certify_status) {
+		this.certify_status = certify_status;
 	}
 	public Date getCertify_day() {
 		return certify_day;

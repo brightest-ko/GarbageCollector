@@ -32,7 +32,7 @@
 <%@include file="/header.jsp"%>
 <main>
 	<div class="container">
-
+	
 		<form method="POST" action="certify_add2.do"
 			enctype="multipart/form-data">
 			<button type="button" class="btn btn-success" data-toggle="modal"

@@ -26,7 +26,7 @@ public class CertifyDAO_OracleImpl implements CertifyDAO{
 			 
 			 while(rs.next()){
 				 CertifyVO vo=new CertifyVO();
-				 vo.setSerialNo(rs.getString("serialNo"));
+				 vo.setSerialNo(rs.getInt("serialNo"));
 				 vo.setHelperID(rs.getString("helperID"));
 				 vo.setDetails(rs.getString("details"));
 				 vo.setHousePlace(rs.getString("housePlace"));
@@ -60,7 +60,7 @@ public class CertifyDAO_OracleImpl implements CertifyDAO{
 		   			"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 		   	String sql = "insert into certify values( ?,?,?,?,?,?,sysdate)";
 		   	stmt = conn.prepareStatement(sql);
-		   	stmt.setString( 1 , vo.getSerialNo());
+		   	stmt.setInt(1, vo.getSerialNo());
 		   	stmt.setString( 2 , vo.getHelperID());
 		   	stmt.setString( 3 , vo.getDetails());
 		   	stmt.setString( 4 , vo.getHousePlace());
