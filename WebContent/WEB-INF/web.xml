@@ -11,8 +11,11 @@
         	map.CtrlAdd2,
         	certify.CtrlList,
             certify.CtrlAdd2,
-            certiry.CtrlDel2
-        	
+            certiry.CtrlDel2,
+            review.CtrlList,
+            review.CtrlInsert,
+            review.CtrlDel,
+            review.CtrlModify
         </param-value>
 	</init-param>
   </servlet>

@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.Controller;
+
 @RequestMapping("/review_list.do")
-public class CtrlList implements Review_Controller{
+public class CtrlList implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, 
@@ -19,7 +21,7 @@ public class CtrlList implements Review_Controller{
 		
 		request.setAttribute("rl", rl);
 		
-		return "/review_list.jsp";
+		return "/review/review_list.jsp";
 	}
 
 }

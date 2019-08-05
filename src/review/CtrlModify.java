@@ -3,8 +3,10 @@ package review;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.Controller;
+
 @RequestMapping("/review_modify.do")
-public class CtrlModify implements Review_Controller{
+public class CtrlModify implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
