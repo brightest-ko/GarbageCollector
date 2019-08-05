@@ -7,7 +7,7 @@ import common.Util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@RequestMapping("/helper_add.do")
+@RequestMapping("/helper/helper_add.do")
 public class CtrlAdd implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request,

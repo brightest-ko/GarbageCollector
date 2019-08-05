@@ -55,6 +55,7 @@ public class DispatcherServlet extends HttpServlet {
     	//uri의 키값으로// 즉 어떤 uri를 받았을때 어떤 controller로 가라 이런뜻.
     	if(ctrl == null){
     		System.out.println("해당 페이지는 존재하지 않습니다.");
+    		return;
     	}
     	
     	//handleRequest이 throws Exception 할 수 있으니까 try catch로 묶어줌
