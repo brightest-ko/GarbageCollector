@@ -9,9 +9,15 @@
         <param-value>
         	map.CtrlList,
         	map.CtrlAdd2,
+
         	certify.CtrlList,
             certify.CtrlAdd2,
             certify.CtrlDel2,
+
+            review.CtrlList,
+            review.CtrlInsert,
+            review.CtrlDel,
+            review.CtrlModify
 
             helper.CtrlAdd,
             helper.CtrlAdd_view
