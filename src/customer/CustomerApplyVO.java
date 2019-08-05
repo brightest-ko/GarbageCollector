@@ -1,11 +1,25 @@
 package customer;
+import java.util.Date;
 
 public class CustomerApplyVO {
-	private String serialNo;
-	public String getSerialNo() {
+	private Integer serialNo;
+	private String customer_phone;
+	private String customer_addr_first;
+	private String customer_addr_second;
+	private String customer_addr_third;
+	private Integer bag_num;
+	private Integer trash_type;
+	private Date wanted_time;
+	private Integer price;
+	private String card_num;
+	private String helperID;
+	private Date customer_apply_day;
+	private Integer certify_status;
+	private Integer review_status;
+	public Integer getSerialNo() {
 		return serialNo;
 	}
-	public void setSerialNo(String serialNo) {
+	public void setSerialNo(Integer serialNo) {
 		this.serialNo = serialNo;
 	}
 	public String getCustomer_phone() {
@@ -14,23 +28,23 @@ public class CustomerApplyVO {
 	public void setCustomer_phone(String customer_phone) {
 		this.customer_phone = customer_phone;
 	}
-	public String getAddr_front() {
-		return addr_front;
+	public String getCustomer_addr_first() {
+		return customer_addr_first;
 	}
-	public void setAddr_front(String addr_front) {
-		this.addr_front = addr_front;
+	public void setCustomer_addr_first(String customer_addr_first) {
+		this.customer_addr_first = customer_addr_first;
 	}
-	public String getHelperID() {
-		return helperID;
+	public String getCustomer_addr_second() {
+		return customer_addr_second;
 	}
-	public void setHelperID(String helperID) {
-		this.helperID = helperID;
+	public void setCustomer_addr_second(String customer_addr_second) {
+		this.customer_addr_second = customer_addr_second;
 	}
-	public String getAddr_detail() {
-		return addr_detail;
+	public String getCustomer_addr_third() {
+		return customer_addr_third;
 	}
-	public void setAddr_detail(String addr_detail) {
-		this.addr_detail = addr_detail;
+	public void setCustomer_addr_third(String customer_addr_third) {
+		this.customer_addr_third = customer_addr_third;
 	}
 	public Integer getBag_num() {
 		return bag_num;
@@ -42,24 +56,13 @@ public class CustomerApplyVO {
 		return trash_type;
 	}
 	public void setTrash_type(Integer trash_type) {
-		this.trash_type =trash_type;
+		this.trash_type = trash_type;
 	}
-	public String getTime_wanted() {
-		return time_wanted;
+	public Date getWanted_time() {
+		return wanted_time;
 	}
-	public void setTime_wanted(String[] time_wanted) {
-		StringBuffer sb=new StringBuffer();
-		for(String l: time_wanted)
-		{
-			sb.append(l);
-		}
-		this.time_wanted = sb.toString();
-	}
-	public Integer getLast_time() {
-		return last_time;
-	}
-	public void setLast_time(Integer last_time) {
-		this.last_time = last_time;
+	public void setWanted_time(Date wanted_time) {
+		this.wanted_time = wanted_time;
 	}
 	public Integer getPrice() {
 		return price;
@@ -73,26 +76,64 @@ public class CustomerApplyVO {
 	public void setCard_num(String card_num) {
 		this.card_num = card_num;
 	}
-	///bag_num,trash_type(0,1),last_time,price
-	private String customer_phone;
-	private String addr_front;
-	private String helperID;
-	private String addr_detail;
-	private Integer bag_num;
-	private Integer trash_type;
-	private String time_wanted;
-	private Integer last_time;
-	private Integer price;
-	private String card_num;
-	private String customer_apply_day;
-	//int vs integer
+	public String getHelperID() {
+		return helperID;
+	}
+	public void setHelperID(String helperID) {
+		this.helperID = helperID;
+	}
+	public Date getCustomer_apply_day() {
+		return customer_apply_day;
+	}
+	public void setCustomer_apply_day(Date customer_apply_day) {
+		this.customer_apply_day = customer_apply_day;
+	}
+	public Integer getCertify_status() {
+		return certify_status;
+	}
+	public void setCertify_status(Integer certify_status) {
+		this.certify_status = certify_status;
+	}
+	public Integer getReview_status() {
+		return review_status;
+	}
+	public void setReview_status(Integer review_status) {
+		this.review_status = review_status;
+	}
 	@Override
 	public String toString() {
-		return "customer_applyVO [serialNo=" + serialNo + ", customer_phone=" + customer_phone + ", addr_front="
-				+ addr_front + ", helperID=" + helperID + ", addr_detail=" + addr_detail + ", bag_num=" + bag_num
-				+ ", trash_type=" + trash_type + ", time_wanted=" + time_wanted + ", last_time=" + last_time
-				+ ", price=" + price + ", card_num=" + card_num + "]";
+		return "CustomerApplyVO [serialNo=" + serialNo + ", customer_phone=" + customer_phone + ", customer_addr_first="
+				+ customer_addr_first + ", customer_addr_second=" + customer_addr_second + ", customer_addr_third="
+				+ customer_addr_third + ", bag_num=" + bag_num + ", trash_type=" + trash_type + ", wanted_time="
+				+ wanted_time + ", price=" + price + ", card_num=" + card_num + ", helperID=" + helperID
+				+ ", customer_apply_day=" + customer_apply_day + ", certify_status=" + certify_status
+				+ ", review_status=" + review_status + "]";
 	}
 	
 	
 }
+
+/*
+
+	serialNo number not null, // 怨좉컼�떊泥� 踰덊샇 - PK
+	customer_phone varchar2(11) not null, // 怨좉컼 �쟾�솕踰덊샇 - FK
+	customer_addr_front varchar2(40) not null , // 蹂몄씤二쇱냼 (�긽�꽭二쇱냼�젣�쇅)
+	customer_addr_detail varchar2(45) not null, // �긽�꽭二쇱냼
+	bag_num number not null, // 遊됲닾媛��닔
+	trash_type number not null, // 遺꾨━�닔嫄곗쥌瑜�
+//�삤�뒛�궇吏� 泥댄겕�빐�꽌 �빐�떦�릺�뒗 醫낅쪟  radio or selectbox
+//�샎�빀:�삤�뒛�궇吏쒖븘�땶寃�,�꽎�씤寃� 
+	wanted_time date not null, // �썝�븯�뒗�닔嫄곗떆媛꾨�
+	
+	// �궇吏� �꽑�깮 �븷吏� 留먯� �젙�븯�옄 
+
+	price number not null, // 媛�寃�
+//�떦�씪 �닔嫄� 臾쇳뭹(�겢由고븯�슦�뒪濡� 諛곗텧 媛��뒫�븳 臾쇳뭹) :  1500
+//�떦�씪 �닔嫄� �씠�쇅 臾쇳뭹 & �샎�빀 : 2500
+
+	card_num varchar2(20) not null // 移대뱶踰덊샇
+	helperID varchar2(25), // ���뻾ID
+customer_apply_day date not null 
+
+
+*/

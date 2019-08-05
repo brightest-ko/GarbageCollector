@@ -8,13 +8,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.PreparedStatement;
+
+import study3.TalkRoomVO;
+
 public class Matching_OracleImpl implements MatchingDAO 
 {
 	@Override
 	public List<MatchingVO> findAll() throws Exception {
 		List<MatchingVO> ls = new ArrayList<MatchingVO>();
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -23,15 +27,20 @@ public class Matching_OracleImpl implements MatchingDAO
 			stmt = conn.createStatement();
 			
 			String sql = "SELECT * FROM map order by mapNo desc";
-			rs = stmt.executeQuery( sql );
-			while( rs.next() ) {
-				MatchingVO vo = new MatchingVO();
-				
-//				vo.setMapNo( rs.getInt("mapNo") );
-//				vo.setMapAddr( rs.getString("mapAddr") );
-//				vo.setMapAddr2( rs.getString("mapAddr2") );
-				
-				ls.add( vo );
+
+			String sql = "select * from talk_room_t where room_no = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, roomNo);
+			rs = stmt.executeQuery();
+
+//			System.out.println(rs.toString());
+			if(rs.next()){
+//				System.out.println(rs.getInt("room_no"));
+				vo = new TalkRoomVO();
+				vo.setRoomNo(rs.getInt("room_no"));
+				vo.setApple(rs.getString("apple"));
+				vo.setBanana(rs.getString("banana"));
+				vo.setOrange(rs.getString("orange"));
 			}			
 		}
 		catch( Exception e ){}

@@ -12,11 +12,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <div>
-      <a class="navbar-brand" href="www.naver.com"><img src="<%=ctxPath %>/assets/img/logo.png" style="width: 180px; margin: -20px -15px;"></a>
+      <a class="navbar-brand" href="<%=ctxPath %>/index.do"><img src="<%=ctxPath %>/assets/img/logo.png" style="width: 180px; margin: -20px -15px; cursor: pointer;"></a>
     </div>
 
-    <div class="collapse navbar-collapse dropdown"" id="myNavbar">
+    <div class="collapse navbar-collapse dropdown" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">서비스소개</a>
@@ -38,7 +37,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">느영(대행자)</a>
               <ul class="dropdown-menu">
-                <li><a href="#">서비스 요청 리스트</a></li>
+                <li><a href="<%=ctxPath %>/matching/matching_suggetion.jsp">서비스 요청 리스트</a></li>
                 <li><a href="#">대행자 제안 리스트</a></li>
               </ul>
             </li>

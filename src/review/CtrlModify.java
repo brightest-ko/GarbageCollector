@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.Controller;
 
-@RequestMapping("/review_delete.do")
-public class CtrlDel implements Controller {
+@RequestMapping("/review_modify.do")
+public class CtrlModify implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ctrlDel");
-		
-		// 아직 미구현
+		System.out.println("ctrlModify");
 		return "redirect:/reivew_list.do";
 	}
 
