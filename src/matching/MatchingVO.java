@@ -27,8 +27,8 @@ public class MatchingVO {
 
 /*
 create table matching(
-serialNo varchar2(8) not null, // 고객신청 번호 - PK, FK
-	helperID varchar2(25),//대행아이디 - PK, FK
+	serialNo varchar2(8) not null, // 怨�媛���泥� 踰��� - PK, FK
+	helperID varchar2(25),//�������대�� - PK, FK
 	suggestion number(1) not null check (test in (0,1)),
 	acceptance number(1) not null check (test in (0,1))
 );

@@ -9,10 +9,14 @@
         <param-value>
         	map.CtrlList,
         	map.CtrlAdd2,
+        	
+        	
         	certify.CtrlList,
             certify.CtrlAdd2,
-            certiry.CtrlDel2
+            certiry.CtrlDel2,
         	
+        	
+        	matching.CtrlListSuggetion,
         </param-value>
 	</init-param>
   </servlet>
