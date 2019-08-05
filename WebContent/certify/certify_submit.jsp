@@ -27,8 +27,11 @@
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	<style>
 		.certify_temp{
-		background-color: #00cc00 ;
+		background-color: #ADCB00 ;
 		padding: 8px;
+	}
+	.certify_detalis{
+		border : solid #ADCB00 3px;
 	}
   </style>
 </head>
@@ -39,19 +42,11 @@
 		<div style="text-align:left">
 		<form method="POST" action="certify_add2.do" enctype="multipart/form-data">
 			<div class="container row">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
 					<div class="jumbotron certify_temp">
 						<h3 style="color: WHITE">분리수거 완료했어요!</h3>
 						<p></p>
 					</div>
-				</div>
-				<div class="col-md-4"></div>
 			</div>
-	</div>
-		<div class="row">
-		<div class="col-md-4"></div>
-		<div class="col-md-4">
 			<div class="form-group has-success has-feedback">
 				<div class="input-group">
 					<span class="input-group-addon">고객 신청번호</span> <input
@@ -60,11 +55,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
 			<div class="form-group has-success has-feedback">
 				<div class="input-group">
 					<span class="input-group-addon">위치</span> <input id="housePlace"
@@ -72,41 +62,22 @@
 						placeholder="위치를 찍어주세요">
 				</div>
 			</div>
-			</div>
-			<div class="col-md-4"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
 			<div class="form-group has-success has-feedback">
 				<div class="input-group">
 					<span class="input-group-addon">사진</span> <input type="file"
 						name="photo" camera="camera" class="form-control" />
 				</div>
 			</div>
-			</div>
-			<div class="col-md-4"></div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
 			<h3>특이사항</h3>
-			<div class="form-group apple">
-				<label for="comment"></label>
+			<div class="form-group certify_detalis">
 				<textarea class="form-control" rows="5" id="details" name="details"></textarea>
 			</div>
-			</div>
-			<div class="col-md-4"></div>
-		</div>
 
 		<!-- Trigger the modal with a button -->
-		<div class="container row">
-		<div class="col-md-4"></div>
-		<div class="col-md-4">
+		<div class="container">
 		<button type="button" class="btn btn-success" data-toggle="modal"
 			data-target="#myModal">인증하기</button>
-		</div>
 		</div>
 		<div class="col-md-4"></div>
 		<!-- Modal -->
