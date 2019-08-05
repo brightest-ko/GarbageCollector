@@ -12,6 +12,6 @@ public class CtrlAdd_view implements Controller {
     public String handleRequest(HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
 
-        return "redirect:/helper/signUp.jsp";
+        return "redirect:/signUp.jsp";
     }
 }

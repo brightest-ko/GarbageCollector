@@ -12,8 +12,7 @@
         	certify.CtrlList,
             certify.CtrlAdd2,
             certify.CtrlDel2,
-            helper.CtrlAdd,
-            helper.CtrlAdd_view
+            helper.CtrlAdd
         </param-value>
 	</init-param>
   </servlet>

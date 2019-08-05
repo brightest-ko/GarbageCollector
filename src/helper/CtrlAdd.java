@@ -54,6 +54,6 @@ public class CtrlAdd implements Controller {
 
         dao.add(vo);
 
-        return "redirect:/helper/register.jsp";
+        return "redirect:/register.jsp";
     }
 }
