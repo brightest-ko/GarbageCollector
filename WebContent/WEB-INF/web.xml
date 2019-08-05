@@ -11,8 +11,9 @@
         	map.CtrlAdd2,
         	certify.CtrlList,
             certify.CtrlAdd2,
-            certiry.CtrlDel2
-        	
+            certiry.CtrlDel2,
+
+            helper.CtrlAdd
         </param-value>
 	</init-param>
   </servlet>
