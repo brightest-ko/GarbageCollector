@@ -45,9 +45,9 @@
 					<div class="jumbotron certify_temp">
 						<p></p>
 						<div class="row">
-   						<div class="col-sm-4" ><h2 style="color: WHITE" >분리수거 완료했어요!</h1></div>
+   						<div class="col-sm-4" ><h2 style="color: WHITE" >인증 상세정보</h1></div>
     					<div class="col-sm-4" ></div>
-    					<div class="col-sm-4" ><img src="/GarbageCollector/assets/img/certify_submit.png" width="200" height="200" alt="My Image"></div>
+    					<div class="col-sm-4" ><img src="/GarbageCollector/assets/img/certify_info.png" width="200" height="200" alt="My Image"></div>
   						</div>
 					</div>
 			</div>				
