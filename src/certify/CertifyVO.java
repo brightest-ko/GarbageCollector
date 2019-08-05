@@ -1,11 +1,16 @@
 package certify;
 import java.util.*;
 
-/* serialNo : 고객 신청번호(PK)
- * nowDate : 현재 시간
- * certifyContent : 인증 글
- * housePlace : 클린하우스 위치
- * uri(?) : 사진
+/* 
+create table certify(
+	serialNo varchar2(8) not null,
+	helperID varchar2(25) not null,
+	details varchar2(300) not null,
+	housePlace varchar2(80) not null,
+	certify_photo_ofn varchar2(100) not null,
+	certify_photo_fsn varchar2(100) not null,
+	certify_day date not null
+);
  */
 public class CertifyVO {
 	private String serialNo = null;
