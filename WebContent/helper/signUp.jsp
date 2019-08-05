@@ -82,9 +82,11 @@
 
 <h2>대행 회원 가입</h2>
 
+<!--
 <form method="POST" action="fileup" enctype="multipart/form-data">
     <input type="submit" value="사진업로드"/>
 </form>
+-->
 
 <form method="post" action="helper_add.do">
     Email (ID) : <input type="text" name="email" placeholder="Email을 입력하세요 ">
