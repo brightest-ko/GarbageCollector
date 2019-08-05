@@ -152,10 +152,13 @@ local.properties
 .scala_dependencies
 .worksheet
 
+#.idea
+.idea/
+
+# IntelliJ out directory
+out/
 
 ##
 /build/
 .classpath
 .project
-
-#src/jdbcUtil/JdbcTemplate.java
