@@ -12,7 +12,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><img src="<%=ctxPath %>/assets/img/logo.png" style="width: 180px; margin: -20px -15px;"></a>
+      <div>
+      <a class="navbar-brand" href="www.naver.com"><img src="<%=ctxPath %>/assets/img/logo.png" style="width: 180px; margin: -20px -15px;"></a>
     </div>
 
     <div class="collapse navbar-collapse dropdown"" id="myNavbar">
