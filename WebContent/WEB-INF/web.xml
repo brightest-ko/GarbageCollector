@@ -14,9 +14,15 @@
         	certify.CtrlList,
             certify.CtrlAdd2,
             certiry.CtrlDel2,
-        	
-        	
+            
+            
         	matching.CtrlListSuggetion,
+
+
+            review.CtrlList,
+            review.CtrlInsert,
+            review.CtrlDel,
+            review.CtrlModify
         </param-value>
 	</init-param>
   </servlet>

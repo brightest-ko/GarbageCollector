@@ -46,7 +46,7 @@ public class CtrlAdd2 implements Controller{
 		System.out.println("인증 DB insert 시작");
 		String details = Util.h(mpr.getParameter("details"));
 		CertifyVO vo = new CertifyVO();
-		 vo.setSerialNo(mpr.getParameter("certify_serialNo"));
+		 vo.setSerialNo(Util.parseInt(mpr.getParameter("certify_serialNo")));
 		 vo.setHelperID("helper");
 		 vo.setDetails(details);;
 		 vo.setHousePlace(mpr.getParameter("housePlace"));
