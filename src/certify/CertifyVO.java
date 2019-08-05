@@ -9,6 +9,7 @@ create table certify(
 	housePlace varchar2(80) not null,
 	certify_photo_ofn varchar2(100) not null,
 	certify_photo_fsn varchar2(100) not null,
+	certify_status number(1) not null,
 	certify_day date not null
 );
  */
