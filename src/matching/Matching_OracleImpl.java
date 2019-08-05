@@ -25,11 +25,11 @@ public class Matching_OracleImpl implements MatchingDAO
 			String sql = "SELECT * FROM map order by mapNo desc";
 			rs = stmt.executeQuery( sql );
 			while( rs.next() ) {
-				MapVO vo = new MapVO();
+				MatchingVO vo = new MatchingVO();
 				
-				vo.setMapNo( rs.getInt("mapNo") );
-				vo.setMapAddr( rs.getString("mapAddr") );
-				vo.setMapAddr2( rs.getString("mapAddr2") );
+//				vo.setMapNo( rs.getInt("mapNo") );
+//				vo.setMapAddr( rs.getString("mapAddr") );
+//				vo.setMapAddr2( rs.getString("mapAddr2") );
 				
 				ls.add( vo );
 			}			
