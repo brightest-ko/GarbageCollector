@@ -1,24 +1,37 @@
-<%@ page contentType="text/html;charset=UTF-8"
-         pageEncoding="EUC-KR" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"
+%>
+<%
+    String ctxPath =request.getContextPath();
+%>
+<%--jstl ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì¶”ê°€ --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%--${fn:length(rl)} ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì¶”ê°€ --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title>È¸¿ø°¡ÀÔ ÆäÀÌÁö</title>
-    <meta charset="utf-8">
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
+
+    <title>ë‹¹ì‹ ì˜ ì“°ë ˆê¸°ëŠ” ì•ˆë…•í•˜ìˆ˜ê¹¡?</title>
+    <link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 
     <script>
-        var good_a = ["ÀüÃ¼"];
-        var good_b = ["ÇÑ¸²À¾", "¾Ö¿ùÀ¾", "±¸ÁÂÀ¾", "Á¶ÃµÀ¾", "ÇÑ°æ¸é", "ÃßÀÚ¸é", "¿ìµµ¸é", "ÀÏµµµ¿",
-            "ÀÌµµµ¿", "»ïµµµ¿", "¿ë´ãµ¿", "°ÇÀÔµ¿", "È­ºÏµ¿", "»ï¾çµ¿", "ºÀ°³µ¿", "¾Æ¶óµ¿", "¿À¶óµ¿",
-            "¿¬µ¿", "³ëÇüµ¿", "¿Üµµµ¿", "ÀÌÈ£µ¿", "µµµÎµ¿"];
-        var good_c = ["´ëÁ¤À¾", "³²¿øÀ¾", "¼º»êÀ¾", "¾È´ö¸é", "Ç¥¼±¸é", "¼Û»êµ¿", "Á¤¹æµ¿", "Áß¾Óµ¿", "ÃµÁöµ¿",
-            "È¿µ·µ¿", "¿µÃµµ¿", "µ¿Èïµ¿", "¼­È«µ¿", "´ë·ûµ¿", "´ëÃµµ¿", "Áß¹®µ¿", "¿¹·¡µ¿"];
+        var good_a = ["ì „ì²´"];
+        var good_b = ["í•œë¦¼ì", "ì• ì›”ì", "êµ¬ì¢Œì", "ì¡°ì²œì", "í•œê²½ë©´", "ì¶”ìžë©´", "ìš°ë„ë©´", "ì¼ë„ë™",
+            "ì´ë„ë™", "ì‚¼ë„ë™", "ìš©ë‹´ë™", "ê±´ìž…ë™", "í™”ë¶ë™", "ì‚¼ì–‘ë™", "ë´‰ê°œë™", "ì•„ë¼ë™", "ì˜¤ë¼ë™",
+            "ì—°ë™", "ë…¸í˜•ë™", "ì™¸ë„ë™", "ì´í˜¸ë™", "ë„ë‘ë™"];
+        var good_c = ["ëŒ€ì •ì", "ë‚¨ì›ì", "ì„±ì‚°ì", "ì•ˆë•ë©´", "í‘œì„ ë©´", "ì†¡ì‚°ë™", "ì •ë°©ë™", "ì¤‘ì•™ë™", "ì²œì§€ë™",
+            "íš¨ëˆë™", "ì˜ì²œë™", "ë™í¥ë™", "ì„œí™ë™", "ëŒ€ë¥œë™", "ëŒ€ì²œë™", "ì¤‘ë¬¸ë™", "ì˜ˆëž˜ë™"];
 
         function categoryChange1(e) {
 
@@ -39,7 +52,6 @@
         }
 
         function categoryChange2(e) {
-
             var target2 = document.getElementById("good2");
 
             if (e.value == "a") var d = good_a;
@@ -56,7 +68,6 @@
             }
         }
 
-
         function categoryChange3(e) {
 
             var target3 = document.getElementById("good3");
@@ -72,105 +83,110 @@
                 opt.value = d[x];
                 opt.innerHTML = d[x];
                 target3.appendChild(opt);
-
             }
         }
     </script>
+    <style>
+    </style>
 </head>
 <body>
+<%@include file="/header.jsp"%>
 
+    <h2>ëŒ€í–‰ íšŒì› ê°€ìž…</h2>
 
-<h2>´ëÇà È¸¿ø °¡ÀÔ</h2>
-
-<!--
-<form method="POST" action="fileup" enctype="multipart/form-data">
-    <input type="submit" value="»çÁø¾÷·Îµå"/>
-</form>
--->
-
-<form method="post" action="helper_add.do">
-    Email (ID) : <input type="text" name="email" placeholder="EmailÀ» ÀÔ·ÂÇÏ¼¼¿ä ">
-    <br/>
-    password : <input type="password" name="pw">
-    <br/>
-    password È®ÀÎ : <input type="password" name="pw">
-    <br/>
-    ÀÌ¸§ : <input type="text" name="helper_name">
-    <br/>
-    ÀüÈ­¹øÈ£ : <input type="text" name="phoneNum" placeholder="'-'¸¦ Á¦¿ÜÇÑ ¼ýÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä.">
-    <br/>
-    ¼ºº° : <input type="radio" name="sex" value="female"> ¿©¼º
-    <input type="radio" name="sex" value="male"> ³²¼º
-    <br/>
-    °èÁÂ¹øÈ£ : <input type="text" name="bank" size="20" placeholder="ÀºÇà¸í">
-    <input type="text" name="account" size="40" placeholder="'-'¸¦ Á¦¿ÜÇÑ ¼ýÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä.">
-    <input type="text" name="accountname" size="10" placeholder="¿¹±ÝÁÖ">
-
-    <br/>
-    ÁÖ¼Ò : <input type="text" name="addr" size="50" placeholder="00½Ã 00µ¿ ±îÁö¸¸ Àû¾îÁÖ¼¼¿ä.">
-    <input type="text" name="addr_detail" size="40" placeholder="³ª¸ÓÁö ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
-
-    <br/> <br/>
-    Èñ¸Á ±Ù¹«Áö1 :
-    <select onchange="categoryChange1(this)" name="city1" id="city1" value="">
-        <option> ½Ã </option>
-        <option value="a"> ÀüÃ¼</option>
-        <option value="b"> Á¦ÁÖ½Ã</option>
-        <option value="c"> ¼­±ÍÆ÷½Ã</option>
-    </select>
-
-    <select id="good1" name="dong1">
-        <option> À¾, ¸é, µ¿ </option>
-    </select>
-
-
-    <br/>
-    Èñ¸Á ±Ù¹«Áö2 :
-    <select onchange="categoryChange2(this)" name="city2" id="city2" value="">
-        <option> ½Ã </option>
-        <option value="a"> ÀüÃ¼</option>
-        <option value="b"> Á¦ÁÖ½Ã</option>
-        <option value="c"> ¼­±ÍÆ÷½Ã</option>
-    </select>
-
-    <select id="good2" name="dong2">
-        <option> À¾, ¸é, µ¿ </option>
-    </select>
-
-
-    <br/>
-    Èñ¸Á ±Ù¹«Áö3 :
-    <select onchange="categoryChange3(this)" name="city3" id="city3" value="">
-        <option> ½Ã </option>
-        <option value="a"> ÀüÃ¼</option>
-        <option value="b"> Á¦ÁÖ½Ã</option>
-        <option value="c"> ¼­±ÍÆ÷½Ã</option>
-    </select>
-
-
-    <select id="good3" name = "dong3">
-        <option> À¾, ¸é, µ¿ </option>
-    </select>
-    <br/>
-    <br/>
-
-    ÇÏ°í½ÍÀº ¸»
-    <br/>
-    <textarea name="message" rows="5" cols="40" placeholder="ÀÚ½Å¿¡ ´ëÇØ ÇÑ¸¶µð·Î Ç¥ÇöÇØÁÖ¼¼¿ä." maxlength="200">
-    </textarea>
-    <input type="submit"/>
     <!--
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label for="comment">ÇÏ°í ½ÍÀº ¸»:</label>
-                <textarea class="form-control" rows="5" col="40" name="messege" id="comment"></textarea>
-            </div>
-        </form>
-    </div>
+    <form method="POST" action="fileup" enctype="multipart/form-data">
+        <input type="submit" value="ì‚¬ì§„ì—…ë¡œë“œ"/>
+    </form>
     -->
 
-</form>
-<br/><br/>
+    <form method="post" action="helper_add.do">
+        Email (ID) : <input type="text" name="email" placeholder="Emailì„ ìž…ë ¥í•˜ì„¸ìš” ">
+        <br/>
+        password : <input type="password" name="pw">
+        <br/>
+        password í™•ì¸ : <input type="password" name="pw">
+        <br/>
+        ì´ë¦„ : <input type="text" name="helper_name">
+        <br/>
+        ì „í™”ë²ˆí˜¸ : <input type="text" name="phoneNum" placeholder="'-'ë¥¼ ì œì™¸í•œ ìˆ«ìžë§Œ ìž…ë ¥í•˜ì„¸ìš”.">
+        <br/>
+        ì„±ë³„ : <input type="radio" name="sex" value="female"> ì—¬ì„±
+        <input type="radio" name="sex" value="male"> ë‚¨ì„±
+        <br/>
+        ê³„ì¢Œë²ˆí˜¸ : <input type="text" name="bank" size="20" placeholder="ì€í–‰ëª…">
+        <input type="text" name="account" size="40" placeholder="'-'ë¥¼ ì œì™¸í•œ ìˆ«ìžë§Œ ìž…ë ¥í•˜ì„¸ìš”.">
+        <input type="text" name="accountname" size="10" placeholder="ì˜ˆê¸ˆì£¼">
+
+        <br/>
+        ì£¼ì†Œ : <input type="text" name="addr" size="50" placeholder="00ì‹œ 00ë™ ê¹Œì§€ë§Œ ì ì–´ì£¼ì„¸ìš”.">
+        <input type="text" name="addr_detail" size="40" placeholder="ë‚˜ë¨¸ì§€ ì£¼ì†Œë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.">
+
+        <br/> <br/>
+        í¬ë§ ê·¼ë¬´ì§€1 :
+        <select onchange="categoryChange1(this)" name="city1" id="city1" value="">
+            <option> ì‹œ </option>
+            <option value="a"> ì „ì²´</option>
+            <option value="b"> ì œì£¼ì‹œ</option>
+            <option value="c"> ì„œê·€í¬ì‹œ</option>
+        </select>
+
+        <select id="good1" name="dong1">
+            <option> ì, ë©´, ë™ </option>
+        </select>
+
+
+        <br/>
+        í¬ë§ ê·¼ë¬´ì§€2 :
+        <select onchange="categoryChange2(this)" name="city2" id="city2" value="">
+            <option> ì‹œ </option>
+            <option value="a"> ì „ì²´</option>
+            <option value="b"> ì œì£¼ì‹œ</option>
+            <option value="c"> ì„œê·€í¬ì‹œ</option>
+        </select>
+
+        <select id="good2" name="dong2">
+            <option> ì, ë©´, ë™ </option>
+        </select>
+
+
+        <br/>
+        í¬ë§ ê·¼ë¬´ì§€3 :
+        <select onchange="categoryChange3(this)" name="city3" id="city3" value="">
+            <option> ì‹œ </option>
+            <option value="a"> ì „ì²´</option>
+            <option value="b"> ì œì£¼ì‹œ</option>
+            <option value="c"> ì„œê·€í¬ì‹œ</option>
+        </select>
+
+
+        <select id="good3" name = "dong3">
+            <option> ì, ë©´, ë™ </option>
+        </select>
+        <br/>
+        <br/>
+
+        í•˜ê³ ì‹¶ì€ ë§
+        <br/>
+        <textarea name="message" rows="5" cols="40" placeholder="ìžì‹ ì— ëŒ€í•´ í•œë§ˆë””ë¡œ í‘œí˜„í•´ì£¼ì„¸ìš”." maxlength="200">
+    </textarea>
+        <input type="submit"/>
+        <!--
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="comment">í•˜ê³  ì‹¶ì€ ë§:</label>
+                    <textarea class="form-control" rows="5" col="40" name="messege" id="comment"></textarea>
+                </div>
+            </form>
+        </div>
+        -->
+
+    </form>
+    <br/><br/>
+
+<%@include file="/footer.jsp"%>
+<%@include file="/script.jsp"%>
+
 </body>
 </html>
