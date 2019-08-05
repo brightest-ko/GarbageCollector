@@ -102,8 +102,14 @@
             padding: 16px;
         }
 
+        .input {
+            border: 2px solid #73AD21;
+            padding: 10px;
+        }
+
         button {
             background-color: lightcoral;
+
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
