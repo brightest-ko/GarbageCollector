@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.Controller;
+import common.RequestMapping;
 
 @RequestMapping("/review_delete.do")
 public class CtrlDel implements Controller {
