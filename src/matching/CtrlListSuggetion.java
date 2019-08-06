@@ -14,10 +14,10 @@ public class CtrlListSuggetion implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//½ÅÃ»¼­ Ãß°¡ ÀÌÈÄ
-		//½ÅÃ»¼­ Ãß°¡ ctrl¿¡ Ãß°¡¿¹Á¤
+		//ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ß°ï¿½ ctrlï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½
 		/*
-			1. ½ÅÃ»¼­ Ãß°¡
+			1. ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ß°ï¿½
 			select count(*) from customer where customer_phone = ?
 			if(rs.hasnext())
 				update customer set customer_addr_front=?, customer_addr_detail=? where customer_phone = ?
@@ -28,42 +28,44 @@ public class CtrlListSuggetion implements Controller{
 			
 			2.
 			select serialNo, customer_addr_front from customer_apply where customer_phone = ? order by customer_apply_day desc
-			'Áö±Ý ½ÅÃ»ÇÑ serialNo' = rsÀÇ Ã¹¹øÂ° °ÅÀÇ serialNo
-			'Áö±Ý ½ÅÃ»ÇÑ customer_addr_front' = rsÀÇ Ã¹¹øÂ° °ÅÀÇ serialNo
-			'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' = customer_addr_front.ºÐÇØ1
-			'³ª¸ÓÁöµ¿' = customer_addr_front.ºÐÇØ2
+			'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ serialNo' = rsï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ serialNo
+			'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ customer_addr_front' = rsï¿½ï¿½ Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ serialNo
+			'ï¿½ï¿½ï¿½Ö½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' = customer_addr_front.ï¿½ï¿½ï¿½ï¿½1
+			'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' = customer_addr_front.ï¿½ï¿½ï¿½ï¿½2
 			
-			rs = select helperID  from helper where (wish_addr_front1 = ?'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' and wish_addr_detail1 =?'³ª¸ÓÁöµ¿')
-			or (wish_addr_front2 = ?'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' and wish_addr_detail2 =?'³ª¸ÓÁöµ¿')
-			or (wish_addr_front3 = ?'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' and wish_addr_detail3 =?'³ª¸ÓÁöµ¿');
+			rs = select helperID  from helper where (wish_addr_front1 = ?'ï¿½ï¿½ï¿½Ö½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' and wish_addr_detail1 =?'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½')
+			or (wish_addr_front2 = ?'ï¿½ï¿½ï¿½Ö½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' and wish_addr_detail2 =?'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½')
+			or (wish_addr_front3 = ?'ï¿½ï¿½ï¿½Ö½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' and wish_addr_detail3 =?'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
 			
 			for rs{
-				insert into matching(serialNo,helperID,suggestion,acceptance) values (?'Áö±Ý ½ÅÃ»ÇÑ serialNo',?'rs.helperID',0,0);
+				insert into matching(serialNo,helperID,suggestion,acceptance) values (?'ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ serialNo',?'rs.helperID',0,0);
 			}
 			
 		*/
 		
 		/*
-		 	Á¦¾È¸®½ºÆ® (´ëÇàÈ­¸é)
+		 	ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½)
 		 	select serialNo  from matching where helperID = ?'helperID' and suggestion =0 and acceptance =0
 		 	customer_applyVO_list
 		 	rs.for{
 		 		customer_applyVO = select * from customer_apply where  serialNo = ?serialNo 
 		 	}
 		 	
-		 	¼ö¶ô¸®½ºÆ® (¼Õ´ÔÈ­¸é)
+		 	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½Õ´ï¿½È­ï¿½ï¿½)
 		 	select helperID  from matching where serialNo = ?'serialNo' and suggestion =1 and acceptance =0
 		 	helperVO_list
 		 	rs.for{
 		 		helperVO = select * from helper where  helperID = ?helperID 
 		 	}
 		 	
-		 	¼ö¶ô(¼ö¶ô¸®½ºÆ®¿¡¼­ add - ¼Õ´ÔÈ­¸é)
+		 	ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ add - ï¿½Õ´ï¿½È­ï¿½ï¿½)
 		 	
 		 	
 		 */
+
+
         String l = null;
-		
+
         MatchingDAO dao = new Matching_OracleImpl();
         List<MatchingVO> rl = dao.findAll();
 
