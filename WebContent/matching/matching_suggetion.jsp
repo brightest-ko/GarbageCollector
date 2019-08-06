@@ -62,7 +62,7 @@
 
 				<table class="table table-bordered text-center table-hover">
 					<thead>
-						<tr>
+						<tr class="bg-success" style="font-weight: bold;">
 							<th class="text-center col-xs-3">지역</th>
 							<th class="text-center col-xs-3">수행 예정 시간</th>
 							<th class="text-center col-xs-1">종류</th>
@@ -74,7 +74,7 @@
 					
 					<tbody>
 					
-							<tr class="danger" style="font-weight: bold;">
+							<tr class="danger" style="color: red;">
 								<td>제주시 이도1동</td>
 								<td>2019/08/20/17:22:10</td>
 								<td>플라스틱</td>
