@@ -24,7 +24,7 @@
 				</div>	
 	<button type="submit" class="btn btn-success" >수정하기</button>
 </form>
-<form method="POST" action="certify_submit.jsp">
+<form method="POST" action="/certify_info2.do">
 	<button type="submit" class="btn btn-success" >인증정보</button>
 </form>
 </div>

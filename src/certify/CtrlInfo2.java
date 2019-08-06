@@ -7,7 +7,7 @@ import common.Controller;
 import common.RequestMapping;
 import common.Util;
 
-@RequestMapping("/certify_find2.do")
+@RequestMapping("/certify_info2.do")
 public class CtrlInfo2 implements Controller{
 
 	@Override

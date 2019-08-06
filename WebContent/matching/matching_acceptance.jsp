@@ -76,7 +76,7 @@
                       <td>Otto</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-success" href="#">인증하기</a></td>
+                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp">인증하기</a></td>
                     </tr>
                     <tr>
                       <th>2</th>
@@ -84,7 +84,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-default"  href="#" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
+                      <td><a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_update.jsp" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
                     </tr>
                     <tr>
                       <th>2</th>

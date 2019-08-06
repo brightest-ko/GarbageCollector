@@ -71,33 +71,21 @@
 				<div class="input-group">
 					<span class="input-pgroup-addon">사진</span> <input type="file"
 						name="photo" camera="camera" class="form-control" />
+						<img src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}" width="200" height="200" alt="My Image">
 				</div>
 			</div>
 
 			<h3 style="color: WHITE">특이사항</h3>
 			<div class="form-group certify_detalis">
-				<textarea class="form-control" rows="5" id="details" name="details"></textarea>
+				<textarea class="form-control" rows="5" id="details" name="details" readonly></textarea>
 			</div>
 
 		<!-- Trigger the modal with a button -->
 		<div class="container">
 		<button type="button" class="btn btn-success" data-toggle="modal"
-			data-target="#myModal">인증완료</button>
+			data-target="#myModal">확인</button>
 		</div>
 		<div class="col-md-4"></div>
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-sm">
-				<div class="modal-content">
-					<div class="modal-body">
-						<p>인증하시겠습니까?.</p>
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</div>
 	</form>
