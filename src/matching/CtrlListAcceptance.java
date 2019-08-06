@@ -36,7 +36,7 @@ public class CtrlListAcceptance implements Controller{
 		 select * from customer_apply where serialNo in (select serialNo from matcing where heplerID=?¡¯·Î±×ÀÎID¡¯ and suggestion = 1 and acceptance = 1) order by customer_apply_day desc
 				 	
 		 */
-        MatchingDAO dao = new Matching_OracleImpl();
+        MatchingDAO dao = new MatchingDAO_OracleImpl();
       //  List<CustomerApplyVO> rl = dao.suggestion_list(customer_phone);
 
       //  request.setAttribute("rl", rl);

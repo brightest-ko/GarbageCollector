@@ -19,6 +19,8 @@
             
         	matching.CtrlListSuggetion,
         	matching.CtrlListAcceptance,
+        	
+        	customer.CtrlAddApply,
 
             review.CtrlList,
             review.CtrlInsert,

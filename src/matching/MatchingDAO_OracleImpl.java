@@ -12,10 +12,11 @@ import java.util.List;
 import common.Util;
 import customer.CustomerApplyVO;
 
-public class Matching_OracleImpl implements MatchingDAO 
+public class MatchingDAO_OracleImpl implements MatchingDAO 
 {
 	@Override
 	public List<CustomerApplyVO> suggestion_list(String HelperID) throws Exception {
+		//서비스 요청 리스트
 		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;

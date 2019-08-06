@@ -16,26 +16,9 @@ public class CtrlAddSuggetion implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//??ì²??? ì¶?ê°? ?´í??
-		//??ì²??? ì¶?ê°? ctrl?? ì¶?ê°?????
       /*
-         1. ??ì²??? ì¶?ê°?
-         select count(*) from customer where customer_phone = ?
-         if(rs.hasnext())
-            update customer set customer_addr_front=?, customer_addr_detail=? where customer_phone = ?
-            insert into customer_apply
-         else
-            insert into customer
-            insert into customer_apply
 
          2.
-         select serialNo, customer_addr_front from customer_apply where customer_phone = ? order by customer_apply_day desc
-         'ì§?ê¸? ??ì²??? serialNo' = rs?? ì²«ë?ì§? ê±°ì?? serialNo
-         'ì§?ê¸? ??ì²??? customer_addr_front' = rs?? ì²«ë?ì§? ê±°ì?? serialNo
-         '??ì£¼ì??/??ê·??¬ì??' = customer_addr_front.ë¶???1
-         '??ë¨¸ì???' = customer_addr_front.ë¶???2
-
-         forë¬? ë§?ê³? ?´ê±° ?´ì?©í??ê¸?
          INSERT INTO table_a
 ( title, name, regdate, register, memberid, categoryid )
 SELECT title, name, regdate, register, memberid, categoryid
@@ -77,7 +60,7 @@ WHERE categoryid=10
          select * from customer_apply
            where serialNo in (select serialNo from matching where helperID = ?'helperID' and suggestion =0 and acceptance =0
         */
-		MatchingDAO dao = new Matching_OracleImpl();
+		MatchingDAO dao = new MatchingDAO_OracleImpl();
 		List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
 
 		if(rl.size() > 0){

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO_OracleImpl implements CustomerDAO {
+/*
 	@Override
 	public void add(CustomerVO vo) throws Exception {
 		Connection conn=null;
@@ -65,6 +66,6 @@ public class CustomerDAO_OracleImpl implements CustomerDAO {
 		return ls;
 	
 	}
-	
+	*/
    
 }
