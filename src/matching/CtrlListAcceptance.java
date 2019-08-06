@@ -33,8 +33,8 @@ public class CtrlListAcceptance implements Controller{
         String l = null;
         
 		/*
-			helperVO_list = select * from helper where  helperID in
-		 	(select helperID  from matching where serialNo = ?'serialNo' and suggestion =1 and acceptance =0)		 	
+		 select * from customer_apply where serialNo in (select serialNo from matcing where heplerID=?¡¯·Î±×ÀÎID¡¯ and suggestion = 1 and acceptance = 1) order by customer_apply_day desc
+				 	
 		 */
         MatchingDAO dao = new Matching_OracleImpl();
       //  List<CustomerApplyVO> rl = dao.suggestion_list(customer_phone);

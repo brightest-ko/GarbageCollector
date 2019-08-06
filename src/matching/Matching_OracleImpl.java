@@ -31,7 +31,8 @@ public class Matching_OracleImpl implements MatchingDAO
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
-			
+
+			System.out.println("suggestion_list");
 			CustomerApplyVO vo = null;
 			if(rs.next()){
 				vo = new CustomerApplyVO();
@@ -42,8 +43,10 @@ public class Matching_OracleImpl implements MatchingDAO
 				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setTrash_type(rs.getInt("trash_type"));
 				vo.setPrice(rs.getInt("price"));
+				System.out.println(vo.toString());
 				ls.add(vo);
 			}			
+			System.out.println(ls.toString());
 		}
 		catch( Exception e ){}
 		finally {
