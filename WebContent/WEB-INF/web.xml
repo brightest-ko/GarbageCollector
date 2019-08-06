@@ -25,7 +25,7 @@
             review.CtrlList,
             review.CtrlInsert,
             review.CtrlDel,
-            review.CtrlModify
+            review.CtrlModify,
 
             helper.CtrlAdd,
             helper.CtrlAdd_view
