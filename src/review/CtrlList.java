@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.Controller;
+import common.RequestMapping;
 
 @RequestMapping("/review_list.do")
 public class CtrlList implements Controller{
