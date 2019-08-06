@@ -15,6 +15,7 @@
             certify.CtrlDel2,
             
         	matching.CtrlListSuggetion,
+        	matching.CtrlListAcceptance,
 
             review.CtrlList,
             review.CtrlInsert,

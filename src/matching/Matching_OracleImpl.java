@@ -2,21 +2,21 @@ package matching;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.PreparedStatement;
-
-import study3.TalkRoomVO;
+import common.Util;
+import customer.CustomerApplyVO;
 
 public class Matching_OracleImpl implements MatchingDAO 
 {
 	@Override
-	public List<MatchingVO> findAll() throws Exception {
-		List<MatchingVO> ls = new ArrayList<MatchingVO>();
+	public List<CustomerApplyVO> suggestion_list(String HelperID) throws Exception {
+		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -24,23 +24,25 @@ public class Matching_OracleImpl implements MatchingDAO
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			stmt = conn.createStatement();
-			
-			String sql = "SELECT * FROM map order by mapNo desc";
 
-			String sql = "select * from talk_room_t where room_no = ?";
+			String sql = "select * from customer_apply "
+					+ "where serialNo in "
+					+ "(select serialNo from matching where helperID = ? and suggestion =0 and acceptance =0";
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, roomNo);
+			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
-
-//			System.out.println(rs.toString());
+			
+			CustomerApplyVO vo = null;
 			if(rs.next()){
-//				System.out.println(rs.getInt("room_no"));
-				vo = new TalkRoomVO();
-				vo.setRoomNo(rs.getInt("room_no"));
-				vo.setApple(rs.getString("apple"));
-				vo.setBanana(rs.getString("banana"));
-				vo.setOrange(rs.getString("orange"));
+				vo = new CustomerApplyVO();
+				vo.setSerialNo(rs.getInt("serialNo"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setPrice(rs.getInt("price"));
+				ls.add(vo);
 			}			
 		}
 		catch( Exception e ){}

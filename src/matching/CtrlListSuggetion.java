@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.Controller;
 import common.RequestMapping;
+import customer.CustomerApplyVO;
 
 
-@RequestMapping("/matching.do")
+@RequestMapping("/matching_suggetion_list.do")
 public class CtrlListSuggetion implements Controller{
 
 	@Override
@@ -33,6 +35,13 @@ public class CtrlListSuggetion implements Controller{
 			'제주시/서귀포시' = customer_addr_front.분해1
 			'나머지동' = customer_addr_front.분해2
 			
+			for문 말고 이거 이용하기
+			INSERT INTO table_a
+( title, name, regdate, register, memberid, categoryid )
+SELECT title, name, regdate, register, memberid, categoryid
+FROM table_b
+WHERE categoryid=10
+
 			rs = select helperID  from helper where (wish_addr_front1 = ?'제주시/서귀포시' and wish_addr_detail1 =?'나머지동')
 			or (wish_addr_front2 = ?'제주시/서귀포시' and wish_addr_detail2 =?'나머지동')
 			or (wish_addr_front3 = ?'제주시/서귀포시' and wish_addr_detail3 =?'나머지동');
@@ -44,33 +53,41 @@ public class CtrlListSuggetion implements Controller{
 		*/
 		
 		/*
-		 	제안리스트 (대행화면)
-		 	select serialNo  from matching where helperID = ?'helperID' and suggestion =0 and acceptance =0
-		 	customer_applyVO_list
-		 	rs.for{
-		 		customer_applyVO = select * from customer_apply where  serialNo = ?serialNo 
-		 	}
-		 	
 		 	수락리스트 (손님화면)
-		 	select helperID  from matching where serialNo = ?'serialNo' and suggestion =1 and acceptance =0
-		 	helperVO_list
-		 	rs.for{
-		 		helperVO = select * from helper where  helperID = ?helperID 
-		 	}
-		 	
-		 	수락(수락리스트에서 add - 손님화면)
-		 	
-		 	
+		 	helperVO_list = select * from helper where  helperID in
+		 	(select helperID  from matching where serialNo = ?'serialNo' and suggestion =1 and acceptance =0)		 	
 		 */
-        String l = null;
 		
+		HttpSession session = request.getSession();
+		String auth ="helper";//= null;
+		String helperID ="gobaksa4@naver.com";//= null;
+		try{
+//			auth = (String)session.getAttribute("auth");
+//			helperID =  (String)session.getAttribute("id");
+			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
+				response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+			}
+		}catch(Exception e){
+			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+		}
+		
+        String l = null;
+        
+		/*
+			select * from customer_apply
+        	where serialNo in (select serialNo from matching where helperID = ?'helperID' and suggestion =0 and acceptance =0
+        */
         MatchingDAO dao = new Matching_OracleImpl();
-        List<MatchingVO> rl = dao.findAll();
-
-        request.setAttribute("rl", rl);
-
-		System.out.println("ControllerList TEST" + rl.toString());
-		return "/index.jsp";
+        List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
+        
+        if(rl.size() > 0){
+    		System.out.println("matching_suggestion_list: " + rl.toString());
+        	request.setAttribute("rl", rl);
+        }
+        
+		System.out.println("matching_suggestion_list.do");
+		return "/matching/matching_suggetion.jsp";
+		
 	}
 
 }
