@@ -36,6 +36,11 @@ body {
 	color: #323232;
 }
 
+a {
+    color: #777;
+    text-decoration: none;
+}
+
 p {
 	font-size: 16px;
 }
@@ -107,7 +112,21 @@ nav {
 	font-size: 12px;
 	letter-spacing: 5px;
 	border-bottom: 1px solid #e1e1e1;
-	font-size: 16px;
+	font-size: 16px;	
+    transition: .2s ease;
+}
+.navbar-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    padding-left: 36px;
+    padding-right: 36px;
+    padding-top: 48px;
+    padding-bottom: 24px;
+    height: 80px;
+    transition: .2s ease;
 }
 .navbar-default li a{
 /*	color: #ffffff !important;*/
@@ -132,7 +151,7 @@ main {
     position: relative;
 }
 
-form div.input-group {
+form div.input-group.border-thick {
     border: 2px solid #00c7ae;
     border-radius: 4px;
 }

@@ -48,11 +48,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">느영(대행자)</a>
               <ul class="dropdown-menu">
                 <li><a href="<%=ctxPath %>/matching/matching_suggetion.jsp">서비스 요청 리스트</a></li>
-                <li><a href="#">대행자 제안 리스트</a></li>
+                <li><a href="<%=ctxPath %>/matching/matching_acceptance.jsp">대행자 제안 리스트</a></li>
               </ul>
             </li>
 	        <li><a href="<%=ctxPath %>/review/review_list.jsp">후기</a></li>
-            <li><a href="#">로그인</a></li>
+            <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
           </ul>
     </div>
   </div>

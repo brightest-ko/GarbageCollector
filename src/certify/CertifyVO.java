@@ -20,7 +20,6 @@ public class CertifyVO {
 	private String housePlace = null;
 	private String certify_photo_ofn  = null;
 	private String certify_photo_fsn  = null;
-	private Integer certify_status  = 0;
 	private Date certify_day = null;
 	
 	public Integer getSerialNo() {
@@ -58,12 +57,6 @@ public class CertifyVO {
 	}
 	public void setCertify_photo_fsn(String certify_photo_fsn) {
 		this.certify_photo_fsn = certify_photo_fsn;
-	}
-	public Integer getCertify_status() {
-		return certify_status;
-	}
-	public void setCertify_status(Integer certify_status) {
-		this.certify_status = certify_status;
 	}
 	public Date getCertify_day() {
 		return certify_day;
