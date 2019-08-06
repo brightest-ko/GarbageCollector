@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
-	import="customer.customerApplyVO"
+	import="customer.CustomerApplyVO"
 	%>
 <%
-	String ctxPath = request.getContextPath();
-	String customer_phone = request.getParameter("customer_phone");
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -54,10 +52,14 @@
 </head>
 <body>
 	<%@include file="/header.jsp"%>
-	<%String phone=(String)request.getAttribute("phone");%>
+	<%
+	String two_phone=(String)request.getAttribute("two_phone");
+	int bag_num=Integer.parseInt((String)request.getAttribute("bag_num"));
+	int price=Integer.parseInt((String)request.getAttribute("price"));
+	%>
 	<main>
 <div class="container">
-  
+ <div class="modal fade" id="customer_apply_two_modal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -67,11 +69,13 @@
           <h4 class="modal-title">결제</h4>
         </div>
         <div class="modal-body" style="padding:60px">
-          <p class="text-center"><%=phone%> 고객님!</p>
-          <label for="total_money">총 이용금액</label>
-         <form method="POST"  action="customer_update.me">
+          <p class="text-center"><%=two_phone%> 고객님!</p>
+          <label for="total_money">봉투갯수 : <%=bag_num%> 총 이용금액</label>
+          
+         <form method="POST"  action="customer_update.do">
          	
-     	  <input type="text" class="form-control" id="total_money" name="total_money">
+     	  <input type="text" class="form-control" id="total_money" name="total_money"
+     	  value="<%=price%>">
 			
           <label for="card_num" >카드번호</label>
      	  <input type="text" class="form-control" id="card_num" name="card_num">
@@ -84,7 +88,7 @@
       
     </div>
   </div>
-
+</div>
 
 	</main>
 	<%@include file="/footer.jsp"%>

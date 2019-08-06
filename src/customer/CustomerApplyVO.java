@@ -1,5 +1,5 @@
 package customer;
-import java.util.Date;
+import java.sql.Date;
 
 public class CustomerApplyVO {
 	private Integer serialNo;

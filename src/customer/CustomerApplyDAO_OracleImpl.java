@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
@@ -17,7 +19,6 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
 		Connection conn=null;
 		
 		PreparedStatement stmt=null;
-
 		
 		/*
 		 * 
@@ -40,23 +41,35 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
 		try{
 		
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
-			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");		
-			 String sql="insert into customer_apply values(?,?,?,?,?,?,?,?,?,?,?)";
+			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+			 String sql="insert into customer_apply values(?,?,?,?,?,?,?,?,?,?,sysdate)";
 			 stmt=conn.prepareStatement(sql);
-			 stmt.setString(1,vo.getSerialNo());
+			 
+			 /*
+			  * 
+			  * 정보있는지 확인하는 controller
+			  *          select count(*) from customer where customer_phone = ?
+         if(rs.hasnext())
+            update customer set customer_addr_front=?, customer_addr_detail=? where customer_phone = ?
+            insert into customer_apply
+         else
+            insert into customer
+            insert into customer_apply
+			  * 
+			  * */
+			 stmt.setInt(1,vo.getSerialNo());
 			 stmt.setString(2,vo.getCustomer_phone());
-			 stmt.setString(3,vo.getAddr_front());
+			 stmt.setString(3,vo.getCustomer_addr_first());
 			 stmt.setString(4,vo.getHelperID());
-			 stmt.setString(5,vo.getAddr_detail());
+			 stmt.setString(5,vo.getCustomer_addr_second());
 			 stmt.setInt(6,vo.getBag_num());
 			 stmt.setInt(7,vo.getTrash_type());
-			 stmt.setString(8,vo.getTime_wanted());
-			 stmt.setInt(9,vo.getLast_time());
+			 //setDate가 먹으려면-->java.sql.Dateimport해야함 util이아니라
+			 stmt.setDate(8,vo.getWanted_time());
 			 stmt.setInt(10,vo.getPrice());
 			 stmt.setString(11,vo.getCard_num());
 			 int a=stmt.executeUpdate();
 			 System.out.println(a+"d");
-			 conn.commit();
 			 stmt.close();
 			 conn.close();
 			 
@@ -79,18 +92,18 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
 			 rs=stmt.executeQuery(sql);
 			 while(rs.next()){
 				 CustomerApplyVO vo=new CustomerApplyVO();
-				 vo.setSerialNo(rs.getString(1));
+				 vo.setSerialNo(rs.getInt(1));
 				 vo.setCustomer_phone(rs.getString(2));
-				 vo.setAddr_front(rs.getString(3));
-				 vo.setHelperID((rs.getString(4)));
-				 vo.setAddr_detail(rs.getString(5));
-				 vo.setBag_num(rs.getString(6));
-				 
-				 vo.setTrash_type(rs.getString(7).split(","));
-				 vo.setTime_wanted(rs.getString(8).split(","));
-				 vo.setLast_time(rs.getString(9));
-				 vo.setPrice(rs.getString(10));
-				 vo.setCard_num(rs.getString(11));
+				 vo.setCustomer_addr_first(rs.getString(3));
+				 vo.setCustomer_addr_second(rs.getString(4));
+				 vo.setCustomer_addr_third(rs.getString(5));
+				 vo.setBag_num(rs.getInt(6));
+				 vo.setTrash_type(rs.getInt(7));
+				 vo.setWanted_time(rs.getDate(8));
+				 vo.setPrice(rs.getInt(9));
+				 vo.setCard_num(rs.getString(10));
+				 vo.setHelperID(rs.getString(11));
+				 vo.setCustomer_apply_day(rs.getDate(12));
 				 ls.add(vo);
 			 }
 			 rs.close();
@@ -109,25 +122,49 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
 	
 	}
 	@Override
-	public void update(String phone,String price,String card_num) throws Exception
+	public void update(String phone,int price,String card_num) throws Exception
 	{
 		
 		Connection conn=null;
 		
 		PreparedStatement stmt=null;
-		
+		PreparedStatement stmt1=null;
+
 		try{
 
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 			 String sql="update customer_apply set price=?,card_num=? where customer_phone=?";
-			 
-			 stmt=conn.prepareStatement(sql);			
-			 stmt.setString(1, price);
+			 String sql1="select count(*) from customer where customer_phone = ?";
+			 stmt1=conn.prepareStatement(sql1);
+			 ResultSet rs1=stmt1.executeQuery();
+			 //업데이트
+			 if(rs1.next()){
+				 String s="update customer set customer_addr_first=?, customer_addr_second=?, customer_addr_third=? where customer_phone = ?";
+				 PreparedStatement imsi=null;
+				 imsi.setString(1,rs1.getString(3));
+				 imsi.setString(2,rs1.getString(4));
+				 imsi.setString(3,rs1.getString(5));
+				 int a=imsi.executeUpdate();
+				 System.out.println(a);
+				 imsi.close();
+			 }
+			 //추가
+			 else{
+				 String s="insert into customer values(?,?,?,?)";
+				 PreparedStatement imsi1=null;
+				 imsi1=conn.prepareStatement(sql);			
+				 imsi1.setInt(1, price);
+				 imsi1.setString(2,card_num);
+				 imsi1.setString(3,phone);
+				 int a=imsi1.executeUpdate();
+				 System.out.println(a+"d");
+				 imsi1.close();
+			 }
+			 stmt.setInt(1,price);
 			 stmt.setString(2,card_num);
 			 stmt.setString(3,phone);
-			 int a=stmt.executeUpdate();
-			 System.out.println(a+"d");
+			 
 		}catch(Exception e){
 		}
 		finally{

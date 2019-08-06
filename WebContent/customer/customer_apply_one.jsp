@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 
 <%
-	String customer_phone = request.getParameter("customer_phone");
+
+	
 %>
 <!-- Modal -->
-<div class="modal fade" id="customer_apply_Modal" role="dialog">
+<div class="modal fade" id="customer_apply_one_modal" role="dialog">
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
@@ -17,13 +18,13 @@
 				<h4 class="modal-title">서비스 신청</h4>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="customer_apply_two.me">
+				<form method="POST" action="customer_apply_two.do">
 
 
 					<div class="row">
 						<div class="col-xs-4 gul">전화번호</div>
 						<div class="col-xs-8 ">
-							<input type="text" class="form-control" name="customer_phone" id="customer_phone"
+							<input type="text" class="form-control" name="two_phone" id="customer_phone"
 								value="01043394609">
 						</div>
 					</div>
@@ -87,23 +88,18 @@
 
 
 					<div class="row">
-						<div class="col-xs-4 gul">수거시간</div>
-						<div class="col-xs-8">
-							<div class="input-group date" data-provide="datepicker">
-								<input type="text" class="form-control"
-									value="2019/08/10 -09:05" style="color: #BBC592">
-								<div class="input-group-addon">
-									<span class="glyphicon glyphicon-th"></span>
-								</div>
-							</div>
-						</div>
 
+
+					<div class="col-xs-4 gul">수거시간</div>
+					<div class="col-xs-8">
+					<input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime">
+					</div>
 					</div>
 
 
 
 					<div class="modal-footer">
-						<a role="submit" class="btn btn-lg"
+						<a role="submit" class="btn btn-lg" id="one_finish" 
 							style="background-color: #ADCB00; color: black;">다음</a>
 						<!-- <button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
     				 -->

@@ -2,9 +2,7 @@
     pageEncoding="utf-8"
    
     %>
-<%
-	String ctxPath =request.getContextPath();
-%>
+<% String ctxPath = request.getContextPath(); %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 
@@ -25,7 +23,7 @@
   
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	
+	<script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	<style>
@@ -56,7 +54,7 @@
 						<input type="text" placeholder="핸드폰 번호를 숫자만 입력해주세요." autocomplete="off" id="customer_phone_in" class="form-control with-button" 
 						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						<div class="input-group-btn">
-      					<button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
+      					<button type="button" class="btn btn-default with-text" id="customer_choose_btn"><i class="glyphicon glyphicon-search"></i></button>
     				</div>
 					<!---->
 					</div>
@@ -69,25 +67,45 @@
 
 <script>
 $(document).ready(function(){
-    $("#customer_apply_Modal_btn").click(function(){
-    	document.getElementById("customer_phone").value = $('#customer_phone_in').val();;
+    $("#customer_choose_btn").click(function(){
 
-        $("#customer_apply_Modal").modal();
+        $("#customer_choose").modal();
     });
 });
 window.onload=function(){
 	var apply_do=document.getElementById("apply_do");
 	var apply_result=document.getElementById("apply_result");
+	var one_finish=document.getElementById("one_finish");
+	var go_list=document.getElementById("go_list");
 	apply_do.onclick=function(){
-		//모달띄움.
-		alert('1');
+		//모달띄움.신청하기모달/있는지 확인(데이터있는지)
+		document.getElementById("customer_phone").value = $('#customer_phone_in').val();
+		$("#customer_apply_one_modal").modal();
+		
 	};
 	apply_result.onclick=function(){
-		//페이지로이동
-		alert('2');
+		//페이지로이동(신청결과)customer_list.do로이동
+		$("#customer_apply_one_modal").modal();
+	};
+	
+	one_finish.onclick=function(){
+		//페이지로이동(신청결과)customer_list.do로이동
+		//$("#customer_apply_one_modal").hide();
+		$("#customer_apply_two_modal").modal();
+	};
+	
+	
+	go_list.onclick=function(){
+		//페이지로이동(신청결과)action customer_list.do로이동
+		$("#customer_apply_one_modal").modal();
 	};
 	
 };
+
+
+$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+
+	 
 </script>
 
 
@@ -102,6 +120,9 @@ window.onload=function(){
 </main>
 <%@include file="/footer.jsp"%>
 <%@include file="/script.jsp"%>
-
+<%@include file="/customer/customer_choose.jsp"%>
+<%@include file="/customer/customer_apply_one.jsp"%>
+<%@include file="/customer/customer_apply_two.jsp"%>
+<%@include file="/customer/customer_apply_result.jsp"%>
 </body>
 </html>

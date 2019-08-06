@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+
+<!DOCTYPE html>
+
 <div class="modal fade" id="customer_choose" role="dialog">
 	<div class="modal-dialog">
 
