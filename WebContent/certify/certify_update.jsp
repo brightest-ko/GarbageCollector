@@ -4,6 +4,7 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
     %>
 <%
 	String ctxPath =request.getContextPath();
+	System.out.println(request.getAttribute("vo"));
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
@@ -40,7 +41,7 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
 <main>
 	<div class="container ">
 		<div style="text-align:left">
-		<form method="POST" action="certify_add2.do" enctype="multipart/form-data">
+		<form method="POST" action="certify/certify_update2.do" enctype="multipart/form-data">
 		<div class="container row">
 					<div class="jumbotron certify_temp">
 						<p></p>
@@ -55,25 +56,26 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
 				<div class="input-group">
 					<span class="input-group-addon">고객 신청번호</span> <input
 						id="certify_serialNo" type="text" class="form-control"
-						name="certify_serialNo" placeholder=" 신청번호" disabled>
+						name="certify_serialNo" value="${vo.serialNo}" >
 				</div>
 			</div>
 		</div>
 			<div class="form-group has-success has-feedback" >
 				<div class="input-group">
 					<span class="input-group-addon">위치</span> <input id="housePlace"
-						type="text" class="form-control" name="housePlace" value="서귀포시 ">
+						type="text" class="form-control" name="housePlace" value="${vo.housePlace} ">
 				</div>
 			</div>
 			<div class="form-group has-success has-feedback ">
 				<div class="input-group">
 					<span class="input-group-addon">사진</span> <input type="file"
-						name="photo" camera="camera" class="form-control" />
+						name="photo" camera="camera" class="form-control" >
+						<img src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}" width="200" height="200" alt="My Image">
 				</div>
 			</div>
 			<h3>특이사항</h3>
 			<div class="form-group certify_detalis">
-				<textarea class="form-control" rows="5" id="details" name="details" >대충 좋았다는 내용</textarea>
+				<textarea class="form-control" rows="5" id="details" name="details" >${vo.details}</textarea>
 			</div>
 
 		<!-- Trigger the modal with a button -->
