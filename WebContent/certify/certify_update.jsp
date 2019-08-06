@@ -40,7 +40,7 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
 <main>
 	<div class="container ">
 		<div style="text-align:left">
-		<form method="POST" action="certify_add2.do" enctype="multipart/form-data">
+		<form method="POST" action="certify_update2.do" enctype="multipart/form-data">
 		<div class="container row">
 					<div class="jumbotron certify_temp">
 						<p></p>
@@ -55,7 +55,7 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
 				<div class="input-group">
 					<span class="input-group-addon">고객 신청번호</span> <input
 						id="certify_serialNo" type="text" class="form-control"
-						name="certify_serialNo" placeholder=" 신청번호" disabled>
+						name="certify_serialNo" placeholder=" 신청번호" readonly>
 				</div>
 			</div>
 		</div>
@@ -68,7 +68,7 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
 			<div class="form-group has-success has-feedback ">
 				<div class="input-group">
 					<span class="input-group-addon">사진</span> <input type="file"
-						name="photo" camera="camera" class="form-control" />
+						name="photo" camera="camera" class="form-control"  value="aaaa"/>
 				</div>
 			</div>
 			<h3>특이사항</h3>

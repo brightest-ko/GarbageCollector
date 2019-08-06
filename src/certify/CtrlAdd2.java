@@ -12,7 +12,7 @@ import common.Util;
 
 
 
-@RequestMapping("/certify_add2.do")
+@RequestMapping("/certify/certify_add2.do")
 public class CtrlAdd2 implements Controller{
 
 	@Override
@@ -22,7 +22,7 @@ public class CtrlAdd2 implements Controller{
 
 		System.out.println("사진 추가 시작");
 		// fileup 디렉터리의 실제 저장위치 (절대경로) 값을 파악한다.
-		String path = request.getServletContext().getRealPath("/WEB-INF/fileup");
+		String path = request.getServletContext().getRealPath("/assets/img");
 		System.out.println( path );
 		
 		// cos.jar에서 제공되는 클래스
@@ -54,10 +54,7 @@ public class CtrlAdd2 implements Controller{
 		 vo.setCertify_photo_fsn(fsn);
 		 CertifyDAO dao = new CertifyDAO_OracleImpl();
 		 dao.insert(vo);
-
-		System.out.println(dao.toString());
-
-		return "redirect:/certify_list.do";
+		return "redirect:/certify/certify_list.do";
 	}
 
 	

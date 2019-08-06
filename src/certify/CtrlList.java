@@ -12,8 +12,7 @@ import common.Controller;
 import common.RequestMapping;
 
 
-// modl
-@RequestMapping("/certify_list.do")
+@RequestMapping("/certify/certify_list.do")
 public class CtrlList implements Controller {
 
 	@Override
@@ -25,7 +24,7 @@ public class CtrlList implements Controller {
 		List<CertifyVO> rl = dao.findAll();
 		
 		request.setAttribute("rl", rl);
-		return "/certify_list.jsp";
+		return "/certify/certify_list.jsp";
 	}
 
 }

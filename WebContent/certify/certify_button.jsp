@@ -12,5 +12,11 @@
 <form method="POST" action="certify_submit.jsp">
 	<button type="submit" class="btn btn-success" >인증하기</button>
 </form>
+<form method="POST" action="certify_update.jsp">
+	<button type="submit" class="btn btn-success" >수정하기</button>
+</form>
+<form method="POST" action="certify_submit.jsp">
+	<button type="submit" class="btn btn-success" >인증정보</button>
+</form>
 </body>
 </html>

@@ -8,8 +8,10 @@ import common.Controller;
 public class CtrlUpdate2 implements Controller{
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
+		
 		return null;
+		
 	}
 }
