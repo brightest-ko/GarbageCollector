@@ -15,6 +15,10 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<!-- 위에 겹치는데 빼도 되는지 나중에 확인 바람 -->
 
+	<!-- autocomplete from jQuery Ui -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<!-- Template Custom JavaScript File -->
 	<script src="<%=ctxPath %>/assets/js/index.js"></script>
 	

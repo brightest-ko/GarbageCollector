@@ -26,10 +26,16 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="<%=ctxPath%>/assets/css/index.css">
 
- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
-	
+
+<!-- subin -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+
 <title>당신의 쓰레기는 안녕하수깡?</title>
 <link rel="struct icon" href="<%=ctxPath%>/assets/img/brsg.ico">
 <style>
@@ -86,37 +92,37 @@ input.img-button {
 
 
 							<div class="row">
-								<div class="col-md-4 gul">전화번호</div>
-								<div class="col-md-8 ">
+								<div class="col-xs-4 gul">전화번호</div>
+								<div class="col-xs-8 ">
 									<input type="text" class="form-control" name="customer_phone"
 										value="01043394609">
 								</div>
 							</div>
 
 							<div class="row">
-								<div class="col-md-4 gul">주소</div>
-								<div class="col-md-8">
-									<div class="col-md-4">
+								<div class="col-xs-4 gul">주소</div>
+								<div class="col-xs-8 row">
+									<div class="col-xs-4">
 										<input type="text" class="form-control"
 											name="customer_addr_front" value="제주도"
 											style="color: #445A3E; text-align: center">
 									</div>
-									<div class="col-md-4">
+									<div class="col-xs-4">
 										<input type="text" class="form-control"
 											name="customer_addr_detail" value="이도2동"
 											style="color: #445A3E; text-align: center">
 									</div>
-									<div class="col-md-4">
+									<div class="col-xs-4">
 										<input type="text" class="form-control"
 											name="customer_addr_detail" value="165"
 											style="color: #445A3E; text-align: center">
 									</div>
 								</div>
-
+							</div>
 
 								<div class="row">
-									<div class="col-md-4 gul">봉투 갯수</div>
-									<div class="col-md-4">
+									<div class="col-xs-4 gul">봉투 갯수</div>
+									<div class="col-xs-4">
 										<div class="form-group">
 											<select class="form-control" id="sel1">
 												<option>1</option>
@@ -126,23 +132,23 @@ input.img-button {
 											</select>
 										</div>
 									</div>
-									<div class="col-md-4">
+									<div class="col-xs-4">
 										<a role="button"><img class="btn-img"
-											src="C:/Users/jsb56/Downloads/baseline-help-24px.svg"></a>
+											src="<%=ctxPath %>/assets/img/baseline-help-24px.svg"></a>
 									</div>
 								</div>
 
 
 								<div class="row">
-									<div class="col-md-4 gul">분리수거</div>
-									<div class="col-md-4">
+									<div class="col-xs-4 gul">분리수거</div>
+									<div class="col-xs-4">
 										<label class="form-check-label" for="radio1"> <input
 											type="radio" class="form-check-input" id="radio1"
 											name="trash_type" value="1" checked>당일수거물품
 										</label>
 									</div>
 
-									<div class="col-md-4">
+									<div class="col-xs-4">
 										<label class="form-check-label" for="radio2"> <input
 											type="radio" class="form-check-input" id="radio2"
 											name="trash_type" value="2">혼합
@@ -152,8 +158,8 @@ input.img-button {
 
 
 								<div class="row">
-									<div class="col-md-4 gul">수거시간</div>
-									<div class="col-md-8">
+									<div class="col-xs-4 gul">수거시간</div>
+									<div class="col-xs-8">
 										<div class="input-group date" data-provide="datepicker">
 											<input type="text" class="form-control"
 												value="2019/08/10 -09:05" style="color: #BBC592">
@@ -170,6 +176,7 @@ input.img-button {
 								<div class="modal-footer">
 									<a role="submit" class="btn btn-lg"
 										style="background-color: #ADCB00; color: black;">다음</a>
+								</div>
 						</form>
 					</div>
 				</div>
