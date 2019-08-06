@@ -8,7 +8,7 @@ import common.RequestMapping;
 import common.Util;
 
 @RequestMapping("/certify_find2.do")
-public class CtrlFind2 implements Controller{
+public class CtrlInfo2 implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,7 +23,7 @@ public class CtrlFind2 implements Controller{
 		}
 		System.out.println(vo.getDetails());
 		request.setAttribute("vo", vo);
-		return "/certify/certify_update.jsp";
+		return "/certify/certify_info.jsp";
 		
 	}
 

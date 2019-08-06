@@ -20,7 +20,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">고객신청번호</span> <input
 						id="certify_serialNo" type="text" class="form-control"
-						name="certify_serialNo" readonly value="99" placeholder="99">
+						name="certify_serialNo"  value="99" placeholder="99" readonly>
 				</div>	
 	<button type="submit" class="btn btn-success" >수정하기</button>
 </form>

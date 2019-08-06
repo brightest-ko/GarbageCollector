@@ -39,15 +39,16 @@
 <%@include file="/header.jsp"%>
 <main>
 	<div class="container ">
+	<form method="POST" action="/certify_button.jsp" enctype="multipart/form-data">
 		<div style="text-align:left">
-		<form method="POST" action="certify_add2.do" enctype="multipart/form-data">
+		
 			<div class="container row">
 					<div class="jumbotron certify_temp">
 						<p></p>
 						<div class="row">
    						<div class="col-sm-4" ><h2 style="color: WHITE" >인증 상세정보</h1></div>
     					<div class="col-sm-4" ></div>
-    					<div class="col-sm-4" ><img src="/GarbageCollector/assets/img/certify_info.png" width="200" height="200" alt="My Image"></div>
+    					<div class="col-sm-4" ><img src="/GarbageCollector/assets/img/certify_info.png" width="200" height="200" alt="My Image" readonly></div>
   						</div>
 					</div>
 			</div>				
@@ -55,7 +56,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">고객 신청번호</span> <input
 						id="certify_serialNo" type="text" class="form-control"
-						name="certify_serialNo" placeholder="신청번호를 입력하세요">
+						name="certify_serialNo" value="${vo.serialNo}" readonly>
 				</div>
 			</div>
 		</div>
@@ -63,7 +64,7 @@
 				<div class="input-group">
 					<span class="input-group-addon">위치</span> <input id="housePlace"
 						type="text" class="form-control" name="housePlace"
-						placeholder="위치를 찍어주세요">
+						value="${vo.housePlace} " readonly>
 				</div>
 			</div>
 			<div class="form-group has-success has-feedback">

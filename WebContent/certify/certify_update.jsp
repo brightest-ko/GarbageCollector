@@ -1,10 +1,10 @@
-certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
    
     %>
 <%
 	String ctxPath =request.getContextPath();
-	System.out.println(request.getAttribute("vo"));
+
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
@@ -67,16 +67,23 @@ certify_temp<%@ page language="java" contentType="text/html; charset=utf-8"
 				</div>
 			</div>
 			<div class="form-group has-success has-feedback ">
+			<div class="row">
 				<div class="input-group">
+				<div class="col-xs-6" >
 					<span class="input-group-addon">사진</span> <input type="file"
 						name="photo" camera="camera" class="form-control" >
-						<img src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}" width="200" height="200" alt="My Image">
+					<img src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}" width="200" height="200" alt="My Image">
 				</div>
-			</div>
+				<div class="col-xs-6" >
 			<h3>특이사항</h3>
 			<div class="form-group certify_detalis">
 				<textarea class="form-control" rows="5" id="details" name="details" >${vo.details}</textarea>
 			</div>
+				</div>
+				</div>
+			</div>
+			</div>
+
 
 		<!-- Trigger the modal with a button -->
 		<div class="container">
