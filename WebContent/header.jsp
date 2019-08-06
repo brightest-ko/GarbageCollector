@@ -27,10 +27,10 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">나영(신청자)</a>
+              <a href="/customer_apply_one.jsp" class="dropdown-toggle" data-toggle="dropdown">나영(신청자)</a>
               <ul class="dropdown-menu">
                 <li><a href="#">대행 서비스 신청</a></li>
-                <li><a href="#">신청 결과 조회</a></li>
+                <li><a href="/customer_apply_one.jsp">신청 결과 조회</a></li>
                 <li><a href="#">과거 매칭 기록</a></li>
               </ul>
             </li>
