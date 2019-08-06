@@ -93,13 +93,11 @@ window.onload=function(){
 		//$("#customer_apply_one_modal").hide();
 		$("#customer_apply_two_modal").modal();
 	};
-	
-	
-	go_list.onclick=function(){
-		//페이지로이동(신청결과)action customer_list.do로이동
+
+	go_main.onclick=function(){
+		//페이지로이동(신청결과)index.jsp로이동
 		$("#customer_apply_one_modal").modal();
 	};
-	
 };
 
 
