@@ -37,6 +37,8 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="<%=ctxPath%>/assets/css/index.css">
 
+	<!--jquery -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>당신의 쓰레기는 안녕하수깡?</title>
 <link rel="struct icon" href="<%=ctxPath%>/assets/img/brsg.ico">
 <style>
@@ -84,7 +86,7 @@
 					
 					<tbody>
 					
-							<tr class="danger" style="color: red;">
+							<tr style="color: red;">
 								<td>제주시 이도1동</td>
 								<td>2019/08/20/17:22:10</td>
 								<td>플라스틱</td>
@@ -95,9 +97,9 @@
 <INPUT TYPE=TEXT NAME=txtMins style="width:20px; border:1px #c0c0c0 solid"> 분 
 <!-- <INPUT TYPE=TEXT NAME=txtSecs style="width:20px; border:1px #c0c0c0 solid"> seconds -->
 </FORM>후</td>
-								<td>
-									<button type="button" class="btn btn-success">제안하기</button>
-								</td>
+								<td><div class=" blinkEle">
+									<button type="button" class="btn btn-danger">제안하기</button>
+								</div></td>
 							</tr>
 						<l:forEach var="vo" items="${rl}">
 							<!--if 마감시간 1시간 임박-->
@@ -106,7 +108,7 @@
 								<td>${vo.wanted_time }</td>
 								<td>${vo.trash_type }</td>
 								<td>${vo.price }</td>
-								<td style="color: red;">${vo.wanted_time }-1</td>
+								<td>${vo.wanted_time }-1</td>
 								<td>
 									<button type="button" class="btn btn-success">제안하기</button>
 								</td>
@@ -125,26 +127,11 @@
 	</main>
 	<%@include file="/footer.jsp"%>
 	<%@include file="/script.jsp"%>
-<style>
-.blinking{
-	-webkit-animation:blink 1s ease-in-out infinite alternate;
-    -moz-animation:blink 1s ease-in-out infinite alternate;
-    animation:blink 1s ease-in-out infinite alternate;
-}
-@-webkit-keyframes blink{
-    0% {opacity:0.8;}
-    100% {opacity:1;}
-}
-@-moz-keyframes blink{
-    0% {opacity:0.8;}
-    100% {opacity:1;}
-}
-@keyframes blink{
-    0% {opacity:0.8;}
-    100% {opacity:1;}
-}
-
-</style>
+<script type="text/javascript">
+setInterval(function(){
+	  $(".blinkEle").toggle();
+	}, 500);
+</script>
 	
 <SCRIPT LANGUAGE="JavaScript">
  
