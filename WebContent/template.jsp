@@ -31,6 +31,10 @@
 <body>
 <%@include file="/header.jsp"%>
 <main>
+<%@include file="/customer_apply_one.jsp"%>
+<%@include file="/customer_apply_two.jsp"%>
+<%@include file="/customer_login.jsp"%>
+<%@include file="/customer_apply_result.jsp"%>
 
 
 
