@@ -27,6 +27,20 @@
     <link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 
     <script>
+
+
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function () {
+            myFunction()
+        };
+
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        }
+   \
         var good_a = ["전체"];
         var good_b = ["한림읍", "애월읍", "구좌읍", "조천읍", "한경면", "추자면", "우도면", "일도동",
             "이도동", "삼도동", "용담동", "건입동", "화북동", "삼양동", "봉개동", "아라동", "오라동",
@@ -87,39 +101,46 @@
             }
         }
     </script>
+
     <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+        @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+        @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
         @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
 
         body {
             font-family: 'Jeju Myeongjo', serif;
+            font-size: 12pt;
+        }
+        input {
+            border: 1px solid #73AD21;
+            padding: 3px;
         }
 
-        * {
-            box-sizing: border-box
-        }
+        * { box-sizing: border-box }
 
         .container {
-            padding: 16px;
+            padding: 15px;
         }
 
-        .input {
-            border: 2px solid #73AD21;
-            padding: 10px;
-        }
-
-        button {
-            background-color: lightcoral;
-
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
+        .button {
+            background-color: lightcoral; /* Green */
             border: none;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 4px 2px;
             cursor: pointer;
-            width: 30%;
-            opacity: 0.9;
         }
 
-        button:hover {
+        .button4 {
+            border-radius: 12px;
+        }
+
+        .button:hover {
             opacity: 1;
         }
 
@@ -128,19 +149,21 @@
 <body>
 <%@include file="/header.jsp" %>
 
-<form action="helper_add.do" style="border:1px solid #ccc">
-    <div class="container">
+<form action="helper_add.do">
+    <div class="container form-group">
         <h2> 대행 회원 가입</h2>
         <p> 회원 가입을 위해 정보를 입력해 주세요. </p>
         <hr>
         <br/>
-        <div class="container" style="background-color: #f44336;">
+
+        <div class="row">
+        <div class="col-xs-3" >
             <form method="POST" action="fileup" enctype="multipart/form-data">
                 <input type="submit" value="사진업로드"/>
             </form>
         </div>
 
-        <div class="container" style="background-color: #ffc700;">
+        <div class="col-xs-9 w3-padding-24 w3-margin-3" >
             Email (ID) : <input type="text" name="email" placeholder="Email을 입력하세요 " required>
             <br/>
             password : <input type="password" name="pw" placeholder="비밀번호를 입력하세요" required>
@@ -155,8 +178,9 @@
             <input type="radio" name="sex" value="male"> 남성
             <br/>
             계좌번호 : <input type="text" name="bank" size="20" placeholder="은행명" required>
+            <input type="text" name="accountname" size="10" placeholder="예금주" required> <br/>
             <input type="text" name="account" size="40" placeholder="'-'를 제외한 숫자만 입력하세요." required>
-            <input type="text" name="accountname" size="10" placeholder="예금주" required>
+
 
             <br/> <br/>
             희망 근무지1 :
@@ -202,13 +226,19 @@
 
             하고싶은 말
             <br/>
-            <textarea name="message" rows="5" cols="40" placeholder="자신에 대해 한마디로 표현해주세요." maxlength="100">
+            <textarea name="message" rows="5" cols="50" placeholder="자신에 대해 한마디로 표현해주세요." maxlength="100">
             </textarea>
-            </div>
+        </div>
+        </div>
 
-            <div class="clearfix">
-                <button type="submit" class="signupbtn">가입하기</button>
+        <div class="clearfix row">
+            <div class="col-xs-5"></div>
+            <div class="col-xs-3">
+                <button type="submit" class="button button4">가입하기</button>
             </div>
+            <div class="col-xs-3">
+            </div>
+        </div>
     </div>
 </form>
 
