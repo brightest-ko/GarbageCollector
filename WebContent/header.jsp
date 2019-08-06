@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
+<!-- DatePicker관련 js, css 다시 추가해야할 듯 잘 안됨 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+
 <header>
 <!-- Navbar -->
 <nav class="navbar navbar-default bg-white">
@@ -29,8 +38,8 @@
             <li class="dropdown">
               <a href="/customer_apply_one.jsp" class="dropdown-toggle" data-toggle="dropdown">나영(신청자)</a>
               <ul class="dropdown-menu">
-                <li><a href="#">대행 서비스 신청</a></li>
-                <li><a href="/customer_apply_one.jsp">신청 결과 조회</a></li>
+              	<li><a data-toggle="modal" href="#customer_choose">대행 서비스 신청</a></li>
+                <li><a href="#">신청 결과 조회</a></li>
                 <li><a href="#">과거 매칭 기록</a></li>
               </ul>
             </li>
@@ -48,3 +57,5 @@
   </div>
 </nav>
 </header>
+
+<%@include file="/customer/customer_apply_one.jsp"%>

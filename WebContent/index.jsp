@@ -23,6 +23,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
   
+	<!--jquery -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	<style>
@@ -50,11 +53,10 @@
 			<div class="service-apply">
 				<form>
 					<div role="group" class="input-group">
-						<input type="text" placeholder="핸드폰 번호를 입력해주세요." autocomplete="off" value="" class="form-control with-button" >
+						<input type="text" placeholder="핸드폰 번호를 숫자만 입력해주세요." autocomplete="off" id="customer_phone_in" class="form-control with-button" 
+						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						<div class="input-group-btn">
-      					<button class="btn btn-default with-text" type="submit">
-        					<i class="glyphicon glyphicon-search"></i>
-      					</button>
+      					<button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
     				</div>
 					<!---->
 					</div>
@@ -65,6 +67,29 @@
 </div>
 </div>
 
+<script>
+$(document).ready(function(){
+    $("#customer_apply_Modal_btn").click(function(){
+    	document.getElementById("customer_phone").value = $('#customer_phone_in').val();;
+
+        $("#customer_apply_Modal").modal();
+    });
+});
+window.onload=function(){
+	var apply_do=document.getElementById("apply_do");
+	var apply_result=document.getElementById("apply_result");
+	apply_do.onclick=function(){
+		//모달띄움.
+		alert('1');
+	};
+	apply_result.onclick=function(){
+		//페이지로이동
+		alert('2');
+	};
+	
+};
+</script>
+
 
 <!-- Second Container -->
 <hr>
@@ -73,7 +98,6 @@
 	<br>
 	<br>
 </div>
-
 
 </main>
 <%@include file="/footer.jsp"%>
