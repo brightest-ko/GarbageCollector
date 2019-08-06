@@ -5,9 +5,10 @@
 	<div class="padding-bottom-8"><font style="font-weight: bold;">클린하우스</font>는 어디에?</div>
 </h2>
 
-<form style="border: 2px solid #00c7ae;">
+<form style="border: 2px solid #00c7ae;" action="index.do" method="get">
 	<div role="group" class="input-group" style="border: 0px;">
-		<input type="text" placeholder="원하는 지역을 입력해주세요." autocomplete="off" value="" class="form-control with-button" >
+		<input type="text" placeholder="원하는 지역을 입력해주세요." autocomplete="off" value="" class="form-control with-button" 
+		name="search_place">
 		<div class="input-group-btn">
       		<button class="btn btn-default with-text" type="submit">
         		<i class="glyphicon glyphicon-search"></i>
@@ -56,17 +57,6 @@ console.log(listData);
 	listData.push("${item.mapAddr}");
 //	addValueToKey("cleanHouse", "${item.mapAddr}");
 </c:forEach>
-/*
-console.log(listData);
-*/
-/*
-var listData = [
-    '이도2동 이도이동 857-3', 
-    '이도2동 동광로4길 3', 
-    '이도2동 동광로6길 17',
-    '이도2동 광양11길 10-1',
-    '이도2동 광양11길24'
-];*/
 
 listData.forEach(function(addr, index) {
     geocoder.addressSearch(addr, function(result, status) {
@@ -94,15 +84,6 @@ listData.forEach(function(addr, index) {
             var infowindow = new kakao.maps.InfoWindow({
             	content : iwContent
             });
-            //infowindow안에 넣음
-            //,disableAutoPan: true
-  
-            //infowindow.open(map, marker);
-
-            
-            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-            //map.setCenter(coords);
-         	
 
             // 마커가 지도 위에 표시되도록 설정합니다
             marker.setMap(map);  
@@ -122,7 +103,30 @@ listData.forEach(function(addr, index) {
     });
 });
 
+//주소로 좌표를 검색합니다
+geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
 
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});
 
 function myFunction() {
 //현재위치 설정

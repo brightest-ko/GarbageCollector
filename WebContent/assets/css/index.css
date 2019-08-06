@@ -156,4 +156,6 @@ form div.input-group button.with-text{
 4. Footer 
 ==================================== */
 
-footer{ }
+footer{
+	padding-bottom: 45px;
+}
