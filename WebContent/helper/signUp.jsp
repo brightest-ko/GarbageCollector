@@ -40,7 +40,7 @@
             var scrolled = (winScroll / height) * 100;
             document.getElementById("myBar").style.width = scrolled + "%";
         }
-   \
+
         var good_a = ["전체"];
         var good_b = ["한림읍", "애월읍", "구좌읍", "조천읍", "한경면", "추자면", "우도면", "일도동",
             "이도동", "삼도동", "용담동", "건입동", "화북동", "삼양동", "봉개동", "아라동", "오라동",
@@ -52,9 +52,9 @@
 
             var target1 = document.getElementById("good1");
 
-            if (e.value == "a") var d = good_a;
-            else if (e.value == "b") var d = good_b;
-            else if (e.value == "c") var d = good_c;
+            if (e.value == "전체") var d = good_a;
+            else if (e.value == "제주시") var d = good_b;
+            else if (e.value == "서귀포시") var d = good_c;
 
             target1.options.length = 0;
 
@@ -69,9 +69,9 @@
         function categoryChange2(e) {
             var target2 = document.getElementById("good2");
 
-            if (e.value == "a") var d = good_a;
-            else if (e.value == "b") var d = good_b;
-            else if (e.value == "c") var d = good_c;
+            if (e.value == "전체") var d = good_a;
+            else if (e.value == "제주시") var d = good_b;
+            else if (e.value == "서귀포시") var d = good_c;
 
             target2.options.length = 0;
 
@@ -87,9 +87,9 @@
 
             var target3 = document.getElementById("good3");
 
-            if (e.value == "a") var d = good_a;
-            else if (e.value == "b") var d = good_b;
-            else if (e.value == "c") var d = good_c;
+            if (e.value == "전체") var d = good_a;
+            else if (e.value == "제주시") var d = good_b;
+            else if (e.value == "서귀포시") var d = good_c;
 
             target3.options.length = 0;
 
@@ -124,7 +124,7 @@
         }
 
         .button {
-            background-color: lightcoral; /* Green */
+            background-color: lightcoral;
             border: none;
             color: white;
             padding: 15px;
@@ -143,13 +143,13 @@
         .button:hover {
             opacity: 1;
         }
-
     </style>
 </head>
 <body>
 <%@include file="/header.jsp" %>
+<main>
 
-<form action="helper_add.do">
+<form method = "POST" action="<%=ctxPath%>/helper_add.do" >
     <div class="container form-group">
         <h2> 대행 회원 가입</h2>
         <p> 회원 가입을 위해 정보를 입력해 주세요. </p>
@@ -166,7 +166,7 @@
         <div class="col-xs-9 w3-padding-24 w3-margin-3" >
             Email (ID) : <input type="text" name="email" placeholder="Email을 입력하세요 " required>
             <br/>
-            password : <input type="password" name="pw" placeholder="비밀번호를 입력하세요" required>
+            password : <input type="password" style="color: black" name="pw" placeholder="비밀번호를 입력하세요" required>
             <br/>
             password 확인 : <input type="password" name="pw" placeholder="비밀번호를 확인하세요" required>
             <br/>
@@ -186,9 +186,9 @@
             희망 근무지1 :
             <select onchange="categoryChange1(this)" name="city1" id="city1" value="" required>
                 <option> 시</option>
-                <option value="a"> 전체</option>
-                <option value="b"> 제주시</option>
-                <option value="c"> 서귀포시</option>
+                <option value="전체"> 전체</option>
+                <option value="제주시"> 제주시</option>
+                <option value="서귀포시"> 서귀포시</option>
             </select>
 
             <select id="good1" name="dong1" required>
@@ -200,9 +200,9 @@
             희망 근무지2 :
             <select onchange="categoryChange2(this)" name="city2" id="city2" value="">
                 <option> 시</option>
-                <option value="a"> 전체</option>
-                <option value="b"> 제주시</option>
-                <option value="c"> 서귀포시</option>
+                <option value="전체"> 전체</option>
+                <option value="제주시"> 제주시</option>
+                <option value="서귀포시"> 서귀포시</option>
             </select>
 
             <select id="good2" name="dong2">
@@ -214,9 +214,9 @@
             희망 근무지3 :
             <select onchange="categoryChange3(this)" name="city3" id="city3" value="">
                 <option> 시</option>
-                <option value="a"> 전체</option>
-                <option value="b"> 제주시</option>
-                <option value="c"> 서귀포시</option>
+                <option value="전체"> 전체</option>
+                <option value="제주시"> 제주시</option>
+                <option value="서귀포시"> 서귀포시</option>
             </select>
 
             <select id="good3" name="dong3">
@@ -241,7 +241,7 @@
         </div>
     </div>
 </form>
-
+</main>
 <%@include file="/footer.jsp" %>
 <%@include file="/script.jsp" %>
 

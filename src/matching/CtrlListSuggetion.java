@@ -4,73 +4,90 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.Controller;
 import common.RequestMapping;
+import customer.CustomerApplyVO;
 
 
-@RequestMapping("/matching.do")
+@RequestMapping("/matching_suggetion_list.do")
 public class CtrlListSuggetion implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//½ÅÃ»¼­ Ãß°¡ ÀÌÈÄ
-		//½ÅÃ»¼­ Ãß°¡ ctrl¿¡ Ãß°¡¿¹Á¤
-		/*
-			1. ½ÅÃ»¼­ Ãß°¡
-			select count(*) from customer where customer_phone = ?
-			if(rs.hasnext())
-				update customer set customer_addr_front=?, customer_addr_detail=? where customer_phone = ?
-				insert into customer_apply
-			else
-				insert into customer
-				insert into customer_apply
-			
-			2.
-			select serialNo, customer_addr_front from customer_apply where customer_phone = ? order by customer_apply_day desc
-			'Áö±İ ½ÅÃ»ÇÑ serialNo' = rsÀÇ Ã¹¹øÂ° °ÅÀÇ serialNo
-			'Áö±İ ½ÅÃ»ÇÑ customer_addr_front' = rsÀÇ Ã¹¹øÂ° °ÅÀÇ serialNo
-			'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' = customer_addr_front.ºĞÇØ1
-			'³ª¸ÓÁöµ¿' = customer_addr_front.ºĞÇØ2
-			
-			rs = select helperID  from helper where (wish_addr_front1 = ?'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' and wish_addr_detail1 =?'³ª¸ÓÁöµ¿')
-			or (wish_addr_front2 = ?'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' and wish_addr_detail2 =?'³ª¸ÓÁöµ¿')
-			or (wish_addr_front3 = ?'Á¦ÁÖ½Ã/¼­±ÍÆ÷½Ã' and wish_addr_detail3 =?'³ª¸ÓÁöµ¿');
-			
-			for rs{
-				insert into matching(serialNo,helperID,suggestion,acceptance) values (?'Áö±İ ½ÅÃ»ÇÑ serialNo',?'rs.helperID',0,0);
+		//ì‹ ì²­ì„œ ì¶”ê°€ ì´í›„
+		//ì‹ ì²­ì„œ ì¶”ê°€ ctrlì— ì¶”ê°€ì˜ˆì •
+      /*
+         1. ì‹ ì²­ì„œ ì¶”ê°€
+         select count(*) from customer where customer_phone = ?
+         if(rs.hasnext())
+            update customer set customer_addr_front=?, customer_addr_detail=? where customer_phone = ?
+            insert into customer_apply
+         else
+            insert into customer
+            insert into customer_apply
+
+         2.
+         select serialNo, customer_addr_front from customer_apply where customer_phone = ? order by customer_apply_day desc
+         'ì§€ê¸ˆ ì‹ ì²­í•œ serialNo' = rsì˜ ì²«ë²ˆì§¸ ê±°ì˜ serialNo
+         'ì§€ê¸ˆ ì‹ ì²­í•œ customer_addr_front' = rsì˜ ì²«ë²ˆì§¸ ê±°ì˜ serialNo
+         'ì œì£¼ì‹œ/ì„œê·€í¬ì‹œ' = customer_addr_front.ë¶„í•´1
+         'ë‚˜ë¨¸ì§€ë™' = customer_addr_front.ë¶„í•´2
+
+         forë¬¸ ë§ê³  ì´ê±° ì´ìš©í•˜ê¸°
+         INSERT INTO table_a
+( title, name, regdate, register, memberid, categoryid )
+SELECT title, name, regdate, register, memberid, categoryid
+FROM table_b
+WHERE categoryid=10
+
+         rs = select helperID  from helper where (wish_addr_front1 = ?'ì œì£¼ì‹œ/ì„œê·€í¬ì‹œ' and wish_addr_detail1 =?'ë‚˜ë¨¸ì§€ë™')
+         or (wish_addr_front2 = ?'ì œì£¼ì‹œ/ì„œê·€í¬ì‹œ' and wish_addr_detail2 =?'ë‚˜ë¨¸ì§€ë™')
+         or (wish_addr_front3 = ?'ì œì£¼ì‹œ/ì„œê·€í¬ì‹œ' and wish_addr_detail3 =?'ë‚˜ë¨¸ì§€ë™');
+
+         for rs{
+            insert into matching(serialNo,helperID,suggestion,acceptance) values (?'ì§€ê¸ˆ ì‹ ì²­í•œ serialNo',?'rs.helperID',0,0);
+         }
+
+      */
+
+      /*
+          ìˆ˜ë½ë¦¬ìŠ¤íŠ¸ (ì†ë‹˜í™”ë©´)
+          helperVO_list = select * from helper where  helperID in
+          (select helperID  from matching where serialNo = ?'serialNo' and suggestion =1 and acceptance =0)
+       */
+
+		HttpSession session = request.getSession();
+		String auth ="helper";//= null;
+		String helperID ="gobaksa4@naver.com";//= null;
+		try{
+//         auth = (String)session.getAttribute("auth");
+//         helperID =  (String)session.getAttribute("id");
+			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
+				response.sendRedirect("loginform.jsp"); //login.jspë¡œ ë³€ê²½
 			}
-			
-		*/
-		
-		/*
-		 	Á¦¾È¸®½ºÆ® (´ëÇàÈ­¸é)
-		 	select serialNo  from matching where helperID = ?'helperID' and suggestion =0 and acceptance =0
-		 	customer_applyVO_list
-		 	rs.for{
-		 		customer_applyVO = select * from customer_apply where  serialNo = ?serialNo 
-		 	}
-		 	
-		 	¼ö¶ô¸®½ºÆ® (¼Õ´ÔÈ­¸é)
-		 	select helperID  from matching where serialNo = ?'serialNo' and suggestion =1 and acceptance =0
-		 	helperVO_list
-		 	rs.for{
-		 		helperVO = select * from helper where  helperID = ?helperID 
-		 	}
-		 	
-		 	¼ö¶ô(¼ö¶ô¸®½ºÆ®¿¡¼­ add - ¼Õ´ÔÈ­¸é)
-		 	
-		 	
-		 */
-        String l = null;
-		
-        MatchingDAO dao = new Matching_OracleImpl();
-        List<MatchingVO> rl = dao.findAll();
+		}catch(Exception e){
+			response.sendRedirect("loginform.jsp"); //login.jspë¡œ ë³€ê²½
+		}
 
-        request.setAttribute("rl", rl);
+		String l = null;
 
-		System.out.println("ControllerList TEST" + rl.toString());
-		return "/index.jsp";
+      /*
+         select * from customer_apply
+           where serialNo in (select serialNo from matching where helperID = ?'helperID' and suggestion =0 and acceptance =0
+        */
+		MatchingDAO dao = new Matching_OracleImpl();
+		List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
+
+		if(rl.size() > 0){
+			System.out.println("matching_suggestion_list: " + rl.toString());
+			request.setAttribute("rl", rl);
+		}
+
+		System.out.println("matching_suggestion_list.do");
+		return "/matching/matching_suggetion.jsp";
+
 	}
 
 }

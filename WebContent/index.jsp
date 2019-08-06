@@ -51,12 +51,12 @@
 				<div class="padding-bottom-8">신청해보세요</div>
 			</h2>
 			<div class="service-apply">
-				<form>
-					<div role="group" class="input-group">
+				<form onsubmit="return false;" >
+					<div role="group" class="input-group border-thick">
 						<input type="text" placeholder="핸드폰 번호를 숫자만 입력해주세요." autocomplete="off" id="customer_phone_in" class="form-control with-button" 
 						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						<div class="input-group-btn">
-      					<button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
+      					<button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn" ><i class="glyphicon glyphicon-search"></i></button>
     				</div>
 					<!---->
 					</div>
