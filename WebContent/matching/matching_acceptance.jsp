@@ -70,14 +70,16 @@
                     </tr>
                   </thead>
                   <tbody>
+					<l:forEach var="vo" items="${rl}">
                     <tr>
                       <th>1</th>
-                      <td>Mark</td>
+                      <td>${vo.serialNo }</td>
                       <td>Otto</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-success" href="#">인증하기</a></td>
+                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo?${vo.serialNo }">인증하기</a></td>
                     </tr>
+                    </l:forEach>
                     <tr>
                       <th>2</th>
                       <td>Jacob</td>

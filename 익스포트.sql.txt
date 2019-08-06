@@ -1,0 +1,264 @@
+create database quest_in_jeju;
+use quest_in_jeju;
+
+--------------------------------------------------------
+--  파일이 생성됨 - 수요일-8월-07-2019   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence DEPARTMENTS_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "HR"."DEPARTMENTS_SEQ"  MINVALUE 1 MAXVALUE 9990 INCREMENT BY 10 START WITH 280 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence EMPLOYEES_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "HR"."EMPLOYEES_SEQ"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 207 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence LOCATIONS_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "HR"."LOCATIONS_SEQ"  MINVALUE 1 MAXVALUE 9900 INCREMENT BY 100 START WITH 3300 NOCACHE  NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_BANGMYUNG
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "HR"."SEQ_BANGMYUNG"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_STUDY11
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "HR"."SEQ_STUDY11"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_TALK
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "HR"."SEQ_TALK"  MINVALUE 1 MAXVALUE 999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table MATCHING
+--------------------------------------------------------
+
+  CREATE TABLE "HR"."MATCHING" 
+   (	"SERIALNO" NUMBER, 
+	"HELPERID" VARCHAR2(25 BYTE), 
+	"SUGGESTION" NUMBER(1,0), 
+	"ACCEPTANCE" NUMBER(1,0)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table HELPER
+--------------------------------------------------------
+
+  CREATE TABLE "HR"."HELPER" 
+   (	"HELPERID" VARCHAR2(25 BYTE), 
+	"HELPER_PHONE" VARCHAR2(20 BYTE), 
+	"HELPER_NAME" VARCHAR2(25 BYTE), 
+	"SEX" VARCHAR2(6 BYTE), 
+	"BANK_NAME" VARCHAR2(18 BYTE), 
+	"ACCOUNT" VARCHAR2(20 BYTE), 
+	"ACCOUNT_HOLDER" VARCHAR2(25 BYTE), 
+	"WISH_ADDR_FIRST1" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND1" VARCHAR2(45 BYTE), 
+	"WISH_ADDR_FIRST2" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND2" VARCHAR2(45 BYTE), 
+	"WISH_ADDR_FIRST3" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND3" VARCHAR2(45 BYTE), 
+	"WANT_TO_SAY" VARCHAR2(300 BYTE), 
+	"HELPER_PHOTO_OFN" VARCHAR2(100 BYTE), 
+	"HELPER_PHOTO_FSN" VARCHAR2(100 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table REVIEW
+--------------------------------------------------------
+
+  CREATE TABLE "HR"."REVIEW" 
+   (	"SERIALNO" NUMBER(*,0), 
+	"HELPERID" VARCHAR2(25 BYTE), 
+	"REVIEW_TITLE" VARCHAR2(60 BYTE), 
+	"REVIEW_PWD" VARCHAR2(12 BYTE), 
+	"RATING" NUMBER(5,1), 
+	"CLEAN_PLACE_ADD_FRONT" VARCHAR2(95 BYTE), 
+	"REVIEW_CONTENT" VARCHAR2(900 BYTE), 
+	"REVIEW_DAY" DATE
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CUSTOMER_APPLY
+--------------------------------------------------------
+
+  CREATE TABLE "HR"."CUSTOMER_APPLY" 
+   (	"SERIALNO" NUMBER, 
+	"CUSTOMER_PHONE" VARCHAR2(20 BYTE), 
+	"CUSTOMER_ADDR_FIRST" VARCHAR2(40 BYTE), 
+	"CUSTOMER_ADDR_SECOND" VARCHAR2(45 BYTE), 
+	"CUSTOMER_ADDR_THIRD" VARCHAR2(45 BYTE), 
+	"BAG_NUM" NUMBER, 
+	"TRASH_TYPE" NUMBER, 
+	"WANTED_TIME" DATE, 
+	"PRICE" NUMBER, 
+	"CARD_NUM" VARCHAR2(20 BYTE), 
+	"HELPERID" VARCHAR2(25 BYTE), 
+	"CUSTOMER_APPLY_DAY" DATE, 
+	"CERTIFY_STATUS" NUMBER(1,0), 
+	"REVIEW_STATUS" NUMBER(1,0)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for View EMP_DETAILS_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE VIEW "HR"."EMP_DETAILS_VIEW" ("EMPLOYEE_ID", "JOB_ID", "MANAGER_ID", "DEPARTMENT_ID", "LOCATION_ID", "COUNTRY_ID", "FIRST_NAME", "LAST_NAME", "SALARY", "COMMISSION_PCT", "DEPARTMENT_NAME", "JOB_TITLE", "CITY", "STATE_PROVINCE", "COUNTRY_NAME", "REGION_NAME") AS 
+  SELECT
+  e.employee_id,
+  e.job_id,
+  e.manager_id,
+  e.department_id,
+  d.location_id,
+  l.country_id,
+  e.first_name,
+  e.last_name,
+  e.salary,
+  e.commission_pct,
+  d.department_name,
+  j.job_title,
+  l.city,
+  l.state_province,
+  c.country_name,
+  r.region_name
+FROM
+  employees e,
+  departments d,
+  jobs j,
+  locations l,
+  countries c,
+  regions r
+WHERE e.department_id = d.department_id
+  AND d.location_id = l.location_id
+  AND l.country_id = c.country_id
+  AND c.region_id = r.region_id
+  AND j.job_id = e.job_id
+WITH READ ONLY
+;
+REM INSERTING into HR.MATCHING
+SET DEFINE OFF;
+Insert into HR.MATCHING (SERIALNO,HELPERID,SUGGESTION,ACCEPTANCE) values (11,'''jsb@naver.com''',0,0);
+REM INSERTING into HR.HELPER
+SET DEFINE OFF;
+Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('unizzang@sleep.com','01025888421','유니짱','여성','농협','352313459900','유니짱','제주시','이도동',null,null,null,null,'사랑해 희조야','ofn','fsn');
+REM INSERTING into HR.REVIEW
+SET DEFINE OFF;
+Insert into HR.REVIEW (SERIALNO,HELPERID,REVIEW_TITLE,REVIEW_PWD,RATING,CLEAN_PLACE_ADD_FRONT,REVIEW_CONTENT,REVIEW_DAY) values (0,'minsu1234','test title','helperPW',3.4,'jeju','nice to meet you',to_date('19/08/05','RR/MM/DD'));
+REM INSERTING into HR.CUSTOMER_APPLY
+SET DEFINE OFF;
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (11,'''01048889999''','''제주시''','''상도동''','''고문리''',2,1,to_date('19/08/09','RR/MM/DD'),2000,'''111123-135311''','''jsb@naver.com''',to_date('19/08/07','RR/MM/DD'),0,0);
+--------------------------------------------------------
+--  DDL for Procedure ADD_JOB_HISTORY
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "HR"."ADD_JOB_HISTORY" 
+  (  p_emp_id          job_history.employee_id%type
+   , p_start_date      job_history.start_date%type
+   , p_end_date        job_history.end_date%type
+   , p_job_id          job_history.job_id%type
+   , p_department_id   job_history.department_id%type
+   )
+IS
+BEGIN
+  INSERT INTO job_history (employee_id, start_date, end_date,
+                           job_id, department_id)
+    VALUES(p_emp_id, p_start_date, p_end_date, p_job_id, p_department_id);
+END add_job_history;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SECURE_DML
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "HR"."SECURE_DML" 
+IS
+BEGIN
+  IF TO_CHAR (SYSDATE, 'HH24:MI') NOT BETWEEN '08:00' AND '18:00'
+        OR TO_CHAR (SYSDATE, 'DY') IN ('SAT', 'SUN') THEN
+	RAISE_APPLICATION_ERROR (-20205,
+		'You may only make changes during normal office hours');
+  END IF;
+END secure_dml;
+
+/
+--------------------------------------------------------
+--  Constraints for Table MATCHING
+--------------------------------------------------------
+
+  ALTER TABLE "HR"."MATCHING" MODIFY ("SERIALNO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."MATCHING" MODIFY ("SUGGESTION" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."MATCHING" MODIFY ("ACCEPTANCE" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table HELPER
+--------------------------------------------------------
+
+  ALTER TABLE "HR"."HELPER" MODIFY ("HELPER_PHONE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("HELPER_NAME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("SEX" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("BANK_NAME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("ACCOUNT" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("ACCOUNT_HOLDER" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("WISH_ADDR_FIRST1" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("WISH_ADDR_SECOND1" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("HELPER_PHOTO_OFN" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."HELPER" MODIFY ("HELPER_PHOTO_FSN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table REVIEW
+--------------------------------------------------------
+
+  ALTER TABLE "HR"."REVIEW" MODIFY ("SERIALNO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."REVIEW" MODIFY ("HELPERID" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."REVIEW" MODIFY ("REVIEW_TITLE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."REVIEW" MODIFY ("REVIEW_PWD" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."REVIEW" MODIFY ("RATING" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."REVIEW" MODIFY ("REVIEW_DAY" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table CUSTOMER_APPLY
+--------------------------------------------------------
+
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("SERIALNO" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("CUSTOMER_PHONE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("CUSTOMER_ADDR_FIRST" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("CUSTOMER_ADDR_SECOND" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("CUSTOMER_ADDR_THIRD" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("BAG_NUM" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("TRASH_TYPE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."CUSTOMER_APPLY" MODIFY ("WANTED_TIME" NOT NULL ENABLE);
