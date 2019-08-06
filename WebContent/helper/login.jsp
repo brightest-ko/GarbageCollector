@@ -28,14 +28,12 @@
     <link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
     <style>
         .box_login {
-            height: 300px;
-            padding: 80px 80px 80px 80px;
-            border: 2px solid green;
+            height: 350px;
+            padding: 30px 50px 30px 50px;
         }
 
         space {
-            padding: 50px;
-            margin: 20px;
+            margin: 20px 20px 20px 20px;
         }
 
         center_c {
@@ -53,44 +51,45 @@
 </head>
 <body>
 <%@include file="/header.jsp" %>
-<main>
 
-    <div class="container-fluid space" style = "padding: 100px 100px 50px 100px">
-        <div class="row container center_c space">
-            <!-- 고객 로그인 창 -->
-            <div class="col-lg-6 box_login">
-                <form method="post" action="customer_login">
-                    <div class="form-group">
-                        <label for="customerPN"> Customer Phone </label>
-                        <input type="text" class="form-control" placeholder="휴대폰 번호를 입력하세요." id="customerPN" >
-                        <button type="submit" class="btn btn-success" >로그인</button>
-                    </div>
+<div class="container" style = "padding: 100px 30px 80px 30px">
+    <div class="row container-fluid" >
+        <!-- 고객 로그인 창 -->
+        <div class="col-xs-6 box_login" style="float: left; border-right: 1px solid yellowgreen">
+            <form method="post" action="customer_login" >
+                <div class="form-group">
+                    <h3 style="padding-top: 20px">신청자</h3><hr>
+                    <label for="customerPN"> 신청자 전화번호 </label>
+                    <input type="text" class="form-control" placeholder="휴대폰 번호를 입력하세요." id="customerPN" >
+                    <button type="submit" class="btn btn-success" style="float: right; margin:10px 0px 10px 0px;">로그인</button>
+                </div>
 
-                </form>
-            </div>
+            </form>
+        </div>
 
-            <!-- 대행 로그인 창-->
-            <div class="col-lg-6 box_login">
-                <form method="post" action="helper_login" style="padding=100px">
-                    <div class="form-group">
-                        <label for="helperId"> 아이디 </label>
-                        <input type="text" class="form-control" placeholder="Email(ID)을 입력하세요."  id="helperId" >
-                    </div>
-                    <div class="form-group">
-                        <label for="pw">비밀번호</label>
-                        <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." id="pw">
-                        <button type="submit" class="btn btn-success">로그인</button>
-                        <br/> 아이디가 없으신가요? <a href="<%=ctxPath%>/helper/signUp.jsp" style="color:green" class="btn">회원가입 하기</a>
-                    </div>
+        <!-- 대행 로그인 창-->
+        <div class="col-xs-6 box_login" style="float: right;">
+            <form method="post" action="helper_login">
+                <div class="form-group">
+                    <h3> 대행 </h3><hr>
+                    <label for="helperId"> 아이디 </label>
+                    <input type="text" class="form-control" placeholder="Email(ID)을 입력하세요."  id="helperId" >
+                </div>
+                <div class="form-group">
+                    <label for="pw">비밀번호</label>
+                    <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." id="pw">
+                    <a href="<%=ctxPath%>/helper/signUp.jsp" style="color:green" class="btn">회원가입 하기</a>
+                    <button type="submit" class="btn btn-success" style="float: right; margin:10px 0px 10px 0px;">로그인</button>
+                </div>
 
-                </form>
-            </div>
+            </form>
         </div>
     </div>
-
+</div>
 </main>
 <%@include file="/footer.jsp" %>
 <%@include file="/script.jsp" %>
 
 </body>
 </html>
+
