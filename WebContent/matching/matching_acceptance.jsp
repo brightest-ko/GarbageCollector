@@ -76,7 +76,7 @@
                       <td>Otto</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-success" href="#">인증수정</a></td>
+                      <td><a class="btn btn-success" href="#">인증하기</a></td>
                     </tr>
                     <tr>
                       <th>2</th>
@@ -84,7 +84,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-default"  href="#" style="border-color: #4cae4c; color: #4cae4c;">인증확인</a></td>
+                      <td><a class="btn btn-default"  href="#" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
                     </tr>
                     <tr>
                       <th>2</th>
@@ -92,7 +92,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-default"  href="#" >인증수정</a></td>
+                      <td><a class="btn btn-default"  href="#" >인증확인</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -128,7 +128,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-outline-primary" href="#">인증수정</a></td>
+                      <td><a class="btn btn-outline-primary" href="#">인증하기</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -156,7 +156,7 @@
                       <td>Otto</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-primary" href="#">인증하기</a></td>
+                      <td><a class="btn btn-primary" href="#">인증수정</a></td>
                     </tr>
                     <tr>
                       <th>2</th>
@@ -164,7 +164,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-outline-primary" href="#">인증수정</a></td>
+                      <td><a class="btn btn-outline-primary" href="#">인증확인</a></td>
                     </tr>
                   </tbody>
                 </table>
