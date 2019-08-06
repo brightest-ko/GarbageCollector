@@ -6,7 +6,7 @@
 </h2>
 
 <form style="border: 2px solid #00c7ae;" action="index.do" method="get">
-	<div role="group" class="input-group" style="border: 0px;">
+	<div role="group" class="input-group border-thick" style="border: 0px;">
 		<input type="text" placeholder="원하는 지역을 입력해주세요." autocomplete="off" value="" class="form-control with-button" 
 		name="search_place">
 		<div class="input-group-btn">
