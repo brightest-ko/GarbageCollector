@@ -51,7 +51,7 @@
               </ul>
             </li>
 	        <li><a href="<%=ctxPath %>/review/review_list.jsp">후기</a></li>
-            <li><a href="#">로그인</a></li>
+            <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
           </ul>
     </div>
   </div>
