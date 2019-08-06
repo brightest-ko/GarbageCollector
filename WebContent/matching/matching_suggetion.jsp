@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%
+	System.out.println("matching_suggestion.jsp");
 	String ctxPath = request.getContextPath();
+	String auth ="helper";//= null;
+	String id ="gobaksa4@naver.com";//= null;
+	try{
+//		auth = (String)session.getAttribute("auth");
+//		id =  (String)session.getAttribute("id");
+		if(auth==null||!auth.equals("helper")||id==null||id.equals("")){
+			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+		}
+	}catch(Exception e){
+		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+	}
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -47,8 +59,6 @@
 				<select class="form-control" >
 					<option>낮은 비용순</option>
 					<option>2</option>
-					<option>3</option>
-					<option>4</option>
 				</select>
 				</div>
 			</div>
@@ -62,7 +72,7 @@
 
 				<table class="table table-bordered text-center table-hover">
 					<thead>
-						<tr>
+						<tr class="bg-success" style="font-weight: bold;">
 							<th class="text-center col-xs-3">지역</th>
 							<th class="text-center col-xs-3">수행 예정 시간</th>
 							<th class="text-center col-xs-1">종류</th>
@@ -74,12 +84,12 @@
 					
 					<tbody>
 					
-							<tr class="danger" style="font-weight: bold;">
+							<tr class="danger" style="color: red;">
 								<td>제주시 이도1동</td>
 								<td>2019/08/20/17:22:10</td>
 								<td>플라스틱</td>
 								<td>2000원</td>
-								<td style="color: red;"><FORM NAME=clock>
+								<td class=" blinking" style="color: red;"><FORM NAME=clock>
 <INPUT TYPE=TEXT NAME=txtDays style="width:25px; border:1px #c0c0c0 solid"> 일
 <INPUT TYPE=TEXT NAME=txtHours style="width:20px; border:1px #c0c0c0 solid"> 시간
 <INPUT TYPE=TEXT NAME=txtMins style="width:20px; border:1px #c0c0c0 solid"> 분 
@@ -92,11 +102,11 @@
 						<l:forEach var="vo" items="${rl}">
 							<!--if 마감시간 1시간 임박-->
 							<tr>
-								<td>${vo.addr_front}시 ${vo.addr_front}</td>
-								<td>2019/08/20/17:22:10</td>
-								<td>플라스틱</td>
-								<td>2000원</td>
-								<td style="color: red;"></td>
+								<td>${vo.customer_addr_first}시 ${vo.customer_addr_second}</td>
+								<td>${vo.wanted_time }</td>
+								<td>${vo.trash_type }</td>
+								<td>${vo.price }</td>
+								<td style="color: red;">${vo.wanted_time }-1</td>
 								<td>
 									<button type="button" class="btn btn-success">제안하기</button>
 								</td>
@@ -115,6 +125,27 @@
 	</main>
 	<%@include file="/footer.jsp"%>
 	<%@include file="/script.jsp"%>
+<style>
+.blinking{
+	-webkit-animation:blink 1s ease-in-out infinite alternate;
+    -moz-animation:blink 1s ease-in-out infinite alternate;
+    animation:blink 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+    0% {opacity:0.8;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0.8;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0.8;}
+    100% {opacity:1;}
+}
+
+</style>
+	
 <SCRIPT LANGUAGE="JavaScript">
  
 var millenium = new Date('2019/05/16/17:22:10');

@@ -181,7 +181,7 @@
 			<div class="review_list">
 				<table class="table table-bordered text-center table-hover">
 					<thead>
-						<tr class="bg-primary" style="font-weight: bold;">
+						<tr class="bg-success" style="font-weight: bold;">
 							<th class="text-center col-xs-1">신청번호</th>
 							<th class="text-center col-xs-2">대행자ID</th>
 							<th class="text-center col-xs-5">제목</th>
@@ -235,6 +235,7 @@
 			</div>
 		</div>
 		<button class="btn btn-info btn-lg" data-toggle="modal" data-target="#reviewModal">글쓰기</button>
+
 	<!-- Modal -->
 		
 		

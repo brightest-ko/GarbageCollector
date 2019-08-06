@@ -61,19 +61,20 @@ public class DispatcherServlet extends HttpServlet {
     	//handleRequest이 throws Exception 할 수 있으니까 try catch로 묶어줌
     	try {
         	String l = ctrl.handleRequest(request, response);
-        	if(l == null){}
+        	if(l == null){ throw new Exception(); }
         	else if(l.startsWith("redirect:")){
+        		System.out.println("redirect "+l);
         		response.sendRedirect(ctxPath+l.substring("redirect:".length()));
         	}else{
+        		System.out.println("forward "+l);
         		RequestDispatcher rd = request.getRequestDispatcher(l);	
         		rd.forward(request, response);
         	}
 		} catch (Exception e) {
 			HttpSession session = request.getSession();
 			session.setAttribute("err", e);
-			
-			response.sendRedirect(ctxPath+"/err.jsp");
-			e.printStackTrace();                                           
+			e.printStackTrace();  
+	//		response.sendRedirect(ctxPath+"/err.jsp");                                         
 		}
     }
 }

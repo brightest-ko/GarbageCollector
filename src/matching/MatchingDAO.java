@@ -2,8 +2,9 @@ package matching;
 
 import java.util.List;
 
-public interface MatchingDAO {
+import customer.CustomerApplyVO;
 
-	List<MatchingVO> findAll() throws Exception;
+public interface MatchingDAO {
+	List<CustomerApplyVO> suggestion_list(String helperID) throws Exception;
 
 }

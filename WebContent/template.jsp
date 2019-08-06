@@ -23,6 +23,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
   
+	<!--jquery -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	<style>
@@ -31,10 +34,6 @@
 <body>
 <%@include file="/header.jsp"%>
 <main>
-<%@include file="/customer_apply_one.jsp"%>
-<%@include file="/customer_apply_two.jsp"%>
-<%@include file="/customer_login.jsp"%>
-<%@include file="/customer_apply_result.jsp"%>
 
 
 
