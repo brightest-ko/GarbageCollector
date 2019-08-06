@@ -75,6 +75,19 @@ $(document).ready(function(){
         $("#customer_apply_Modal").modal();
     });
 });
+window.onload=function(){
+	var apply_do=document.getElementById("apply_do");
+	var apply_result=document.getElementById("apply_result");
+	apply_do.onclick=function(){
+		//모달띄움.
+		alert('1');
+	};
+	apply_result.onclick=function(){
+		//페이지로이동
+		alert('2');
+	};
+	
+};
 </script>
 
 
