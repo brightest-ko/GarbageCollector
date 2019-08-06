@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
-    import="customer.customerApplyVO"
-    %>
+%>
 <!DOCTYPE html>
 <head>
   <title>Bootstrap Example</title>
