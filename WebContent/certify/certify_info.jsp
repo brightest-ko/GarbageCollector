@@ -69,7 +69,7 @@
 			</div>
 			<div class="form-group has-success has-feedback">
 				<div class="input-group">
-					<span class="input-group-addon">사진</span> <input type="file"
+					<span class="input-pgroup-addon">사진</span> <input type="file"
 						name="photo" camera="camera" class="form-control" />
 				</div>
 			</div>
