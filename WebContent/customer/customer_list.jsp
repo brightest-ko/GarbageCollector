@@ -3,7 +3,8 @@
     import="customer.CustomerApplyVO"
     %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="cd" %>
-    
+    <%
+String ctxPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -11,7 +12,7 @@
 </head>
 
 <body>
-	<input type="button" id="go_main" value="메인으로">
+	<input type="button" id="go_list" value="메인으로"/>
 	
 	<table border="1" cellpadding="12">
 		<tr>

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%
-	
-%>
+
+
 <!DOCTYPE html>
 <!-- DatePicker관련 js, css 다시 추가해야할 듯 잘 안됨 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"

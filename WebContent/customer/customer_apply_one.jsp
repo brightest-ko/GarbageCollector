@@ -2,11 +2,6 @@
 	pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
-
-<%
-
-	
-%>
 <!-- Modal -->
 <div class="modal fade" id="customer_apply_one_modal" role="dialog">
 	<div class="modal-dialog">
@@ -18,13 +13,12 @@
 				<h4 class="modal-title">서비스 신청</h4>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="customer_apply_two.do">
 
 
 					<div class="row">
 						<div class="col-xs-4 gul">전화번호</div>
 						<div class="col-xs-8 ">
-							<input type="text" class="form-control" name="two_phone" id="customer_phone"
+							<input type="text" class="form-control" name="one_phone" id="customer_phone"
 								value="01043394609">
 						</div>
 					</div>
@@ -33,18 +27,18 @@
 						<div class="col-xs-4 gul">주소</div>
 						<div class="col-xs-8 row">
 							<div class="col-xs-4">
-								<input type="text" class="form-control"
-									name="customer_addr_front" value="제주도"
+								<input type="text" class="form-control" id="customer_addr_first"
+									name="customer_addr_first" value="제주도"
 									style="color: #445A3E; text-align: center">
 							</div>
 							<div class="col-xs-4">
-								<input type="text" class="form-control"
-									name="customer_addr_detail" value="이도2동"
+								<input type="text" class="form-control"  id="customer_addr_second"
+									name="customer_addr_second" value="이도2동"
 									style="color: #445A3E; text-align: center">
 							</div>
 							<div class="col-xs-4">
-								<input type="text" class="form-control"
-									name="customer_addr_detail" value="165"
+								<input type="text" class="form-control" id="customer_addr_third"
+									name="customer_addr_third" value="165"
 									style="color: #445A3E; text-align: center">
 							</div>
 						</div>
@@ -54,11 +48,11 @@
 						<div class="col-xs-4 gul">봉투 갯수</div>
 						<div class="col-xs-4">
 							<div class="form-group">
-								<select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+								<select class="form-control" id="bag_num" name="bag_num">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
 								</select>
 							</div>
 						</div>
@@ -74,14 +68,14 @@
 						<div class="col-xs-4">
 							<label class="form-check-label" for="radio1"> <input
 								type="radio" class="form-check-input" id="radio1"
-								name="trash_type" value="1" checked>당일수거물품
+								name="trash_type" value="0" checked>당일수거물품
 							</label>
 						</div>
 
 						<div class="col-xs-4">
-							<label class="form-check-label" for="radio2"> <input
+							<label cl ass="form-check-label" for="radio2"> <input
 								type="radio" class="form-check-input" id="radio2"
-								name="trash_type" value="2">혼합
+								name="trash_type" value="1">혼합
 							</label>
 						</div>
 					</div>
@@ -92,19 +86,16 @@
 
 					<div class="col-xs-4 gul">수거시간</div>
 					<div class="col-xs-8">
-					<input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime">
+					<input size="16" id="wanted_time" type="text" value="2012-06-15 14:45" readonly class="form_datetime">
 					</div>
 					</div>
 
 
 
 					<div class="modal-footer">
-						<a role="submit" class="btn btn-lg" id="one_finish" 
-							style="background-color: #ADCB00; color: black;">다음</a>
-						<!-- <button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
-    				 -->
+					
+						<a data-dismiss="modal" id="one_finish" href="#customer_apply_two_modal">Click</a>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>

@@ -13,7 +13,7 @@ public class CtrlInsert implements Controller{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("CtrlInsert");
-		String two_phone=Util.h(request.getParameter("two_phone"));
+		String one_phone=Util.h(request.getParameter("one_phone"));
 		String customer_addr_first=Util.h(request.getParameter("customer_addr_first"));
 		String customer_addr_second=Util.h(request.getParameter("customer_addr_second"));
 		String customer_addr_third=Util.h(request.getParameter("customer_addr_third"));		
@@ -22,7 +22,7 @@ public class CtrlInsert implements Controller{
 		//Date time_wanted=request.getParameter("time_wanted");
 		
 		CustomerApplyVO vo=new CustomerApplyVO();
-		vo.setCustomer_phone(two_phone);
+		vo.setCustomer_phone(one_phone);
 		vo.setCustomer_addr_first(customer_addr_first);
 		vo.setCustomer_addr_second(customer_addr_second);
 		vo.setCustomer_addr_third(customer_addr_third);
@@ -36,14 +36,12 @@ public class CtrlInsert implements Controller{
 		vo.setWanted_time(time_wanted);
 		vo.setHelperID("ID");
 		vo.setCard_num("card");
-
 		//serialNo,helperID,price
-		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
-		
+		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();	
 		//customerApplyDAO dao=new KaraImpl();
 		dao.add(vo);
-		
-		request.setAttribute("two_phone",two_phone);
+		System.out.println("sdsdfsdff");
+		request.setAttribute("two_phone",one_phone);
 		request.setAttribute("bag_num",bag_num);
 		request.setAttribute("price",bag_num*1500);
 		return "/customer_apply_two.jsp";

@@ -20,10 +20,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
-  
+  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/assets/css/datepicker3.css" />
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	<style>
@@ -70,35 +71,59 @@
 $(document).ready(function(){
     $("#customer_choose_btn").click(function(){
 
-        $("#customer_choose").modal();
+        $("#customer_choose").modal("show");
     });
 });
+$(document).ready(function() {
+	$('#customer_apply_one_modal').on('hide.bs.modal', function (event) {
+	/*var button = $(event.relatedTarget);
+	var deleteUrl = button.data('title');
+	var modal = $(this);*/
+	alert("sdf");
+	$("#customer_apply_one_modal").modal("show");
+	})
+	});
 window.onload=function(){
 	var apply_do=document.getElementById("apply_do");
 	var apply_result=document.getElementById("apply_result");
 	var one_finish=document.getElementById("one_finish");
-	var go_list=document.getElementById("go_list");
+	var serailNo;
+	//var go_list=document.getElementById("go_list");
 	apply_do.onclick=function(){
 		//모달띄움.신청하기모달/있는지 확인(데이터있는지)
 		document.getElementById("customer_phone").value = $('#customer_phone_in').val();
-		$("#customer_apply_one_modal").modal();
 		
+		$("#customer_choose").modal("hide");
+		$("#customer_apply_one_modal").modal("show");
+
 	};
 	apply_result.onclick=function(){
 		//페이지로이동(신청결과)customer_list.do로이동
-		$("#customer_apply_one_modal").modal();
+		$("#customer_apply_two_modal").modal("hide");
+
 	};
+	
+
 	
 	one_finish.onclick=function(){
 		//페이지로이동(신청결과)customer_list.do로이동
 		//$("#customer_apply_one_modal").hide();
-		$("#customer_apply_two_modal").modal();
+		var phone= $('#customer_phone').val();
+		var first=$('#customer_addr_first').val();
+		var second=$('#customer_addr_second').val();
+		var third=$('#customer_addr_third').val();
+		var bag_num=$('#bag_num').val();
+		var rad=$('#radio1').val();
+		
+		var wanted_time=$('#wanted_time').val();
+		$("#customer_apply_one_modal").modal("hide");
+		$("#customer_apply_two_modal").modal("show");
 	};
 
-	go_main.onclick=function(){
+	/*go_list.onclick=function(){
 		//페이지로이동(신청결과)index.jsp로이동
-		$("#customer_apply_one_modal").modal();
-	};
+		//$("#customer_apply_one_modal").modal();
+	};*/
 };
 
 

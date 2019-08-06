@@ -20,31 +20,13 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
 		
 		PreparedStatement stmt=null;
 		
-		/*
-		 * 
-		 * create table customer_apply(
-	serialNo varchar2(8) not null, 
-	customer_phone varchar2(11) not null,
-	customer_addr_front varchar2(40) not null , 
-	customer_addr_detail varchar2(45) not null,
-	bag_num number not null, 
-	trash_type number not null,
-	wanted_time varchar2(50) not null, 
-	last_time number not null, 
-	card_num varchar2(20), 
-	helperID varchar2(25),
-	price number,
-	customer_apply_day date not null 
-); 
-
-		 * */
 		try{
 		
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			 String sql="insert into customer_apply values(?,?,?,?,?,?,?,?,?,?,sysdate)";
+			 String sql="insert into customer_apply values(?,?,?,?,?,?,?,?,?,?,sysdate,?,0,0)";
 			 stmt=conn.prepareStatement(sql);
-			 
+			 System.out.println(vo.toString());
 			 /*
 			  * 
 			  * 정보있는지 확인하는 controller
@@ -60,14 +42,15 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO{
 			 stmt.setInt(1,vo.getSerialNo());
 			 stmt.setString(2,vo.getCustomer_phone());
 			 stmt.setString(3,vo.getCustomer_addr_first());
-			 stmt.setString(4,vo.getHelperID());
-			 stmt.setString(5,vo.getCustomer_addr_second());
+			 stmt.setString(4,vo.getCustomer_addr_second());
+			 stmt.setString(5,vo.getCustomer_addr_third());
 			 stmt.setInt(6,vo.getBag_num());
 			 stmt.setInt(7,vo.getTrash_type());
 			 //setDate가 먹으려면-->java.sql.Dateimport해야함 util이아니라
 			 stmt.setDate(8,vo.getWanted_time());
-			 stmt.setInt(10,vo.getPrice());
-			 stmt.setString(11,vo.getCard_num());
+			 stmt.setInt(9,vo.getPrice());
+			 stmt.setString(10,vo.getCard_num());
+			 stmt.setString(11,vo.getHelperID());
 			 int a=stmt.executeUpdate();
 			 System.out.println(a+"d");
 			 stmt.close();

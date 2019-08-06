@@ -26,7 +26,7 @@
 					<div class="modal-footer">
 						<a role="submit" class="btn btn-lg"
 							style="background-color: #ADCB00; color: black;">다음</a>
-						<!-- <button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
+					<!-- <button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
     				 -->
 					</div>
 				</form>
