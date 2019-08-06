@@ -45,12 +45,17 @@
 					<div class="jumbotron certify_temp">
 						<p></p>
 						<div class="row">
-   						<div class="col-sm-4" ><h2 style="color: WHITE" >분리수거 완료했어요!</h1></div>
+   						<div class="col-sm-4" ><h2 style="color: WHITE" >분리수거 완료했어요!</h2></div>
     					<div class="col-sm-4" ></div>
     					<div class="col-sm-4" ><img src="/GarbageCollector/assets/img/certify_submit.png" width="200" height="200" alt="My Image"></div>
   						</div>
 					</div>
-			</div>				
+			</div>
+				<div class="input-group">
+					<span class="input-group-addon">대행ID</span> <input
+						id="certify_helperID" type="text" class="form-control"
+						name="certify_helperID" readonly value="kjw ">
+				</div>				
 			<div class="form-group has-success has-feedback">
 				<div class="input-group">
 					<span class="input-group-addon">고객 신청번호</span> <input

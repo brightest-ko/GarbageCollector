@@ -39,19 +39,20 @@ public class CtrlAdd2 implements Controller{
 		// 대신 MultipartRequest 안의 getParameter을 쓴다.
 		// 한글처리도 내부에서 해주더라(UTF-8로 설정해서)
 		String title = mpr.getParameter("title");
-		System.out.println(title);
 		
 		
-
+		System.out.println(mpr.getParameter("certify_helperID"));
 		System.out.println("인증 DB insert 시작");
 		String details = Util.h(mpr.getParameter("details"));
 		CertifyVO vo = new CertifyVO();
+		
 		 vo.setSerialNo(Util.parseInt(mpr.getParameter("certify_serialNo")));
-		 vo.setHelperID("helper");
+		 vo.setHelperID(mpr.getParameter("certify_helperID"));
 		 vo.setDetails(details);;
 		 vo.setHousePlace(mpr.getParameter("housePlace"));
 		 vo.setCertify_photo_ofn(ofn);
 		 vo.setCertify_photo_fsn(fsn);
+		 System.out.println(vo.getHelperID());
 		 CertifyDAO dao = new CertifyDAO_OracleImpl();
 		 dao.insert(vo);
 		return "redirect:/certify/certify_list.do";

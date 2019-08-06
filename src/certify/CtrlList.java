@@ -21,9 +21,8 @@ public class CtrlList implements Controller {
 			throws Exception {
 
 		CertifyDAO dao = new CertifyDAO_OracleImpl();
-		List<CertifyVO> rl = dao.findAll();
 		
-		request.setAttribute("rl", rl);
+		//request.setAttribute("rl", rl);
 		return "/certify/certify_list.jsp";
 	}
 
