@@ -118,13 +118,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title" style="float: left;"><b>제안</b>하기</h2> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+          <h2 class="modal-title" style="float: left; color: #ffffff;"><b>제안</b>하기</h2> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
         </div>
         <div class="modal-body">
-          <p class="text-center">해당 분리수거를<br>진행하고 싶어요!</p>
+          <p class="text-center" style="font-size: 20px;">해당 분리수거를<br>제가<br>진행하고 싶어요!</p>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
+        <button type="button" class="btn btn-success" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> </div>
       </div>
     </div>

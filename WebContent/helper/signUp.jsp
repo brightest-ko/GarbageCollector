@@ -103,25 +103,13 @@
     </script>
 
     <style>
-        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
-        @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-        @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
-        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
-
-        body {
-            font-family: 'Jeju Myeongjo', serif;
-            font-size: 12pt;
-        }
         input {
             border: 1px solid #73AD21;
             padding: 3px;
+            margin : 3px 3px 3px 3px;
         }
 
         * { box-sizing: border-box }
-
-        .container {
-            padding: 15px;
-        }
 
         .button {
             background-color: lightcoral;
@@ -159,7 +147,7 @@
         <div class="row">
         <div class="col-xs-3" >
             <form method="POST" action="fileup" enctype="multipart/form-data">
-                <input type="submit" value="사진업로드"/>
+                <input type="submit" class="btn btn-default" value="사진업로드"/>
             </form>
         </div>
 
@@ -226,7 +214,7 @@
 
             하고싶은 말
             <br/>
-            <textarea name="message" rows="5" cols="50" placeholder="자신에 대해 한마디로 표현해주세요." maxlength="100">
+            <textarea name="message" rows="5" cols="50" style="border: yellowgreen 1px solid; margin: 3px 3px 3px 3px;" placeholder="자신에 대해 한마디로 표현해주세요." maxlength="100">
             </textarea>
         </div>
         </div>
