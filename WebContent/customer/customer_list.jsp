@@ -4,7 +4,9 @@
     %>
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="cd" %>
     <%
-String ctxPath = request.getContextPath(); %>
+    String year = request.getParameter("year").trim();
+    System.out.println(year);
+	String ctxPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head> 

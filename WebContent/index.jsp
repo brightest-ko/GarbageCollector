@@ -2,7 +2,9 @@
     pageEncoding="utf-8"
    
     %>
-<% String ctxPath = request.getContextPath(); %>
+<% String ctxPath = request.getContextPath();
+	
+%>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 
@@ -27,8 +29,7 @@
 	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
-	<style>
-  </style>
+	
 </head>
 <body>
 <%@include file="/header.jsp"%>
@@ -67,20 +68,34 @@
 </div>
 </div>
 
-<script>
-$(document).ready(function(){
-    $("#customer_choose_btn").click(function(){
-
-        $("#customer_choose").modal("show");
-    });
-});
+ <script>
+function ajaxGet(url,fpOk,fpFail)
+{
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				//undefined를 피하기 위한 방법
+				if(fpOk){
+					alert(xhr.responseText);
+				}	
+			}else{
+				if(fpFail){
+				fpFail(xhr.status);
+				}
+			}
+		}
+	};
+	xhr.open("GET",url,true);
+	xhr.send(null);
+}
 $(document).ready(function() {
-	$('#customer_apply_one_modal').on('hide.bs.modal', function (event) {
-	/*var button = $(event.relatedTarget);
-	var deleteUrl = button.data('title');
-	var modal = $(this);*/
-	alert("sdf");
-	$("#customer_apply_one_modal").modal("show");
+	$('#customer_apply_two_modal').on('hide.bs.modal', function (event) {
+	document.getElementById("price").value = $('#bag_num').val()*1500;
+	var card_num=$('#card_num').val();
+	
+	$("#customer_apply_result").modal("show");
+	//dao로 이동
 	})
 	});
 window.onload=function(){
@@ -88,48 +103,53 @@ window.onload=function(){
 	var apply_result=document.getElementById("apply_result");
 	var one_finish=document.getElementById("one_finish");
 	var serailNo;
+	$(document).ready(function() {
+		$("#customer_choose_btn").click(function(){
+       		 $("#customer_choose").modal("show");
+    	});
+		$("#one_finish").click(function(){
+			var phone=$('#one_phone').val();
+			var first=$('#customer_addr_first').val();
+			var second=$('#customer_addr_second').val();
+			var third=$('#customer_addr_third').val();
+			var bag=document.getElementById("bag_num");
+			var num=bag.selectedIndex;
+			var bag_num=bag.options[num].value;
+			var trash_type = $('input:radio[name="trash_type"]:checked').val();
+			var date="2019-09-09";
+			/*$('#dateRangePicker').datepicker({
+				 format: "yyyy-mm-dd",
+				 language: "kr"
+				 });
+			var imsi=$('#dateRangePicker').datepicker( "getDate" );*/
+		
+			var url="<%=ctxPath%>/customer/customer_test.jsp?temp=temp&one_phone="+phone+"&first="+first+"&second="+second+
+				"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date;
+			ajaxGet(url,function(rt){
+				var ob=window.eval("("+rt.trim()+")");
+				alert(ob.code);
+				if(ob.code=='OK'){
+						$('#customer_apply_one_modal').modal('hide');
+						$("#customer_apply_two_modal").modal("show");	
+			}
+       		
+    	});
+		
+	});
+	$("#apply_do").click(function(){
+			
+			$("#customer_choose").modal("hide");
+       		$("#customer_apply_one_modal").modal("show");
+    	});
+		$("#apply_result").click(function(){
+			
+			$("#customer_choose").modal("hide");
+       		
+    	});
 	//var go_list=document.getElementById("go_list");
-	apply_do.onclick=function(){
-		//모달띄움.신청하기모달/있는지 확인(데이터있는지)
-		document.getElementById("customer_phone").value = $('#customer_phone_in').val();
-		
-		$("#customer_choose").modal("hide");
-		$("#customer_apply_one_modal").modal("show");
-
-	};
-	apply_result.onclick=function(){
-		//페이지로이동(신청결과)customer_list.do로이동
-		$("#customer_apply_two_modal").modal("hide");
-
-	};
-	
-
-	
-	one_finish.onclick=function(){
-		//페이지로이동(신청결과)customer_list.do로이동
-		//$("#customer_apply_one_modal").hide();
-		var phone= $('#customer_phone').val();
-		var first=$('#customer_addr_first').val();
-		var second=$('#customer_addr_second').val();
-		var third=$('#customer_addr_third').val();
-		var bag_num=$('#bag_num').val();
-		var rad=$('#radio1').val();
-		
-		var wanted_time=$('#wanted_time').val();
-		$("#customer_apply_one_modal").modal("hide");
-		$("#customer_apply_two_modal").modal("show");
-	};
-
-	/*go_list.onclick=function(){
-		//페이지로이동(신청결과)index.jsp로이동
-		//$("#customer_apply_one_modal").modal();
-	};*/
+});
 };
 
-
-$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
-
-	 
 </script>
 
 

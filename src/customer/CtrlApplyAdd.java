@@ -1,4 +1,4 @@
-package matching;
+package customer;
 
 import java.util.List;
 
@@ -11,14 +11,16 @@ import common.RequestMapping;
 import customer.CustomerApplyVO;
 
 
-@RequestMapping("/matching_suggetion_list.do")
-public class CtrlListSuggetion implements Controller{
+@RequestMapping("/customer_apply_add.do")
+public class CtrlApplyAdd implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ì„œë¹„ìŠ¤ ìš”ì²­ ë¦¬ìŠ¤íŠ¸");
-		System.out.println("/matching_suggestion_list.do ì§„ìž…");
+		System.out.println("´ëÇà¼­ºñ½º½ÅÃ»");
+		System.out.println("/customer_apply_add.do ÁøÀÔ");
 		
+		
+		//NOTE: ·Î±×ÀÎ ±â´ÉµÇ¸é º¯°æÇÏ±â
 		HttpSession session = request.getSession();
 		String auth ="helper";//= null;
 		String helperID ="gobaksa4@naver.com";//= null;
@@ -26,23 +28,22 @@ public class CtrlListSuggetion implements Controller{
 //         auth = (String)session.getAttribute("auth");
 //         helperID =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
-				response.sendRedirect("loginform.jsp"); //login.jspæ¿¡ï¿½ è¹‚ï¿½å¯ƒï¿½
+				response.sendRedirect("loginform.jsp"); //login.jspë¡? ë³?ê²?
 			}
 		}catch(Exception e){
-			response.sendRedirect("loginform.jsp"); //login.jspæ¿¡ï¿½ è¹‚ï¿½å¯ƒï¿½
+			response.sendRedirect("loginform.jsp"); //login.jspë¡? ë³?ê²?
 		}
 
-		MatchingDAO dao = new MatchingDAO_OracleImpl();
-		List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
+		
+		//NOTE: getParameter·Î CustomerApplyVO vo Ã¤¿öÁÖ±â
+		CustomerApplyVO vo = new CustomerApplyVO();
+		CustomerApplyDAO dao = new CustomerApplyDAO_OracleImpl();
+		dao.add(vo);
+		
 
-		if(rl.size() > 0){
-			System.out.println("ì œì•ˆ ì¶”ì²œ ë¦¬ìŠ¤íŠ¸ " + rl.toString());
-			request.setAttribute("rl", rl);
-		}
-
-		System.out.println("/matching_suggestion_list.do ì™„ë£Œ");
-		return "/matching/matching_suggetion.jsp";
-
+		System.out.println("/customer_apply_add.do ¿Ï·á");
+		
+		return "redirect:/½ÅÃ»°á°úÁ¶È¸.do";
 	}
 
 }

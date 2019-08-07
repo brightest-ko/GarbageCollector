@@ -18,8 +18,7 @@
 					<div class="row">
 						<div class="col-xs-4 gul">전화번호</div>
 						<div class="col-xs-8 ">
-							<input type="text" class="form-control" name="one_phone" id="customer_phone"
-								value="01043394609">
+							<input type="text" class="form-control"  id="one_phone">
 						</div>
 					</div>
 
@@ -57,8 +56,10 @@
 							</div>
 						</div>
 						<div class="col-xs-4">
-							<a role="button"><img class="btn-img"
+							<a role="button" id="help_icon"><img class="btn-img"
 								src="<%=ctxPath%>/assets/img/baseline-help-24px.svg"></a>
+								<img src="<%=ctxPath%>/assets/img/baseline-help-24px.svg" onmouseover="this.src='마우스 오버 상태의 이미지 주소'" 
+								onmouseout="this.src='<%=ctxPath%>/assets/img/baseline-help-24px.svg'">
 						</div>
 					</div>
 
@@ -86,8 +87,8 @@
 
 					<div class="col-xs-4 gul">수거시간</div>
 					<div class="col-xs-8">
-					<input size="16" id="wanted_time" type="text" value="2012-06-15 14:45" readonly class="form_datetime">
-					</div>
+					<div class="input-group input-append date" id="dateRangePicker"> </div>
+			</div>
 					</div>
 
 

@@ -12,10 +12,12 @@ import java.util.List;
 import common.Util;
 import customer.CustomerApplyVO;
 
-public class Matching_OracleImpl implements MatchingDAO 
+public class MatchingDAO_OracleImpl implements MatchingDAO 
 {
+
 	@Override
 	public List<CustomerApplyVO> suggestion_list(String HelperID) throws Exception {
+		//서비스 요청 리스트
 		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -31,7 +33,8 @@ public class Matching_OracleImpl implements MatchingDAO
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
-			
+
+			System.out.println("suggestion_list");
 			CustomerApplyVO vo = null;
 			if(rs.next()){
 				vo = new CustomerApplyVO();
@@ -42,8 +45,10 @@ public class Matching_OracleImpl implements MatchingDAO
 				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setTrash_type(rs.getInt("trash_type"));
 				vo.setPrice(rs.getInt("price"));
+				System.out.println(vo.toString());
 				ls.add(vo);
 			}			
+			System.out.println(ls.toString());
 		}
 		catch( Exception e ){}
 		finally {
