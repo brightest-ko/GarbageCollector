@@ -178,3 +178,16 @@ form div.input-group button.with-text{
 footer{
 	padding-bottom: 45px;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+main {
+  padding-bottom: 180px;
+  min-height: 100%;
+}
+footer {
+  height: 180px !important;
+  margin-top: -180px !important;
+}

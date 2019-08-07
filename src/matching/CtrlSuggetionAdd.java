@@ -38,7 +38,7 @@ public class CtrlSuggetionAdd implements Controller{
 		int r = dao.suggest(serialNo,helperID);
 
 		System.out.println("/matching_suggetion_add.do ¿Ï·á");
-		return "/matching/matching_suggetion.jsp";
+		return "redirect:/matching_suggetion_list2.do";
 
 	}
 

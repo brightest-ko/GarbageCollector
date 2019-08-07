@@ -77,8 +77,9 @@
 				<table class="table table-bordered text-center table-hover">
 					<thead>
 						<tr class="bg-success" style="font-weight: bold;">
+							<th class="text-center col-xs-1">No</th>
 							<th class="text-center col-xs-3">지역</th>
-							<th class="text-center col-xs-3">수행 예정 시간</th>
+							<th class="text-center col-xs-2">수행 예정 시간</th>
 							<th class="text-center col-xs-1">종류</th>
 							<th class="text-center col-xs-1">금액</th>
 							<th class="text-center col-xs-3">마감 시간</th>
@@ -89,28 +90,45 @@
 					<tbody>
 					
 							<tr>
+								<td>1098</td>
 								<td>제주시 이도1동</td>
 								<td>2019/08/20/17:22:10</td>
 								<td>플라스틱</td>
 								<td>2000원</td>
-								<td><div id="newcountdown" wanted_time_data="08/07/2019 3:22 PM"></div></td>
+								<td><div id="newcountdown" wanted_time_data="08/07/2019 6:00 PM"></div></td>
 								<td>
 									<button type="button" class="btn btn-default btn-success blinkEle">제안하기</button>
 								</td>
 							</tr>
 						<c:forEach var="vo" items="${rl}">
-						${rl}
 							<!--if 마감시간 1시간 임박-->
 							<tr class="deadline_red">
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.serialNo}${vo.customer_addr_first}시 ${vo.customer_addr_second}</td>
+								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
+								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.customer_addr_first} ${vo.customer_addr_second}</td>
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.wanted_time }</td>
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.trash_type }</td>
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.price }</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'"><div id="newcountdown" wanted_time_data="${vo.wanted_time }"></div></td>
+								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'"><div id="countdown" wanted_time_data="${vo.wanted_time }"></div></td>
 								<td>
-									<button type="button" class="btn btn-success" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">제안하기</button>
+									<button type="button" class="btn btn-success " data-toggle="modal" data-target="#suggestion_ok">제안하기</button>
 								</td>
 							</tr>
+							
+  <div class="modal fade" id="suggestion_ok" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><b>제안</b>하기</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">해당 분리수거를<br>진행하고 싶어요!</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> </div>
+      </div>
+    </div>
+  </div>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -121,6 +139,7 @@
 		</div>
 	</div>
 
+  
 
 	</main>
 	<%@include file="/footer.jsp"%>
@@ -142,9 +161,9 @@ setInterval(function(){
 	
 	
 CountDownTimer('countdown'); // 2019년 8월 8일까지
-CountDownTimer('09/01/2019 00:00 AM', 'newcountdown'); // 2019년 9월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
+CountDownTimer('newcountdown'); // 2019년 9월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
 
-function CountDownTimer(dt, id)
+function CountDownTimer(id)
 {
 
 var end = new Date($('#'+id).attr('wanted_time_data'));
