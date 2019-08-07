@@ -55,7 +55,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 				r = stmt.executeUpdate();
 				System.out.println("기존회원 주소지 update"+r);
 			}else {
-				sql = "intsert into customer(customer_addr_first, customer_addr_second, customer_addr_third, customer_phone) values"
+				sql = "insert into customer(customer_addr_first, customer_addr_second, customer_addr_third, customer_phone) values"
 						+ "(?,?,?,?);";
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, vo.getCustomer_addr_first());

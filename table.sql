@@ -1,119 +1,195 @@
-create database quest_in_jeju;
-use quest_in_jeju;
-
-
-#고객 Table
-drop table cutomer;
-create table customer(
-	customer_phone varchar2(11) not null,
-	customer_addr_front varchar2(40) not null,
-	customer_addr_detail varchar2(45) not null,
+drop table helper CASCADE CONSTRAINTS PURGE;
+create table helper(
+	"HELPERID" VARCHAR2(25 BYTE), 
+	"HELPER_PHONE" VARCHAR2(20 BYTE), 
+	"HELPER_NAME" VARCHAR2(25 BYTE), 
+	"SEX" VARCHAR2(6 BYTE), 
+	"BANK_NAME" VARCHAR2(18 BYTE), 
+	"ACCOUNT" VARCHAR2(20 BYTE), 
+	"ACCOUNT_HOLDER" VARCHAR2(25 BYTE), 
+	"WISH_ADDR_FIRST1" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND1" VARCHAR2(45 BYTE), 
+	"WISH_ADDR_FIRST2" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND2" VARCHAR2(45 BYTE), 
+	"WISH_ADDR_FIRST3" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND3" VARCHAR2(45 BYTE), 
+	"WANT_TO_SAY" VARCHAR2(300 BYTE), 
+	"HELPER_PHOTO_OFN" VARCHAR2(100 BYTE), 
+	"HELPER_PHOTO_FSN" VARCHAR2(100 BYTE)
 );
+alter table helper add constraint helper_id_pk primary key (helperID);
+
+Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('unizzang@sleep.com','01025888421','유니짱','여성','농협','352313459900','유니짱','제주시','상도동','제주시','이도1동',null,null,'사랑해 희조야','ofn','fsn');
+Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse4@naver.com','01094589584','희조짱','여성','농협','352313459900','유니짱','제주시','상도동',null,null,null,null,'사랑해 희조야','ofn','fsn');
+Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse5@naver.com','01094589584','희조5짱','여성','농협','352313459900','유니짱','제주시','이도1동',null,null,null,null,'사랑해 희조야','ofn','fsn');
+
+
+
+drop table customer CASCADE CONSTRAINTS PURGE;
+create table customer(
+	customer_phone varchar2(20) not null, 
+	customer_addr_first varchar2(40) not null ,
+	customer_addr_second varchar2(45) not null,
+	customer_addr_third varchar2(45) not null
+);
+
 alter table customer add constraint customer_phone_pk primary key (customer_phone);
+Insert into customer (CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD) values ('01048889999','제주시','상도동','고문리');
+--Insert into customer (CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD) values ('01094589584','제주시','이도1동','제주시청 앞');
 
 
-#고객신청 Table
-drop table customer_apply;
+drop table customer_apply CASCADE CONSTRAINTS PURGE;
 create table customer_apply(
-	serialNo varchar2(8) not null,
-	customer_phone varchar2(11) not null,
-	customer_addr_front varchar2(40) not null,
-	customer_addr_detail varchar2(45) not null,
+    serialNo number not null,
+	customer_phone varchar2(20) not null,
+	customer_addr_first varchar2(40) not null,
+	customer_addr_second varchar2(45) not null,
+	customer_addr_third varchar2(45) not null,
 	bag_num number not null,
-	trash_type number not null,
-	wanted_time varchar2(50) not null,
-	last_time number not null,
-	price number not null,
-	card_num varchar2(20) not null,
-	helperID varchar2(25),
-	customer_apply_day date not null 
+	trash_type  number not null,
+	wanted_time date not null,
+	price number,
+	card_num varchar2(20),
+	helperID  varchar2(25),
+	customer_apply_day date,
+	certify_status number(1),
+	review_status number(1)
 ); 
-alter table customer_apply add constraint customer_apply_pk primary key (serialNo);
-alter table customer_apply add constraint customer_apply_customer_phone_fk foreign key references customer (customer_phone);
-alter table customer_apply add constraint customer_apply_helperID_fk foreign key references helper (helperID);
+
+alter table customer_apply add constraint ca_pk primary key (serialNo);
+alter table customer_apply add constraint ca_customer_phone_fk foreign key (customer_phone) references customer (customer_phone);
+alter table customer_apply add constraint ca_helperID_fk foreign key (helperID) references helper (helperID);
 
 drop sequence customer_apply_seq;
 create sequence customer_apply_seq start with 1 increment by 1;
 
 
-#대행 Table
-drop table helper;
-create table helper(
-	helperID varchar2(25),
-	helper_photo_ofn varchar2(100) not null,
-	helper_photo_fsn varchar2(100) not null,
-	helper_phone varchar2(11) not null,
-	helper_name varchar2(25) not null,
-	sex varchar2(3) not null,
-	bank_name varchar2(18) not null,
-	account varchar2(20) not null,
-	account_holder varchar2(25) not null,
-	wish_addr_front1 varchar2(40) not null,
-	wish_addr_detail1 varchar2(45) not null,
-	wish_addr_front2 varchar2(40),
-	wish_addr_detail2 varchar2(45),
-	wish_addr_front3 varchar2(40),
-	wish_addr_detail3 varchar2(45),
-	want_to_say varchar2(300)
-);
-alter table helper add constraint helper_id_pk primary key (helperID);
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (customer_apply_seq.nextval,'01048889999','제주시','상도동','고문리',2,1,to_date('19/08/09','RR/MM/DD'),2000,'111123-135311',null,sysdate,0,0);
+
+--기존 등록 회원
+select count(*) from customer where customer_phone = '01048889999';
+--  COUNT(*)
+------------
+--         1
+
+update customer set customer_addr_first='제주시', customer_addr_second='이도1동' , CUSTOMER_ADDR_THIRD = '제주시청 옆' where CUSTOMER_PHONE = '01048889999';
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (customer_apply_seq.nextval,'01048889999','제주시','이도1동','제주시청 옆',2,1,to_date('19/08/10','RR/MM/DD'),2000,'111123-135311',null,sysdate,0,0);
+
+--신규 회원
+select count(*) from customer where customer_phone = '01094589584';
+--  COUNT(*)
+------------
+--         0
+insert into customer(customer_phone, customer_addr_first, customer_addr_second, customer_addr_third) values ('01094589584','제주시','이도1동','제주시청 앞');
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (customer_apply_seq.nextval,'01094589584','제주시','이도1동','제주시청 앞',2,1,to_date('19/08/10','RR/MM/DD'),2000,'111123-135311',null,sysdate,0,0);
+
+--가장 최근 넣은 seralNo가 3
+select serialNo from customer_apply where customer_phone = '01094589584' order by customer_apply_day desc;
+--  SERIALNO
+------------
+--         3
 
 
-#제안 수락 Table
-drop table matching;
+
+select * from helper;
+--HELPERID                  HELPER_PHONE         HELPER_NAME               SEX    BANK_NAME          ACCOUNT              ACCOUNT_HOLDER            WISH_ADDR_FIRST1                         WISH_ADDR_SECOND1                             WISH_ADDR_FIRST2                         WISH_ADDR_SECOND2                             WISH_ADDR_FIRST3                         WISH_ADDR_SECOND3                             WANT_TO_SAY                                                                                                                                                                                                                                                                                                  HELPER_PHOTO_OFN                                                                                     HELPER_PHOTO_FSN                                                                                    
+--------------------------- -------------------- ------------------------- ------ ------------------ -------------------- ------------------------- ---------------------------------------- --------------------------------------------- ---------------------------------------- --------------------------------------------- ---------------------------------------- --------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ ---------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------
+--unizzang@sleep.com        01025888421          유니짱                    여성   농협               352313459900         유니짱                    제주시                                   상도동                                        제주시                                   이도1동                                                                                                                              사랑해 희조야                                                                                                                                                                                                                                                                                                ofn                                                                                                  fsn                                                                                                 
+--gobakse4@naver.com        01094589584          희조짱                    여성   농협               352313459900         유니짱                    제주시                                   상도동                                                                                                                                                                                                                      사랑해 희조야                                                                                                                                                                                                                                                                                                ofn                                                                                                  fsn                                                                                                 
+--gobakse5@naver.com        01094589584          희조5짱                   여성   농협               352313459900         유니짱                    제주시                                   이도1동                                                                                                                                                                                                                     사랑해 희조야                                                                                                                                                                                                                                                                                                ofn                                                                                                  fsn                                                                                                 
+
+select * from customer;
+--CUSTOMER_PHONE       CUSTOMER_ADDR_FIRST                      CUSTOMER_ADDR_SECOND                          CUSTOMER_ADDR_THIRD                          
+---------------------- ---------------------------------------- --------------------------------------------- ---------------------------------------------
+--01048889999          제주시                                   이도1동                                       제주시청 옆                                  
+--01094589584          제주시                                   이도1동                                       제주시청 앞                                  
+
+
+select * from customer_apply;
+--  SERIALNO CUSTOMER_PHONE       CUSTOMER_ADDR_FIRST                      CUSTOMER_ADDR_SECOND                          CUSTOMER_ADDR_THIRD                              BAG_NUM TRASH_TYPE WANTED_T      PRICE CARD_NUM             HELPERID                  CUSTOMER CERTIFY_STATUS REVIEW_STATUS
+------------ -------------------- ---------------------------------------- --------------------------------------------- --------------------------------------------- ---------- ---------- -------- ---------- -------------------- ------------------------- -------- -------------- -------------
+--         1 01048889999          제주시                                   상도동                                        고문리                                                 2          1 19/08/09       2000 111123-135311                                  19/08/07              0             0
+--         2 01048889999          제주시                                   이도1동                                       제주시청 옆                                            2          1 19/08/10       2000 111123-135311                                  19/08/07              0             0
+--         3 01094589584          제주시                                   이도1동                                       제주시청 앞                                            2          1 19/08/10       2000 111123-135311                                  19/08/07              0             0
+
+select helperID from helper where (wish_addr_first1 = '제주시' and wish_addr_second1 ='이도1동') or (wish_addr_first2 = '제주시' and wish_addr_second2 ='이도1동')or (wish_addr_first3 = '제주시' and wish_addr_second3 ='이도1동');
+--HELPERID                 
+---------------------------
+--unizzang@sleep.com
+--gobakse5@naver.com
+
+
+--제안 수락 table
+drop table matching CASCADE CONSTRAINTS PURGE;
 create table matching(
-	serialNo varchar2(8) not null,
+	serialNo number(8) not null,
 	helperID varchar2(25),
-	suggestion number(1) not null check (test in (0,1)),
-	acceptance number(1) not null check (test in (0,1))
+	suggestion number(1) not null,
+	acceptance number(1) not null
 );
+
+
 alter table matching add constraint matching_pk primary key (serialNo, helperID );
-alter table matching add constraint matching_serialNo_fk foreign key references customer_apply (serialNo);
-alter table matching add constraint matching_helperID_fk foreign key references helper (helperID);
+alter table matching add constraint matching_serialNo_fk foreign key (serialNo) references customer_apply (serialNo);
+alter table matching add constraint matching_helperID_fk foreign key (helperID) references helper (helperID);
+   
+insert into matching(serialNo,helperID,suggestion,acceptance) values (3,'unizzang@sleep.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (3,'gobakse5@naver.com',0,0);
+
+select * from matching;
+
+select * from customer_apply where serialNo in (select serialNo from matching where helperID = 'gobakse5@naver.com' and SUGGESTION =0 and ACCEPTANCE =0);
 
 
-#후기 Table
+
+
+--후기
+drop table review CASCADE CONSTRAINTS PURGE;
 drop table review;
 create table review(
-	serialNo int not null,	
-	helperID varchar2(25) not null,
-	review_title varchar2(60) not null, 
-	rating number(5,1) not null, 
-	clean_place_addr_front varchar2(95),
-	review_content varchar2(900), 
-	review_day date not null 
+serialNo number not null,
+helperID varchar2(25) not null,
+review_title varchar2(60) not null, 
+rating number(5,1) not null, 
+clean_place_addr_front varchar2(95),
+review_content varchar2(900), 
+review_day date not null 
 );
-#review_pwd varchar2(12) not null,
-alter table review add constraint review_pk primary key (serialNo);
-alter table review add constraint review_matching_fk foreign key (serialNo, helperID ) references matching ((serialNo, helperID ));
+alter table review add constraint review_pk primary key (serialNo, helperID );
+alter table review add constraint review_serialNo_fk foreign key (serialNo) references matching (serialNo);
+alter table review add constraint review_helperID_fk foreign key (helperID) references matching (helperID);
 
 insert into review values (serialNo.nextval,'minsu1234','test title','helperPW',3.4,'jeju','nice to meet you',to_date(sysdate,'yyyy-mm-dd'));
 
-#인증 Table
-drop table certify;
+
+
+
+--인증
+drop table certify  CASCADE CONSTRAINTS PURGE;
 create table certify(
-	serialNo varchar2(8) not null, 
-	helperID varchar2(25) not null, 
+	serialNo number not null, 
+helperID varchar2(25) not null, 
 	details varchar2(300) not null,
 	housePlace varchar2(80) not null,
 	certify_photo_ofn varchar2(100) not null,
 	certify_photo_fsn varchar2(100) not null,
-	certify_day date not null 
+certify_day date not null 
 );
-alter table review add constraint certify_pk primary key (serialNo);
-alter table review add constraint review_matching_fk foreign key (serialNo, helperID ) references matching ((serialNo, helperID ));
+alter table certify add constraint certify_pk primary key (serialNo, helperID );
+alter table certify add constraint certify_serialNo_fk foreign key (serialNo) references matching (serialNo);
+alter table certify add constraint review_helperID_fk foreign key (helperID) references matching (helperID);
 
 
 
 
-#지도 Table
-drop table map;
+--지도
+drop table map CASCADE CONSTRAINTS PURGE;
 create table map(
 	mapNo number not null,
 	map_addr_front varchar2(80) not null,
 	map_addr_detail varchar2(80)
 );
-alter table renting add constraint map_no_pk  primary key ( mapNo);
+alter table map add constraint map_no_pk  primary key ( mapNo);
 
 drop sequence map_no_seq;
 create sequence map_no_seq start with 1 increment by 1 maxvalue 10000 minvalue 1 nocycle;
