@@ -51,7 +51,7 @@
 </head>
 <body>
 <%@include file="/header.jsp" %>
-
+<main>
 <div class="container" style = "padding: 100px 30px 80px 30px">
     <div class="row container-fluid" >
         <!-- 고객 로그인 창 -->
@@ -69,7 +69,7 @@
 
         <!-- 대행 로그인 창-->
         <div class="col-xs-6 box_login" style="float: right;">
-            <form method="post" action="helper_login">
+            <form method="post" action="helper_login.do">
                 <div class="form-group">
                     <h3> 대행 </h3><hr>
                     <label for="helperId"> 아이디 </label>
