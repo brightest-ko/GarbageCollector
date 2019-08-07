@@ -14,6 +14,7 @@ import customer.CustomerApplyVO;
 
 public class MatchingDAO_OracleImpl implements MatchingDAO 
 {
+
 	@Override
 	public List<CustomerApplyVO> suggestion_list(String HelperID) throws Exception {
 		//서비스 요청 리스트
