@@ -28,7 +28,8 @@
             review.CtrlModify,
 
             helper.CtrlAdd,
-            helper.CtrlAdd_view
+            helper.CtrlAdd_view,
+            helper.CtrlListLogin
         </param-value>
 	</init-param>
   </servlet>
