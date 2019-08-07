@@ -7,15 +7,13 @@ import common.Util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@RequestMapping("/helper/helper_add.do")
+@RequestMapping("/helper_add.do")
 public class CtrlAdd implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
 
         Exception err = null;
-
-        System.out.println("ctrl add 까진 왔따");
 
         String helperId = Util.h( request.getParameter("email"));
         String phoneNum = Util.h( request.getParameter("phoneNum"));
@@ -48,7 +46,6 @@ public class CtrlAdd implements Controller {
         vo.setWish_Addr_Front3(wishf3);
         vo.setWish_Addr_Detail3(wishd3);
         vo.setWant_to_say(message);
-
 
         HelperSignUpDAO dao = new HelperSignUpDAO_OracleImpl();
 
