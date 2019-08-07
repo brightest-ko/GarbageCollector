@@ -12,7 +12,7 @@ import customer.CustomerApplyVO;
 
 
 @RequestMapping("/matching_acceptance_list.do")
-public class CtrlListAcceptance implements Controller{
+public class CtrlAcceptanceList implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {

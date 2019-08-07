@@ -62,40 +62,30 @@
                   <thead>
                     <tr class="bg-success"  style="font-weight: bold;">
                       <th class="text-center col-xs-1">No</th>
-                      <th class="text-center col-xs-3">고객 주소 (나머지 주소 포함)</th>
+                      <th class="text-center col-xs-4">고객 주소 (나머지 주소 포함)</th>
+                      <th class="text-center col-xs-2">종류</th>
                       <th class="text-center col-xs-1">가격</th>
-                      <th class="text-center col-xs-3">요청 시간</th>
-                      <th class="text-center col-xs-3">마감 시간</th>
+                      <th class="text-center col-xs-3">약속 시간</th>
                       <th class="text-center col-xs-1"></th>
                     </tr>
                   </thead>
                   <tbody>
-					<l:forEach var="vo" items="${rl}">
+					<c:forEach var="vo1" items="${rl_success}">
                     <tr>
-                      <th>1</th>
                       <td>${vo.serialNo }</td>
-                      <td>Otto</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo.serialNo }">인증하기</a></td>
+                      <td>${vo.customer_addr_first } ${vo.customer_addr_second } ${vo.customer_addr_third }</td>
+                      <td>${vo.trash_type }</td>
+                      <td>${vo.price }</td>
+                      <td>${vo.wanted_time }</td>
+                      <c:if test="${vo1.certify_status }==0">
+                      	<td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo1.serialNo }">인증하기</a></td>
+                      </c:if><c:if test="${vo1.certify_status }==1 and ${vo1.review_status }==0">
+                      	<td><a class="btn btn-default"  href="#" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
+                      </c:if><c:if test="${vo1.certify_status }==1 and ${vo1.review_status }==1">
+                      	<td><a class="btn btn-default"  href="#" >인증확인</a></td>
+                      </c:if>
                     </tr>
-                    </l:forEach>
-                    <tr>
-                      <th>2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td><a class="btn btn-default"  href="#" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
-                    </tr>
-                    <tr>
-                      <th>2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td><a class="btn btn-default"  href="#" >인증확인</a></td>
-                    </tr>
+                    </c:forEach>
                   </tbody>
                 </table>
               </div>
