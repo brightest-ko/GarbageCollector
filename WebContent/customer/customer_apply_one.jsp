@@ -116,6 +116,7 @@
 
 <style type="text/css">
 .modal-header {
+	border-radius: 6px 6px 0 0;
 	background-color: #ADCB00;
 	color: #1C4220;
 }

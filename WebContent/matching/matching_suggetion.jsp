@@ -118,7 +118,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><b>제안</b>하기</h5> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
+          <h2 class="modal-title" style="float: left;"><b>제안</b>하기</h2> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
         </div>
         <div class="modal-body">
           <p class="text-center">해당 분리수거를<br>진행하고 싶어요!</p>
