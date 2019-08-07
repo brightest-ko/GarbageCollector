@@ -19,8 +19,10 @@
             
             
             
-        	matching.CtrlListSuggetion,
-        	matching.CtrlListAcceptance,
+        	matching.CtrlSuggetionList,
+        	matching.CtrlSuggetionAdd,
+        	matching.CtrlSuggetionList2,
+        	matching.CtrlAcceptanceList,
         	
         	customer.CtrlAddApply,
 

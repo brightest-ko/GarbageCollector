@@ -111,7 +111,6 @@
 			var rating = 'star'.concat(n);
 			rating = document.getElementById(rating).value
 			alert(rating);
-	
 		}
 		function fnChkByte(obj, maxByte)
 		{
@@ -152,6 +151,10 @@
 		        document.getElementById('byteInfo').innerText = rbyte;
 		     }
 		}
+		function form_submit() {
+	        alert(document.getElementById("serialNo").submit());
+	    } 
+		//rating 선택하지 않았을때 null point오류뜸. 에러잡아야함
 	</script>
 </head>
 <body>
@@ -190,34 +193,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>4</td>
-							<td>abcdefghijklmnopqrstuvwxyz</td>
-							<td>DB가 죽었어요..컴퓨터 폐기해주실분?</a></td>
-							<td>2019-08-05</td>
-							<td>2</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>angelous</td>
-							<td>쓰레기 3일밀렸어요 ㅠ.ㅠ</a></td>
-							<td>2019-08-05</td>
-							<td>3</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>ironman</td>
-							<td>[급구]내일 플라스틱 버려주실분</a></td>
-							<td>2019-08-05</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Cjam</td>
-							<td>새벽에 쓰레기 대신 버려주실분??.</td>
-							<td>2019-08-05</td>
-							<td>1</td>
-						</tr>
+						
 						<c:forEach var="vo" items="${rl}">
 							<tr>
 								<td>${vo.serialNo}</td>

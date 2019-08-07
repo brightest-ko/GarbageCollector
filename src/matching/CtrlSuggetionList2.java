@@ -11,13 +11,13 @@ import common.RequestMapping;
 import customer.CustomerApplyVO;
 
 
-@RequestMapping("/matching_suggetion_list.do")
-public class CtrlListSuggetion implements Controller{
+@RequestMapping("/matching_suggetion_list2.do")
+public class CtrlSuggetionList2 implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("서비스 요청 리스트");
-		System.out.println("/matching_suggestion_list.do 진입");
+		System.out.println("대행자 제안 리스트");
+		System.out.println("/matching_suggetion_list2.do 진입");
 		
 		HttpSession session = request.getSession();
 		String auth ="helper";//= null;
@@ -33,13 +33,19 @@ public class CtrlListSuggetion implements Controller{
 		}
 
 		MatchingDAO dao = new MatchingDAO_OracleImpl();
-		List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
+		List<CustomerApplyVO> rl_success = dao.suggestion_list2_success(helperID);
+		List<CustomerApplyVO> rl_yet = dao.suggestion_list2_yet(helperID);
+		List<CustomerApplyVO> rl_fail = dao.suggestion_list2_fail(helperID);
 
-		System.out.println("제안 추천 리스트 " + rl.toString());
-		request.setAttribute("rl", rl);
+		System.out.println("매칭 성공 " + rl_success.toString());
+		System.out.println("매칭 대기 " + rl_yet.toString());
+		System.out.println("매칭 실패 " + rl_fail.toString());
+		request.setAttribute("rl_success", rl_success);
+		request.setAttribute("rl_yet", rl_yet);
+		request.setAttribute("rl_fail", rl_fail);
 
-		System.out.println("/matching_suggestion_list.do 완료");
-		return "/matching/matching_suggetion.jsp";
+		System.out.println("/matching_suggestion_list2.do 완료");
+		return "/matching/matching_suggetion2.jsp";
 
 	}
 

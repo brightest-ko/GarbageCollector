@@ -1,6 +1,7 @@
 drop table helper CASCADE CONSTRAINTS PURGE;
 create table helper(
 	"HELPERID" VARCHAR2(25 BYTE), 
+	helper_password varchar(20), 
 	"HELPER_PHONE" VARCHAR2(20 BYTE), 
 	"HELPER_NAME" VARCHAR2(25 BYTE), 
 	"SEX" VARCHAR2(6 BYTE), 
@@ -19,9 +20,9 @@ create table helper(
 );
 alter table helper add constraint helper_id_pk primary key (helperID);
 
-Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('unizzang@sleep.com','01025888421','À¯´ÏÂ¯','¿©¼º','³óÇù','352313459900','À¯´ÏÂ¯','Á¦ÁÖ½Ã','»óµµµ¿','Á¦ÁÖ½Ã','ÀÌµµ1µ¿',null,null,'»ç¶ûÇØ ÈñÁ¶¾ß','ofn','fsn');
-Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse4@naver.com','01094589584','ÈñÁ¶Â¯','¿©¼º','³óÇù','352313459900','À¯´ÏÂ¯','Á¦ÁÖ½Ã','»óµµµ¿',null,null,null,null,'»ç¶ûÇØ ÈñÁ¶¾ß','ofn','fsn');
-Insert into HR.HELPER (HELPERID,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse5@naver.com','01094589584','ÈñÁ¶5Â¯','¿©¼º','³óÇù','352313459900','À¯´ÏÂ¯','Á¦ÁÖ½Ã','ÀÌµµ1µ¿',null,null,null,null,'»ç¶ûÇØ ÈñÁ¶¾ß','ofn','fsn');
+Insert into HR.HELPER (HELPERID,helper_password,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('unizzang@sleep.com','123','01025888421','À¯´ÏÂ¯','¿©¼º','³óÇù','352313459900','À¯´ÏÂ¯','Á¦ÁÖ½Ã','»óµµµ¿','Á¦ÁÖ½Ã','ÀÌµµ1µ¿',null,null,'»ç¶ûÇØ ÈñÁ¶¾ß','ofn','fsn');
+Insert into HR.HELPER (HELPERID,helper_password,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse4@naver.com','123','01094589584','ÈñÁ¶Â¯','¿©¼º','³óÇù','352313459900','À¯´ÏÂ¯','Á¦ÁÖ½Ã','»óµµµ¿',null,null,null,null,'»ç¶ûÇØ ÈñÁ¶¾ß','ofn','fsn');
+Insert into HR.HELPER (HELPERID,helper_password,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse5@naver.com','123','01094589584','ÈñÁ¶5Â¯','¿©¼º','³óÇù','352313459900','À¯´ÏÂ¯','Á¦ÁÖ½Ã','ÀÌµµ1µ¿',null,null,null,null,'»ç¶ûÇØ ÈñÁ¶¾ß','ofn','fsn');
 
 
 
@@ -133,6 +134,11 @@ alter table matching add constraint matching_pk primary key (serialNo, helperID 
 alter table matching add constraint matching_serialNo_fk foreign key (serialNo) references customer_apply (serialNo);
 alter table matching add constraint matching_helperID_fk foreign key (helperID) references helper (helperID);
    
+
+insert into matching(serialNo,helperID,suggestion,acceptance) values (1,'unizzang@sleep.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (1,'gobakse4@naver.com',0,0);   
+insert into matching(serialNo,helperID,suggestion,acceptance) values (2,'unizzang@sleep.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (2,'gobakse5@naver.com',0,0);
 insert into matching(serialNo,helperID,suggestion,acceptance) values (3,'unizzang@sleep.com',0,0);
 insert into matching(serialNo,helperID,suggestion,acceptance) values (3,'gobakse5@naver.com',0,0);
 
@@ -156,11 +162,7 @@ review_content varchar2(900),
 review_day date not null 
 );
 alter table review add constraint review_pk primary key (serialNo, helperID );
-alter table review add constraint review_serialNo_fk foreign key (serialNo) references matching (serialNo);
-alter table review add constraint review_helperID_fk foreign key (helperID) references matching (helperID);
-
-insert into review values (serialNo.nextval,'minsu1234','test title','helperPW',3.4,'jeju','nice to meet you',to_date(sysdate,'yyyy-mm-dd'));
-
+ALTER TABLE review ADD CONSTRAINT review_matching_fk FOREIGN KEY( serialNo,helperID) REFERENCES matching (serialNo,helperID);
 
 
 
@@ -176,9 +178,7 @@ helperID varchar2(25) not null,
 certify_day date not null 
 );
 alter table certify add constraint certify_pk primary key (serialNo, helperID );
-alter table certify add constraint certify_serialNo_fk foreign key (serialNo) references matching (serialNo);
-alter table certify add constraint review_helperID_fk foreign key (helperID) references matching (helperID);
-
+ALTER TABLE certify ADD CONSTRAINT certify_matching_fk FOREIGN KEY( serialNo,helperID) REFERENCES matching (serialNo,helperID);
 
 
 
