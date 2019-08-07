@@ -12,7 +12,10 @@ public class CtrlInfo2 implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("info");
+		System.out.println(request.getParameter("SerailNo"));
 		int serino = Util.parseInt(request.getParameter("SerailNo"));
+		System.out.println(serino);
 		CertifyDAO dao = new CertifyDAO_OracleImpl();
 		CertifyVO vo =null;
 		try{

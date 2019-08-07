@@ -75,7 +75,7 @@
 				</div>
 			</div>
 
-			<h3 style="color: WHITE">특이사항</h3>
+			<h3>특이사항</h3>
 			<div class="form-group certify_detalis">
 				<textarea class="form-control" rows="5" id="details" name="details" readonly>${vo.details}</textarea>
 			</div>
