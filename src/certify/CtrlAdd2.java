@@ -48,14 +48,14 @@ public class CtrlAdd2 implements Controller{
 		
 		 vo.setSerialNo(Util.parseInt(mpr.getParameter("certify_serialNo")));
 		 vo.setHelperID(mpr.getParameter("certify_helperID"));
-		 vo.setDetails(details);;
+		 vo.setDetails(details);
 		 vo.setHousePlace(mpr.getParameter("housePlace"));
 		 vo.setCertify_photo_ofn(ofn);
 		 vo.setCertify_photo_fsn(fsn);
 		 System.out.println(vo.getHelperID());
 		 CertifyDAO dao = new CertifyDAO_OracleImpl();
 		 dao.insert(vo);
-		return "redirect:/certify/certify_list.do";
+		return "redirect:/matching/matching_acceptance.jsp";
 	}
 
 	
