@@ -7,12 +7,14 @@ import common.Controller;
 import common.RequestMapping;
 import common.Util;
 
-@RequestMapping("/certify_find2.do")
+@RequestMapping("/certify/certify_find2.do")
 public class CtrlFind2 implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int serino = Util.parseInt(request.getParameter("certify_serialNo"));
+		String certify_no=request.getParameter("SerailNo");
+		int serino = Util.parseInt(certify_no);
+		System.out.println(serino);
 		CertifyDAO dao = new CertifyDAO_OracleImpl();
 		CertifyVO vo =null;
 		try{

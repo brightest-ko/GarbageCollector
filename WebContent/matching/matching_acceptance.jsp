@@ -73,12 +73,12 @@
 					<l:forEach var="vo" items="${rl}">
                     <tr>
                       <th>1</th>
-                      <td>${vo.serialNo }</td>
+                      <td>Jacob</td>
                       <td>Otto</td>
                       <td>Mark</td>
                       <td>Otto</td>
 
-                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo?${vo.serialNo }">인증하기</a></td>
+                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=123">인증하기</a></td>
 
                     </tr>
                     </l:forEach>
@@ -88,7 +88,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_update.jsp" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
+                      <td><a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_find2.do?SerailNo=123" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
                     </tr>
                     <tr>
                       <th>2</th>

@@ -41,7 +41,7 @@
 <main>
 	<div class="container ">
 		<div style="text-align:left">
-		<form method="POST" action="certify/certify_update2.do" enctype="multipart/form-data">
+		<form method="POST" action="<%=ctxPath %>/certify/certify_update2.do" enctype="multipart/form-data">
 		<div class="container row">
 					<div class="jumbotron certify_temp">
 						<p></p>

@@ -4,15 +4,17 @@
 	String ctxPath = request.getContextPath();
 	String auth = "helper";//= null;
 	String certify_id = "gobaksa4@naver.com";//= null;
+	String certify_no=null;
 	try {
 		//	auth = (String)session.getAttribute("auth");
 		//	id =  (String)session.getAttribute("id");
-		if (auth == null || !auth.equals("helper") || id == null || id.equals("")) {
+		if (auth == null || !auth.equals("helper") || certify_id == null || certify_id.equals("")) {
 			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
 		}
 	} catch (Exception e) {
 		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
 	}
+	certify_no=request.getParameter("SerailNo");
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -54,7 +56,7 @@
 	<main>
 	<div class="container ">
 		<div style="text-align: left">
-			<form method="POST" action="/certify_button.jsp"
+			<form method="POST" action="<%=ctxPath %>/certify/certify_add2.do"
 				enctype="multipart/form-data">
 				<div class="container row">
 					<div class="jumbotron certify_temp">
@@ -71,16 +73,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="input-group">
-					<span class="input-group-addon">대행ID</span> <input
-						id="certify_helperID" type="text" class="form-control"
-						name="certify_helperID" readonly value="certify_id">
+				<div class="form-group has-success has-feedback">
+					<div class="input-group">
+						<span class="input-group-addon">대행ID</span> <input
+							id="certify_helperID" type="text" class="form-control"
+							name="certify_helperID" value=<%=certify_id%> readonly>
+					</div>
 				</div>
 				<div class="form-group has-success has-feedback">
 					<div class="input-group">
 						<span class="input-group-addon">고객 신청번호</span> <input
 							id="certify_serialNo" type="text" class="form-control"
-							name="certify_serialNo" placeholder="신청번호를 입력하세요">
+							name="certify_serialNo" value=<%=certify_no%> readonly>
 					</div>
 				</div>
 		</div>
