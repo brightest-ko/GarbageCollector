@@ -15,9 +15,7 @@
             certify.CtrlUpdate2,
             certify.CtrlFind2,
             certify.CtrlInfo2,
-            
-            
-            
+
             
         	matching.CtrlSuggetionList,
         	matching.CtrlSuggetionAdd,
@@ -33,13 +31,22 @@
 
             helper.CtrlAdd,
             helper.CtrlAdd_view,
-            helper.CtrlListLogin
         </param-value>
 	</init-param>
   </servlet>
+
+    <servlet>
+        <servlet-name>checkLogin</servlet-name>
+        <servlet-class>helper.LoginServlet</servlet-class>
+    </servlet>
   
   <servlet-mapping>
 	<servlet-name>mvc_do</servlet-name>
 	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>checkLogin</servlet-name>
+        <url-pattern>checkLogin</url-pattern>
+    </servlet-mapping>
 </web-app>
