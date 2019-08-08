@@ -118,13 +118,11 @@
 		<%@include file="/review/review_modal_insert.jsp"%>
 	</c:if>
 </c:forEach>
-<!-- 
 <c:forEach var="vo_review" items="${rl_review}">
 	<c:if test="${not empty vo_review.helperID and vo_review.review_status == 1}">
 		<%@include file="/review/review_modal_view.jsp"%>
 	</c:if>
 </c:forEach>
-   -->
 <style>
 .btn-outline-success{
 	color: #5cb85c;
