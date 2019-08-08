@@ -257,7 +257,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 	
 	@Override
-	public CustomerApplyVO findAll_cus(String serialNo) throws Exception{
+	public CustomerApplyVO findAll_cus(int serialNo) throws Exception{
 		CustomerApplyVO rl=new CustomerApplyVO();
 		Connection conn=null;
 
@@ -269,7 +269,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 			 String sql="select * from customer_apply where serialNo=?";
 			 stmt=conn.prepareStatement(sql);
-			 stmt.setString(1,serialNo);
+			 stmt.setInt(1,serialNo);
 			 rs=stmt.executeQuery();
 			 //업데이트
 			 if(rs.next()){
@@ -364,18 +364,11 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
             System.out.println("sql num : " +customer_phone);
 
             rs = stmt.executeQuery();
-            System.out.println(rs.next());
-
-            if (!(rs.next())) {
-                return false;
-            }
-            String correctPhone = rs.getString("customer_phone");
-         System.out.println(correctPhone + " , " + "customer_phone");
-            if (customer_phone.equals(correctPhone)) {
-                System.out.println("correct : " + customer_phone.equals(correctPhone));
+            if (rs.next()) {
                 return true;
-            } else
-                return false;
+            }else{
+            	return false;
+            }
         } catch (Exception e) {
             System.out.println(e);
             throw new ServletException(e);
