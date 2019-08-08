@@ -18,7 +18,8 @@
 					<div class="row">
 						<div class="col-xs-4 gul">전화번호</div>
 						<div class="col-xs-8 ">
-							<input type="text" class="form-control"  id="one_phone">
+							<input type="text" autocomplete="off" id="one_phone" class="form-control with-button" 
+						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" >
 						</div>
 					</div>
 
@@ -26,14 +27,17 @@
 						<div class="col-xs-4 gul">주소</div>
 						<div class="col-xs-8 row">
 							<div class="col-xs-4">
-								<input type="text" class="form-control" id="customer_addr_first"
-									name="customer_addr_first" value="제주도"
-									style="color: #445A3E; text-align: center">
+								<select class="form-control"  onchange="categoryChange1(this)"
+									name="city1" id="city1" value="" required>
+									<option>시</option>
+									<option value="제주시">제주시</option>
+									<option value="서귀포시">서귀포시</option>
+								</select> 
 							</div>
 							<div class="col-xs-4">
-								<input type="text" class="form-control"  id="customer_addr_second"
-									name="customer_addr_second" value="이도2동"
-									style="color: #445A3E; text-align: center">
+								<select class="form-control"  id="good1" name="dong1" required>
+									<option>읍, 면, 동</option>
+								</select>
 							</div>
 							<div class="col-xs-4">
 								<input type="text" class="form-control" id="customer_addr_third"
@@ -56,9 +60,8 @@
 							</div>
 						</div>
 						<div class="col-xs-4">
-							<a role="button" id="help_icon"><img class="btn-img"
-								src="<%=ctxPath%>/assets/img/baseline-help-24px.svg"></a>
-								<img src="<%=ctxPath%>/assets/img/baseline-help-24px.svg" onmouseover="this.src='마우스 오버 상태의 이미지 주소'" 
+							<a role="button" id="help_icon">
+								<img src="<%=ctxPath%>/assets/img/baseline-help-24px.svg" onmouseover="this.src='<%=ctxPath%>/assets/img/trash_size.png'" 
 								onmouseout="this.src='<%=ctxPath%>/assets/img/baseline-help-24px.svg'">
 						</div>
 					</div>
@@ -69,14 +72,14 @@
 						<div class="col-xs-4">
 							<label class="form-check-label" for="radio1"> <input
 								type="radio" class="form-check-input" id="radio1"
-								name="trash_type" value="0" checked>당일수거물품
+								name="trash_type" value="0" checked>당일수거물품(1000원)
 							</label>
 						</div>
 
 						<div class="col-xs-4">
 							<label cl ass="form-check-label" for="radio2"> <input
 								type="radio" class="form-check-input" id="radio2"
-								name="trash_type" value="1">혼합
+								name="trash_type" value="1">혼합(2000원)
 							</label>
 						</div>
 					</div>
@@ -87,8 +90,16 @@
 
 					<div class="col-xs-4 gul">수거시간</div>
 					<div class="col-xs-8">
-					<div class="input-group input-append date" id="dateRangePicker"> </div>
-			</div>
+						<div class="well">
+						  <div id="datetimepicker1" class="input-append date">
+						    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+						    <span class="add-on">
+						      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+						      </i>
+						    </span>
+						  </div>
+						</div>
+					</div>
 					</div>
 
 
@@ -122,9 +133,9 @@
 }
 
 input.img-button {
-	background: url("C:/Users/jsb56/Downloads/baseline-help-24px.svg" )
+	background: url("<%=ctxPath%>/assets/img/baseline-help-24px.svg")
 		no-repeat;
-	width: 30px;
+	width: 70px;
 }
 </style>
 

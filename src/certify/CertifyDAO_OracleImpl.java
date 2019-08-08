@@ -55,15 +55,23 @@ public class CertifyDAO_OracleImpl implements CertifyDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE", "HR", "HR");
-			String sql = "update certify set details=? , HOUSEPLACE=? ,CERTIFY_PHOTO_OFN=? , CERTIFY_PHOTO_FSN=? where serialno=?";
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, vo.getDetails());
-			stmt.setString(2, vo.getHousePlace());
-			stmt.setString(3, vo.getCertify_photo_ofn());
-			stmt.setString(4, vo.getCertify_photo_fsn());
-			stmt.setInt(5, vo.getSerialNo());
-			System.out.println(vo.getDetails()+" "+vo.getHousePlace()+" "+vo.getCertify_photo_ofn()+" "+vo.getCertify_photo_fsn()+" "+vo.getSerialNo());
-			System.out.println("serialNo: "+vo.getSerialNo());
+			if( vo.getCertify_photo_ofn()==null){
+				String sql = "update certify set details=? , HOUSEPLACE=?  where serialno=?";
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, vo.getDetails());
+				stmt.setString(2, vo.getHousePlace());
+				stmt.setInt(3, vo.getSerialNo());
+			}
+			else{
+				String sql = "update certify set details=? , HOUSEPLACE=? ,CERTIFY_PHOTO_OFN=? , CERTIFY_PHOTO_FSN=? where serialno=?";
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, vo.getDetails());
+				stmt.setString(2, vo.getHousePlace());
+				stmt.setString(3, vo.getCertify_photo_ofn());
+				stmt.setString(4, vo.getCertify_photo_fsn());
+				stmt.setInt(5, vo.getSerialNo());
+			}
+			
 			
 			
 			System.out.println(stmt.executeUpdate());

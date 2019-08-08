@@ -78,19 +78,20 @@
 					
 					<tbody>
 						<c:forEach var="vo" items="${rl}">
-							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red" >
+							<tr>
 				<td onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
-				<td>${vo.trash_type}</td>
+				
+				<td><c:if test="${vo.trash_type == 0}">오늘의 재활용</c:if>
+				<c:if test="${vo.trash_type == 1}">혼합 재활용</c:if></td>
 				<td>${vo.wanted_time}</td>
 				
 				<td>${vo.price}</td>
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
-				<c:if test="${not empty vo.helperID and vo.certify_status=1 and vo.review_status == 0}">
+				<c:if test="${not empty vo.helperID and vo.certify_status == 1 and vo.review_status == 0}">
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_upload${vo.serialNo }">후기쓰기</button></td>
 				</c:if>
 				<c:if test="${not empty vo.helperID and vo.review_status == 1}">

@@ -15,4 +15,6 @@ public interface MatchingDAO {
 
 	List<CustomerApplyVO> suggestion_list2_fail(String HelperID) throws Exception;
 
+	List<CustomerApplyVO> suggestion_list_deadline(String HelperID) throws Exception;
+
 }

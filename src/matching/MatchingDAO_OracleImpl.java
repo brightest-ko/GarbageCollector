@@ -17,13 +17,13 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 
 	@Override
 	public List<CustomerApplyVO> suggestion_list(String HelperID) throws Exception {
-		//¼­ºñ½º ¿äÃ» ¸®½ºÆ®
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½Æ®
 		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-//			System.out.println("¼­ºñ½º ¿äÃ» ¸®½ºÆ® DAO");
+//			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½Æ® DAO");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
@@ -35,22 +35,73 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
 			
-			if(rs.next()){
+			while(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
 				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
-				System.out.println("vo: "+vo.toString());
+				ls.add(vo);
+			}		
+			System.out.println("suggestion_list "+ls.toString());
+		}
+		catch( Exception e ){e.printStackTrace();}
+		finally {
+			if( rs != null ) rs.close();
+			if( stmt != null ) stmt.close();
+			if( conn != null ) conn.close();
+		}
+		return ls;
+	}
+	
+	@Override
+	public List<CustomerApplyVO> suggestion_list_deadline(String HelperID) throws Exception {
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½Æ®
+		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(
+				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+
+			String sql = "select * from customer_apply where serialNo in (select serialNo from matching where helperID = ? and SUGGESTION =0 and ACCEPTANCE =0) "
+					+ "and (WANTED_TIME <= SYSDATE + INTERVAL '1' HOUR) and (WANTED_TIME >= SYSDATE)";
+			
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, HelperID);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				CustomerApplyVO vo = new CustomerApplyVO();
+				vo.setSerialNo(rs.getInt("serialNo"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
+				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
+				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
+				vo.setCertify_status(rs.getInt("certify_status"));
+				vo.setReview_status(rs.getInt("review_status"));
 				ls.add(vo);
 			}			
-			System.out.println(ls.toString());
+			System.out.println("suggestion_list_deadline "+ls.toString());
 		}
 		catch( Exception e ){e.printStackTrace();}
 		finally {
@@ -64,12 +115,12 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 
 	@Override
 	public int suggest(Integer SerialNo, String HelperID) throws Exception {
-		//Á¦¾ÈÇÏ±â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		int r = -1;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		try {
-			System.out.println("Á¦¾ÈÇÏ±â DAO");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ DAO");
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
@@ -91,7 +142,7 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 
 	@Override
 	public List<CustomerApplyVO> suggestion_list2_success(String HelperID) throws Exception {
-		//´ëÇàÀÚ°¡ Á¦¾ÈÇÑ ¸®½ºÆ®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -101,7 +152,7 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 
-			//¸ÅÄª¼º°ø
+			//ï¿½ï¿½Äªï¿½ï¿½ï¿½ï¿½
 			String sql = "select * from customer_apply"
 					+ " where serialNo in (select serialNo from matcing where heplerID=? and suggestion = 1 and acceptance = 1)"
 					+ " order by customer_apply_day desc";
@@ -112,12 +163,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
@@ -136,7 +192,7 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 	
 	@Override
 	public List<CustomerApplyVO> suggestion_list2_yet(String HelperID) throws Exception {
-		//´ëÇàÀÚ°¡ Á¦¾ÈÇÑ ¸®½ºÆ®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -146,11 +202,11 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 
-			//¸ÅÄª´ë±â
-			String sql = "select * from customer_apply"
-					+ " where serialNo in (select serialNo from matcing where heplerID=? and suggestion = 1 and acceptance = 0)"
-					+ " and helperID IS NULL"
-					+ " order by customer_apply_day desc";
+			//ï¿½ï¿½Äªï¿½ï¿½ï¿½
+			String sql = "select * from customer_apply "
+					+ "where serialNo in (select serialNo from matching where helperID=? and suggestion = 1 and acceptance = 0)"
+					+ "and helperID IS NULL "
+					+ "order by customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
@@ -158,12 +214,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
@@ -183,7 +244,7 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 
 	@Override
 	public List<CustomerApplyVO> suggestion_list2_fail(String HelperID) throws Exception {
-		//´ëÇàÀÚ°¡ Á¦¾ÈÇÑ ¸®½ºÆ®
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 		List<CustomerApplyVO> ls = new ArrayList<CustomerApplyVO>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -193,9 +254,9 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 
-			//¸ÅÄª½ÇÆÐ
+			//ï¿½ï¿½Äªï¿½ï¿½ï¿½ï¿½
 			String sql = "select * from customer_apply"
-					+ " where serialNo in (select serialNo from matcing where heplerID=? and suggestion = 1 and  acceptance = 0)"
+					+ " where serialNo in (select serialNo from matcã…—ing where heplerID=? and suggestion = 1 and  acceptance = 0)"
 					+ "and helperID IS NOT NULL and helperID <> ?"
 					+ "order by wanted_time  desc";
 			stmt = conn.prepareStatement(sql);
@@ -206,12 +267,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());

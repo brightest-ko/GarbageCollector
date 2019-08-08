@@ -40,7 +40,7 @@
               <a href="/customer_apply_one.jsp" class="dropdown-toggle" data-toggle="dropdown">나영(신청자)</a>
               <ul class="dropdown-menu">
 
-              	<li><a data-toggle="modal" href="#customer_apply_one_modal">대행 서비스 신청</a></li>
+              	<li><a data-toggle="modal" data-toggle="modal" data-target="#customer_apply_one_modal">대행 서비스 신청</a></li>
                 <li><a href="<%=ctxPath %>/customer_apply_list.do">신청 결과 조회</a></li>
                 <li><a href="<%=ctxPath %>/customer_apply_list2.do">매칭 기록</a></li>
               </ul>
@@ -53,8 +53,9 @@
               </ul>
             </li>
 	        <li><a href="<%=ctxPath %>/review/review_list.jsp">후기</a></li>
+            
             <c:choose>
-              <c:when test="${auth == null}">
+              <c:when test="${empty auth}">
                 <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
               </c:when>
               <c:otherwise>

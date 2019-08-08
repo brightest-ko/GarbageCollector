@@ -7,7 +7,7 @@
 	//customer_apply_rsult->customer.do(lisT)request.setAttribute();
 %>
 <div class="container"> 
-<form method="POST" action="<%=ctxPath%>/index.do">
+<form method="POST" action="customer_apply_list.do">
   	<div class="modal fade" id="customer_apply_result" role="dialog">
       <div class="modal-dialog">
       <!-- Modal content-->

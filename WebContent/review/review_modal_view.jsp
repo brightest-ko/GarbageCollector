@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"
+    import="review.ReviewVO,review.ReviewDAO,review.ReviewDAO_Impl"
+    %>
+
 <%--  // Sample Example . ctxPath는 import되서 지정될거임
    Integer serialNo = 123456; // 클릭한 serialNo
    String helperID = "jsb@naver.com"; // 클릭한 게시물의 helperID를 가져옴
@@ -13,7 +16,7 @@
    This is imported by review_list Page.
  -->
     <!DOCTYPE html>
-    <div class="modal fade" id="review_Modal_view${vo_review.serialNo }" role="dialog">
+    <div class="modal fade" id="review_Modal_view${vo.serialNo}" role="dialog">
          <div class="modal-dialog">
           
             <!-- Modal content-->
@@ -28,8 +31,8 @@
                           <div class="col-md-4" style="text-align:center;">
                              <label for="info_serialNo" style="padding-top:8px">신청번호</label>
                           </div>
-                           <div class="col-md-8">${vo_review.serialNo }
-                              <input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="${vo_review.serialNo }" readonly style="margin-left:0px;"/>
+                           <div class="col-md-8">
+                              <input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="${vo.serialNo}" readonly style="margin-left:0px;"/>
                            </div>
                          </div>
    
@@ -38,7 +41,7 @@
                            <label for="info_review_title" style="padding-top:8px">제목</label>
                         </div>
                         <div class="col-md-8">
-                            <input class="form-control" id="info_review_title" type="text" name="info_review_title" value="<%=review_title%>" readonly style="margin-left:0px;"/>
+                            <input class="form-control" id="info_review_title" type="text" name="info_review_title" value="${vo.reviewTitle}" readonly style="margin-left:0px;"/>
                         </div>
                        </div>
                        <div class="row">
@@ -46,7 +49,7 @@
                            <label for="info_helperID" style="padding-top:8px">대행자</label>
                         </div>
                         <div class="col-md-8">
-                           <input class="form-control" id="info_helperID" type="text" name="info_helperID" value="<%=helperID%>" readonly style="margin-left:0px;"/>
+                           <input class="form-control" id="info_helperID" type="text" name="info_helperID" value="${vo.helperID}" readonly style="margin-left:0px;"/>
                         </div>
                        </div>
                      <div class="row">
@@ -78,17 +81,17 @@
                            <label for="info_review_cleanhouse" style="padding-top:8px">클린하우스 위치</label>
                         </div>
                         <div class="col-md-8">
-                            <input class="form-control" id="info_review_cleanhouse" type="text" name="info_review_cleanhouse" value="<%=review_cleanhouse%>" readonly style="margin-left:0px;"/>
+                            <input class="form-control" id="info_review_cleanhouse" type="text" name="info_review_cleanhouse" value="${vo.cleanPlaceAddrFront}" readonly style="margin-left:0px;"/>
                         </div>
                        </div>
                        <div class="row">
                           <div class="col-md-12" style="text-align:center;">
-                             <textarea class="form-control ta" id="info_review_content" name="info_review_content" scrolling="no" readonly style="margin-left: 0px;"><%=review_content%></textarea>
+                             <textarea class="form-control ta" id="info_review_content" name="info_review_content" scrolling="no" readonly style="margin-left: 0px;">"${vo.reviewContent}"</textarea>
                         </div>
                        </div>
                     </div>
-                    <div class="modal-footer">
-                       <button id="modifyBtn" class="btn btn-md" name="modify" style="background-color:#ADCB00;color:black;" value="수정" >수정</button> <!-- onClick="javascript:Chk_Auth()"/> -->
+                    <div class="modal-footer"> 
+                       <button id="modifyBtn" class="btn btn-md" name="modify" style="background-color:#ADCB00;color:black;" value="수정" href="#review_Modal_modify${vo.serialNo}" >수정</button> <!-- onClick="javascript:Chk_Auth()"/> -->
                        <button id="deleteBtn" class="btn btn-md" name="delete" style="background-color:#ADCB00;color:black;" value="삭제" >삭제</button> <!-- onClick="javascript:Chk_Auth()"/> -->
                     </div>
                  <!-- </form> -->

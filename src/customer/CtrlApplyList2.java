@@ -21,8 +21,8 @@ public class CtrlApplyList2 implements Controller{
 		String auth ="customer";//= null;
 		String customer_phone ="01094589584";//= null;
 		try{
-//         auth = (String)session.getAttribute("auth");
-//         helperID =  (String)session.getAttribute("id");
+//			auth = (String)session.getAttribute("auth");
+//			helperID =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("customer")||customer_phone==null||customer_phone.equals("")){
 				response.sendRedirect("loginform.jsp"); //login.jsp濡� 蹂�寃�
 			}
