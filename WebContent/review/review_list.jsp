@@ -105,13 +105,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 	<script>
+		// 추가,수정부분에 필요함.
 		function ChkRating(n)
 		{
 			var rating = 'star'.concat(n);
 			rating = document.getElementById(rating).value
 			alert(rating);
 		}
-		function fnChkByte(obj, maxByte)
+		function fnChkByte(obj, maxByte) 
 		{
 		    var str = obj.value;
 		    var str_len = str.length;
@@ -139,7 +140,6 @@
 		     }
 		     if(rbyte > maxByte)
 		     {
-			  // alert("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
 			  alert("메세지는 최대 " + maxByte + "byte를 초과할 수 없습니다.")
 			  str2 = str.substr(0,rlen);                                  //문자열 자르기
 			  obj.value = str2;
@@ -160,67 +160,24 @@
 		var l_reviewTitle = $("#l_reviewTitle").text();
 		var l_rating = $("#l_rating").text();
 		
-		// review list에서만 뜸 
-		var action = '';
-		var url = '';
-		var type = '';
-		var del = 0;
+		// review list에서만 가능함.
 		var mode = 0;
 		$(document).ready(function(){
 			// 수정 버튼 클릭
 			$("button[name='modify']").click(function(){
 				var mode = 1; 
 				$('#review_Modal_view').modal('hide');
-		   	 	$('#chkpwd_Modal').modal('show');	
+		   	 	$('#review_Modal_modify').modal('show');	
 			});
 			
 			// 삭제 버튼 클릭
 			$("button[name='delete']").click(function(){
 				var mode = 0;
 				$('#review_Modal_view').modal('hide');
-				$('#chkpwd_Modal').modal('show');
+				window.location.href="/GarbageCollector/review_delete.do?serialNo="+$('#info_serialNo').val();
 			});
 		});
 		//rating 선택하지 않았을때 null point오류뜸. 에러잡아야함
-		
-		function replaceAll(str, searchStr, replaceStr) { //필터링함수
-    		return str.split(searchStr).join(replaceStr);
-		}
-
-		function Chk_Auth() { // test
-			var postpwd = "1234"; //임시
-			
-			/* 패스워드 필터링 미구현.
-			var pwd = $('#pwd').val()
-			pwd = pwd.replace("/</g,"&lt;");
-			pwd = pwd.replace("/>/g,"&gt;");
-			pwd = pwd.replace("/\"/g,"&quot;");
-			pwd = pwd.replace("/\'/g,"&#39;");
-			pwd = pwd.replace("/\n/g,"<br />"); */
-			if ( $('#pwd').val() == postpwd ) // 임시
-			{
-				if( mode === 0 ){
-					$('#chkpwd_Modal').modal('hide');
-					window.location.href="/GarbageCollector/review_delete.do?serialNo="+$('#info_serialNo').val();
-				}
-				else if( mode === 1){
-					$('#chkpwd_Modal').modal('hide');
-					$('#review_Modal_modify').modal('show');
-				}
-				
-			}
-			
-			else { // 비밀번호가 공백이거나 일치하지 않을 때 
-				if( $('#pwd').val() =='' || $('#pwd').val() == null) //공백이면
-				{
-					alert('비밀번호를 입력하세요.');
-				}
-				else
-				{
-					alert('비밀번호가 일치하지 않습니다.');
-				}
-			}		
-		}
 
 	</script>
 </head>
