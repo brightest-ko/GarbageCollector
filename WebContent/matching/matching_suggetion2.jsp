@@ -103,6 +103,12 @@
 												<td><a class="btn btn-default" href="#">인증확인</a></td>
 											</c:if>
 										</tr>
+										
+										<a class="btn btn-success"
+													href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo1.serialNo }">인증하기</a>
+													<a class="btn btn-default" href="#"
+													style="border-color: #4cae4c; color: #4cae4c;">인증수정</a>
+													<a class="btn btn-default" href="#">인증확인</a>
 									</c:forEach>
 								</tbody>
 							</table>

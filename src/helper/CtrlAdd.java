@@ -7,32 +7,50 @@ import common.Util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 @RequestMapping("/helper_add.do")
 public class CtrlAdd implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
 
-        Exception err = null;
+        //Exception err = null;
 
-        String helperId = Util.h( request.getParameter("email"));
-        String phoneNum = Util.h( request.getParameter("phoneNum"));
-        String helper_name = Util.h( request.getParameter("helper_name"));
-        String sex = Util.h( request.getParameter("sex"));
-        String bankName = Util.h( request.getParameter("bank"));
-        String account = Util.h( request.getParameter("account"));
-        String accountname = Util.h( request.getParameter("accountname"));
-        String wishf1 = Util.h( request.getParameter("city1"));
-        String wishd1 = Util.h( request.getParameter("dong1"));
-        String wishf2 = Util.h( request.getParameter("city2"));
-        String wishd2 = Util.h( request.getParameter("dong2"));
-        String wishf3 = Util.h( request.getParameter("city3"));
-        String wishd3 = Util.h( request.getParameter("dong3"));
-        String message = Util.h( request.getParameter("message"));
+        String path = request.getServletContext().getRealPath("/assets/img");
+        System.out.println("ddd");
+        MultipartRequest mpr = new MultipartRequest( request , path , 1024*1024*20 , "UTF-8" ,
+				new DefaultFileRenamePolicy());
+
+        String ofn = mpr.getOriginalFileName("helper_photo");
+		// �ٲ� �̸�
+		String fsn = mpr.getFilesystemName("helper_photo");
+		System.out.println(ofn+"->"+fsn);
+
+
+        String helperId = Util.h( mpr.getParameter("email"));
+        String helperPw = Util.h( mpr.getParameter("pw" ));
+        String phoneNum = Util.h( mpr.getParameter("phoneNum"));
+        String helper_name = Util.h( mpr.getParameter("helper_name"));
+        String sex = Util.h( mpr.getParameter("sex"));
+        String bankName = Util.h( mpr.getParameter("bank"));
+        String account = Util.h( mpr.getParameter("account"));
+        String accountname = Util.h( mpr.getParameter("accountname"));
+        String wishf1 = Util.h( mpr.getParameter("city1"));
+        String wishd1 = Util.h( mpr.getParameter("dong1"));
+        String wishf2 = Util.h( mpr.getParameter("city2"));
+        String wishd2 = Util.h( mpr.getParameter("dong2"));
+        String wishf3 = Util.h( mpr.getParameter("city3"));
+        String wishd3 = Util.h( mpr.getParameter("dong3"));
+        String message = Util.h( mpr.getParameter("message"));
 
         HelperVO vo = new HelperVO();
 
         vo.setHelperId(helperId);
+        vo.setHelperPw(helperPw);
+        vo.setHelperPhotoOfn(ofn);
+        vo.setHelperPhotoFsn(fsn);
         vo.setHelper_Phone(phoneNum);
         vo.setHelper_Name(helper_name);
         vo.setSex(sex);
@@ -51,6 +69,6 @@ public class CtrlAdd implements Controller {
 
         dao.add(vo);
 
-        return "redirect:/helper/register.jsp";
+        return "redirect:/index.do";
     }
 }

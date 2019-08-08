@@ -13,14 +13,16 @@ import java.util.List;
 
 public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
-	@Override
-	public void add(CustomerApplyVO vo) throws Exception {
 
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		PreparedStatement stmt1=null;
-		ResultSet rs = null;
-		int r = -1;
+    @Override
+    public void add(CustomerApplyVO vo) throws Exception {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        PreparedStatement stmt1=null;
+        ResultSet rs = null;
+        int r = -1;
+
       /*
    private Integer serialNo;
    private String customer_phone;
@@ -144,33 +146,37 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 
 	@Override
-	public List<CustomerApplyVO> findAll_nohelper() throws Exception {
-
+	public List<CustomerApplyVO> findAll1(String customer_phone) throws Exception {
+		System.out.println(customer_phone);
 		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
 		Connection conn=null;
-		Statement stmt=null;
+		PreparedStatement stmt=null;
 		ResultSet rs=null;
 
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			stmt=conn.createStatement();
-			String sql="select * from customer_apply where review_status =0 order by SerialNo, customer_apply_day desc";
-			rs=stmt.executeQuery(sql);
+			String sql="select * from customer_apply where customer_phone = ? and review_status =0 order by SerialNo, customer_apply_day desc";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, customer_phone);
+			rs=stmt.executeQuery();
+			System.out.println("rs "+rs.toString());
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
-				vo.setSerialNo(rs.getInt(1));
-				vo.setCustomer_phone(rs.getString(2));
-				vo.setCustomer_addr_first(rs.getString(3));
-				vo.setCustomer_addr_second(rs.getString(4));
-				vo.setCustomer_addr_third(rs.getString(5));
-				vo.setBag_num(rs.getInt(6));
-				vo.setTrash_type(rs.getInt(7));
-				vo.setWanted_time(rs.getDate(8));
-				vo.setPrice(rs.getInt(9));
-				vo.setCard_num(rs.getString(10));
-				vo.setHelperID(rs.getString(11));
-				vo.setCustomer_apply_day(rs.getDate(12));
+				vo.setSerialNo(rs.getInt("serialNo"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
+				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
+				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
+				vo.setCertify_status(rs.getInt("certify_status"));
+				vo.setReview_status(rs.getInt("review_status"));
 				ls.add(vo);
 			}
 			rs.close();
@@ -192,33 +198,36 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 
 	@Override
-	public List<CustomerApplyVO> findAll_helper() throws Exception {
+	public List<CustomerApplyVO> findAll2(String customer_phone) throws Exception {
 
 		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
 		Connection conn=null;
-		Statement stmt=null;
+		PreparedStatement stmt=null;
 		ResultSet rs=null;
 
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			stmt=conn.createStatement();
-			String sql="select * from customer_apply where helperID is not null";
-			rs=stmt.executeQuery(sql);
+			String sql="select * from customer_apply where  customer_phone = ? helperID is not null";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, customer_phone);
+			rs=stmt.executeQuery();
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
-				vo.setSerialNo(rs.getInt(1));
-				vo.setCustomer_phone(rs.getString(2));
-				vo.setCustomer_addr_first(rs.getString(3));
-				vo.setCustomer_addr_second(rs.getString(4));
-				vo.setCustomer_addr_third(rs.getString(5));
-				vo.setBag_num(rs.getInt(6));
-				vo.setTrash_type(rs.getInt(7));
-				vo.setWanted_time(rs.getDate(8));
-				vo.setPrice(rs.getInt(9));
-				vo.setCard_num(rs.getString(10));
-				vo.setHelperID(rs.getString(11));
-				vo.setCustomer_apply_day(rs.getDate(12));
+				vo.setSerialNo(rs.getInt("serialNo"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
+				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
+				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
+				vo.setCertify_status(rs.getInt("certify_status"));
+				vo.setReview_status(rs.getInt("review_status"));
 				ls.add(vo);
 			}
 			rs.close();
@@ -237,6 +246,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		return ls;
 
 	}
+	
 	@Override
 	public CustomerApplyVO findAll_cus(String serialNo) throws Exception{
 		CustomerApplyVO rl=new CustomerApplyVO();
@@ -326,4 +336,6 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 	}
 	}
+
 }
+

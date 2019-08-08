@@ -6,8 +6,7 @@ import java.util.List;
 public interface CustomerApplyDAO {
 	public void add(CustomerApplyVO vo) throws Exception;
 	void update(String phone, int price, String card_num) throws Exception;
-	List<CustomerApplyVO> findAll_nohelper() throws Exception;
-	List<CustomerApplyVO> findAll_helper() throws Exception;
+	public List<CustomerApplyVO> findAll1(String customer_phone) throws Exception;
+	public List<CustomerApplyVO> findAll2(String customer_phone) throws Exception;
 	CustomerApplyVO findAll_cus(String serialNo) throws Exception;
-
 }

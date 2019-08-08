@@ -5,13 +5,12 @@
 	String helperID = "jsb@naver.com";
 %>
 <!-- ############# Note ################### 
-	This is imported by maching Page. ( <%@include file="/review/review_modal_view.jsp"%> )
+	This is imported by maching Page. ( <%--@include file="/review/review_modal_view.jsp"--%> )
 	<button class="btn btn-info btn-lg" data-toggle="modal" data-target="#review_Modal_upload">리뷰 작성하기</button> 
 	matching Page에서 리뷰작성버튼 modal 
 	변수명은 serialNo, helperID로 통일한다.	
  -->
-    <!DOCTYPE html>
-    <div class="modal fade" id="review_Modal_upload" role="dialog">
+    <div class="modal fade" id="review_Modal_upload${vo2.serialNo }" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->

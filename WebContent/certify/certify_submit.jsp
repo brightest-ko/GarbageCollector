@@ -80,31 +80,30 @@
 							<div class="col-md-12">
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">대행ID</label>
-									<div class="col-10">
+									<label class="col-sm-1 col-form-label">대행ID</label>
+									<div class="col-sm-11">
 										<input type="text" class="form-control" id="certify_helperID"
 											name="certify_helperID" value=<%=certify_id%> readonly>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-2 col-form-label">신청번호</label>
-									<div class="col-10">
+									<label class="col-sm-1  col-form-label">신청번호</label>
+									<div class="col-sm-11">
 										<input type="text" class="form-control " id="certify_serialNo"
 											name="certify_serialNo" value=<%=certify_no%> readonly>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-2 col-form-label">위치</label>
-									<div class="col-10">
+									<label class="col-sm-1 col-form-label">위치</label>
+									<div class="col-sm-11">
 										<input type="text" class="form-control " id="housePlace"
 											name="housePlace" placeholder="위치를 찍어주세요">
 									</div>
 								</div>
 								<div class="form-group row ">
-									<label class="col-2 col-form-label ">사진</label> <input
+									<label class="col-sm-1 col-form-label ">사진</label> <div class="col-sm-11"><input
 										type="file" name="photo" camera="camera" class="form-control " />
-									<div class="col-10"></div>
-
+										</div>
 								</div>
 								<h3>특이사항</h3>
 								<div class="form-group">

@@ -46,7 +46,10 @@ function addValueToKey(key, value) {
 	addrMap[key] = addrMap[key] || [];
 	addrMap[key].push(value);
 }
+
+
 var listData = [];
+
 console.log(listData);
 <c:forEach items="${rl}" var="item">
 	listData.push("${item.map_addr_front}");
