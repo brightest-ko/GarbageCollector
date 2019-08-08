@@ -19,7 +19,7 @@ public class CtrlList implements Controller {
 		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
 		List<CustomerApplyVO> rl=dao.findAll();
 		request.setAttribute("rl", rl);
-		return "redirect:/customer_list.jsp";
+		return "/cusomter/customer_list.jsp";
 	}
 //�˻������ȸselect
 	

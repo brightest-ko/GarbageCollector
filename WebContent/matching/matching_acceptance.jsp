@@ -1,212 +1,185 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"
+   
+    %>
 <%
-	String ctxPath = request.getContextPath();
+	String ctxPath =request.getContextPath();
 %>
-<%--
-	System.out.println("matching_acceptance.jsp");
-	String ctxPath = request.getContextPath();
-	String auth ="cutomer";//= null;
-	String id ="gobakse5@naver.com";//= null;
-	try{
-//		auth = (String)session.getAttribute("auth");
-//		id =  (String)session.getAttribute("id");
-		if(auth==null||!auth.equals("cutomer")||id==null||id.equals("")){
-			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
-		}
-	}catch(Exception e){
-		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
-	}
---%>
 <%--jstl 을 사용하기 위해 추가 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 
 <%--${fn:length(rl)} 를 사용하기 위해 추가 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Required meta tags -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link
-	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean"
-	rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat"
-	rel="stylesheet">
-<link rel="stylesheet" href="<%=ctxPath%>/assets/css/index.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
 
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title>당신의 쓰레기는 안녕하수깡?</title>
-<link rel="struct icon" href="<%=ctxPath%>/assets/img/brsg.ico">
-<style>
-</style>
+  
+	<title>당신의 쓰레기는 안녕하수깡?</title>
+	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
+	<style>
+  </style>
 </head>
 <body>
-	<%@include file="/header.jsp"%>
-	<main>
+<%@include file="/header.jsp"%>
+<main>
 
-
-
-	<div class="container" style="padding: 50px 0;">
-		<div class="list_header">
-			<div class="col-xs-9" style="">
-			<h2>대행을 <font style="font-weight: bold;">제안</font>하세요!</h2>
-			</div>
-			<div class="col-xs-3" style="margin: 30px 0 0 0;">
-				<div class="form-group">
-					<!-- <label for="sel1">필터조건</label> <select class="form-control" id="sel1">-->
-				<select class="form-control" >
-					<option>낮은 비용순</option>
-					<option>2</option>
-				</select>
-				</div>
-			</div>
-		</div>
-		<div class="list_body">
-			<div class="matching_filter">
-				<div></div>
-			</div>
-
-			<div class="matching_lsit">
-
-				<table class="table table-bordered text-center table-hover">
-					<thead>
-						<tr class="bg-success" style="font-weight: bold;">
-							<th class="text-center col-xs-1">No</th>
-							<th class="text-center col-xs-3">지역</th>
-							<th class="text-center col-xs-2">수행 예정 시간</th>
-							<th class="text-center col-xs-1">종류</th>
-							<th class="text-center col-xs-1">금액</th>
-							<th class="text-center col-xs-3">마감 시간</th>
-							<th class="text-center col-xs-1"></th>
-						</tr>
-					</thead>
-					
-					<tbody>
-					
-							<tr>
-								<td>1098</td>
-								<td>제주시 이도1동</td>
-								<td>2019/08/20/17:22:10</td>
-								<td>플라스틱</td>
-								<td>2000원</td>
-								<td><div id="newcountdown" wanted_time_data="08/08/2019 1:43 AM"></div></td>
-								<td>
-									<button type="button" class="btn btn-default btn-success blinkEle">제안하기</button>
-								</td>
-							</tr>
-						<c:forEach var="vo" items="${rl}">
-							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red">
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.customer_addr_first} ${vo.customer_addr_second}</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.wanted_time }</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.trash_type }</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.price }원</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'"><div id="countdown" wanted_time_data="${vo.wanted_time }"></div></td>
-								<td>
-									<button type="button" class="btn btn-success " data-toggle="modal" data-target="#suggestion_ok">제안하기</button>
-								</td>
-							</tr>
-							
-  <div class="modal fade" id="suggestion_ok" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" style="float: left; color: #ffffff;"><b>제안</b>하기</h2> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
-        </div>
-        <div class="modal-body">
-          <p class="text-center" style="font-size: 20px;">해당 분리수거를<br>제가<br>진행하고 싶어요!</p>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> </div>
-      </div>
-    </div>
-  </div>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="list_footer">
-			<!-- paging -->
-		</div>
-	</div>
-
-  
-
-	</main>
-	<%@include file="/footer.jsp"%>
-	<%@include file="/script.jsp"%>
 <style>
-.btn-outline-success{
-	color: #5cb85c;
-    border-color: #4cae4c
-}
-.visuallyhidden{
-	display: none;
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	color: #1abc9c !important
 }
 </style>
-<script type="text/javascript">
-setInterval(function(){
-	  $(".blinkEle").toggleClass( 'btn-success' );
-	  $(".blinkEle").toggleClass( 'btn-outline-success' );
-	}, 1000);
-	
-	
-CountDownTimer('countdown'); // 2019년 8월 8일까지
-CountDownTimer('newcountdown'); // 2019년 9월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용합니다.
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="">대행 제안 내역 조회</h2>
+        </div>
+      </div>
+    </div>
+  	<div class="container">
+      <div class="row">
+        <div class="col-md-12" style="">
+          <ul class="nav nav-tabs">
+            <li class="nav-item active"> <a class="active nav-link" data-toggle="pill" data-target="#acceptance_tabone"><i class="glyphicon glyphicon-ok-sign"></i> 매칭 성공 </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="" data-toggle="pill" data-target="#acceptance_tabtwo"><i class="glyphicon glyphicon-question-sign"></i> 매칭 대기 </a> </li>
+            <li class="nav-item" style=""> <a href="" class="nav-link" data-toggle="pill" data-target="#acceptance_tabthree"><i class="glyphicon glyphicon-remove-sign"></i> 매칭 실패 </a> </li>
+          </ul>
+          <div class="tab-content mt-2"  style="padding: 20px 0;">
+            <div class="tab-pane tab-pane fade active in" id="acceptance_tabone" role="tabpanel">
+              <div class="table-responsive">
+                <table class="table table-bordered text-center table-hover">
+                  <thead>
+                    <tr class="bg-success"  style="font-weight: bold;">
+                      <th class="text-center col-xs-1">No</th>
+                      <th class="text-center col-xs-3">고객 주소 (나머지 주소 포함)</th>
+                      <th class="text-center col-xs-1">가격</th>
+                      <th class="text-center col-xs-3">요청 시간</th>
+                      <th class="text-center col-xs-3">마감 시간</th>
+                      <th class="text-center col-xs-1"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+					<l:forEach var="vo" items="${rl}">
+                    <tr>
+                      <th>1</th>
+                      <td>${vo.serialNo }</td>
+                      <td>Otto</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo.serialNo }">인증하기</a></td>
+                    </tr>
+                    </l:forEach>
+                    <tr>
+                      <th>2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-default"  href="#" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
+                    </tr>
+                    <tr>
+                      <th>2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-default"  href="#" >인증확인</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            
+            <div class="tab-pane fade" id="acceptance_tabtwo" role="tabpanel">
+              <div class="table-responsive">
+                <table class="table table-bordered ">
+                  <thead class="table-success">
+                    <tr>
+                      <th>고객 신청 번호</th>
+                      <th>고객 주소 (나머지 주소 포함)</th>
+                      <th>가격</th>
+                      <th>요청 시간</th>
+                      <th>마감 시간</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-primary" href="#">인증하기</a></td>
+                    </tr>
+                    <tr>
+                      <th>2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-outline-primary" href="#">인증하기</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            
+            <div class="tab-pane fade" id="acceptance_tabthree" role="tabpanel">
+              <div class="table-responsive">
+                <table class="table table-bordered ">
+                  <thead class="table-success">
+                    <tr>
+                      <th>고객 신청 번호</th>
+                      <th>고객 주소 (나머지 주소 포함)</th>
+                      <th>가격</th>
+                      <th>요청 시간</th>
+                      <th>마감 시간</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-primary" href="#">인증수정</a></td>
+                    </tr>
+                    <tr>
+                      <th>2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td><a class="btn btn-outline-primary" href="#">인증확인</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-function CountDownTimer(id)
-{
+</main>
+<%@include file="/footer.jsp"%>
+<%@include file="/script.jsp"%>
 
-var end = new Date($('#'+id).attr('wanted_time_data'));
-
-var _second = 1000;
-var _minute = _second * 60;
-var _hour = _minute * 60;
-var _day = _hour * 24;
-var timer;
-
-function showRemaining() {
-var now = new Date();
-var distance = end - now - _hour;
-if (distance < 0) {
-
-clearInterval(timer);
-document.getElementById(id).innerHTML = 'EXPIRED!';
-
-return;
-}
-var days = Math.floor(distance / _day);
-var hours = Math.floor((distance % _day) / _hour);
-var minutes = Math.floor((distance % _hour) / _minute);
-var seconds = Math.floor((distance % _minute) / _second);
-
-if(days<1 && hours<=1){
-	$('#'+id).parent().parent().css( 'color', 'red' );
-}
-if(days<1 && hours<1 && minutes<1 && seconds<1){
-	$('#'+id).parent().parent().addClass('visuallyhidden');
-}
-	
-document.getElementById(id).innerHTML = days + '일 ';
-document.getElementById(id).innerHTML += hours + '시간 ';
-document.getElementById(id).innerHTML += minutes + '분 ';
-document.getElementById(id).innerHTML += seconds + '초';
-}
-
-timer = setInterval(showRemaining, 1000);
-}
-
-</script>
 </body>
 </html>
