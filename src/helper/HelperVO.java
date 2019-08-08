@@ -2,6 +2,9 @@ package helper;
 
 public class HelperVO {
     private String helperId;
+    private String helperPw;
+    private String helperPhotoOfn;
+    private String helperPhotoFsn;
     private String helper_Phone;
     private String helper_name;
     private String sex;
@@ -18,6 +21,18 @@ public class HelperVO {
 
     public void setHelperId(String helperId) {
         this.helperId = helperId;
+    }
+
+    public void setHelperPw(String helperPw) {
+        this.helperPw = helperPw;
+    }
+
+    public void setHelperPhotoOfn(String helperPhotoOfn) {
+        this.helperPhotoOfn = helperPhotoOfn;
+    }
+
+    public void setHelperPhotoFsn(String helperPhotoFsn) {
+        this.helperPhotoFsn = helperPhotoFsn;
     }
 
     public void setHelper_Phone(String helper_Phone) {
@@ -76,6 +91,18 @@ public class HelperVO {
         return helperId;
     }
 
+    public String getHelperPw() {
+        return helperPw;
+    }
+
+    public String getHelperPhotoOfn() {
+        return helperPhotoOfn;
+    }
+
+    public String getHelperPhotoFsn() {
+        return helperPhotoFsn;
+    }
+
     public String getHelper_Phone() {
         return helper_Phone;
     }
@@ -130,22 +157,24 @@ public class HelperVO {
 }
 
 /*
-    create table helper(
-        helperID varchar2(25),//대행아이디 -PK
+   create table helper(
+        helperID varchar2(25),
+        helperPW varchar2(20),
         helper_photo_ofn varchar2(100),
         helper_photo_fsn varchar2(100) ,
-        helper_phone varchar2(11) ,//전화번호
-        helper_name varchar2(25) ,//이름
-        sex varchar2(6) ,//성
-        bank_name varchar2(18) ,//은행이름
-        account varchar2(20) ,//계좌번호
-        account_holder varchar2(25) , // 예금주
-        wish_addr_front1 varchar2(40), //희망근무지1 시
-        wish_addr_detail1 varchar2(45), //희망근무지1 동
-        wish_addr_front2 varchar2(40), //희망근무지2 시
-        wish_addr_detail2 varchar2(45), //희망근무지2 동
-        wish_addr_front3 varchar2(40), //희망근무지3 시
-        wish_addr_detail3 varchar2(45), //희망근무지3 동
-        want_to_say varchar2(300) //하고싶은말
+        helper_phone varchar2(11) ,
+        helper_name varchar2(25) ,
+        sex varchar2(6) ,
+        bank_name varchar2(18) ,
+        account varchar2(20) ,
+        account_holder varchar2(25) ,
+        wish_addr_first1 varchar2(40),
+        wish_addr_second1 varchar2(45),
+        wish_addr_first2 varchar2(40),
+        wish_addr_second2 varchar2(45),
+        wish_addr_first3 varchar2(40),
+        wish_addr_second3 varchar2(45),
+        want_to_say varchar2(300)
     );
-*/
+
+ */
