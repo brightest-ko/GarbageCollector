@@ -31,7 +31,7 @@ public class CtrlApplyList2 implements Controller{
 		}
 		
 		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
-		List<CustomerApplyVO> rl=dao.findAll_nohelper(customer_phone);
+		List<CustomerApplyVO> rl=dao.findAll2(customer_phone);
 		request.setAttribute("rl", rl);
 		System.out.println(rl);
 		return "/customer/customer_list2.jsp";
