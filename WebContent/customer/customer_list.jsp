@@ -93,8 +93,11 @@
 				<td>${vo.price}</td>
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
-				<c:if test="${not empty vo.helperID}">
+				<c:if test="${not empty vo.helperID and vo.certify_status=1 and vo.review_status == 0}">
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_upload${vo.serialNo }">후기쓰기</button></td>
+				</c:if>
+				<c:if test="${not empty vo.helperID and vo.review_status == 1}">
+					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_view${vo.serialNo }">후기수정</button></td>
 				</c:if>
 				<c:if test="${empty vo.helperID}">
 					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>
@@ -110,12 +113,16 @@
 		</div>
 	</div>
 	
-<c:forEach var="vo" items="${rl}">
-	<c:if test="${not empty vo.helperID}">
+<c:forEach var="vo2" items="${rl}">
+	<c:if test="${not empty vo2.helperID and vo2.review_status == 1}">
 		<%@include file="/review/review_modal_insert.jsp"%>
 	</c:if>
 </c:forEach>
-  
+<c:forEach var="vo_review" items="${rl_review}">
+	<c:if test="${not empty vo_review.helperID and vo_review.review_status == 1}">
+		<%--@include file="/review/review_modal_view.jsp"--%>
+	</c:if>
+</c:forEach>
 <style>
 .btn-outline-success{
 	color: #5cb85c;

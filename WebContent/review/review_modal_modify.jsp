@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <!DOCTYPE html>
-    <div class="modal fade" id="review_Modal_modify" role="dialog">
+    <div class="modal fade" id="review_Modal_modify${vo_review.serialNo }" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->
@@ -17,7 +17,7 @@
 					     		<label for="md_serialNo" style="padding-top:8px">신청번호</label>
 					     	</div>
 					      	<div class="col-md-8">
-					      		<input class="form-control" id="md_serialNo" type="text" name="md_serialNo" value="123456" readonly style="margin-left:0px;"/>
+					      		<input class="form-control" id="md_serialNo" type="text" name="md_serialNo" value="${vo_review.serialNo }" readonly style="margin-left:0px;"/>
 					      	</div>
 					   	 </div>
 
@@ -26,7 +26,8 @@
 								<label for="md_review_title" style="padding-top:8px">제목</label>
 							</div>
 							<div class="col-md-8">
-							    <input class="form-control" id="md_review_title" type="text" name="md_review_title" placeholder="myTitle" style="margin-left:0px;"/>
+							    <input class="form-control" id="md_review_title" type="text" name="md_review_title" placeholder="myTitle" style="margin-left:0px;"
+							    value="${vo_review.reviewTitle }"/>
 							</div>
 		        		</div>
 		        		<div class="row">

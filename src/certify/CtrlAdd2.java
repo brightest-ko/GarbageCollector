@@ -38,10 +38,10 @@ public class CtrlAdd2 implements Controller{
 		//MultipartRequest 쓰면 request.getParameter 못쓴다 .
 		// 대신 MultipartRequest 안의 getParameter을 쓴다.
 		// 한글처리도 내부에서 해주더라(UTF-8로 설정해서)
-		String title = mpr.getParameter("title");
+
 		
 		
-		System.out.println(mpr.getParameter("certify_helperID"));
+	
 		System.out.println("인증 DB insert 시작");
 		String details = Util.h(mpr.getParameter("details"));
 		CertifyVO vo = new CertifyVO();

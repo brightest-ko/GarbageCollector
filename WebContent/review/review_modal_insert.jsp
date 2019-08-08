@@ -10,7 +10,7 @@
 	matching Page에서 리뷰작성버튼 modal 
 	변수명은 serialNo, helperID로 통일한다.	
  -->
-    <div class="modal fade" id="review_Modal_upload${vo.serialNo }" role="dialog">
+    <div class="modal fade" id="review_Modal_upload${vo2.serialNo }" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->

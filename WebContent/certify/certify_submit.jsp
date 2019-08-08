@@ -100,27 +100,6 @@
 											name="housePlace" placeholder="위치를 찍어주세요">
 									</div>
 								</div>
-								<script>
-									function ajaxGet(url, fpOk, fpFail) {
-										var xhr = new XMLHttpRequest();
-										xhr.onreadystatechange = function() {
-											if (xhr.readyState == 4) {
-												if (xhr.status == 200) {
-													//undefined를 피하기 위한 방법
-													if (fpOk) {
-														alert(xhr.responseText);
-													}
-												} else {
-													if (fpFail) {
-														fpFail(xhr.status);
-													}
-												}
-											}
-										};
-										xhr.open("GET", url, true);
-										xhr.send(null);
-									}
-								</script>
 								<div class="form-group row ">
 									<label class="col-sm-1 col-form-label ">사진</label> <div class="col-sm-11"><input
 										type="file" name="photo" camera="camera" class="form-control " />
