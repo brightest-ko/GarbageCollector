@@ -44,7 +44,7 @@
 	<main>
 	<div class="container ">
 		<div style="text-align: left">
-			<form method="POST" action="<%=ctxPath%>/certify/certify_update2.do"
+			<form method="POST" action="<%=ctxPath%>/certify/certif9y_update2.do"
 				enctype="multipart/form-data">
 				<div class="container row">
 					<div class="jumbotron certify_temp">
@@ -95,7 +95,7 @@
 										type="file" name="photo" camera="camera" class="form-control "
 										value="${vo.certify_photo_fsn}" />
 									<div class="col-10">
-										<img
+										<img 
 											src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}"
 											width="200" height="200" alt="My Image">
 									</div>
