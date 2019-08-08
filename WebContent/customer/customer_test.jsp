@@ -18,4 +18,4 @@ customer.CustomerApplyVO"%><%
 	String code="OK";
 	CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
 	dao.add(vo);
-%>{code:'<%=code%>'} OK
+%>{code:'<%=code%>'}

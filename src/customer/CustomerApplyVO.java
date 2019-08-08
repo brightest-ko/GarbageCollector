@@ -101,6 +101,13 @@ public class CustomerApplyVO {
 		this.review_status = review_status;
 	}
 	public CustomerApplyVO(){}
+	public CustomerApplyVO(String customer_phone, String card_num, String price)
+	 {
+		this.customer_phone = customer_phone;
+		this.card_num = card_num;
+		this.price=Integer.parseInt(price);
+	
+	 }
 	public CustomerApplyVO(String customer_phone, String customer_addr_first,
 			String customer_addr_second, String customer_addr_third, Integer bag_num, Integer trash_type,
 			Date wanted_time, Integer price, String card_num, String helperID

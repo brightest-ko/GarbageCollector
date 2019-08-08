@@ -18,6 +18,7 @@ public class CtrlApplyList implements Controller{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("CtrlList");
 		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
+
 		List<CustomerApplyVO> rl=dao.findAll_nohelper();
 		request.setAttribute("rl", rl);
 		System.out.println(rl);
