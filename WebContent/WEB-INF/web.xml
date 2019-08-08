@@ -9,6 +9,8 @@
         <init-param>
             <param-name>controllers</param-name>
             <param-value>
+            	common.CtrlIndex,
+            
                 customer.CtrlInsert,
                 customer.CtrlUpdate,
                 customer.CtrlApplyAdd,
