@@ -132,7 +132,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 
 	@Override
-	public List<CustomerApplyVO> findAll() throws Exception {
+	public List<CustomerApplyVO> findAll_nohelper() throws Exception {
 
 		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
 		Connection conn=null;
@@ -143,7 +143,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 			stmt=conn.createStatement();
-			String sql="select * from customer_apply";
+			String sql="select * from customer_apply where review_status =0 order by SerialNo, customer_apply_day desc";
 			rs=stmt.executeQuery(sql);
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
@@ -178,6 +178,53 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 	}
 
+
+	@Override
+	public List<CustomerApplyVO> findAll_helper() throws Exception {
+
+		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
+		Connection conn=null;
+		Statement stmt=null;
+		ResultSet rs=null;
+
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+			stmt=conn.createStatement();
+			String sql="select * from customer_apply where helperID is not null";
+			rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				CustomerApplyVO vo=new CustomerApplyVO();
+				vo.setSerialNo(rs.getInt(1));
+				vo.setCustomer_phone(rs.getString(2));
+				vo.setCustomer_addr_first(rs.getString(3));
+				vo.setCustomer_addr_second(rs.getString(4));
+				vo.setCustomer_addr_third(rs.getString(5));
+				vo.setBag_num(rs.getInt(6));
+				vo.setTrash_type(rs.getInt(7));
+				vo.setWanted_time(rs.getDate(8));
+				vo.setPrice(rs.getInt(9));
+				vo.setCard_num(rs.getString(10));
+				vo.setHelperID(rs.getString(11));
+				vo.setCustomer_apply_day(rs.getDate(12));
+				ls.add(vo);
+			}
+			rs.close();
+		}catch(Exception e){
+		}
+		finally{
+			try {
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+
+		}
+		return ls;
+
+	}
 	@Override
 	public void update(String phone,int price,String card_num) throws Exception
 	{

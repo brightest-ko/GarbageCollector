@@ -7,12 +7,13 @@
     <init-param>
     	<param-name>controllers</param-name>
         <param-value>
-        	customer.CtrlList,
         	customer.CtrlInsert,
         	customer.CtrlUpdate,
+        	customer.CtrlApplyAdd,
+        	customer.CtrlApplyList,
+        	customer.CtrlApplyList2,
         	
         	map.CtrlList,
-        	map.CtrlAdd2,
 
         	certify.CtrlList,
             certify.CtrlAdd2,
@@ -25,9 +26,6 @@
         	matching.CtrlSuggetionAdd,
         	matching.CtrlSuggetionList2,
         	matching.CtrlAcceptanceList,
-        	
-        	customer.CtrlAddApply,
-        	cusomter.CtrlApplyList,
 
             review.CtrlList,
             review.CtrlInsert,

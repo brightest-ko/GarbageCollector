@@ -2,27 +2,28 @@ package map;
 
 public class MapVO {
 	private Integer mapNo;
-	private String mapAddr;
-	private String mapAddr2;
+	private String map_addr_front;
+	private String map_addr_detail ;
 	public Integer getMapNo() {
 		return mapNo;
 	}
 	public void setMapNo(Integer mapNo) {
 		this.mapNo = mapNo;
 	}
-	public String getMapAddr() {
-		return mapAddr;
-	}
-	public void setMapAddr(String mapAddr) {
-		this.mapAddr = mapAddr;
-	}
-	public String getMapAddr2() {
-		return mapAddr2;
-	}
-	public void setMapAddr2(String mapAddr2) {
-		this.mapAddr2 = mapAddr2;
-	}
 	
+	
+	public String getMap_addr_front() {
+		return map_addr_front;
+	}
+	public void setMap_addr_front(String map_addr_front) {
+		this.map_addr_front = map_addr_front;
+	}
+	public String getMap_addr_detail() {
+		return map_addr_detail;
+	}
+	public void setMap_addr_detail(String map_addr_detail) {
+		this.map_addr_detail = map_addr_detail;
+	}
 	
 	
 }
