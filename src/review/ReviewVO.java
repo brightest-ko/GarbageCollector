@@ -5,11 +5,10 @@ import java.sql.Date;
 public class ReviewVO {
 	private Integer serialNo; // 고객신청번호 (PK,FK)
 	private String reviewTitle; // 글제목
-	private String reviewPwd; // 글 패스워드
 	private String helperID; // 대행자ID
 	private Date reviewDay; // 글 작성일자
 	private double rating; // 평점
-	private String cleanPlaceAddFront; // 클린하우스 위치
+	private String cleanPlaceAddrFront; // 클린하우스 위치
 	private String review_content; // 글내용 
 	public Integer getSerialNo() {
 		return serialNo;
@@ -22,12 +21,6 @@ public class ReviewVO {
 	}
 	public void setReviewTitle(String reviewTitle) {
 		this.reviewTitle = reviewTitle;
-	}
-	public String getReviewPwd() {
-		return reviewPwd;
-	}
-	public void setReviewPwd(String reviewPwd) {
-		this.reviewPwd = reviewPwd;
 	}
 	public String getHelperID() {
 		return helperID;
@@ -47,11 +40,11 @@ public class ReviewVO {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-	public String getCleanPlaceAddFront() {
-		return cleanPlaceAddFront;
+	public String getCleanPlaceAddrFront() {
+		return cleanPlaceAddrFront;
 	}
-	public void setCleanPlaceAddFront(String cleanPlaceAddFront) {
-		this.cleanPlaceAddFront = cleanPlaceAddFront;
+	public void setCleanPlaceAddrFront(String cleanPlaceAddrFront) {
+		this.cleanPlaceAddrFront = cleanPlaceAddrFront;
 	}
 	public String getReviewContent() {
 		return review_content;

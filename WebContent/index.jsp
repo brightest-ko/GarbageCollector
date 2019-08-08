@@ -178,8 +178,14 @@ window.onload=function(){
 				
 				var bag=document.getElementById("bag_num");
 				var num=bag.selectedIndex;
+				
 				bag_num=bag.options[num].value;
 				var trash_type = $('input:radio[name="trash_type"]:checked').val();
+				var imsi_num=0;
+				if(trash_type==0)
+					imsi_num=1000;
+				else
+					imsi_num=2000;
 				var date="2019-09-09";
 				/*var a=$('#dateRangePicker').datepicker({
 					 format: "yyyy-mm-dd",
@@ -194,7 +200,8 @@ window.onload=function(){
 					var ob=window.eval("("+rt.trim()+")");
 					
 					if(ob.code=='OK'){
-						document.getElementById("price_ap").innerHTML=bag_num*1500+"원";
+						
+						document.getElementById("price_ap").innerHTML=bag_num*imsi_num+"원";
 							$('#customer_apply_one_modal').modal('hide');
 							$("#customer_apply_two_modal").modal("show");	
 				}

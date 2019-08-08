@@ -17,8 +17,10 @@ public class CtrlList implements Controller{
 		
 		System.out.println("CtrlList");
 		
+		String customer_phone = "01094589584";
+		
 		ReviewDAO dao = new ReviewDAO_Impl();
-		List<ReviewVO> rl = dao.findAll();
+		List<ReviewVO> rl = dao.findAll(customer_phone);
 		
 		request.setAttribute("rl", rl);
 		

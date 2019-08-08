@@ -56,11 +56,11 @@
     <div class="row container-fluid" >
         <!-- 고객 로그인 창 -->
         <div class="col-xs-6 box_login" style="float: left; border-right: 1px solid yellowgreen">
-            <form method="post" action="" >
+            <form method="post" action="customerLogin.do" >
                 <div class="form-group">
                     <h3 style="padding-top: 20px">신청자</h3><hr>
-                    <label for="customerPN"> 신청자 전화번호 </label>
-                    <input type="text" class="form-control" placeholder="휴대폰 번호를 입력하세요." id="customerPN" >
+                    <label for="customer_phone"> 신청자 전화번호 </label>
+                    <input type="text" class="form-control" placeholder="휴대폰 번호를 입력하세요." id="customer_phone" name="customer_phone" >
                     <button type="submit" class="btn btn-success" style="float: right; margin:10px 0px 10px 0px;">로그인</button>
                 </div>
 
