@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import common.Controller;
 import common.RequestMapping;
+import common.Util;
 import customer.CustomerApplyVO;
 
 
@@ -19,7 +20,7 @@ public class CtrlList implements Controller{
 		System.out.println("CtrlList23");
 		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
 		System.out.println(s);
-		String serialNo=request.getParameter("serialNo");
+		int serialNo=Util.parseInt(request.getParameter("serialNo"));
 		CustomerApplyVO rl=dao.findAll_cus(serialNo);
 		request.setAttribute("rl", rl);
 		System.out.println(rl);
