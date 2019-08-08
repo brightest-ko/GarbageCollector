@@ -32,7 +32,7 @@
               <ul class="dropdown-menu">
                 <li><a href="#">이용방법</a></li>
                 <li><a href="#">클린하우스란?</a></li>
-                <li><a href="#">클린하우스 위치</a></li>
+                <li><a href="<%=ctxPath %>/map_info.do">클린하우스 위치</a></li>
                 <!-- <li class="divider"></li> -->
               </ul>
             </li>
@@ -59,7 +59,7 @@
                 <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
               </c:when>
               <c:otherwise>
-                <li><a href="<%=ctxPath%>/index.">로그아웃</a></li>
+                <li><a href="<%=ctxPath%>/logout.do">로그아웃</a></li>
               </c:otherwise>
             </c:choose>
           </ul>

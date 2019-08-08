@@ -1,55 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"
-   
-    %>
-<%
-	String ctxPath =request.getContextPath();
-%>
-<%--jstl 을 사용하기 위해 추가 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+    pageEncoding="utf-8"%>
 
-<%--${fn:length(rl)} 를 사용하기 위해 추가 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Required meta tags -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
-  
-	<!--jquery -->	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
-	<title>당신의 쓰레기는 안녕하수깡?</title>
-	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
-	<style>
-  </style>
-</head>
-<body>
-<%@include file="/header.jsp"%>
-<main>
-
-
-<div class="container bg-white">
-	<%--@include file="/map/map_info.jsp"--%>
-	
-	
 <h2>
 	<div class="padding-bottom-8"><font style="font-weight: bold;">클린하우스</font>는 어디에?</div>
 </h2>
 
-<div style="border: 2px solid #00c7ae;">
+<form style="border: 2px solid #00c7ae;" action="index.do" method="get">
 	<div role="group" class="input-group border-thick" style="border: 0px;">
 		<input type="text" placeholder="원하는 지역을 입력해주세요." autocomplete="off" value="" class="form-control with-button" 
-		name="search_place" id="search_place">
+		name="search_place">
 		<div class="input-group-btn">
-      		<button class="btn btn-default with-text" type="button" onclick="movemap();">
+      		<button class="btn btn-default with-text" type="submit">
         		<i class="glyphicon glyphicon-search"></i>
       		</button>
     	</div>
@@ -57,7 +18,7 @@
 	<div style="border-top:  1px solid #9CC232;">
 		<div id="map" style="width:100%;height:600px;"></div>
 	</div>
-<div onclick="myLocation()" style="cursor:pointer;
+<div onclick="myFunction()" style="cursor:pointer;
 	position: absolute;
     margin: -70px 0px 0px 20px;
     z-index: 100;">
@@ -65,7 +26,7 @@
     border: 2px solid #000000;">
 </div>
 
-</div>
+</form>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b5898e68bc3f653068f9a262d1297dc&libraries=services"></script>
 <script>
@@ -152,28 +113,7 @@ geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function
         map.setCenter(coords);
     } 
 });
-function movemap() {
-	  geocoder.addressSearch($("#search_place"), function(result, status) {
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-		        });
-		        infowindow.open(map, marker);
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 
-		});
-	}
-	
-function myLocation() {
+function myFunction() {
 //현재위치 설정
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
@@ -220,19 +160,8 @@ function displayMarker(locPosition, message) {
     
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
-}
-
+}    
 }
 </script>
-	<br>
-	<br>
-</div>
-
-
-
-</main>
-<%@include file="/footer.jsp"%>
-<%@include file="/script.jsp"%>
-
 </body>
 </html>

@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.ServletException;
 
 
 public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
@@ -340,6 +343,44 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 	}
 	}
+    @Override
+    public boolean checkLoginInfo(String customer_phone) throws ServletException, SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE", "HR", "hr");
 
+
+            String sql = "select * from customer_apply where customer_phone= ? ";
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, customer_phone);
+
+            System.out.println("sql num : " +customer_phone);
+
+            rs = stmt.executeQuery();
+            System.out.println(rs.next());
+
+            if (!(rs.next())) {
+                return false;
+            }
+            String correctPhone = rs.getString("customer_phone");
+         System.out.println(correctPhone + " , " + "customer_phone");
+            if (customer_phone.equals(correctPhone)) {
+                System.out.println("correct : " + customer_phone.equals(correctPhone));
+                return true;
+            } else
+                return false;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new ServletException(e);
+        } finally {
+            if (rs != null) stmt.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        }
+    }
 }
 
