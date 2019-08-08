@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%  // Sample Example . ctxPath는 import되서 지정될거임
+<%--  // Sample Example . ctxPath는 import되서 지정될거임
 	Integer serialNo = 123456; // 클릭한 serialNo
 	String helperID = "jsb@naver.com"; // 클릭한 게시물의 helperID를 가져옴
 	String review_title = "test title"; // 클릭한 serialNo의 게시물을 가져옴
@@ -8,7 +8,7 @@
 	//$('input[name="item"]:radio[value="3"]').prop('checked',true); 라디오체크 
 	//$("[name=Radio name]:not(:checked)").attr('disabled','disabled'); // 값들이 전송x
 	String review_cleanhouse = "cleanhouse place";
-%>
+--%>
 <!-- ############# Note ################### 
 	This is imported by review_list Page.
  -->
