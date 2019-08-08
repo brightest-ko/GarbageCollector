@@ -163,18 +163,20 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			System.out.println("rs "+rs.toString());
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
-				vo.setSerialNo(rs.getInt(1));
-				vo.setCustomer_phone(rs.getString(2));
-				vo.setCustomer_addr_first(rs.getString(3));
-				vo.setCustomer_addr_second(rs.getString(4));
-				vo.setCustomer_addr_third(rs.getString(5));
-				vo.setBag_num(rs.getInt(6));
-				vo.setTrash_type(rs.getInt(7));
-				vo.setWanted_time(rs.getDate(8));
-				vo.setPrice(rs.getInt(9));
-				vo.setCard_num(rs.getString(10));
-				vo.setHelperID(rs.getString(11));
-				vo.setCustomer_apply_day(rs.getDate(12));
+				vo.setSerialNo(rs.getInt("serialNo"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
+				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
+				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
+				vo.setCertify_status(rs.getInt("certify_status"));
+				vo.setReview_status(rs.getInt("review_status"));
 				ls.add(vo);
 			}
 			rs.close();

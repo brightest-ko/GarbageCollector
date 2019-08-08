@@ -9,6 +9,9 @@ import javax.servlet.http.HttpSession;
 import common.Controller;
 import common.RequestMapping;
 import customer.CustomerApplyVO;
+import review.ReviewDAO;
+import review.ReviewDAO_Impl;
+import review.ReviewVO;
 
 
 @RequestMapping("/customer_apply_list.do")
@@ -33,7 +36,14 @@ public class CtrlApplyList implements Controller{
 		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
 		List<CustomerApplyVO> rl=dao.findAll1(customer_phone);
 		request.setAttribute("rl", rl);
+		
+
+		ReviewDAO dao2 =new ReviewDAO_Impl();
+		List<ReviewVO> rl_review=dao2.viewDetail(customer_phone);
+		request.setAttribute("rl_review", rl_review);
+
 		System.out.println(rl);
+		System.out.println(rl_review);
 		return "/customer/customer_list.jsp";
 	}
 

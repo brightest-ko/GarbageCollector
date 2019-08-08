@@ -3,6 +3,14 @@ package review;
 import java.sql.Date;
 
 public class ReviewVO {
+	private Integer serialNo; // 고객신청번호 (PK,FK)
+	private String reviewTitle; // 글제목
+	private String reviewPwd; // 글 패스워드
+	private String helperID; // 대행자ID
+	private Date reviewDay; // 글 작성일자
+	private double rating; // 평점
+	private String cleanPlaceAddFront; // 클린하우스 위치
+	private String review_content; // 글내용 
 	public Integer getSerialNo() {
 		return serialNo;
 	}
@@ -51,14 +59,6 @@ public class ReviewVO {
 	public void setReviewContent(String review_content) {
 		this.review_content = review_content;
 	}
-	private Integer serialNo; // 고객신청번호 (PK,FK)
-	private String reviewTitle; // 글제목
-	private String reviewPwd; // 글 패스워드
-	private String helperID; // 대행자ID
-	private Date reviewDay; // 글 작성일자
-	private double rating; // 평점
-	private String cleanPlaceAddFront; // 클린하우스 위치
-	private String review_content; // 글내용 
 }
 
 /*

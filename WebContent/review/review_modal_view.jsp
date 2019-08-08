@@ -13,7 +13,7 @@
 	This is imported by review_list Page.
  -->
     <!DOCTYPE html>
-    <div class="modal fade" id="review_Modal_view" role="dialog">
+    <div class="modal fade" id="review_Modal_view${vo_review.serialNo }" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->
@@ -28,8 +28,8 @@
 						     	<div class="col-md-4" style="text-align:center;">
 						     		<label for="info_serialNo" style="padding-top:8px">신청번호</label>
 						     	</div>
-						      	<div class="col-md-8">
-						      		<input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="<%=serialNo%>" readonly style="margin-left:0px;"/>
+						      	<div class="col-md-8">${vo_review.serialNo }
+						      		<input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="${vo_review.serialNo }" readonly style="margin-left:0px;"/>
 						      	</div>
 						   	 </div>
 	
