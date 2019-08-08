@@ -23,16 +23,16 @@ public class CtrlAcceptanceList implements Controller{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
-		String auth = "customer";
-		String customer_phone = "01094589584";
+		String auth = null;
+		String customer_phone = null;
 		try{
-//			auth = (String)session.getAttribute("auth");
-//			customer_phone =  (String)session.getAttribute("id");
+			auth = (String)session.getAttribute("auth");
+			customer_phone =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("customer")||customer_phone==null||customer_phone.equals("")){
-				response.sendRedirect("loginform.jsp"); //login.jsp�� ����
+				response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 			}
 		}catch(Exception e){
-			response.sendRedirect("loginform.jsp"); //login.jsp�� ����
+			response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 		}
 		
 
