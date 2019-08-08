@@ -290,8 +290,8 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 	
 	@Override
-	   public CustomerApplyVO findAll_cus(String serialNo) throws Exception{
-	      CustomerApplyVO rl=new CustomerApplyVO();
+	   public CustomerApplyVO findAll_cus(int serialNo) throws Exception{
+	      CustomerApplyVO vo=new CustomerApplyVO();
 	      Connection conn=null;
 
 	      PreparedStatement stmt=null;
@@ -302,20 +302,25 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	          conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 	          String sql="select * from customer_apply where serialNo=?";
 	          stmt=conn.prepareStatement(sql);
-	          stmt.setString(1,serialNo);
+	          stmt.setInt(1,serialNo);
 	          rs=stmt.executeQuery();
 	          //업데이트
 	          if(rs.next()){
 	             System.out.println("상세있음");
-	             rl.setBag_num(rs.getInt("bag_num"));
-	             rl.setCard_num(rs.getString("card_num"));
-	             rl.setCustomer_addr_first(rs.getString("customer_addr_first"));
-	             rl.setCustomer_addr_second(rs.getString("customer_addr_second"));
-	             rl.setCustomer_addr_third(rs.getString("customer_addr_third"));
-	             rl.setCustomer_phone(rs.getString("customer_phone"));
-	             rl.setPrice(rs.getInt("price"));
-	             rl.setTrash_type(rs.getInt("trash_type"));
-	             rl.setWanted_time(rs.getDate("wanted_time"));
+					vo.setSerialNo(rs.getInt("serialNo"));
+					vo.setCustomer_phone(rs.getString("customer_phone"));
+					vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
+					vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
+					vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+					vo.setBag_num(rs.getInt("bag_num"));
+					vo.setTrash_type(rs.getInt("trash_type"));
+					vo.setWanted_time(rs.getDate("wanted_time"));
+					vo.setPrice(rs.getInt("price"));
+					vo.setCard_num(rs.getString("card_num"));
+					vo.setHelperID(rs.getString("helperID"));
+					vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
+					vo.setCertify_status(rs.getInt("certify_status"));
+					vo.setReview_status(rs.getInt("review_status"));
 	          }
 	          else{
 	             System.out.println("상세없음");
@@ -332,7 +337,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	      } catch (Exception e) {
 	      }
 	      }
-	      return rl;
+	      return vo;
 	   }
 	      
 	   @Override

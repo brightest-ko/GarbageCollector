@@ -79,7 +79,7 @@
 					<tbody>
 						<c:forEach var="vo" items="${rl}">
 							<tr>
-				<td onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
+				<td onclick="location.href='matching_acceptance_list.do?serialNo=${vo.serialNo}'" target="_blank">${vo.serialNo}</td>
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
@@ -99,7 +99,7 @@
 
 				</c:if>
 				<c:if test="${empty vo.helperID}">
-					<td><button class="btn btn-default" onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">대행고르기</button></td>
+					<td><button class="btn btn-default" onclick="location.href='matching_acceptance_list.do?serialNo=${vo.serialNo}'" >대행고르기</button></td>
 				</c:if>
 							</tr>
 						</c:forEach>
