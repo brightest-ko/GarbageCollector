@@ -52,33 +52,56 @@
   						</div>
 					</div>
 			</div>				
-			<div class="form-group has-success has-feedback">
-				<div class="input-group">
-					<span class="input-group-addon">고객 신청번호</span> <input
-						id="certify_serialNo" type="text" class="form-control"
-						name="certify_serialNo" value="${vo.serialNo}" readonly>
-				</div>
-			</div>
-		</div>
-			<div class="form-group has-success has-feedback">
-				<div class="input-group">
-					<span class="input-group-addon">위치</span> <input id="housePlace"
-						type="text" class="form-control" name="housePlace"
-						value="${vo.housePlace} " readonly>
-				</div>
-			</div>
-			<div class="form-group has-success has-feedback">
-				<div class="input-group">
-					<span class="input-pgroup-addon">사진</span> <input type="file"
-						name="photo" camera="camera" class="form-control" />
-						<img src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}" width="200" height="200" alt="My Image">
-				</div>
-			</div>
+				<div class="py-5">
+					<div class="container ">
+						<div class="row">
+							<div class="col-md-12">
 
-			<h3>특이사항</h3>
-			<div class="form-group certify_detalis">
-				<textarea class="form-control" rows="5" id="details" name="details" readonly>${vo.details}</textarea>
-			</div>
+								<div class="form-group row">
+									<label class="col-2 col-form-label">대행ID</label>
+									<div class="col-10">
+										<input type="text" class="form-control" id="certify_helperID"
+											name="certify_helperID" value="${vo.helperID}" readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-2 col-form-label">신청번호</label>
+									<div class="col-10">
+										<input type="text" class="form-control " id="certify_serialNo"
+											name="certify_serialNo" value="${vo.serialNo}" readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-2 col-form-label">위치</label>
+									<div class="col-10">
+										<input type="text" class="form-control " id="housePlace"
+											name="housePlace" placeholder="위치를 찍어주세요"
+											value="${vo.housePlace} "readonly>
+									</div>
+								</div>
+
+								<div class="form-group row " id="photo">
+									<label class="col-2 col-form-label ">사진</label> <input
+										type="file" name="photo" camera="camera" class="form-control "
+										value="${vo.certify_photo_fsn}" readonly/>
+									<div class="col-10">
+										<img
+											src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}"
+											width="200" height="200" alt="My Image">
+									</div>
+
+
+								</div>
+								<div id="details">
+									<h3>특이사항</h3>
+									<textarea class="form-control" rows="5" name="details"
+										style="margin: 0px -5px 0px 0px; width: 564px; height: 203px;"readonly>"${vo.details}" </textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
 
 		<div class="container">
 		<button type="submit" class="btn btn-success" >확인</button>

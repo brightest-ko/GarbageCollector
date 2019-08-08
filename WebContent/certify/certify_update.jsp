@@ -62,39 +62,6 @@
 						</div>
 					</div>
 				</div>
-				<!--  
-			<div class="form-group has-success has-feedback ">
-				<div class="input-group">
-					<span class="input-group-addon">고객 신청번호</span> <input
-						id="certify_serialNo" type="text" class="form-control"
-						name="certify_serialNo" value="${vo.serialNo}" >
-				</div>
-			</div>
-		</div>
-			<div class="form-group has-success has-feedback" >
-				<div class="input-group">
-					<span class="input-group-addon">위치</span> <input id="housePlace"
-						type="text" class="form-control" name="housePlace" value="${vo.housePlace} ">
-				</div>
-			</div>
-			<div class="form-group has-success has-feedback ">
-			<div class="row">
-				<div class="input-group">
-				<div class="col-xs-6" >
-					<span class="input-group-addon">사진</span> <input type="file"
-						name="photo" camera="camera" class="form-control"  >
-					<img src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}" width="200" height="200" alt="My Image">
-				</div>
-				<div class="col-xs-6" >
-			<h3>특이사항</h3>
-			<div class="form-group certify_detalis">
-				<textarea class="form-control" rows="5" id="details" name="details" >${vo.details}</textarea>
-			</div>
-				</div>
-				</div>
-			</div>
-			</div>
-			-->
 				<div class="py-5">
 					<div class="container ">
 						<div class="row">
