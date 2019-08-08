@@ -288,7 +288,16 @@ window.onload=function(){
 		
 	};
 </script>
-	<div class="container">
+
+	<div class="container" style="padding: 50px 0 0 0;">
+		<div class="list_header">
+			<div class="text-center">
+			<h2><font style="font-weight: bold;">오늘</font>무엇을 버려야 할까요?</h2>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" style="    padding-top: 0px;
+    padding-bottom: 0px;">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -328,20 +337,22 @@ window.onload=function(){
 			</div>
 
 			<!-- Left and right controls -->
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev" 
+			style="background: 0;">
 				<span class="glyphicon glyphicon-chevron-left"></span> <span
 				class="sr-only">Previous</span>
 			</a> <a class="right carousel-control" href="#myCarousel"
-				data-slide="next"> <span
+				data-slide="next" style="background: 0;"> <span
 				class="glyphicon glyphicon-chevron-right"></span> <span
 				class="sr-only">Next</span>
 			</a>
 		</div>
 	</div>
 <div class="py-3 text-center">
-		<div class="container">
+		<div class="container" style="border-top: solid 1px #9cc232;padding: 10px 0 30px 0;">
 			<div class="row">
 				<div class="col-md-12 text-center">
+				
 					<h1>분리수거 대행 서비스 이용방법</h1>
 				</div>
 			</div>
