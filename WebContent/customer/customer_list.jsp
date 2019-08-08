@@ -82,7 +82,7 @@
 					<tbody>
 						<c:forEach var="vo" items="${rl}">
 							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red" onclick="location.href='customer/apply_detail.jsp?serialNo=${vo.serialNo}'">
+							<tr class="deadline_red" onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">
 				<td>${vo.serialNo}</td>
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
