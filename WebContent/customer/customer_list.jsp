@@ -83,7 +83,9 @@
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
-				<td>${vo.trash_type}</td>
+				
+				<td><c:if test="${vo.trash_type == 0}">오늘의 재활용</c:if>
+				<c:if test="${vo.trash_type == 1}">혼합 재활용</c:if></td>
 				<td>${vo.wanted_time}</td>
 				
 				<td>${vo.price}</td>

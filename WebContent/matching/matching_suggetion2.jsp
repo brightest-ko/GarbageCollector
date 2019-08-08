@@ -142,7 +142,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="vo2" items="${rl_yet}">
+									<c:forEach var="vo" items="${rl_yet}">
 										<tr>
 											<td>${vo.serialNo }</td>
 											<td>${vo.customer_addr_first }${vo.customer_addr_second }
