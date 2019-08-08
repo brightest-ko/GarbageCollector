@@ -166,9 +166,9 @@
 			// 수정 버튼 클릭
 			$("button[name='modify']").click(function(){
 				var mode = 1; 
-				//window.location.href = "#review_Modal_view${vo.serialNo}"
-				$('#review_Modal_view').modal('hide');
-		   	 	$('#review_Modal_modify').modal('show');	
+				window.location.href = "#review_Modal_view${vo.serialNo}"
+				//$('review_Modal_view'+${vo.serialNo}').modal('hide');
+		   	 	//$('#review_Modal_modify').modal('show');	
 			});
 			
 			// 삭제 버튼 클릭

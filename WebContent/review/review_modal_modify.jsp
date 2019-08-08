@@ -48,15 +48,15 @@
     float: left;
     height: 46px;
     padding: 0 calc( 50% - 75px );">
-									<input type="radio" id="star1" name="rating" value="1" onClick="javascript:ChkRating('1')"/>
+									<input type="radio" id="star1" name="rating" value="1" onClick="javascript:ChkRating('1')"<c:if test="${vo.rating}==1.0">checked="checked"</c:if>/>
 								   	<label for="star1" title="text" style="margin-bottom: 0px;">1 star</label>
-								   	<input type="radio" id="star2" name="rating" value="2" onClick="javascript:ChkRating('2')"/>
+								   	<input type="radio" id="star2" name="rating" value="2" onClick="javascript:ChkRating('2')"<c:if test="${vo.rating}==2.0">checked="checked"</c:if>/>
 								   	<label for="star2" title="text" style="margin-bottom: 0px;">2 stars</label>
-								   	<input type="radio" id="star3" name="rating" value="3" onClick="javascript:ChkRating('3')"/>
+								   	<input type="radio" id="star3" name="rating" value="3" onClick="javascript:ChkRating('3')"<c:if test="${vo.rating}==3.0">checked="checked"</c:if>/>
 								    <label for="star3" title="text" style="margin-bottom: 0px;">3 stars</label>
-								   	<input type="radio" id="star4" name="rating" value="4" onClick="javascript:ChkRating('4')"/>
+								   	<input type="radio" id="star4" name="rating" value="4" onClick="javascript:ChkRating('4')"<c:if test="${vo.rating}==4.0">checked="checked"</c:if>/>
 								    <label for="star4" title="text" style="margin-bottom: 0px;">4 stars</label>   	
-								    <input type="radio" id="star5" name="rating" value="5" onClick="javascript:ChkRating('5')" />
+								    <input type="radio" id="star5" name="rating" value="5" onClick="javascript:ChkRating('5')"<c:if test="${vo.rating}==5.0">checked="checked"</c:if>/>
 								    <label for="star5" title="text" style="margin-bottom: 0px;">5 stars</label>
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 		        		</div>
 		        	</div>
 		        	<div class="modal-footer">
-		        		<input type="submit" class="btn btn-md" style="background-color:#ADCB00;color:black;" value="등록" onClick="javascript:alert('등록하기')"/>
+		        		<input type="submit" class="btn btn-md" style="background-color:#ADCB00;color:black;" value="등록" onClick="javascript:alert('등록완료')"/>
 		        	</div>
 		        	</form>		
 		      	</div>
