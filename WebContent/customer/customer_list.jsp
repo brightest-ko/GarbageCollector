@@ -113,7 +113,7 @@
 	</div>
 	
 <c:forEach var="vo2" items="${rl}">
-	<c:if test="${not empty vo2.helperID and vo2.review_status == 1}">
+	<c:if test="${not empty vo2.helperID and vo2.certify_status == 1 and vo2.review_status == 0}">
 		<%@include file="/review/review_modal_insert.jsp"%>
 	</c:if>
 </c:forEach>

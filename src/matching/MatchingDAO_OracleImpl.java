@@ -152,10 +152,9 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			conn = DriverManager.getConnection(
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 
-			//��Ī����
-			String sql = "select * from customer_apply"
-					+ " where serialNo in (select serialNo from matcing where heplerID=? and suggestion = 1 and acceptance = 1)"
-					+ " order by customer_apply_day desc";
+			String sql = "select * from customer_apply "
+					+ "where serialNo in (select serialNo from matching where helperID=? and suggestion = 1 and acceptance = 1)"
+					+ "order by customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
@@ -204,9 +203,9 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 
 			//��Ī���
 			String sql = "select * from customer_apply "
-					+ "where serialNo in (select serialNo from matching where helperID=? and suggestion = 1 and acceptance = 0)"
-					+ "and helperID IS NULL "
-					+ "order by customer_apply_day desc";
+					+ " where serialNo in (select serialNo from matching where helperID=? and suggestion = 1 and acceptance = 0)"
+					+ " and helperID IS NULL and WANTED_TIME > SYSDATE"
+					+ " order by customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
@@ -255,10 +254,10 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 
 			//��Ī����
-			String sql = "select * from customer_apply"
-					+ " where serialNo in (select serialNo from matcㅗing where heplerID=? and suggestion = 1 and  acceptance = 0)"
-					+ "and helperID IS NOT NULL and helperID <> ?"
-					+ "order by wanted_time  desc";
+			String sql = "select * from customer_apply "+
+					"where serialNo in (select serialNo from matching where helperID = ? and suggestion = 1 and acceptance = 0) "+
+					"and ((helperID IS NULL and WANTED_TIME > SYSDATE) or (helperID <> ?)) "+
+					"order by customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			stmt.setString(2, HelperID);
