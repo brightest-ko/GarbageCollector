@@ -41,7 +41,7 @@
 	<div class="container" style="padding: 50px 0;">
 		<div class="list_header">
 			<div class="col-xs-9" style="padding: 10px;">
-			<h2><font style="font-weight: bold;">신청 확인</font></h2>
+			<h2><font style="font-weight: bold;">신청 결과 조회</font></h2>
 			<h5>수락하지 않은 <font style="font-weight: bold;">신청</font> 대행을 PICK하세요!</h5>
 			<h5>지난 신청엔 <font style="font-weight: bold;">후기</font>를 작성해주세요!</h5>
 			
