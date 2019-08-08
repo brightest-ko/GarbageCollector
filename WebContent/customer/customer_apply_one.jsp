@@ -27,7 +27,7 @@
 						<div class="col-xs-4 gul">주소</div>
 						<div class="col-xs-8 row">
 							<div class="col-xs-4">
-								<select onchange="categoryChange1(this)"
+								<select class="form-control"  onchange="categoryChange1(this)"
 									name="city1" id="city1" value="" required>
 									<option>시</option>
 									<option value="제주시">제주시</option>
@@ -35,7 +35,7 @@
 								</select> 
 							</div>
 							<div class="col-xs-4">
-								<select id="good1" name="dong1" required>
+								<select class="form-control"  id="good1" name="dong1" required>
 									<option>읍, 면, 동</option>
 								</select>
 							</div>
@@ -72,14 +72,14 @@
 						<div class="col-xs-4">
 							<label class="form-check-label" for="radio1"> <input
 								type="radio" class="form-check-input" id="radio1"
-								name="trash_type" value="0" checked>당일수거물품
+								name="trash_type" value="0" checked>당일수거물품(1000원)
 							</label>
 						</div>
 
 						<div class="col-xs-4">
 							<label cl ass="form-check-label" for="radio2"> <input
 								type="radio" class="form-check-input" id="radio2"
-								name="trash_type" value="1">혼합
+								name="trash_type" value="1">혼합(2000원)
 							</label>
 						</div>
 					</div>
