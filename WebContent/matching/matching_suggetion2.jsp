@@ -96,7 +96,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="vo1" items="${rl_success}">
+									<c:forEach var="vo" items="${rl_success}">
 										<tr>
 											<td>${vo.serialNo }</td>
 											<td>${vo.customer_addr_first }${vo.customer_addr_second }
@@ -105,26 +105,20 @@
 											<td>${vo.trash_type }</td>
 											<td>${vo.price }</td>
 											<td>${vo.wanted_time }</td>
-											<c:if test="${vo1.certify_status }==0">
-												<td><a class="btn btn-success"
-													href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo1.serialNo }">인증하기</a></td>
+											<td>
+											<c:if test="${vo.certify_status }==0">
+												<a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo.serialNo }">인증하기</a>
 											</c:if>
 											<c:if
-												test="${vo1.certify_status }==1 and ${vo1.review_status }==0">
-												<td><a class="btn btn-default" href="#"
-													style="border-color: #4cae4c; color: #4cae4c;">인증수정</a></td>
+												test="${vo.certify_status }==1 and ${vo.review_status }==0">
+												<a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_find2.do?SerailNo=9123" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a>
 											</c:if>
 											<c:if
-												test="${vo1.certify_status }==1 and ${vo1.review_status }==1">
-												<td><a class="btn btn-default" href="#">인증확인</a></td>
+												test="${vo.certify_status }==1 and ${vo.review_status }==1">
+												<a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_info2.do?SerailNo=9123" target="_blank">인증확인</a>
 											</c:if>
+											</td>
 										</tr>
-										
-										<a class="btn btn-success"
-													href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo1.serialNo }">인증하기</a>
-													<a class="btn btn-default" href="#"
-													style="border-color: #4cae4c; color: #4cae4c;">인증수정</a>
-													<a class="btn btn-default" href="#">인증확인</a>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -173,37 +167,32 @@
 								<thead>
 									<tr class="bg-success" style="font-weight: bold;">
 										<th class="text-center col-xs-1">No</th>
-										<th class="text-center col-xs-4">고객 주소 (나머지 주소 포함)</th>
-										<th class="text-center col-xs-2">종류</th>
-										<th class="text-center col-xs-1">가격</th>
-										<th class="text-center col-xs-3">약속 시간</th>
-										<th class="text-center col-xs-1"></th>
+										<th class="text-center col-xs-4">고객 주소</th>
+										<th class="text-center col-xs-2">수행 예정 시간</th>
+										<th class="text-center col-xs-1">종류</th>
+										<th class="text-center col-xs-1">갯수</th>
+										<th class="text-center col-xs-1">금액</th>
+										<th class="text-center col-xs-3">마감 시간</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="vo3" items="${rl_fail}">
+									<c:forEach var="vo" items="${rl_fail}">
 										<tr>
 											<td>${vo.serialNo }</td>
-											<td>${vo.customer_addr_first }${vo.customer_addr_second }
-												${vo.customer_addr_third }</td>
-											<td>${vo.trash_type }</td>
-											<td>${vo.price }</td>
-											<td>${vo.wanted_time }</td>
+											<td>${vo.customer_addr_first } ${vo.customer_addr_second }</td>
+											<td><fmt:formatDate value="${vo.wanted_time }" pattern="MM월 dd일 HH시 mm분"/></td>
 											<td>
-											<c:if test="${vo1.certify_status }==0">
-												<a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo1.serialNo }">인증하기</a>
-											</c:if>
-											<c:if test="${vo1.certify_status }==1 and ${vo1.review_status }==0">
-												<a class="btn btn-default" 
-												href="#" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a>
-											</c:if>
-											<c:if test="${vo1.certify_status }==1 and ${vo1.review_status }==1">
-												<a class="btn btn-default" href="#">인증확인</a>
-											</c:if>
+												<c:if test="${vo.trash_type ==0}">오늘의 재활용</c:if>
+												<c:if test="${vo.trash_type ==1}">혼합</c:if>
 											</td>
+											<td>${vo.bag_num }</td>
+											<td>${vo.price }</td>
+											<td><div id="countdown2_${vo.serialNo}"  wanted_time_data="${vo.wanted_time }"></div></td>
 										</tr>
 									</c:forEach>
 								</tbody>
+								
+								
 							</table>
 						</div>
 					</div>

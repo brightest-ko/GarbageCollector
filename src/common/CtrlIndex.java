@@ -1,4 +1,4 @@
-package map;
+package common;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import common.Controller;
 import common.RequestMapping;
 
 
-@RequestMapping("/map_info.do")
-public class CtrlList implements Controller{
+@RequestMapping("/index.do")
+public class CtrlIndex implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,17 +21,8 @@ public class CtrlList implements Controller{
         System.out.println(session.getAttribute("helperId"));
 
 
-	    String l = null;
-
-//        String search_place= request.getParameter("search_place");
-
-        MapDAO dao = new MapDAO_OracleImpl();
-        List<MapVO> rl = dao.findAll();
-        
-        request.setAttribute("rl", rl);
-        
-        
-		return "/map/map_info.jsp";
+		System.out.println("Index TEST");
+		return "/index.jsp";
 	}
 
 }

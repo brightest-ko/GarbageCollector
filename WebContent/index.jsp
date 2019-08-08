@@ -18,19 +18,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/assets/css/datepicker3.css" />
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
-	<link rel="stylesheet" href="<%=ctxPath %>/assets/css/bootstrap-datetimepicker.min.css">
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datetimepicker.min.js"></script>
+	
+	
 	<script>
 	
 	function myFunction() {
@@ -70,8 +70,6 @@
 			target1.appendChild(opt);
 		}
 	}
-	
-	  
 
 	</script>
 	
@@ -132,6 +130,54 @@
 </div>
 
  <script>
+ $(document).ready(function()
+			{
+				$('#date').bootstrapMaterialDatePicker
+				({
+					time: false,
+					clearButton: true
+				});
+
+				$('#time').bootstrapMaterialDatePicker
+				({
+					date: false,
+					shortTime: false,
+					format: 'HH:mm'
+				});
+
+				$('#date-format').bootstrapMaterialDatePicker
+				({
+					format: 'dddd DD MMMM YYYY - HH:mm'
+				});
+				$('#date-fr').bootstrapMaterialDatePicker
+				({
+					format: 'DD/MM/YYYY HH:mm',
+					lang: 'fr',
+					weekStart: 1, 
+					cancelText : 'ANNULER',
+					nowButton : true,
+					switchOnClick : true
+				});
+
+				$('#date-end').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+				});
+				$('#date-start').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+				}).on('change', function(e, date)
+				{
+					$('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+				});
+
+				$('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+				$.material.init()
+			});
+
+ 
+ 
 	function ajaxGet(url,fpOk,fpFail)
 	{
 		var xhr=new XMLHttpRequest();
@@ -185,16 +231,11 @@ window.onload=function(){
 					imsi_num=1000;
 				else
 					imsi_num=2000;
-				var date="2019-09-09";
-				/*var a=$('#dateRangePicker').datepicker({
-					 format: "yyyy-mm-dd",
-					 language: "kr"
-					 });
-				alert(a);
-				var imsi=$('#dateRangePicker').datepicker( "getDate" );*/
-			
+				var price=(bag_num*imsi_num);
+				var date=$('#date-fr').val();
+				
 				var url="<%=ctxPath%>/customer/customer_test.jsp?temp=temp&one_phone="+phone+"&first="+first+"&second="+second+
-					"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date;
+					"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date+"&price="+price;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
 					
@@ -215,7 +256,7 @@ window.onload=function(){
 				$("#customer_apply_two_modal").modal("hide");
 		       	$("#customer_apply_result").modal("show");
 		       
-		       	var url="<%=ctxPath%>/customer/customer_test1.jsp?temp=temp&two_phone="+phone+"&price="+(bag_num*1500)+"&card_num="+card_num;
+		       	var url="<%=ctxPath%>/customer/customer_test1.jsp?temp=temp&two_phone="+phone+"&card_num="+card_num;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
 					
@@ -234,25 +275,106 @@ window.onload=function(){
 			$("#apply_result").click(function(){
 				$("#customer_choose").modal("hide");
 	    	});
-			$("#datetimepicker1").click(function() {
-			    $('#datetimepicker1').datetimepicker({
-				      language: 'pt-BR'
-				    });
-			});
+
+			$('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
 		//var go_list=document.getElementById("go_list");
 	});
 		
 	};
 </script>
+	<div class="container">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
+				<li data-target="#myCarousel" data-slide-to="4"></li>
+				<li data-target="#myCarousel" data-slide-to="5"></li>
+				<li data-target="#myCarousel" data-slide-to="6"></li>
+			</ol>
 
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="/GarbageCollector/assets/img/monday.png" alt="monday" style="width: 40%;">
+				</div>
 
-<!-- Second Container -->
-<hr>
-<div class="container bg-white">
-	<%@include file="/map/map_info.jsp"%>
-	<br>
-	<br>
-</div>
+				<div class="item">
+					<img src="/GarbageCollector/assets/img/tuesday.png" alt="tuesday" style="width: 40%;">
+				</div>
+
+				<div class="item">
+					<img src="/GarbageCollector/assets/img/wenseday.png" alt="wenseday" style="width: 40%;">
+				</div>
+				<div class="item">
+					<img src="/GarbageCollector/assets/img/thursday.png" alt="thursday" style="width: 40%;">
+				</div>
+				<div class="item">
+					<img src="/GarbageCollector/assets/img/friday.png" alt="friday" style="width: 40%;">
+				</div>
+				<div class="item">
+					<img src="/GarbageCollector/assets/img/saturday.png" alt="saturday" style="width: 40%;">
+				</div>
+				<div class="item">
+					<img src="/GarbageCollector/assets/img/sunday.png" alt="sunday" style="width: 40%;">
+				</div>
+			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right"></span> <span
+				class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+<div class="py-3 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1>분리수거 대행 서비스 이용방법</h1>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-3 col-6 p-4">
+					<img src="/GarbageCollector/assets/img/usage_dump.png" width="100"
+						height="100" alt="My Image">
+					<h4>
+						<b>One</b>
+					</h4>
+					<p>집에 쌓인 쓰레기를 모아둔다.</p>
+				</div>
+				<div class="col-lg-3 col-6 p-4">
+					<img src="/GarbageCollector/assets/img/usage_custom.png"
+						width="100" height="100" alt="My Image">
+					<h4>
+						<b>Two</b>
+					</h4>
+					<p>개인정보와 주소를 입력하여 신청한다.</p>
+				</div>
+				<div class="col-lg-3 col-6 p-4">
+					<img src="/GarbageCollector/assets/img/usage_helper.png"
+						width="100" height="100" alt="My Image">
+					<h4>
+						<b>Three</b>
+					</h4>
+					<p>신청을 목록중 마음에 드는 대행을 선택한다.</p>
+				</div>
+				<div class="col-lg-3 col-6 p-4">
+					<img src="/GarbageCollector/assets/img/usage_clean.png" width="100"
+						height="100" alt="My Image">
+					<h4>
+						<b>Four</b>
+					</h4>
+					<p>대행이 정해진 시간에 쓰레기를 수거해 클린하우스 또는 재활용 도움센터에 가서 분리수거를 한다.</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </main>
 <%@include file="/footer.jsp"%>
