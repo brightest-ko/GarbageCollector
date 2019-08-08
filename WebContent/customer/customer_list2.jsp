@@ -40,11 +40,8 @@
 
 	<div class="container" style="padding: 50px 0;">
 		<div class="list_header">
-			<div class="col-xs-9" style="padding: 10px;">
-			<h2><font style="font-weight: bold;">신청 확인</font></h2>
-			<h5>수락하지 않은 <font style="font-weight: bold;">신청</font> 대행을 PICK하세요!</h5>
-			<h5>지난 신청엔 <font style="font-weight: bold;">후기</font>를 작성해주세요!</h5>
-			
+			<div class="col-xs-9" style="">
+			<h2>지난 <font style="font-weight: bold;">신청</font>은 여기에!</h2>
 			</div>
 			<div class="col-xs-3" style="margin: 30px 0 0 0;">
 				<div class="form-group">
@@ -66,7 +63,7 @@
 				<table class="table table-bordered text-center table-hover">
 					<thead>
 						<tr class="bg-success" style="font-weight: bold;">
-			<td>No</td>
+			<td>고객신청번호</td>
 			<td>핸드폰번호</td>
 			<td>인근주소</td>
 			<td>둘째주소</td>
@@ -77,7 +74,6 @@
 			<td>가격</td>
 			<td>카드번호</td>
 			<td>작성일자</td>
-			<td>대행ID</td>
 						</tr>
 					</thead>
 					
@@ -97,13 +93,7 @@
 				<td>${vo.price}</td>
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
-				<c:if test="${not empty vo.helperID}">
-					<td><button class="btn btn-success" data-doggle="modal" data-target="#review_Modal_upload">후기쓰기</button></td>
-				</c:if>
-				<c:if test="${empty vo.helperID}">
-					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>
-				</c:if>
-				<%--@include file="/review/review_modal_insert.jsp"--%>
+								
 							</tr>
 						</c:forEach>
 					</tbody>
