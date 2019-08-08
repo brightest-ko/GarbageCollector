@@ -7,9 +7,10 @@
     <init-param>
     	<param-name>controllers</param-name>
         <param-value>
-        	customer.CtrlList,
-        	customer.CtrlInsert,
+        	customer.CtrlApplyList,
+        	customer.CtrlApplyAdd,
         	customer.CtrlUpdate,
+        	customer.CtrlInsert
         	
         	map.CtrlList,
         	map.CtrlAdd2,

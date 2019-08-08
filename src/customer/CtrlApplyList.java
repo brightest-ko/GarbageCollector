@@ -16,7 +16,10 @@ public class CtrlApplyList implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("CtrlList");
+		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
+		List<CustomerApplyVO> rl=dao.findAll();
+		request.setAttribute("rl", rl);
 		return "/customer/customer_apply_list.jsp";
 	}
 
