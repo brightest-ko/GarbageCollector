@@ -1,5 +1,5 @@
 package customer;
-import java.util.Date;
+import java.sql.Date;
 
 public class CustomerApplyVO {
 	private Integer serialNo;
@@ -99,6 +99,24 @@ public class CustomerApplyVO {
 	}
 	public void setReview_status(Integer review_status) {
 		this.review_status = review_status;
+	}
+	public CustomerApplyVO(){}
+	public CustomerApplyVO(String customer_phone, String customer_addr_first,
+			String customer_addr_second, String customer_addr_third, Integer bag_num, Integer trash_type,
+			Date wanted_time, Integer price, String card_num, String helperID
+			) {
+	
+		this.customer_phone = customer_phone;
+		this.customer_addr_first = customer_addr_first;
+		this.customer_addr_second = customer_addr_second;
+		this.customer_addr_third = customer_addr_third;
+		this.bag_num = bag_num;
+		this.trash_type = trash_type;
+		this.wanted_time = wanted_time;
+		this.price = price;
+		this.card_num = card_num;
+		this.helperID = helperID;
+
 	}
 	@Override
 	public String toString() {

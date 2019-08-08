@@ -6,5 +6,5 @@ import java.util.List;
 public interface CustomerApplyDAO {
 	public void add(CustomerApplyVO vo) throws Exception;
 	public List<CustomerApplyVO> findAll() throws Exception;
-	public void update(String helperID,String card_num,String price) throws Exception;
+	void update(String phone, int price, String card_num) throws Exception;
 }
