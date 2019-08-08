@@ -133,9 +133,6 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			}
 			System.out.println("�����ڵ鿡�� ��õ��  끝.");
 			
-			
-			
-			
 			conn.commit();
 			stmt.close();
 			conn.close();
@@ -156,18 +153,20 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			String sql="select * from customer_apply where customer_phone = ? and review_status =0 order by SerialNo, customer_apply_day desc";
+			String sql="select * from customer_apply where customer_phone = '01094589584' and review_status =0 "
+					+ "and (WANTED_TIME >= SYSDATE) "
+					+ "order by SerialNo, customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, customer_phone);
+//			stmt.setString(1, customer_phone);
 			rs=stmt.executeQuery();
 			System.out.println("rs "+rs.toString());
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
 				vo.setCustomer_phone(rs.getString("customer_phone"));
-				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
-				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
-				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
 				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
 				vo.setWanted_time(rs.getDate("wanted_time"));
@@ -181,6 +180,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			}
 			rs.close();
 		}catch(Exception e){
+			e.printStackTrace();
 		}
 		finally{
 			try {
@@ -189,6 +189,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 				if (conn != null)
 					conn.close();
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
 		}
@@ -216,9 +217,9 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 				CustomerApplyVO vo=new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
 				vo.setCustomer_phone(rs.getString("customer_phone"));
-				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
-				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
-				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
 				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
 				vo.setWanted_time(rs.getDate("wanted_time"));
@@ -232,6 +233,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			}
 			rs.close();
 		}catch(Exception e){
+			e.printStackTrace();
 		}
 		finally{
 			try {

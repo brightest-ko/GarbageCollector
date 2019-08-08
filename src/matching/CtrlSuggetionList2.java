@@ -20,16 +20,16 @@ public class CtrlSuggetionList2 implements Controller{
 		System.out.println("/matching_suggetion_list2.do 진입");
 		
 		HttpSession session = request.getSession();
-		String auth ="helper";//= null;
-		String helperID ="gobakse5@naver.com";//= null;
+		String auth = null;
+		String helperID = null;
 		try{
-//         auth = (String)session.getAttribute("auth");
-//         helperID =  (String)session.getAttribute("id");
+			auth = (String)session.getAttribute("auth");
+			helperID =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
-				response.sendRedirect("loginform.jsp"); //login.jsp濡� 蹂�寃�
+				response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 			}
 		}catch(Exception e){
-			response.sendRedirect("loginform.jsp"); //login.jsp濡� 蹂�寃�
+			response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 		}
 
 		MatchingDAO dao = new MatchingDAO_OracleImpl();

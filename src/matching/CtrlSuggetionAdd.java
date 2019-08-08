@@ -18,26 +18,31 @@ public class CtrlSuggetionAdd implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("/matching_suggetion_add.do ½ÃÀÛ");
+		System.out.println("/matching_suggetion_add.do ï¿½ï¿½ï¿½ï¿½");
 		
 		HttpSession session = request.getSession();
-		String auth ="helper";//= null;
-		String helperID ="gobaksa4@naver.com";//= null;
+		String auth = null;
+		String helperID = null;
 		try{
-//         auth = (String)session.getAttribute("auth");
-//         helperID =  (String)session.getAttribute("id");
+			auth = (String)session.getAttribute("auth");
+			helperID =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
-				response.sendRedirect("loginform.jsp"); //login.jspë¡? ë³?ê²?
+				response.sendRedirect("helper/login.jsp"); //login.jspë¡œ ë³€ê²½
 			}
 		}catch(Exception e){
-			response.sendRedirect("loginform.jsp"); //login.jspë¡? ë³?ê²?
+			response.sendRedirect("helper/login.jsp"); //login.jspë¡œ ë³€ê²½
 		}
 
 		Integer serialNo = Util.parseInt(request.getParameter("serialNo"));
+//		System.out.println("ëŒ€í–‰ì œì•ˆ : "+serialNo);
 		MatchingDAO dao = new MatchingDAO_OracleImpl();
 		int r = dao.suggest(serialNo,helperID);
-
-		System.out.println("/matching_suggetion_add.do ¿Ï·á");
+//		if(r==1){
+//			System.out.println("ì„±ê³µ");
+//		}else{
+//			System.out.println("ì‹¤íŒ¨");
+//		}
+//		System.out.println("/matching_suggetion_add.do ï¿½Ï·ï¿½");
 		return "redirect:/matching_suggetion_list2.do";
 
 	}
