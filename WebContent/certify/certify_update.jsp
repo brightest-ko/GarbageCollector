@@ -44,7 +44,7 @@
 	<main>
 	<div class="container ">
 		<div style="text-align: left">
-			<form method="POST" action="<%=ctxPath%>/certify/certif9y_update2.do"
+			<form method="POST" action="<%=ctxPath%>/certify/certify_update2.do"
 				enctype="multipart/form-data">
 				<div class="container row">
 					<div class="jumbotron certify_temp">
@@ -68,22 +68,22 @@
 							<div class="col-md-12">
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">대행ID</label>
-									<div class="col-10">
+									<label class="col-sm-1 col-form-label">대행ID</label>
+									<div class="col-sm-11">
 										<input type="text" class="form-control" id="certify_helperID"
 											name="certify_helperID" value="${vo.helperID}" readonly>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-2 col-form-label">신청번호</label>
-									<div class="col-10">
+									<label class="col-sm-1 col-form-label">신청번호</label>
+									<div class="col-sm-11">
 										<input type="text" class="form-control " id="certify_serialNo"
 											name="certify_serialNo" value="${vo.serialNo}" readonly>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-2 col-form-label">위치</label>
-									<div class="col-10">
+									<label class="col-sm-1 col-form-label">위치</label>
+									<div class="col-sm-11">
 										<input type="text" class="form-control " id="housePlace"
 											name="housePlace" placeholder="위치를 찍어주세요"
 											value="${vo.housePlace} ">
