@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html;charset=utf-8" pageEncoding="euc-kr"
 import="customer.CustomerApplyDAO,customer.CustomerApplyDAO_OracleImpl,
@@ -13,9 +14,16 @@ customer.CustomerApplyVO,java.util.Date,java.sql.*"%><%
 	String trash_type=request.getParameter("trash_type");
 	String imsi_date=request.getParameter("date");
 	
+	Calendar cal=Calendar.getInstance();
+	
 	System.out.println(phone+first+second+third+bag_num+trash_type+imsi_date);
 	SimpleDateFormat transFormat = new SimpleDateFormat("DD/MM/YYYY HH:mm");
+	
 	Date date1 = transFormat.parse(imsi_date);
+	cal.setTime(date1);
+	cal.add(Calendar.YEAR,1);
+	java.sql.Date date2=new java.sql.Date(cal.getTimeInMillis());
+	System.out.println(date2);
 	java.sql.Date date=new java.sql.Date(date1.getTime());
 	
 	//CustomerApplyVO vo=new CustomerApplyVO(phone,first,second,third,Integer.parseInt(bag_num)

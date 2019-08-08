@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	
+
 <!DOCTYPE html>
 <!-- Modal -->
 <div class="modal fade" id="customer_apply_one_modal" role="dialog">
@@ -86,9 +86,11 @@
 					<div class="row">
 						<div class="col-xs-4 gul">수거시간</div>
 						<div class="col-xs-4 gul">
-							<div class="form-control-wrapper">
-								<input type="text" id="date-fr" class="form-control floating-label" value="09/08/2019 08:00" placeholder="dd/mm/yyyy hh:mm">
-							</div>
+							<div class="input-group date">
+
+            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+
+        </div>
 					</div>
 
 					</div>

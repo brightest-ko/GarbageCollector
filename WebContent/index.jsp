@@ -28,8 +28,34 @@
 
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
-	
-	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script src="/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+
+        </script>
+          <script type='text/javascript'>
+
+    $(function(){
+
+        $('.input-group.date').datepicker({
+
+            calendarWeeks: false,
+
+            todayHighlight: true,
+
+            autoclose: true,
+
+            format: "yyyy/mm/dd",
+
+            language: "kr"
+
+        });
+
+    });
+
+    </script>
 	<script>
 	
 	function myFunction() {
@@ -134,6 +160,11 @@
  <script>
  $(document).ready(function()
 			{
+	 $('#dateRangePicker').datepicker({
+		 format: "yyyy-mm-dd",
+		 language: "kr"
+		 });
+	 
 				$('#date').bootstrapMaterialDatePicker
 				({
 					time: false,
@@ -234,7 +265,7 @@ window.onload=function(){
 				else
 					imsi_num=2000;
 				var price=(bag_num*imsi_num);
-				var date=$('#date-fr').val();
+				var date=$('#dateRangePicker').val();
 				
 				var url="<%=ctxPath%>/customer/customer_test.jsp?temp=temp&one_phone="+phone+"&first="+first+"&second="+second+
 					"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date+"&price="+price;
@@ -282,7 +313,6 @@ window.onload=function(){
 				$("#customer_choose").modal("hide");
 				
 	    	});
-			$('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
 		//var go_list=document.getElementById("go_list");
 	});
 		
