@@ -1,6 +1,6 @@
 package review;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ReviewVO {
 	public Integer getSerialNo() {

@@ -17,6 +17,7 @@ public class CtrlUpdate2 implements Controller{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) 
 			throws Exception {
+		String ctxPath =request.getContextPath();
 		System.out.println("업뎃 전");
 
 		System.out.println("업뎃 시작");
@@ -38,7 +39,6 @@ public class CtrlUpdate2 implements Controller{
 		//MultipartRequest 쓰면 request.getParameter 못쓴다 .
 		// 대신 MultipartRequest 안의 getParameter을 쓴다.
 		// 한글처리도 내부에서 해주더라(UTF-8로 설정해서)
-		String title = mpr.getParameter("title");
 		
 		
 		System.out.println(mpr.getParameter("certify_helperID"));
@@ -48,7 +48,7 @@ public class CtrlUpdate2 implements Controller{
 		CertifyVO vo = new CertifyVO();
 		System.out.println("mpr get param certify no"+mpr.getParameter("certify_serialNo"));
 		 vo.setSerialNo(Util.parseInt(mpr.getParameter("certify_serialNo")));
-		 System.out.println("serialNo after set: " + vo.getSerialNo());
+		 System.out.println("serialNo after set:" + vo.getSerialNo());
 		 vo.setHelperID("certify_helperID");
 		 
 		 vo.setDetails(details);
@@ -59,6 +59,6 @@ public class CtrlUpdate2 implements Controller{
 		 CertifyDAO dao = new CertifyDAO_OracleImpl();
 		 System.out.println(vo.getDetails());
 		 dao.update(vo);
-		 return "redirect:/certify/certify_list.jsp";
+		 return "redirect:/matching/matching_acceptance.jsp";
 	}
 }

@@ -1,8 +1,7 @@
 package helper;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
@@ -17,30 +16,31 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
 
             System.out.println("oracle Impl 왔따");
 
-            String sql = "insert into helper values (?, ?, ?, ?, ?" +
-                    ", ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into helper values (?, ?, ?, ?, ?, ?" +
+                    ", ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
 
             stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, vo.getHelperId());
-            stmt.setString(2, vo.getHelper_Phone());
-            stmt.setString(3, vo.getHelper_Name());
-            stmt.setString(4, vo.getSex());
-            stmt.setString(5,vo.getBank_Name());
-            stmt.setString(6, vo.getAccount());
-            stmt.setString(7, vo.getAccount_Holder());
-            stmt.setString(8, vo.getWish_Addr_Front1());
-            stmt.setString(9, vo.getWish_Addr_Detail1());
-            stmt.setString(10, vo.getWish_Addr_Front2());
-            stmt.setString(11, vo.getWish_Addr_Detail2());
-            stmt.setString(12, vo.getWish_Addr_Front3());
-            stmt.setString(13, vo.getWish_Addr_Detail3());
-            stmt.setString(14, vo.getWant_to_say());
+            stmt.setString(2, vo.getHelperPw());
+            stmt.setString(3, vo.getHelperPhotoOfn());
+            stmt.setString(4, vo.getHelperPhotoFsn());
+            stmt.setString(5, vo.getHelper_Phone());
+            stmt.setString(6, vo.getHelper_Name());
+            stmt.setString(7, vo.getSex());
+            stmt.setString(8,vo.getBank_Name());
+            stmt.setString(9, vo.getAccount());
+            stmt.setString(10, vo.getAccount_Holder());
+            stmt.setString(11, vo.getWish_Addr_Front1());
+            stmt.setString(12, vo.getWish_Addr_Detail1());
+            stmt.setString(13, vo.getWish_Addr_Front2());
+            stmt.setString(14, vo.getWish_Addr_Detail2());
+            stmt.setString(15, vo.getWish_Addr_Front3());
+            stmt.setString(16, vo.getWish_Addr_Detail3());
+            stmt.setString(17, vo.getWant_to_say());
 
             stmt.executeUpdate();
-            System.out.println(vo.getHelperId());
-
-            stmt.executeUpdate(sql);
+            //stmt.executeUpdate(sql);
 
         } catch (Exception e) {
         } finally {
@@ -49,10 +49,6 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
         }
     }
 
-    @Override
-    public List<HelperVO> findAll() throws Exception {
-        return null;
-    }
 }
 
 

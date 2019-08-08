@@ -12,7 +12,7 @@ import customer.CustomerApplyVO;
 
 
 @RequestMapping("/matching_suggetion_list.do")
-public class CtrlListSuggetion implements Controller{
+public class CtrlSuggetionList implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -21,7 +21,7 @@ public class CtrlListSuggetion implements Controller{
 		
 		HttpSession session = request.getSession();
 		String auth ="helper";//= null;
-		String helperID ="gobaksa4@naver.com";//= null;
+		String helperID ="gobakse5@naver.com";//= null;
 		try{
 //         auth = (String)session.getAttribute("auth");
 //         helperID =  (String)session.getAttribute("id");
@@ -35,10 +35,8 @@ public class CtrlListSuggetion implements Controller{
 		MatchingDAO dao = new MatchingDAO_OracleImpl();
 		List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
 
-		if(rl.size() > 0){
-			System.out.println("제안 추천 리스트 " + rl.toString());
-			request.setAttribute("rl", rl);
-		}
+//		System.out.println("제안 추천 리스트 " + rl.toString());
+		request.setAttribute("rl", rl);
 
 		System.out.println("/matching_suggestion_list.do 완료");
 		return "/matching/matching_suggetion.jsp";

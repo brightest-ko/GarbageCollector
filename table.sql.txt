@@ -1,0 +1,213 @@
+drop table helper CASCADE CONSTRAINTS PURGE;
+create table helper(
+	"HELPERID" VARCHAR2(25 BYTE), 
+	helper_password varchar(20), 
+	"HELPER_PHONE" VARCHAR2(20 BYTE), 
+	"HELPER_NAME" VARCHAR2(25 BYTE), 
+	"SEX" VARCHAR2(6 BYTE), 
+	"BANK_NAME" VARCHAR2(18 BYTE), 
+	"ACCOUNT" VARCHAR2(20 BYTE), 
+	"ACCOUNT_HOLDER" VARCHAR2(25 BYTE), 
+	"WISH_ADDR_FIRST1" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND1" VARCHAR2(45 BYTE), 
+	"WISH_ADDR_FIRST2" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND2" VARCHAR2(45 BYTE), 
+	"WISH_ADDR_FIRST3" VARCHAR2(40 BYTE), 
+	"WISH_ADDR_SECOND3" VARCHAR2(45 BYTE), 
+	"WANT_TO_SAY" VARCHAR2(300 BYTE), 
+	"HELPER_PHOTO_OFN" VARCHAR2(100 BYTE), 
+	"HELPER_PHOTO_FSN" VARCHAR2(100 BYTE)
+);
+alter table helper add constraint helper_id_pk primary key (helperID);
+
+Insert into HR.HELPER (HELPERID,helper_password,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('unizzang@sleep.com','123','01025888421','유니짱','여성','농협','352313459900','유니짱','제주시','상도동','제주시','이도1동',null,null,'사랑해 희조야','ofn','fsn');
+Insert into HR.HELPER (HELPERID,helper_password,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse4@naver.com','123','01094589584','희조짱','여성','농협','352313459900','유니짱','제주시','상도동',null,null,null,null,'사랑해 희조야','ofn','fsn');
+Insert into HR.HELPER (HELPERID,helper_password,HELPER_PHONE,HELPER_NAME,SEX,BANK_NAME,ACCOUNT,ACCOUNT_HOLDER,WISH_ADDR_FIRST1,WISH_ADDR_SECOND1,WISH_ADDR_FIRST2,WISH_ADDR_SECOND2,WISH_ADDR_FIRST3,WISH_ADDR_SECOND3,WANT_TO_SAY,HELPER_PHOTO_OFN,HELPER_PHOTO_FSN) values ('gobakse5@naver.com','123','01094589584','희조5짱','여성','농협','352313459900','유니짱','제주시','이도1동',null,null,null,null,'사랑해 희조야','ofn','fsn');
+
+
+
+drop table customer CASCADE CONSTRAINTS PURGE;
+create table customer(
+	customer_phone varchar2(20) not null, 
+	customer_addr_first varchar2(40) not null ,
+	customer_addr_second varchar2(45) not null,
+	customer_addr_third varchar2(45) not null
+);
+
+alter table customer add constraint customer_phone_pk primary key (customer_phone);
+Insert into customer (CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD) values ('01048889999','제주시','상도동','고문리');
+--Insert into customer (CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD) values ('01094589584','제주시','이도1동','제주시청 앞');
+
+
+drop table customer_apply CASCADE CONSTRAINTS PURGE;
+create table customer_apply(
+    serialNo number not null,
+	customer_phone varchar2(20) not null,
+	customer_addr_first varchar2(40) not null,
+	customer_addr_second varchar2(45) not null,
+	customer_addr_third varchar2(45) not null,
+	bag_num number not null,
+	trash_type  number not null,
+	wanted_time date not null,
+	price number,
+	card_num varchar2(20),
+	helperID  varchar2(25),
+	customer_apply_day date,
+	certify_status number(1),
+	review_status number(1)
+); 
+
+alter table customer_apply add constraint ca_pk primary key (serialNo);
+alter table customer_apply add constraint ca_customer_phone_fk foreign key (customer_phone) references customer (customer_phone);
+alter table customer_apply add constraint ca_helperID_fk foreign key (helperID) references helper (helperID);
+
+drop sequence customer_apply_seq;
+create sequence customer_apply_seq start with 1 increment by 1;
+
+
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (customer_apply_seq.nextval,'01048889999','제주시','상도동','고문리',2,1,to_date('19/08/09','RR/MM/DD'),2000,'111123-135311',null,sysdate,0,0);
+
+--기존 등록 회원
+select count(*) from customer where customer_phone = '01048889999';
+--  COUNT(*)
+------------
+--         1
+
+update customer set customer_addr_first='제주시', customer_addr_second='이도1동' , CUSTOMER_ADDR_THIRD = '제주시청 옆' where CUSTOMER_PHONE = '01048889999';
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (customer_apply_seq.nextval,'01048889999','제주시','이도1동','제주시청 옆',2,1,to_date('19/08/10','RR/MM/DD'),2000,'111123-135311',null,sysdate,0,0);
+
+--신규 회원
+select count(*) from customer where customer_phone = '01094589584';
+--  COUNT(*)
+------------
+--         0
+insert into customer(customer_phone, customer_addr_first, customer_addr_second, customer_addr_third) values ('01094589584','제주시','이도1동','제주시청 앞');
+Insert into HR.CUSTOMER_APPLY (SERIALNO,CUSTOMER_PHONE,CUSTOMER_ADDR_FIRST,CUSTOMER_ADDR_SECOND,CUSTOMER_ADDR_THIRD,BAG_NUM,TRASH_TYPE,WANTED_TIME,PRICE,CARD_NUM,HELPERID,CUSTOMER_APPLY_DAY,CERTIFY_STATUS,REVIEW_STATUS) values (customer_apply_seq.nextval,'01094589584','제주시','이도1동','제주시청 앞',2,1,to_date('19/08/10','RR/MM/DD'),2000,'111123-135311',null,sysdate,0,0);
+
+--가장 최근 넣은 seralNo가 3
+select serialNo from customer_apply where customer_phone = '01094589584' order by customer_apply_day desc;
+--  SERIALNO
+------------
+--         3
+
+
+
+select * from helper;
+--HELPERID                  HELPER_PHONE         HELPER_NAME               SEX    BANK_NAME          ACCOUNT              ACCOUNT_HOLDER            WISH_ADDR_FIRST1                         WISH_ADDR_SECOND1                             WISH_ADDR_FIRST2                         WISH_ADDR_SECOND2                             WISH_ADDR_FIRST3                         WISH_ADDR_SECOND3                             WANT_TO_SAY                                                                                                                                                                                                                                                                                                  HELPER_PHOTO_OFN                                                                                     HELPER_PHOTO_FSN                                                                                    
+--------------------------- -------------------- ------------------------- ------ ------------------ -------------------- ------------------------- ---------------------------------------- --------------------------------------------- ---------------------------------------- --------------------------------------------- ---------------------------------------- --------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ ---------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------
+--unizzang@sleep.com        01025888421          유니짱                    여성   농협               352313459900         유니짱                    제주시                                   상도동                                        제주시                                   이도1동                                                                                                                              사랑해 희조야                                                                                                                                                                                                                                                                                                ofn                                                                                                  fsn                                                                                                 
+--gobakse4@naver.com        01094589584          희조짱                    여성   농협               352313459900         유니짱                    제주시                                   상도동                                                                                                                                                                                                                      사랑해 희조야                                                                                                                                                                                                                                                                                                ofn                                                                                                  fsn                                                                                                 
+--gobakse5@naver.com        01094589584          희조5짱                   여성   농협               352313459900         유니짱                    제주시                                   이도1동                                                                                                                                                                                                                     사랑해 희조야                                                                                                                                                                                                                                                                                                ofn                                                                                                  fsn                                                                                                 
+
+select * from customer;
+--CUSTOMER_PHONE       CUSTOMER_ADDR_FIRST                      CUSTOMER_ADDR_SECOND                          CUSTOMER_ADDR_THIRD                          
+---------------------- ---------------------------------------- --------------------------------------------- ---------------------------------------------
+--01048889999          제주시                                   이도1동                                       제주시청 옆                                  
+--01094589584          제주시                                   이도1동                                       제주시청 앞                                  
+
+
+select * from customer_apply;
+--  SERIALNO CUSTOMER_PHONE       CUSTOMER_ADDR_FIRST                      CUSTOMER_ADDR_SECOND                          CUSTOMER_ADDR_THIRD                              BAG_NUM TRASH_TYPE WANTED_T      PRICE CARD_NUM             HELPERID                  CUSTOMER CERTIFY_STATUS REVIEW_STATUS
+------------ -------------------- ---------------------------------------- --------------------------------------------- --------------------------------------------- ---------- ---------- -------- ---------- -------------------- ------------------------- -------- -------------- -------------
+--         1 01048889999          제주시                                   상도동                                        고문리                                                 2          1 19/08/09       2000 111123-135311                                  19/08/07              0             0
+--         2 01048889999          제주시                                   이도1동                                       제주시청 옆                                            2          1 19/08/10       2000 111123-135311                                  19/08/07              0             0
+--         3 01094589584          제주시                                   이도1동                                       제주시청 앞                                            2          1 19/08/10       2000 111123-135311                                  19/08/07              0             0
+
+select helperID from helper where (wish_addr_first1 = '제주시' and wish_addr_second1 ='이도1동') or (wish_addr_first2 = '제주시' and wish_addr_second2 ='이도1동')or (wish_addr_first3 = '제주시' and wish_addr_second3 ='이도1동');
+--HELPERID                 
+---------------------------
+--unizzang@sleep.com
+--gobakse5@naver.com
+
+
+--제안 수락 table
+drop table matching CASCADE CONSTRAINTS PURGE;
+create table matching(
+	serialNo number(8) not null,
+	helperID varchar2(25),
+	suggestion number(1) not null,
+	acceptance number(1) not null
+);
+
+
+alter table matching add constraint matching_pk primary key (serialNo, helperID );
+alter table matching add constraint matching_serialNo_fk foreign key (serialNo) references customer_apply (serialNo);
+alter table matching add constraint matching_helperID_fk foreign key (helperID) references helper (helperID);
+   
+
+insert into matching(serialNo,helperID,suggestion,acceptance) values (1,'unizzang@sleep.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (1,'gobakse4@naver.com',0,0);   
+insert into matching(serialNo,helperID,suggestion,acceptance) values (2,'unizzang@sleep.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (2,'gobakse5@naver.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (3,'unizzang@sleep.com',0,0);
+insert into matching(serialNo,helperID,suggestion,acceptance) values (3,'gobakse5@naver.com',0,0);
+
+select * from matching;
+
+select * from customer_apply where serialNo in (select serialNo from matching where helperID = 'gobakse5@naver.com' and SUGGESTION =0 and ACCEPTANCE =0);
+
+
+
+
+--후기
+drop table review CASCADE CONSTRAINTS PURGE;
+drop table review;
+create table review(
+serialNo number not null,
+helperID varchar2(25) not null,
+review_title varchar2(60) not null, 
+rating number(5,1) not null, 
+clean_place_addr_front varchar2(95),
+review_content varchar2(900), 
+review_day date not null 
+);
+alter table review add constraint review_pk primary key (serialNo, helperID );
+ALTER TABLE review ADD CONSTRAINT review_matching_fk FOREIGN KEY( serialNo,helperID) REFERENCES matching (serialNo,helperID);
+
+
+
+--인증
+drop table certify  CASCADE CONSTRAINTS PURGE;
+create table certify(
+	serialNo number not null, 
+helperID varchar2(25) not null, 
+	details varchar2(300) not null,
+	housePlace varchar2(80) not null,
+	certify_photo_ofn varchar2(100) not null,
+	certify_photo_fsn varchar2(100) not null,
+certify_day date not null 
+);
+alter table certify add constraint certify_pk primary key (serialNo, helperID );
+ALTER TABLE certify ADD CONSTRAINT certify_matching_fk FOREIGN KEY( serialNo,helperID) REFERENCES matching (serialNo,helperID);
+
+
+
+--지도
+drop table map CASCADE CONSTRAINTS PURGE;
+create table map(
+	mapNo number not null,
+	map_addr_front varchar2(80) not null,
+	map_addr_detail varchar2(80)
+);
+alter table map add constraint map_no_pk  primary key ( mapNo);
+
+drop sequence map_no_seq;
+create sequence map_no_seq start with 1 increment by 1 maxvalue 10000 minvalue 1 nocycle;
+
+
+insert into map values (map_no_seq .NEXTVAL,'이도이동 1955-4','한마음병원 남측 탐나마트 인근(이도이동 1955-4인근)');
+insert into map values (map_no_seq .NEXTVAL,'신설로9길 2-2','한마을병원서쪽 굿모닝케어 인근(무료주차장)');
+insert into map values (map_no_seq .NEXTVAL,'신설동길 66 ','신설동길 66 (연북로 동측(신설동로 교차지점)');
+insert into map values (map_no_seq .NEXTVAL,'오복2길 27','오복2길 27(이도2동950-1장미2차A맞은편)');
+insert into map values (map_no_seq .NEXTVAL,'남광북3길 18-15','남광북3길 18-15(경원빌라 맞은편 공원 동측)');
+insert into map values (map_no_seq .NEXTVAL,'이도이동 1064','일출마트 서측 도로상');
+insert into map values (map_no_seq .NEXTVAL,'이도이동 1993-1','이도이동 1993-1(남광초등학교 서측 주차장)');
+insert into map values (map_no_seq .NEXTVAL,'남광로2길 7','남광로2길 7(이도2동 1992-7소방서 사거리 LPG충전소 동남측)');
+insert into map values (map_no_seq .NEXTVAL,'이도2동 1986-5','이도2동 1986-5(21세기 병원 동측 공영주차장 84번 옆)');
+insert into map values (map_no_seq .NEXTVAL,'남광로 2길 49-27','남광로 2길 49-27(탐라중학교 서측 옛 황금갈비 무료주차장 옆)');
+insert into map values (map_no_seq .NEXTVAL,'남광로4길 33','남광로4길 33(중앙여고 동쪽 주차장)');
+insert into map values (map_no_seq .NEXTVAL,'신설로 16 ','신설로 16 (한마음공원 서측 인도변)');
+insert into map values (map_no_seq .NEXTVAL,'신설로2길 9 ','신설로2길 9 (혜성무지개 타운 맞은편 무료주차장)');
+insert into map values (map_no_seq .NEXTVAL,'신설로6길 2-11','신설로6길 2-11(이도농협 동측 주차장)');
+insert into map values (map_no_seq .NEXTVAL,'구남로6길55-1 ','구남로6길55-1 (광명광고 북측 주차장)');
+insert into map values (map_no_seq .NEXTVAL,'구남동 6길 31','구남동 6길 31 이도어린이집 인근 공원 앞');
