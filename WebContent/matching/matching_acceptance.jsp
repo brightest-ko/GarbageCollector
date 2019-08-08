@@ -77,7 +77,7 @@
                       <td>Otto</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo.serialNo }">인증하기</a></td>
+                      <td><a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?123=${vo.serialNo }">인증하기</a></td>
                     </tr>
                     </l:forEach>
                     <tr>
