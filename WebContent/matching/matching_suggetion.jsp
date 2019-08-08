@@ -2,8 +2,7 @@
 	pageEncoding="utf-8"%>
 <%
 	String ctxPath = request.getContextPath();
-%>
-<%--
+
 	System.out.println("matching_suggestion.jsp");
 	String ctxPath = request.getContextPath();
 	String auth ="helper";//= null;
@@ -16,7 +15,7 @@
 	}catch(Exception e){
 		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
 	}
---%>
+%>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
