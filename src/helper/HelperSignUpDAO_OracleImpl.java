@@ -81,6 +81,7 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             else
                 return false;
         } catch (Exception e) {
+            System.out.println(e);
             throw new ServletException(e);
         } finally {
             if ( rs != null ) stmt.close();

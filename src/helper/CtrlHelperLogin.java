@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 @RequestMapping("/helper/login.do")
-public class CtrlLogin implements Controller {
+public class CtrlHelperLogin implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
@@ -23,15 +23,14 @@ public class CtrlLogin implements Controller {
         HelperSignUpDAO dao = new HelperSignUpDAO_OracleImpl();
         if (dao.checkLoginInfo(id, password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("auth", "helper");
+            session.setAttribute("auth", "helperId");
             session.setAttribute("helperId", id);
             result = "SUCCESS";
         }
         else {
-
             result = "FAIL";
         }
-        System.out.println("44444444");
+
         System.out.println(result);
         return "redirect:/index.do";
     }
