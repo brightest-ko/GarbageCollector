@@ -72,8 +72,8 @@
             <form method="post" action="login.do">
                 <div class="form-group">
                     <h3> 대행 </h3><hr>
-                    <label for="helperId"> 아이디 </label>
-                    <input type="text" class="form-control" placeholder="Email(ID)을 입력하세요."  id="helperId" name="helperId">
+                    <label for="helperID"> 아이디 </label>
+                    <input type="text" class="form-control" placeholder="Email(ID)을 입력하세요."  id="helperID" name="helperID">
                 </div>
                 <div class="form-group">
                     <label for="pw">비밀번호</label>

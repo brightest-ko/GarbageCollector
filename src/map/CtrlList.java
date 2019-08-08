@@ -19,6 +19,8 @@ public class CtrlList implements Controller{
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("auth"));
         System.out.println(session.getAttribute("helperId"));
+
+
 	    String l = null;
 
         String search_place= request.getParameter("search_place");

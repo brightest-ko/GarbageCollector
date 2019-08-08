@@ -36,6 +36,7 @@ public class CtrlApplyList implements Controller{
 		CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
 		List<CustomerApplyVO> rl=dao.findAll1(customer_phone);
 		request.setAttribute("rl", rl);
+		System.out.println("rl : "+rl);
 		
 
 		ReviewDAO dao2 =new ReviewDAO_Impl();

@@ -2,6 +2,18 @@
 	pageEncoding="utf-8"%>
 <%
 	String ctxPath = request.getContextPath();
+
+	String auth = null;
+	String id = null;
+	try{
+		auth = (String)session.getAttribute("auth");
+		id =  (String)session.getAttribute("id");
+		if(auth==null||!auth.equals("helper")||id==null||id.equals("")){
+			response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
+		}
+	}catch(Exception e){
+		response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
+	}
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
