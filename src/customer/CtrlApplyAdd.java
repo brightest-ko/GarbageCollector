@@ -18,8 +18,7 @@ public class CtrlApplyAdd implements Controller{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("���༭�񽺽�û");
 		System.out.println("/customer_apply_add.do");
-		
-		
+
 		//NOTE: �α��� ��ɵǸ� �����ϱ�
 		HttpSession session = request.getSession();
 		String auth ="helper";//= null;
@@ -34,15 +33,14 @@ public class CtrlApplyAdd implements Controller{
 			response.sendRedirect("loginform.jsp"); //login.jsp�? �?�?
 		}
 
-		
 		//NOTE: getParameter�� CustomerApplyVO vo ä���ֱ�
 		CustomerApplyVO vo = new CustomerApplyVO();
 		CustomerApplyDAO dao = new CustomerApplyDAO_OracleImpl();
 		dao.add(vo);
-		
+
 
 		System.out.println("/customer_apply_add.do");
-		
+
 		return "redirect:/customer_apply_list.do";
 	}
 

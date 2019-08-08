@@ -13,14 +13,16 @@ import java.util.List;
 
 public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
-	@Override
-	public void add(CustomerApplyVO vo) throws Exception {
 
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		PreparedStatement stmt1=null;
-		ResultSet rs = null;
-		int r = -1;
+    @Override
+    public void add(CustomerApplyVO vo) throws Exception {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        PreparedStatement stmt1=null;
+        ResultSet rs = null;
+        int r = -1;
+
       /*
    private Integer serialNo;
    private String customer_phone;
@@ -144,19 +146,21 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 
 	@Override
-	public List<CustomerApplyVO> findAll_nohelper() throws Exception {
-
+	public List<CustomerApplyVO> findAll1(String customer_phone) throws Exception {
+		System.out.println(customer_phone);
 		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
 		Connection conn=null;
-		Statement stmt=null;
+		PreparedStatement stmt=null;
 		ResultSet rs=null;
 
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			stmt=conn.createStatement();
-			String sql="select * from customer_apply where review_status =0 order by SerialNo, customer_apply_day desc";
-			rs=stmt.executeQuery(sql);
+			String sql="select * from customer_apply where customer_phone = ? and review_status =0 order by SerialNo, customer_apply_day desc";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, customer_phone);
+			rs=stmt.executeQuery();
+			System.out.println("rs "+rs.toString());
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt(1));
@@ -192,19 +196,20 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 
 	@Override
-	public List<CustomerApplyVO> findAll_helper() throws Exception {
+	public List<CustomerApplyVO> findAll_helper(String customer_phone) throws Exception {
 
 		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
 		Connection conn=null;
-		Statement stmt=null;
+		PreparedStatement stmt=null;
 		ResultSet rs=null;
 
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			stmt=conn.createStatement();
-			String sql="select * from customer_apply where helperID is not null";
-			rs=stmt.executeQuery(sql);
+			String sql="select * from customer_apply where  customer_phone = ? helperID is not null";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, customer_phone);
+			rs=stmt.executeQuery();
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt(1));
@@ -237,6 +242,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		return ls;
 
 	}
+	
 	@Override
 	public void update(String phone,int price,String card_num) throws Exception
 	{
@@ -280,4 +286,6 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 	}
 	}
+
 }
+
