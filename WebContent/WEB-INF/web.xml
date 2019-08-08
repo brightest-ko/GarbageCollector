@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>GarbageCollector</display-name>
-  <servlet>
-	<servlet-name>mvc_do</servlet-name>
-	<servlet-class>common.DispatcherServlet</servlet-class>
-    <init-param>
-    	<param-name>controllers</param-name>
-        <param-value>
-        	map.CtrlList,
-        	map.CtrlAdd2,
-
-        	certify.CtrlList,
-            certify.CtrlAdd2,
-            certify.CtrlUpdate2,
-            certify.CtrlFind2,
-            certify.CtrlInfo2,
-
-            
-        	matching.CtrlSuggetionList,
-        	matching.CtrlSuggetionAdd,
-        	matching.CtrlSuggetionList2,
-        	matching.CtrlAcceptanceList,
-        	
-        	customer.CtrlAddApply,
-
-            review.CtrlList,
-            review.CtrlInsert,
-            review.CtrlDel,
-            review.CtrlModify,
-
-            helper.CtrlAdd,
-            helper.CtrlAdd_view,
-        </param-value>
-	</init-param>
-  </servlet>
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+    <display-name>GarbageCollector</display-name>
     <servlet>
-        <servlet-name>checkLogin</servlet-name>
-        <servlet-class>helper.LoginServlet</servlet-class>
+        <servlet-name>mvc_do</servlet-name>
+        <servlet-class>common.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>controllers</param-name>
+            <param-value>
+                map.CtrlList,
+                map.CtrlAdd2,
+
+                certify.CtrlList,
+                certify.CtrlAdd2,
+                certify.CtrlUpdate2,
+                certify.CtrlFind2,
+                certify.CtrlInfo2,
+
+
+                matching.CtrlSuggetionList,
+                matching.CtrlSuggetionAdd,
+                matching.CtrlSuggetionList2,
+                matching.CtrlAcceptanceList,
+
+                customer.CtrlAddApply,
+
+                review.CtrlList,
+                review.CtrlInsert,
+                review.CtrlDel,
+                review.CtrlModify,
+
+                helper.CtrlAdd,
+                helper.CtrlAdd_view,
+                helper.CtrlLogin
+                </param-value>
+        </init-param>
     </servlet>
-  
-  <servlet-mapping>
-	<servlet-name>mvc_do</servlet-name>
-	<url-pattern>*.do</url-pattern>
-  </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>checkLogin</servlet-name>
-        <url-pattern>checkLogin</url-pattern>
+        <servlet-name>mvc_do</servlet-name>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 </web-app>
