@@ -16,19 +16,18 @@ public class ReviewDAO_Impl implements ReviewDAO {
 		
 		List<ReviewVO> ls = new ArrayList<ReviewVO>();
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		try{
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+			stmt = conn.createStatement();
+			String sql = "select serialno, helperid, review_title, review_day, rating, clean_place_addr_front, review_content from review order by serialno desc";
 			
-			String sql = "select serialno, helperid, review_title, review_day, rating, clean_place_addr_front, review_content from review"
-					+ " where order by serialno desc";
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1,customer_phone);
-			rs = stmt.executeQuery();
+			rs = stmt.executeQuery( sql );
+		
 			while( rs.next() ) {
 				ReviewVO vo = new ReviewVO();
 				
@@ -42,6 +41,7 @@ public class ReviewDAO_Impl implements ReviewDAO {
 				ls.add(vo);
 				System.out.println("test2");
 			}
+			System.out.println("ds");
 		}
 		catch ( Exception e ) { System.out.println("error!");}
 		finally{
@@ -54,7 +54,7 @@ public class ReviewDAO_Impl implements ReviewDAO {
 	}
 
 	@Override
-	public List<ReviewVO> find(ReviewVO vo) throws Exception { // 아직 미구현. 준비중
+	public List<ReviewVO> find() throws Exception { // 아직 미구현. 준비중
 		/*Connection conn = null;
 		PreparedStatement stmt = null;
 		try{
