@@ -150,7 +150,7 @@ input {
 	<%@include file="/header.jsp"%>
 	<main>
 
-	<form method="POST" action="<%=ctxPath%>/helper_add.do">
+	<form method="POST" action="<%=ctxPath%>/helper_add.do" enctype="multipart/form-data">
 		<div class="container form-group">
 			<h2>대행 회원 가입</h2>
 			<p>회원 가입을 위해 정보를 입력해 주세요.</p>
