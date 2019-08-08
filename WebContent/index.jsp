@@ -80,6 +80,9 @@
 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
     <style>
+    .left carousel-control {
+	    width: 1%
+	}
     .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
     .ui-timepicker-div dl { text-align: left; }
     .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
@@ -297,27 +300,27 @@ window.onload=function(){
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="/GarbageCollector/assets/img/monday.png" alt="monday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/monday.png" alt="monday" style="width: 100%;">
 				</div>
 
 				<div class="item">
-					<img src="/GarbageCollector/assets/img/tuesday.png" alt="tuesday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/tuesday.png" alt="tuesday" style="width: 100%;">
 				</div>
 
 				<div class="item">
-					<img src="/GarbageCollector/assets/img/wenseday.png" alt="wenseday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/wenseday.png" alt="wenseday" style="width: 100%;">
 				</div>
 				<div class="item">
-					<img src="/GarbageCollector/assets/img/thursday.png" alt="thursday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/thursday.png" alt="thursday" style="width: 100%;">
 				</div>
 				<div class="item">
-					<img src="/GarbageCollector/assets/img/friday.png" alt="friday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/friday.png" alt="friday" style="width: 100%;">
 				</div>
 				<div class="item">
-					<img src="/GarbageCollector/assets/img/saturday.png" alt="saturday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/saturday.png" alt="saturday" style="width: 100%;">
 				</div>
 				<div class="item">
-					<img src="/GarbageCollector/assets/img/sunday.png" alt="sunday" style="width: 40%;">
+					<img src="/GarbageCollector/assets/img/sunday.png" alt="sunday" style="width: 100%;">
 				</div>
 			</div>
 
@@ -346,7 +349,7 @@ window.onload=function(){
 					<h4>
 						<b>One</b>
 					</h4>
-					<p>집에 쌓인 쓰레기를 모아둔다.</p>
+					<p style="padding-top: 23px; padding-left: 17px">버릴 쓰레기를 모아둔다.</p>
 				</div>
 				<div class="col-lg-3 col-6 p-4">
 					<img src="/GarbageCollector/assets/img/usage_custom.png"
@@ -354,7 +357,7 @@ window.onload=function(){
 					<h4>
 						<b>Two</b>
 					</h4>
-					<p>개인정보와 주소를 입력하여 신청한다.</p>
+					<p style="padding-top: 23px; padding-left: 9px;">신청정보를 입력하여 신청한다.</p>
 				</div>
 				<div class="col-lg-3 col-6 p-4">
 					<img src="/GarbageCollector/assets/img/usage_helper.png"
@@ -362,7 +365,7 @@ window.onload=function(){
 					<h4>
 						<b>Three</b>
 					</h4>
-					<p>신청을 목록중 마음에 드는 대행을 선택한다.</p>
+					<p style="padding-top: 13px; padding-left: 9px;">신청결과를 조회하여 마음에 드는 대행을 선택한다.</p>
 				</div>
 				<div class="col-lg-3 col-6 p-4">
 					<img src="/GarbageCollector/assets/img/usage_clean.png" width="100"
@@ -370,7 +373,7 @@ window.onload=function(){
 					<h4>
 						<b>Four</b>
 					</h4>
-					<p>대행이 정해진 시간에 쓰레기를 수거해 클린하우스 또는 재활용 도움센터에 가서 분리수거를 한다.</p>
+					<p style="padding-left: 11px;">대행이 정해진 시간에 쓰레기를 수거해 클린하우스 또는 재활용 도움센터에 가서 분리수거를 한다.</p>
 				</div>
 			</div>
 		</div>
