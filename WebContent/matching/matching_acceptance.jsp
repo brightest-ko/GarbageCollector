@@ -94,7 +94,7 @@
                       <td>Thornton</td>
                       <td>Mark</td>
                       <td>Otto</td>
-                      <td><a class="btn btn-default"  href="#" >인증확인</a></td>
+                      <td><a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_info2.do?SerailNo=9123" >인증확인</a></td>
                     </tr>
                   </tbody>
                 </table>
