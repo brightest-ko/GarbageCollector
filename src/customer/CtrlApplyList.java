@@ -40,7 +40,7 @@ public class CtrlApplyList implements Controller{
 		
 
 		ReviewDAO dao2 =new ReviewDAO_Impl();
-		List<ReviewVO> rl_review=dao2.viewDetail(customer_phone);
+		List<ReviewVO> rl_review=dao2.findAll(customer_phone);
 		request.setAttribute("rl_review", rl_review);
 
 		System.out.println(rl);

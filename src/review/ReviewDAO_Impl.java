@@ -12,21 +12,23 @@ import java.util.List;
 public class ReviewDAO_Impl implements ReviewDAO {
 	
 	@Override
-	public List<ReviewVO> findAll() throws Exception {
+	public List<ReviewVO> findAll(String customer_phone) throws Exception {
 		
 		List<ReviewVO> ls = new ArrayList<ReviewVO>();
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try{
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			stmt = conn.createStatement();
 			
-			String sql = "select serialno, helperid, review_title, review_day, rating, clean_place_addr_front, review_content from review order by serialno desc";
-			rs = stmt.executeQuery( sql );
+			String sql = "select serialno, helperid, review_title, review_day, rating, clean_place_addr_front, review_content from review"
+					+ " where order by serialno desc";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1,customer_phone);
+			rs = stmt.executeQuery();
 			while( rs.next() ) {
 				ReviewVO vo = new ReviewVO();
 				
