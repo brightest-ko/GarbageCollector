@@ -4,12 +4,12 @@ customer.CustomerApplyVO"%><%
 
 	String phonet=request.getParameter("two_phone");
 	String card_numt=request.getParameter("card_num");
-	System.out.println(phonet+card_numt);
+	System.out.println("phonet :"+phonet+", card_numt :"+card_numt);
 	//CustomerApplyVO vo=new CustomerApplyVO(phone,first,second,third,Integer.parseInt(bag_num)
 	//		,Integer.parseInt(trash_type),null,0,"card","helper");
 	CustomerApplyVO vo=new CustomerApplyVO(phonet,card_numt);
 	System.out.println(vo.toString());
 	String code="OK1";
 	CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
-	dao.update(phonet,card_numt);
+	dao.update(card_numt);
 %>{code:'OK1'}

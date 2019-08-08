@@ -83,9 +83,7 @@
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
-				
-				<td><c:if test="${vo.trash_type == 0}">오늘의 재활용</c:if>
-				<c:if test="${vo.trash_type == 1}">혼합 재활용</c:if></td>
+				<td>${vo.trash_type}</td>
 				<td>${vo.wanted_time}</td>
 				
 				<td>${vo.price}</td>
@@ -99,7 +97,7 @@
 
 				</c:if>
 				<c:if test="${empty vo.helperID}">
-					<td><button class="btn btn-default" onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">대행고르기</button></td>
+					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>
 				</c:if>
 							</tr>
 						</c:forEach>
@@ -113,8 +111,8 @@
 	</div>
 	
 <c:forEach var="vo2" items="${rl}">
-	<c:if test="${not empty vo2.helperID and vo2.certify_status == 1 and vo2.review_status == 0}">
-			<%@include file="/review/review_modal_insert.jsp"%>
+	<c:if test="${not empty vo2.helperID and vo2.review_status == 1}">
+		<%@include file="/review/review_modal_insert.jsp"%>
 	</c:if>
 </c:forEach>
 <c:forEach var="vo_review" items="${rl_review}">

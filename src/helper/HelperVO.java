@@ -2,7 +2,7 @@ package helper;
 
 public class HelperVO {
     private String helperId;
-    private String helperPw;
+    private String helperPw; //db는 HELPER_PASSWORD
     private String helperPhotoOfn;
     private String helperPhotoFsn;
     private String helper_Phone;
@@ -154,6 +154,18 @@ public class HelperVO {
     public String getWant_to_say() {
         return want_to_say;
     }
+
+	@Override
+	public String toString() {
+		return "HelperVO [helperId=" + helperId + ", helperPw=" + helperPw + ", helperPhotoOfn=" + helperPhotoOfn
+				+ ", helperPhotoFsn=" + helperPhotoFsn + ", helper_Phone=" + helper_Phone + ", helper_name="
+				+ helper_name + ", sex=" + sex + ", bank_Name=" + bank_Name + ", account=" + account
+				+ ", account_Holder=" + account_Holder + ", wish_Addr_Front1=" + wish_Addr_Front1
+				+ ", wish_Addr_Detail1=" + wish_Addr_Detail1 + ", wish_Addr_Front2=" + wish_Addr_Front2
+				+ ", wish_Addr_Detail2=" + wish_Addr_Detail2 + ", wish_Addr_Front3=" + wish_Addr_Front3
+				+ ", wish_Addr_Detail3=" + wish_Addr_Detail3 + ", want_to_say=" + want_to_say + "]";
+	}
+    
 }
 
 /*

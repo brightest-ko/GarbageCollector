@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
+	
 <!DOCTYPE html>
 <!-- Modal -->
 <div class="modal fade" id="customer_apply_one_modal" role="dialog">
@@ -84,7 +84,8 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-xs-4 gul">수거시간</div>
+						<div class="col-xs-4 gul">
 							<div class="form-control-wrapper">
 								<input type="text" id="date-fr" class="form-control floating-label" value="18/03/2015 08:00" placeholder="Date de début">
 							</div>
@@ -92,26 +93,13 @@
 
 					</div>
 
-					<div class="row">
-					<div class="col-xs-4 gul">수거시간</div>
-					<div class="col-xs-8">
-						<div class="well">
-						  <div id="datetimepicker1" class="input-append date">
-						    <input data-format="dd/MM/yyyy hh:mm:ss" type="text" id="wanted_time"></input>
-						    <span class="add-on">
-						      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-						      </i>
-						    </span>
-						  </div>
-						</div>
-					</div>
-					</div>
+					
 				
 
 
 					<div class="modal-footer">
 					
-						<a data-dismiss="modal" id="one_finish" href="#customer_apply_two_modal">Click</a>
+						<a class="btn btn-success" role="button" data-dismiss="modal" id="one_finish" href="#customer_apply_two_modal">다음</a>
 					</div>
 			</div>
 		</div>

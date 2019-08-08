@@ -8,6 +8,7 @@ customer.CustomerApplyVO,java.util.Date,java.sql.*"%><%
 	String second=request.getParameter("second");
 	String third=request.getParameter("third");
 	String bag_num=request.getParameter("bag_num");
+	System.out.println("Ctrl: "+bag_num);
 	int price=Integer.parseInt(request.getParameter("price"));
 	String trash_type=request.getParameter("trash_type");
 	String imsi_date=request.getParameter("date");
@@ -19,7 +20,7 @@ customer.CustomerApplyVO,java.util.Date,java.sql.*"%><%
 	
 	//CustomerApplyVO vo=new CustomerApplyVO(phone,first,second,third,Integer.parseInt(bag_num)
 	//		,Integer.parseInt(trash_type),null,0,"card","helper");
-	CustomerApplyVO vo=new CustomerApplyVO(phone,first,second,third,1
+	CustomerApplyVO vo=new CustomerApplyVO(phone,first,second,third,Integer.parseInt(bag_num)
 			,Integer.parseInt(trash_type),date,price,"card","helper");
 	
 	System.out.println(vo.toString());

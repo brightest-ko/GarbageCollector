@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
+
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	
@@ -277,8 +276,12 @@ window.onload=function(){
 	    	});
 			$("#apply_result").click(function(){
 				$("#customer_choose").modal("hide");
+				
 	    	});
-
+			$("#apply_result1").click(function(){
+				$("#customer_choose").modal("hide");
+				
+	    	});
 			$('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
 		//var go_list=document.getElementById("go_list");
 	});

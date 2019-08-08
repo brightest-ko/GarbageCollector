@@ -11,6 +11,7 @@ import java.util.List;
 
 import common.Util;
 import customer.CustomerApplyVO;
+import helper.HelperVO;
 
 public class MatchingDAO_OracleImpl implements MatchingDAO 
 {
@@ -291,6 +292,89 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if( conn != null ) conn.close();
 		}
 		return ls;
+	}
+
+	@Override
+	public List<HelperVO> acceptance_list(int serialNo) throws Exception {
+		//���� ��û ����Ʈ
+		List<HelperVO> ls = new ArrayList<HelperVO>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+//			System.out.println("���� ��û ����Ʈ DAO");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(
+				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+
+			String sql = "select * from helper "
+					+ "where helperID in (select helperID from matching where serialNo = ? and SUGGESTION =1 and ACCEPTANCE =0)";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, serialNo);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){
+				HelperVO vo = new HelperVO();
+				vo.setHelperId(rs.getString("helperId"));
+				vo.setHelperPhotoOfn(rs.getString("helper_Photo_Ofn"));
+				vo.setHelperPhotoFsn(rs.getString("helper_Photo_Fsn"));
+				vo.setHelper_Phone(rs.getString("helper_Phone"));
+				vo.setHelper_Name(rs.getString("helper_name"));
+				vo.setSex(rs.getString("sex"));
+				vo.setBank_Name(rs.getString("bank_Name"));
+				vo.setAccount(rs.getString("account"));
+				vo.setAccount_Holder(rs.getString("account_Holder"));
+				vo.setWish_Addr_Front1(rs.getString("WISH_ADDR_FIRST1"));
+				vo.setWish_Addr_Detail1(rs.getString("WISH_ADDR_SECOND1"));
+				vo.setWish_Addr_Front2(rs.getString("WISH_ADDR_FIRST2"));
+				vo.setWish_Addr_Detail2(rs.getString("WISH_ADDR_SECOND2"));
+				vo.setWish_Addr_Front3(rs.getString("WISH_ADDR_FIRST3"));
+				vo.setWish_Addr_Detail3(rs.getString("WISH_ADDR_SECOND3"));
+				vo.setWant_to_say(rs.getString("want_to_say"));
+				System.out.println("vovo: "+vo.toString());
+				ls.add(vo);
+			}		
+			System.out.println("suggestion_list "+ls.toString());
+		}
+		catch( Exception e ){e.printStackTrace();}
+		finally {
+			if( rs != null ) rs.close();
+			if( stmt != null ) stmt.close();
+			if( conn != null ) conn.close();
+		}
+		return ls;
+	}
+
+	@Override
+	public int accept(Integer serialNo, String helperID) throws SQLException {
+		//�����ϱ�
+		int r = -1;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			System.out.println("�����ϱ� DAO");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(
+				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+
+			String sql = "update matching set acceptance = 1 where serialNo  = ? and helperID=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, serialNo);
+			stmt.setString(2, helperID);
+			r = stmt.executeUpdate();
+
+			sql = "update customer_apply set helperid = ? where serialNo=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, helperID);
+			stmt.setInt(2, serialNo);
+			r = stmt.executeUpdate();
+		}
+		catch( Exception e ){e.printStackTrace();}
+		finally {
+			if( stmt != null ) stmt.close();
+			if( conn != null ) conn.close();
+		}
+		return r;
 	}
 }
 
