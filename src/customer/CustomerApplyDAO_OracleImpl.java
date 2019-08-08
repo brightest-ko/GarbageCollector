@@ -86,9 +86,9 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			stmt.setString(4, vo.getCustomer_addr_third());
 			stmt.setInt(5, vo.getBag_num());
 			stmt.setInt(6, vo.getTrash_type());
-			java.util.Date dat=new Date();
-			java.sql.Date date=new java.sql.Date(dat.getTime());
-			stmt.setDate(7, date); //date�� ó���ϴ� ���
+			
+			
+			stmt.setDate(7,vo.getWanted_time()); //date�� ó���ϴ� ���
 			//stmt.setDate(7,null);
 
 			stmt.setInt(8, vo.getPrice());
@@ -298,7 +298,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 		
 	@Override
-	public void update(String phone,int price,String card_num) throws Exception
+	public void update(String phone,String card_num) throws Exception
 	{
 
 		Connection conn=null;
@@ -309,7 +309,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		try{
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			 String sql="update customer_apply set price=?,card_num=? where customer_phone=?";
+			 String sql="update customer_apply set card_num=? where customer_phone=?";
 			 String sql1="select count(*) from customer where customer_phone = ?";
 			 stmt1=conn.prepareStatement(sql1);
 			 stmt1.setString(1,phone);
@@ -318,9 +318,9 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			 //업데이트
 			 if(rs1.next()){
 				 System.out.println("있음");
-				 stmt.setInt(1,price);
-				 stmt.setString(2,card_num);
-				 stmt.setString(3,phone);
+				 
+				 stmt.setString(1,card_num);
+				 stmt.setString(2,phone);
 				 int a=stmt.executeUpdate();
 				 System.out.println("업데이트"+a);
 			 }

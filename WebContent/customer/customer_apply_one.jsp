@@ -83,16 +83,21 @@
 							</label>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-control-wrapper">
+								<input type="text" id="date-fr" class="form-control floating-label" value="18/03/2015 08:00" placeholder="Date de début">
+							</div>
+					</div>
 
+					</div>
 
 					<div class="row">
-
-
 					<div class="col-xs-4 gul">수거시간</div>
 					<div class="col-xs-8">
 						<div class="well">
 						  <div id="datetimepicker1" class="input-append date">
-						    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+						    <input data-format="dd/MM/yyyy hh:mm:ss" type="text" id="wanted_time"></input>
 						    <span class="add-on">
 						      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 						      </i>
@@ -101,7 +106,7 @@
 						</div>
 					</div>
 					</div>
-
+				
 
 
 					<div class="modal-footer">
@@ -138,5 +143,24 @@ input.img-button {
 	width: 70px;
 }
 </style>
+<script>
+(function(i, s, o, g, r, a, m) {
+	i['GoogleAnalyticsObject'] = r;
+	i[r] = i[r] || function() {
+		(i[r].q = i[r].q || []).push(arguments)
+	}, i[r].l = 1 * new Date();
+	a = s.createElement(o),
+		m = s.getElementsByTagName(o)[0];
+	a.async = 1;
+	a.src = g;
+	m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+ga('create', 'UA-60343429-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<link rel="stylesheet" href="<%=ctxPath%>/assets/css/bootstrap-material-datetimepicker.css" />
+<script type="text/javascript" src="<%=ctxPath%>/assets/js/bootstrap-material-datetimepicker.js">
+</script>
 <!-- DatePicker관련 js, css 다시 추가해야할 듯 잘 안됨 -->

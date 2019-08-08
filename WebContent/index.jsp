@@ -22,15 +22,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
-  <link rel="stylesheet" type="text/css" href="<%=ctxPath %>/assets/css/datepicker3.css" />
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
-	<link rel="stylesheet" href="<%=ctxPath %>/assets/css/bootstrap-datetimepicker.min.css">
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datetimepicker.min.js"></script>
+	
+	
 	<script>
 	
 	function myFunction() {
@@ -70,8 +69,6 @@
 			target1.appendChild(opt);
 		}
 	}
-	
-	  
 
 	</script>
 	
@@ -132,6 +129,54 @@
 </div>
 
  <script>
+ $(document).ready(function()
+			{
+				$('#date').bootstrapMaterialDatePicker
+				({
+					time: false,
+					clearButton: true
+				});
+
+				$('#time').bootstrapMaterialDatePicker
+				({
+					date: false,
+					shortTime: false,
+					format: 'HH:mm'
+				});
+
+				$('#date-format').bootstrapMaterialDatePicker
+				({
+					format: 'dddd DD MMMM YYYY - HH:mm'
+				});
+				$('#date-fr').bootstrapMaterialDatePicker
+				({
+					format: 'DD/MM/YYYY HH:mm',
+					lang: 'fr',
+					weekStart: 1, 
+					cancelText : 'ANNULER',
+					nowButton : true,
+					switchOnClick : true
+				});
+
+				$('#date-end').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+				});
+				$('#date-start').bootstrapMaterialDatePicker
+				({
+					weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+				}).on('change', function(e, date)
+				{
+					$('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+				});
+
+				$('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+				$.material.init()
+			});
+
+ 
+ 
 	function ajaxGet(url,fpOk,fpFail)
 	{
 		var xhr=new XMLHttpRequest();
@@ -185,16 +230,11 @@ window.onload=function(){
 					imsi_num=1000;
 				else
 					imsi_num=2000;
-				var date="2019-09-09";
-				/*var a=$('#dateRangePicker').datepicker({
-					 format: "yyyy-mm-dd",
-					 language: "kr"
-					 });
-				alert(a);
-				var imsi=$('#dateRangePicker').datepicker( "getDate" );*/
-			
+				var price=(bag_num*imsi_num);
+				var date=$('#date-fr').val();
+				
 				var url="<%=ctxPath%>/customer/customer_test.jsp?temp=temp&one_phone="+phone+"&first="+first+"&second="+second+
-					"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date;
+					"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date+"&price="+price;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
 					
@@ -215,7 +255,7 @@ window.onload=function(){
 				$("#customer_apply_two_modal").modal("hide");
 		       	$("#customer_apply_result").modal("show");
 		       
-		       	var url="<%=ctxPath%>/customer/customer_test1.jsp?temp=temp&two_phone="+phone+"&price="+(bag_num*1500)+"&card_num="+card_num;
+		       	var url="<%=ctxPath%>/customer/customer_test1.jsp?temp=temp&two_phone="+phone+"&card_num="+card_num;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
 					
@@ -234,11 +274,8 @@ window.onload=function(){
 			$("#apply_result").click(function(){
 				$("#customer_choose").modal("hide");
 	    	});
-			$("#datetimepicker1").click(function() {
-			    $('#datetimepicker1').datetimepicker({
-				      language: 'pt-BR'
-				    });
-			});
+
+			$('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
 		//var go_list=document.getElementById("go_list");
 	});
 		
