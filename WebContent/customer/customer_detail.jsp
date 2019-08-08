@@ -23,21 +23,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
   
+	<!--jquery -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	<style>
-		.certify_temp{
-		background-color: #ADCB00 ;
-		padding: 8px;
-	}
-	.certify_detalis{
-		border : solid #ADCB00 3px;
-	}
   </style>
 </head>
 <body>
 <%@include file="/header.jsp"%>
 <main>
+
+
 	<div class="container ">
 	<form method="POST" action="<%=ctxPath %>/matching/matching_acceptance.jsp" enctype="multipart/form-data">
 		<div style="text-align:left">
@@ -109,6 +107,7 @@
 		<div class="col-md-4"></div>
 	</form>
 </div>
+
 </main>
 <%@include file="/footer.jsp"%>
 <%@include file="/script.jsp"%>

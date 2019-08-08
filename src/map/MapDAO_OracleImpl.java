@@ -28,8 +28,8 @@ public class MapDAO_OracleImpl implements MapDAO
 				MapVO vo = new MapVO();
 				
 				vo.setMapNo( rs.getInt("mapNo") );
-				vo.setMapAddr( rs.getString("mapAddr") );
-				vo.setMapAddr2( rs.getString("mapAddr2") );
+				vo.setMap_addr_front( rs.getString("map_addr_front") );
+				vo.setMap_addr_detail(rs.getString("map_addr_detail") );
 				
 				ls.add( vo );
 			}			
