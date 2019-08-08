@@ -40,10 +40,10 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             stmt.setString(16, vo.getWish_Addr_Detail3());
             stmt.setString(17, vo.getWant_to_say());
 
-            stmt.executeUpdate();
-            //stmt.executeUpdate(sql);
+            System.out.println("회원가입 :"+stmt.executeUpdate());
 
         } catch (Exception e) {
+        	e.printStackTrace();
         } finally {
             if (stmt != null) stmt.close();
             if (conn != null) conn.close();

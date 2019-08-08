@@ -30,8 +30,13 @@ public class CertifyDAO_OracleImpl implements CertifyDAO {
 			stmt.executeUpdate();
 			// System.out.println(r);
 
-			conn.close();
+			sql = "update customer_apply set certify_status =1 where SerialNo = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, vo.getSerialNo());
+			System.out.println("시바 정우야 왜 안돼니?"+stmt.executeUpdate());
+			
 		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			try {
 				if (stmt != null)

@@ -59,7 +59,7 @@
                 <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
               </c:when>
               <c:otherwise>
-                <li><a href="<%=ctxPath%>/index.">로그아웃</a></li>
+                <li><a href="<%=ctxPath%>/logout.do">로그아웃</a></li>
               </c:otherwise>
             </c:choose>
           </ul>

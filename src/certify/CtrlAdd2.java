@@ -2,6 +2,7 @@ package certify;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -17,45 +18,42 @@ public class CtrlAdd2 implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		System.out.println("Ãß°¡ Àü");
-
-		System.out.println("»çÁø Ãß°¡ ½ÃÀÛ");
-		// fileup µð·ºÅÍ¸®ÀÇ ½ÇÁ¦ ÀúÀåÀ§Ä¡ (Àý´ë°æ·Î) °ªÀ» ÆÄ¾ÇÇÑ´Ù.
+		
+		HttpSession session = request.getSession();
+		String auth = null;
+		String helperID = null;
+		try{
+			auth = (String)session.getAttribute("auth");
+			helperID =  (String)session.getAttribute("id");
+			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
+				response.sendRedirect("helper/login.jsp"); //login.jspë¡œ ë³€ê²½
+			}
+		}catch(Exception e){
+			response.sendRedirect("helper/login.jsp"); //login.jspë¡œ ë³€ê²½
+		}
+		
 		String path = request.getServletContext().getRealPath("/assets/img");
 		System.out.println( path );
 		
-		// cos.jar¿¡¼­ Á¦°øµÇ´Â Å¬·¡½º
-		// °í·Î ¿Ã¸± ¶§ ÀÌ¸§°ú ¼­¹ö¿¡ ¿Ã·ÁÁø ÀÌ¸§ÀÌ ´Ù¸¦ ¼ö ÀÖ´Ù.
 		MultipartRequest mpr = new MultipartRequest( request , path , 1024*1024*20 , "UTF-8" ,
-				new DefaultFileRenamePolicy()); // ´Â ÀÌ¸§ÀÌ °ãÄ¥ ¶§ ÀÌ¸§ ¹Ù²ã¼­ ¿Ã·ÁÁØ´Ù.
-		// new DefaultFileRenamePolicy() ´ë½Å¿¡ null°ªÀ» ÁÖ¸é ¾þ¾î¾´´Ù.
-		// ¾÷·ÎµåÇÑ ¿ø·¡ ÆÄÀÏ ÀÌ¸§ 
+				new DefaultFileRenamePolicy());
 		String ofn = mpr.getOriginalFileName("photo");
-		// ¹Ù²ï ÀÌ¸§
 		String fsn = mpr.getFilesystemName("photo");
 		System.out.println(ofn+"->"+fsn);
-		//MultipartRequest ¾²¸é request.getParameter ¸ø¾´´Ù .
-		// ´ë½Å MultipartRequest ¾ÈÀÇ getParameterÀ» ¾´´Ù.
-		// ÇÑ±ÛÃ³¸®µµ ³»ºÎ¿¡¼­ ÇØÁÖ´õ¶ó(UTF-8·Î ¼³Á¤ÇØ¼­)
 
-		
-		
-	
-		System.out.println("ÀÎÁõ DB insert ½ÃÀÛ");
-		String details = Util.h(mpr.getParameter("details"));
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ DB insert ï¿½ï¿½ï¿½ï¿½");
 		CertifyVO vo = new CertifyVO();
 		
 		 vo.setSerialNo(Util.parseInt(mpr.getParameter("certify_serialNo")));
-		 vo.setHelperID(mpr.getParameter("certify_helperID"));
-		 vo.setDetails(details);
+		 vo.setHelperID(helperID);
+		 vo.setDetails(Util.h(mpr.getParameter("details")));
 		 vo.setHousePlace(mpr.getParameter("housePlace"));
 		 vo.setCertify_photo_ofn(ofn);
 		 vo.setCertify_photo_fsn(fsn);
 		 System.out.println(vo.getHelperID());
 		 CertifyDAO dao = new CertifyDAO_OracleImpl();
 		 dao.insert(vo);
-		return "redirect:/matching/matching_acceptance.jsp";
+		return "redirect:/matching_suggetion_list2.do";
 	}
 
 	

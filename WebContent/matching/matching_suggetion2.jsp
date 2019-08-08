@@ -106,16 +106,16 @@
 											<td>${vo.price }</td>
 											<td>${vo.wanted_time }</td>
 											<td>
-											<c:if test="${vo.certify_status }==0">
+											<c:if test="${vo.certify_status ==0}">
 												<a class="btn btn-success" href="<%=ctxPath %>/certify/certify_submit.jsp?SerailNo=${vo.serialNo }">인증하기</a>
 											</c:if>
 											<c:if
-												test="${vo.certify_status }==1 and ${vo.review_status }==0">
-												<a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_find2.do?SerailNo=9123" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a>
+												test="${vo.certify_status ==1 and vo.review_status ==0}">
+												<a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_find2.do?SerailNo=${vo.serialNo }" style="border-color: #4cae4c; color: #4cae4c;">인증수정</a>
 											</c:if>
 											<c:if
-												test="${vo.certify_status }==1 and ${vo.review_status }==1">
-												<a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_info2.do?SerailNo=9123" target="_blank">인증확인</a>
+												test="${vo.certify_status ==1 and vo.review_status ==1}">
+												<a class="btn btn-default"  href="<%=ctxPath %>/certify/certify_info2.do?SerailNo=${vo.serialNo }" target="_blank">인증확인</a>
 											</c:if>
 											</td>
 										</tr>

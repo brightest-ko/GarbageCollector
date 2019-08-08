@@ -2,19 +2,18 @@
 	pageEncoding="utf-8"%>
 <%
 	String ctxPath = request.getContextPath();
-	String auth = "helper";//= null;
-	String certify_id = "gobaksa4@naver.com";//= null;
-	String certify_no = null;
-	try {
-		//	auth = (String)session.getAttribute("auth");
-		//	id =  (String)session.getAttribute("id");
-		if (auth == null || !auth.equals("helper") || certify_id == null || certify_id.equals("")) {
-			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+	String certify_no = request.getParameter("SerailNo");
+	String auth = null;
+	String helperID = null;
+	try{
+		auth = (String)session.getAttribute("auth");
+		helperID =  (String)session.getAttribute("id");
+		if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
+			response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 		}
-	} catch (Exception e) {
-		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+	}catch(Exception e){
+		response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 	}
-	certify_no = request.getParameter("SerailNo");
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -83,7 +82,7 @@
 									<label class="col-sm-1 col-form-label">대행ID</label>
 									<div class="col-sm-11">
 										<input type="text" class="form-control" id="certify_helperID"
-											name="certify_helperID" value=<%=certify_id%> readonly>
+											name="certify_helperID" value=<%=helperID%> readonly>
 									</div>
 								</div>
 								<div class="form-group row">

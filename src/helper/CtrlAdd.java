@@ -17,33 +17,31 @@ public class CtrlAdd implements Controller {
                                 HttpServletResponse response) throws Exception {
 
         //Exception err = null;
-
+    	
         String path = request.getServletContext().getRealPath("/assets/img");
-        System.out.println("ddd");
         MultipartRequest mpr = new MultipartRequest( request , path , 1024*1024*20 , "UTF-8" ,
 				new DefaultFileRenamePolicy());
 
         String ofn = mpr.getOriginalFileName("helper_photo");
-		// �ٲ� �̸�
 		String fsn = mpr.getFilesystemName("helper_photo");
 		System.out.println(ofn+"->"+fsn);
 
 
-        String helperId = Util.h( mpr.getParameter("email"));
-        String helperPw = Util.h( mpr.getParameter("pw" ));
-        String phoneNum = Util.h( mpr.getParameter("phoneNum"));
-        String helper_name = Util.h( mpr.getParameter("helper_name"));
-        String sex = Util.h( mpr.getParameter("sex"));
-        String bankName = Util.h( mpr.getParameter("bank"));
-        String account = Util.h( mpr.getParameter("account"));
-        String accountname = Util.h( mpr.getParameter("accountname"));
-        String wishf1 = Util.h( mpr.getParameter("city1"));
-        String wishd1 = Util.h( mpr.getParameter("dong1"));
-        String wishf2 = Util.h( mpr.getParameter("city2"));
-        String wishd2 = Util.h( mpr.getParameter("dong2"));
-        String wishf3 = Util.h( mpr.getParameter("city3"));
-        String wishd3 = Util.h( mpr.getParameter("dong3"));
-        String message = Util.h( mpr.getParameter("message"));
+        String helperId = mpr.getParameter("email");
+        String helperPw = mpr.getParameter("pw" );
+        String phoneNum = mpr.getParameter("phoneNum");
+        String helper_name = mpr.getParameter("helper_name");
+        String sex = mpr.getParameter("sex");
+        String bankName = mpr.getParameter("bank");
+        String account = mpr.getParameter("account");
+        String accountname = mpr.getParameter("accountname");
+        String wishf1 =  mpr.getParameter("city1");
+        String wishd1 =  mpr.getParameter("dong1");
+        String wishf2 =  mpr.getParameter("city2");
+        String wishd2 =  mpr.getParameter("dong2");
+        String wishf3 =  mpr.getParameter("city3");
+        String wishd3 =  mpr.getParameter("dong3");
+        String message =  mpr.getParameter("message");
 
         HelperVO vo = new HelperVO();
 
@@ -64,7 +62,7 @@ public class CtrlAdd implements Controller {
         vo.setWish_Addr_Front3(wishf3);
         vo.setWish_Addr_Detail3(wishd3);
         vo.setWant_to_say(message);
-
+        System.out.println(vo.toString());
         HelperSignUpDAO dao = new HelperSignUpDAO_OracleImpl();
 
         dao.add(vo);
