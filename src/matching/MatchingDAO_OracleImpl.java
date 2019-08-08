@@ -163,12 +163,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
@@ -209,12 +214,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
@@ -257,12 +267,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());

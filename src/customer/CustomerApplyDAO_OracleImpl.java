@@ -209,7 +209,9 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			String sql="select * from customer_apply where  customer_phone = ? helperID is not null";
+			String sql="select * from customer_apply"
+					+ " where customer_phone = ?"
+					+ " and (WANTED_TIME < SYSDATE or (serialNo in (select serialNo from matching where suggestion = 1 and acceptance = 1)))";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, customer_phone);
 			rs=stmt.executeQuery();
