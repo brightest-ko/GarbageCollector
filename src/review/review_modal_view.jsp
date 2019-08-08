@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%  // Sample Example . ctxPath는 import되서 지정될거임
-	Integer serialNo = 9; // 클릭한 serialNo
-	String helperID = "ygl@youngwoo.co.kr"; // 클릭한 게시물의 helperID를 가져옴
-	String review_title = "왠만해선 리뷰안쓰는데 너무 만족스러워요"; // 클릭한 serialNo의 게시물을 가져옴
+<%--  // Sample Example . ctxPath는 import되서 지정될거임
+	Integer serialNo = 123456; // 클릭한 serialNo
+	String helperID = "jsb@naver.com"; // 클릭한 게시물의 helperID를 가져옴
+	String review_title = "test title"; // 클릭한 serialNo의 게시물을 가져옴
 	Double rate = 3.0;
 	//$('input[name="item"]:radio[value="3"]').prop('checked',true); 라디오체크 
 	//$("[name=Radio name]:not(:checked)").attr('disabled','disabled'); // 값들이 전송x
-	String review_cleanhouse = "제주시 연동";
-	String review_content = "분리수거 못해서 죄송스러웠는데 ㅜㅜ 수거해서 열심히 분리수거 해주셨더라구요!";
-%>
+	String review_cleanhouse = "cleanhouse place";
+--%>
 <!-- ############# Note ################### 
 	This is imported by review_list Page.
  -->
     <!DOCTYPE html>
-    <div class="modal fade" id="review_Modal_view" role="dialog">
+    <div class="modal fade" id="review_Modal_view${vo_review.serialNo }" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->
@@ -29,8 +28,8 @@
 						     	<div class="col-md-4" style="text-align:center;">
 						     		<label for="info_serialNo" style="padding-top:8px">신청번호</label>
 						     	</div>
-						      	<div class="col-md-8">
-						      		<input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="<%=serialNo%>" readonly style="margin-left:0px;"/>
+						      	<div class="col-md-8">${vo_review.serialNo }
+						      		<input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="${vo_review.serialNo }" readonly style="margin-left:0px;"/>
 						      	</div>
 						   	 </div>
 	

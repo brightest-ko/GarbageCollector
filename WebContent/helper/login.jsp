@@ -52,11 +52,11 @@
 <body>
 <%@include file="/header.jsp" %>
 <main>
-<div class="container" style = "padding: 100px 30px 80px 30px">
+<div class="container" >
     <div class="row container-fluid" >
         <!-- 고객 로그인 창 -->
         <div class="col-xs-6 box_login" style="float: left; border-right: 1px solid yellowgreen">
-            <form method="post" action="customer_login" >
+            <form method="post" action="" >
                 <div class="form-group">
                     <h3 style="padding-top: 20px">신청자</h3><hr>
                     <label for="customerPN"> 신청자 전화번호 </label>
@@ -69,15 +69,15 @@
 
         <!-- 대행 로그인 창-->
         <div class="col-xs-6 box_login" style="float: right;">
-            <form method="post" action="helper_login.do">
+            <form method="post" action="login.do">
                 <div class="form-group">
                     <h3> 대행 </h3><hr>
                     <label for="helperId"> 아이디 </label>
-                    <input type="text" class="form-control" placeholder="Email(ID)을 입력하세요."  id="helperId" >
+                    <input type="text" class="form-control" placeholder="Email(ID)을 입력하세요."  id="helperId" name="helperId">
                 </div>
                 <div class="form-group">
                     <label for="pw">비밀번호</label>
-                    <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." id="pw">
+                    <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." id="pw" name="pw">
                     <a href="<%=ctxPath%>/helper/signUp.jsp" style="color:green" class="btn">회원가입 하기</a>
                     <button type="submit" class="btn btn-success" style="float: right; margin:10px 0px 10px 0px;">로그인</button>
                 </div>
