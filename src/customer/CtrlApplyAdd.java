@@ -43,7 +43,7 @@ public class CtrlApplyAdd implements Controller{
 
 		System.out.println("/customer_apply_add.do");
 		
-		return "redirect:/��û�����ȸ.do";
+		return "redirect:/customer_apply_list.do";
 	}
 
 }

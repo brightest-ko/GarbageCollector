@@ -27,6 +27,7 @@
         	matching.CtrlAcceptanceList,
         	
         	customer.CtrlAddApply,
+        	cusomter.CtrlApplyList,
 
             review.CtrlList,
             review.CtrlInsert,
@@ -38,19 +39,8 @@
         </param-value>
 	</init-param>
   </servlet>
-
-    <servlet>
-        <servlet-name>checkLogin</servlet-name>
-        <servlet-class>helper.LoginServlet</servlet-class>
-    </servlet>
-  
   <servlet-mapping>
 	<servlet-name>mvc_do</servlet-name>
 	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>checkLogin</servlet-name>
-        <url-pattern>checkLogin</url-pattern>
-    </servlet-mapping>
 </web-app>
