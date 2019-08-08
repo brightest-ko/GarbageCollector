@@ -50,11 +50,10 @@ public class CtrlInsert implements Controller { // 패스워드 설정해야함.
 		
 		vo.setSerialNo( serialNo );
 		vo.setReviewTitle(reviewTitle);
-		vo.setReviewPwd(reviewPwd);
 		vo.setHelperID(helperID);
 		vo.setReviewDay(reviewDay);
 		vo.setRating(rating);
-		vo.setCleanPlaceAddFront(cleanPlaceAddFront);
+		vo.setCleanPlaceAddrFront(cleanPlaceAddFront);
 		vo.setReviewContent( content );
 		
 		ReviewDAO dao = new ReviewDAO_Impl();
