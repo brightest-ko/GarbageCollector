@@ -201,7 +201,7 @@
 			{
 				if( mode === 0 ){
 					$('#chkpwd_Modal').modal('hide');
-					window.location.href="/GarbageCollector/review_delete.do";
+					window.location.href="/GarbageCollector/review_delete.do?serialNo="+$('#info_serialNo').val();
 				}
 				else if( mode === 1){
 					$('#chkpwd_Modal').modal('hide');

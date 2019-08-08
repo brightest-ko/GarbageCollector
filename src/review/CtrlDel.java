@@ -13,8 +13,15 @@ public class CtrlDel implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ctrlDel");
 		
-		// 아직 미구현
-		return "redirect:/reivew_list.do";
+		Integer serialNo = Integer.parseInt( request.getParameter("serialNo") );
+		System.out.println(serialNo); //test
+		
+		ReviewVO vo = new ReviewVO();
+		vo.setSerialNo(serialNo);
+		
+		ReviewDAO dao = new ReviewDAO_Impl();
+		dao.delete( vo );
+		return "redirect:/review_list.do";
 	}
 
 }
