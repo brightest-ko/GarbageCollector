@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%  // Sample Example . ctxPath는 import되서 지정될거임
-	Integer serialNo = 123456;
-	String helperID = "jsb@naver.com";
+	//Integer serialNo = 123456;
+	//String helperID = "jsb@naver.com";
 %>
 <!-- ############# Note ################### 
 	This is imported by maching Page. ( <%--@include file="/review/review_modal_view.jsp"--%> )
@@ -10,7 +10,7 @@
 	matching Page에서 리뷰작성버튼 modal 
 	변수명은 serialNo, helperID로 통일한다.	
  -->
-    <div class="modal fade" id="review_Modal_upload${vo2.serialNo }" role="dialog">
+    <div class="modal fade" id="review_Modal_upload${vo2.serialNo}" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->
@@ -26,7 +26,7 @@
 						     		<label for="serialNo" style="padding-top:8px">신청번호</label>
 						     	</div>
 						      	<div class="col-md-8">
-						      		<input class="form-control" id="serialNo" type="text" name="serialNo" value="<%=serialNo%>" readonly style="margin-left:0px;"/>
+						      		<input class="form-control" id="serialNo" type="text" name="serialNo" value="${vo2.serialNo}" readonly style="margin-left:0px;"/>
 						      	</div>
 						   	 </div>
 	
@@ -43,7 +43,7 @@
 									<label for="helperID" style="padding-top:8px">대행자</label>
 								</div>
 								<div class="col-md-8">
-									<input class="form-control" id="helperID" type="text" name="helperID" value="<%=helperID%>" readonly style="margin-left:0px;"/>
+									<input class="form-control" id="helperID" type="text" name="helperID" value="${vo2.helperID}" readonly style="margin-left:0px;"/>
 								</div>
 			        		</div>
 							<div class="row">

@@ -163,12 +163,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
@@ -198,10 +203,10 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
 
 			//��Ī���
-			String sql = "select * from customer_apply"
-					+ " where serialNo in (select serialNo from matcing where heplerID=? and suggestion = 1 and acceptance = 0)"
-					+ " and helperID IS NULL"
-					+ " order by customer_apply_day desc";
+			String sql = "select * from customer_apply "
+					+ "where serialNo in (select serialNo from matching where helperID=? and suggestion = 1 and acceptance = 0)"
+					+ "and helperID IS NULL "
+					+ "order by customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, HelperID);
 			rs = stmt.executeQuery();
@@ -209,12 +214,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
@@ -246,7 +256,7 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 
 			//��Ī����
 			String sql = "select * from customer_apply"
-					+ " where serialNo in (select serialNo from matcing where heplerID=? and suggestion = 1 and  acceptance = 0)"
+					+ " where serialNo in (select serialNo from matcㅗing where heplerID=? and suggestion = 1 and  acceptance = 0)"
 					+ "and helperID IS NOT NULL and helperID <> ?"
 					+ "order by wanted_time  desc";
 			stmt = conn.prepareStatement(sql);
@@ -257,12 +267,17 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 			if(rs.next()){
 				CustomerApplyVO vo = new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
-				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
 				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
 				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
-				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
 				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
 				vo.setCertify_status(rs.getInt("certify_status"));
 				vo.setReview_status(rs.getInt("review_status"));
 				System.out.println("success vo: "+vo.toString());
