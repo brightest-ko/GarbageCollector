@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%  // Sample Example . ctxPath는 import되서 지정될거임
-	Integer serialNo = 123456; // 클릭한 serialNo
-	String helperID = "jsb@naver.com"; // 클릭한 게시물의 helperID를 가져옴
-	String review_title = "test title"; // 클릭한 serialNo의 게시물을 가져옴
+	Integer serialNo = 9; // 클릭한 serialNo
+	String helperID = "ygl@youngwoo.co.kr"; // 클릭한 게시물의 helperID를 가져옴
+	String review_title = "왠만해선 리뷰안쓰는데 너무 만족스러워요"; // 클릭한 serialNo의 게시물을 가져옴
 	Double rate = 3.0;
 	//$('input[name="item"]:radio[value="3"]').prop('checked',true); 라디오체크 
 	//$("[name=Radio name]:not(:checked)").attr('disabled','disabled'); // 값들이 전송x
-	String review_cleanhouse = "cleanhouse place";
+	String review_cleanhouse = "제주시 연동";
+	String review_content = "분리수거 못해서 죄송스러웠는데 ㅜㅜ 수거해서 열심히 분리수거 해주셨더라구요!";
 %>
 <!-- ############# Note ################### 
 	This is imported by review_list Page.
@@ -26,27 +27,27 @@
 			        	<div class="modal-body">
 			        		 <div class="row">
 						     	<div class="col-md-4" style="text-align:center;">
-						     		<label for="serialNo" style="padding-top:8px">신청번호</label>
+						     		<label for="info_serialNo" style="padding-top:8px">신청번호</label>
 						     	</div>
 						      	<div class="col-md-8">
-						      		<input class="form-control" id="serialNo" type="text" name="serialNo" value="<%=serialNo%>" readonly style="margin-left:0px;"/>
+						      		<input class="form-control" id="info_serialNo" type="text" name="info_serialNo" value="<%=serialNo%>" readonly style="margin-left:0px;"/>
 						      	</div>
 						   	 </div>
 	
 			        		<div class="row">
 			        			<div class="col-md-4" style="text-align:center;">
-									<label for="review_title" style="padding-top:8px">제목</label>
+									<label for="info_review_title" style="padding-top:8px">제목</label>
 								</div>
 								<div class="col-md-8">
-								    <input class="form-control" id="review_title" type="text" name="review_title" value="<%=review_title%>" readonly style="margin-left:0px;"/>
+								    <input class="form-control" id="info_review_title" type="text" name="info_review_title" value="<%=review_title%>" readonly style="margin-left:0px;"/>
 								</div>
 			        		</div>
 			        		<div class="row">
 			        			<div class="col-md-4" style="text-align:center;">
-									<label for="helperID" style="padding-top:8px">대행자</label>
+									<label for="info_helperID" style="padding-top:8px">대행자</label>
 								</div>
 								<div class="col-md-8">
-									<input class="form-control" id="helperID" type="text" name="helperID" value="<%=helperID%>" readonly style="margin-left:0px;"/>
+									<input class="form-control" id="info_helperID" type="text" name="info_helperID" value="<%=helperID%>" readonly style="margin-left:0px;"/>
 								</div>
 			        		</div>
 							<div class="row">
@@ -75,15 +76,15 @@
 							</div>
 			       			<div class="row">
 			        			<div class="col-md-4" style="text-align:center;">
-									<label for="review_cleanhouse" style="padding-top:8px">클린하우스 위치</label>
+									<label for="info_review_cleanhouse" style="padding-top:8px">클린하우스 위치</label>
 								</div>
 								<div class="col-md-8">
-								    <input class="form-control" id="review_cleanhouse" type="text" name="review_cleanhouse" value="<%=review_cleanhouse%>" readonly style="margin-left:0px;"/>
+								    <input class="form-control" id="info_review_cleanhouse" type="text" name="info_review_cleanhouse" value="<%=review_cleanhouse%>" readonly style="margin-left:0px;"/>
 								</div>
 			        		</div>
 			        		<div class="row">
 			        			<div class="col-md-12" style="text-align:center;">
-			        				<textarea class="form-control ta" id="review_content" name="review_content" scrolling="no" readonly style="margin-left: 0px;"></textarea>
+			        				<textarea class="form-control ta" id="info_review_content" name="info_review_content" scrolling="no" readonly style="margin-left: 0px;"><%=review_content%></textarea>
 								</div>
 			        		</div>
 			        	</div>
