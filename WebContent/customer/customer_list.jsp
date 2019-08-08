@@ -82,8 +82,8 @@
 					<tbody>
 						<c:forEach var="vo" items="${rl}">
 							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red" onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">
-				<td>${vo.serialNo}</td>
+							<tr class="deadline_red" >
+				<td onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
@@ -94,12 +94,11 @@
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
 				<c:if test="${not empty vo.helperID}">
-					<td><button class="btn btn-success" data-doggle="modal" data-target="#review_Modal_upload">후기쓰기</button></td>
+					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_upload${vo.serialNo }">후기쓰기</button></td>
 				</c:if>
 				<c:if test="${empty vo.helperID}">
 					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>
 				</c:if>
-				<%--@include file="/review/review_modal_insert.jsp"--%>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -110,7 +109,12 @@
 			<!-- paging -->
 		</div>
 	</div>
-
+	
+<c:forEach var="vo" items="${rl}">
+	<c:if test="${not empty vo.helperID}">
+		<%@include file="/review/review_modal_insert.jsp"%>
+	</c:if>
+</c:forEach>
   
 <style>
 .btn-outline-success{
@@ -126,5 +130,80 @@
 <%@include file="/footer.jsp"%>
 <%@include file="/script.jsp"%>
 
+	<style>
+	
+	.form-control{
+	margin-left : 30px; 
+	text-align : center;
+	}
+	.modal-header{
+        	background-color:#ADCB00;
+            color:#1C4220;
+        }  
+	
+	*{
+	    margin: 0;
+	    padding: 0;
+	}
+	.rate {
+	    float: left;
+	    height: 46px;
+	    padding: 0 10px;
+	}
+	.rate:not(:checked) > input {
+	    position:absolute;
+	    top:-9999px;
+	}
+	.rate:not(:checked) > label {
+	    float:right;
+	    width:1em;
+	    overflow:hidden;
+	    white-space:nowrap;
+	    cursor:pointer;
+	    font-size:30px;
+	    color:#ccc;
+	}
+	.rate:not(:checked) > label:before {
+	    content: '★ ';
+	}
+	.rate > input:checked ~ label {
+	    color: #ffc700;    
+	}
+	.rate:not(:checked) > label:hover,
+	.rate:not(:checked) > label:hover ~ label {
+	    color: #deb217;  
+	}
+	.rate > input:checked + label:hover,
+	.rate > input:checked + label:hover ~ label,
+	.rate > input:checked ~ label:hover,
+	.rate > input:checked ~ label:hover ~ label,
+	.rate > label:hover ~ input:checked ~ label {
+	    color: #c59b08;
+	}
+	/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+	
+	th, td { /*안댐*/
+		text-overflow:ellipsis; !important
+		overflow:hidden; !important
+		white-space:nowrap; !important
+	}
+	.row{
+        	padding:10px
+        
+        }
+        
+	.gul{
+        	padding:8px;
+          
+        }
+        
+	#selector {
+		width: 100px; !important
+	}
+	#search {
+		width: 200px; !important
+	}
+	</style>
+	
 </body>
 </html>
