@@ -273,8 +273,12 @@ window.onload=function(){
 	    	});
 			$("#apply_result").click(function(){
 				$("#customer_choose").modal("hide");
+				
 	    	});
-
+			$("#apply_result1").click(function(){
+				$("#customer_choose").modal("hide");
+				
+	    	});
 			$('#date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
 		//var go_list=document.getElementById("go_list");
 	});

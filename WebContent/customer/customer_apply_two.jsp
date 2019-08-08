@@ -20,7 +20,7 @@
      	  
         </div>
 					<div class="modal-footer">
-						<a role="button" data-dismiss="modal" href="#customer_apply_two" class="btn btn-default pull-left" >이전</a>
+						<!--<a role="button" data-dismiss="modal" href="#customer_apply_two" class="btn btn-default pull-left" >이전</a>  -->
 						<a role="button" data-dismiss="modal" id="two_finish" href="#customer_apply_result" class="btn btn-success">신청</a>
 					</div>
       </div>

@@ -52,10 +52,9 @@
                 <li><a href="<%=ctxPath %>/matching_suggetion_list2.do">대행자 제안 리스트</a></li>
               </ul>
             </li>
-	        <li><a href="<%=ctxPath %>/review_list.do">후기</a></li>
-            
+	        <li><a href="<%=ctxPath %>/review/review_list.jsp">후기</a></li>
             <c:choose>
-              <c:when test="${empty auth}">
+              <c:when test="${auth == null}">
                 <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
               </c:when>
               <c:otherwise>
