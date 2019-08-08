@@ -51,7 +51,7 @@ function addValueToKey(key, value) {
 	addrMap[key].push(value);
 }
 
-var listData = [];
+var listData = [];\
 console.log(listData);
 <c:forEach items="${rl}" var="item">
 	listData.push("${item.mapAddr}");
