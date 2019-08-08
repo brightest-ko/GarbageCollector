@@ -14,17 +14,17 @@ public class CtrlHelperLogin implements Controller {
     @Override
     public String handleRequest(HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
-        String id = request.getParameter("helperId");
+        String helperID = request.getParameter("helperID");
         String password = request.getParameter("pw");
         String result;
 
-        System.out.println("input id : " +  id + " input pw :" + password);
+        System.out.println("input id : " +  helperID + " input pw :" + password);
 
         HelperSignUpDAO dao = new HelperSignUpDAO_OracleImpl();
-        if (dao.checkLoginInfo(id, password)) {
+        if (dao.checkLoginInfo(helperID, password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("auth", "helperId");
-            session.setAttribute("helperId", id);
+            session.setAttribute("auth", "helper");
+            session.setAttribute("id", helperID);
             result = "SUCCESS";
         }
         else {
