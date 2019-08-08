@@ -166,6 +166,7 @@
 			// 수정 버튼 클릭
 			$("button[name='modify']").click(function(){
 				var mode = 1; 
+				//window.location.href = "#review_Modal_view${vo.serialNo}"
 				$('#review_Modal_view').modal('hide');
 		   	 	$('#review_Modal_modify').modal('show');	
 			});
@@ -222,9 +223,12 @@
 							<tr>
 								<td id="l_serialNo">${vo.serialNo}</td>
 								<td id="l_helperID">${vo.helperID}</td>
-								<td id="l_reviewTitle"><a data-toggle="modal" id="gul" href="#review_Modal_view">${vo.reviewTitle}</a></td>
+								<td id="l_reviewTitle"><a data-toggle="modal" id="gul" href="#review_Modal_view${vo.serialNo}">${vo.reviewTitle}</a></td>
 								<td id="l_reviewDay">${vo.reviewDay}</td>
 								<td id="l_rating">${vo.rating}</td>
+								
+								<%@include file="/review/review_modal_view.jsp"%>
+								<%@include file="/review/review_modal_modify.jsp"%>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -236,9 +240,8 @@
 	<!-- Modal -->
 		
 		
-	<%@include file="/review/review_modal_view.jsp"%>	
-	<%@include file="/review/chkpwd_modal.jsp"%>
-	<%@include file="/review/review_modal_modify.jsp"%>
+	<!--< %@include file="/review/review_modal_view.jsp"%> -->
+	<!-- < %@include file="/review/review_modal_modify.jsp"%> -->
 </div>
 </main>
 	<!-- include 써주기(모달뺴서) -->
