@@ -248,6 +248,52 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 	
 	@Override
+	public CustomerApplyVO findAll_cus(String serialNo) throws Exception{
+		CustomerApplyVO rl=new CustomerApplyVO();
+		Connection conn=null;
+
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		
+		try{
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
+			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+			 String sql="select * from customer_apply where serialNo=?";
+			 stmt=conn.prepareStatement(sql);
+			 stmt.setString(1,serialNo);
+			 rs=stmt.executeQuery();
+			 //업데이트
+			 if(rs.next()){
+				 System.out.println("상세있음");
+				 rl.setBag_num(rs.getInt("bag_num"));
+				 rl.setCard_num(rs.getString("card_num"));
+				 rl.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				 rl.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				 rl.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				 rl.setCustomer_phone(rs.getString("customer_phone"));
+				 rl.setPrice(rs.getInt("price"));
+				 rl.setTrash_type(rs.getInt("trash_type"));
+				 rl.setWanted_time(rs.getDate("wanted_time"));
+			 }
+			 else{
+				 System.out.println("상세없음");
+			 }
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			try {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (Exception e) {
+		}
+		}
+		return rl;
+	}
+		
+	@Override
 	public void update(String phone,int price,String card_num) throws Exception
 	{
 

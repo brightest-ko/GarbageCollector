@@ -8,4 +8,5 @@ public interface CustomerApplyDAO {
 	void update(String phone, int price, String card_num) throws Exception;
 	public List<CustomerApplyVO> findAll1(String customer_phone) throws Exception;
 	public List<CustomerApplyVO> findAll2(String customer_phone) throws Exception;
+	CustomerApplyVO findAll_cus(String serialNo) throws Exception;
 }

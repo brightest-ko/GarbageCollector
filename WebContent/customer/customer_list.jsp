@@ -35,9 +35,6 @@
 <%@include file="/header.jsp"%>
 <main>
 
-
-
-
 	<div class="container" style="padding: 50px 0;">
 		<div class="list_header">
 			<div class="col-xs-9" style="padding: 10px;">
@@ -98,6 +95,7 @@
 				</c:if>
 				<c:if test="${not empty vo.helperID and vo.review_status == 1}">
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_view${vo.serialNo }">후기수정</button></td>
+
 				</c:if>
 				<c:if test="${empty vo.helperID}">
 					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>

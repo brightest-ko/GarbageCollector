@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
-   
+   	import="customer.CustomerApplyVO,customer.CustomerApplyDAO,customer.CustomerApplyDAO_OracleImpl"
     %>
 <%
+	
 	String ctxPath =request.getContextPath();
+	String serialNo=request.getParameter("serialNo");
+	CustomerApplyDAO dao=new CustomerApplyDAO_OracleImpl();
+	CustomerApplyVO vo=dao.findAll_cus(serialNo);
+	String type=null;
+	if(vo.getTrash_type()==0)
+		type="당일수거";
+	else
+		type="혼합";
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
@@ -37,14 +46,14 @@
 
 
 	<div class="container ">
-	<form method="POST" action="<%=ctxPath %>/matching/matching_acceptance.jsp" enctype="multipart/form-data">
+	<form method="POST" action="<%=ctxPath%>/customer_apply_list.do">
 		<div style="text-align:left">
 		
 			<div class="container row">
 					<div class="jumbotron certify_temp">
 						<p></p>
 						<div class="row">
-   						<div class="col-sm-4" ><h2 style="color: WHITE" >인증 상세정보</h1></div>
+   						<div class="col-sm-4" ><h2 style="color: WHITE" >신청 상세정보</h1></div>
     					<div class="col-sm-4" ></div>
     					<div class="col-sm-4" ><img src="/GarbageCollector/assets/img/certify_info.png" width="200" height="200" alt="My Image" readonly></div>
   						</div>
@@ -56,44 +65,37 @@
 							<div class="col-md-12">
 
 								<div class="form-group row">
-									<label class="col-2 col-form-label">대행ID</label>
+									<label class="col-2 col-form-label">핸드폰번호</label>
 									<div class="col-10">
-										<input type="text" class="form-control" id="certify_helperID"
-											name="certify_helperID" value="${vo.helperID}" readonly>
+										<div><%=vo.getCustomer_phone()%></div>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-2 col-form-label">신청번호</label>
+									<label class="col-2 col-form-label">주소</label>
 									<div class="col-10">
-										<input type="text" class="form-control " id="certify_serialNo"
-											name="certify_serialNo" value="${vo.serialNo}" readonly>
+										<%=vo.getCustomer_addr_first()%>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-2 col-form-label">위치</label>
+									<label class="col-2 col-form-label">가방갯수</label>
 									<div class="col-10">
-										<input type="text" class="form-control " id="housePlace"
-											name="housePlace" placeholder="위치를 찍어주세요"
-											value="${vo.housePlace} "readonly>
+										<%=vo.getBag_num()%>
 									</div>
 								</div>
 
 								<div class="form-group row " id="photo">
-									<label class="col-2 col-form-label ">사진</label> <input
-										type="file" name="photo" camera="camera" class="form-control "
-										value="${vo.certify_photo_fsn}" readonly/>
+									<label class="col-2 col-form-label ">분리수거종류</label> 
+								
 									<div class="col-10">
-										<img
-											src="/GarbageCollector/assets/img/${vo.certify_photo_fsn}"
-											width="200" height="200" alt="My Image">
+										<%=type%>	
 									</div>
-
-
 								</div>
 								<div id="details">
-									<h3>특이사항</h3>
-									<textarea class="form-control" rows="5" name="details"
-										style="margin: 0px -5px 0px 0px; width: 564px; height: 203px;"readonly>"${vo.details}" </textarea>
+									<label class="col-2 col-form-label">원하는 수거시간대</label> 
+									<div class="col-10">
+										<%=vo.getWanted_time()%>	
+									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -102,7 +104,7 @@
 				</div>
 
 		<div class="container">
-		<button type="submit" class="btn btn-success" >확인</button>
+		<input type="submit" class="btn btn-success"  value="확인">
 		</div>
 		<div class="col-md-4"></div>
 	</form>

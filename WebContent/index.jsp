@@ -122,6 +122,7 @@ window.onload=function(){
 					var ob=window.eval("("+rt.trim()+")");
 					alert(ob.code);
 					if(ob.code=='OK'){
+						document.getElementById("price_ap").innerHTML=bag_num*1500+"원";
 							$('#customer_apply_one_modal').modal('hide');
 							$("#customer_apply_two_modal").modal("show");	
 				}
@@ -130,12 +131,12 @@ window.onload=function(){
 			
 		});
 			$("#two_finish").click(function(){
-				bag_num*=1;
+	
 				
 				var card_num=$('#card_num').val();
 				$("#customer_apply_two_modal").modal("hide");
 		       	$("#customer_apply_result").modal("show");
-		       	document.getElementById("price_ap").innerHTML=bag_num*1500;
+		       
 		       	var url="<%=ctxPath%>/customer/customer_test1.jsp?temp=temp&two_phone="+phone+"&price="+(bag_num*1500)+"&card_num="+card_num;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
@@ -148,9 +149,10 @@ window.onload=function(){
 				}
 			);
 			$("#apply_do").click(function(){
-				
+				document.getElementById("one_phone").value=$("#customer_phone_in").val();
 				$("#customer_choose").modal("hide");
 				$("#customer_apply_one_modal").modal("show");
+				
 	       		
 	    	});
 			$("#apply_result").click(function(){
