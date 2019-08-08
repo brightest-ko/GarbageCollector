@@ -232,5 +232,5 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		}
 
 	}
-
+	}
 }

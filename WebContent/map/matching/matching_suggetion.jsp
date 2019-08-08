@@ -7,7 +7,6 @@
 	System.out.println("matching_suggestion.jsp");
 	String ctxPath = request.getContextPath();
 	String auth ="helper";//= null;
-	String id ="gobakse5@naver.com";//= null;
 	try{
 //		auth = (String)session.getAttribute("auth");
 //		id =  (String)session.getAttribute("id");
