@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
+	
 <!DOCTYPE html>
 <!-- Modal -->
 <div class="modal fade" id="customer_apply_one_modal" role="dialog">
@@ -100,7 +99,7 @@
 
 					<div class="modal-footer">
 					
-						<a data-dismiss="modal" id="one_finish" href="#customer_apply_two_modal">Click</a>
+						<a class="btn btn-success" role="button" data-dismiss="modal" id="one_finish" href="#customer_apply_two_modal">다음</a>
 					</div>
 			</div>
 		</div>

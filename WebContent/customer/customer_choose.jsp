@@ -39,16 +39,12 @@
 					</div>
 					<div class="col-xs-2" style="margin-left:50px">
 						<center>
-							<button id="apply_result" class="btn btn-square s"><i class="fa fa-home">신청결과 조회</i></button>
+							<a role="button" id="apply_result" href="<%=ctxPath %>/customer_apply_list.do" class="btn btn-square s"><i class="fa fa-home">신청결과 조회</i></a>
 						</center>
 					</div>
 					<div class="col-xs-2">&nbsp;</div>
 				</div>
-				<div class="modal-footer">
-						
-					<!-- <button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
-    				 -->
-					</div>
+				
 				</form>
 			</div>
 		</div>

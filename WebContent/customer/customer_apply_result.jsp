@@ -18,11 +18,14 @@
         </div>
         <div class="modal-body" style="padding:40px">
           <span class="pull-center" style="font-size:20pt;">신청이 완료되었습니다!</span><br/><br/>
-          <span>신청번호 164번</span><br/>
+          
          	
           
         </div>
-     	<input type="submit" value="확인">
+        <!-- <a role="submit" class="btn btn-success pull-right" >확인</a>-->
+        <div class="modal-footer">
+     	<a role="button" id="apply_result1" href="<%=ctxPath %>/customer_apply_list.do" class="btn btn-success pull-right"><i class="fa fa-home">확인</i></a>
+     	</div>
       </div>
     </div>
  </div>
