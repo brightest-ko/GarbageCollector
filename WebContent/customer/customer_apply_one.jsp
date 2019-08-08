@@ -87,7 +87,7 @@
 						<div class="col-xs-4 gul">수거시간</div>
 						<div class="col-xs-4 gul">
 							<div class="form-control-wrapper">
-								<input type="text" id="date-fr" class="form-control floating-label" value="18/03/2015 08:00" placeholder="Date de début">
+								<input type="text" id="date-fr" class="form-control floating-label" value="09/08/2019 08:00" placeholder="dd/mm/yyyy hh:mm">
 							</div>
 					</div>
 

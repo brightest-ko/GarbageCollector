@@ -156,7 +156,7 @@
 					format: 'DD/MM/YYYY HH:mm',
 					lang: 'fr',
 					weekStart: 1, 
-					cancelText : 'ANNULER',
+					cancelText : '취소',
 					nowButton : true,
 					switchOnClick : true
 				});
