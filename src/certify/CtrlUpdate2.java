@@ -33,6 +33,9 @@ public class CtrlUpdate2 implements Controller{
 		// new DefaultFileRenamePolicy() 대신에 null값을 주면 엎어쓴다.
 		// 업로드한 원래 파일 이름 
 		String ofn = mpr.getOriginalFileName("photo");
+		if( ofn == null){
+			
+		}
 		// 바뀐 이름
 		String fsn = mpr.getFilesystemName("photo");
 		System.out.println(ofn+"->"+fsn);
