@@ -31,7 +31,7 @@ public class DispatcherServlet extends HttpServlet {
                Controller value = (Controller)cls.newInstance();
 
                String key = an.value();
-
+               System.out.println(key);
                mapp.put(key, value);
            }
            catch(Exception e){}
