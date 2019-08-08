@@ -53,8 +53,9 @@
               </ul>
             </li>
 	        <li><a href="<%=ctxPath %>/review/review_list.jsp">후기</a></li>
+            
             <c:choose>
-              <c:when test="${auth == null}">
+              <c:when test="${empty auth}">
                 <li><a href="<%=ctxPath%>/helper/login.jsp">로그인</a></li>
               </c:when>
               <c:otherwise>

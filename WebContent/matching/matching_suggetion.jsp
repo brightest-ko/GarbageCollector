@@ -4,16 +4,16 @@
 	String ctxPath = request.getContextPath();
 
 	System.out.println("matching_suggestion.jsp");
-	String ctxPath = request.getContextPath();
 	String auth ="helper";//= null;
+	String id = "gobakse4@naver.com";
 	try{
-//		auth = (String)session.getAttribute("auth");
-//		id =  (String)session.getAttribute("id");
+		auth = (String)session.getAttribute("auth");
+		id =  (String)session.getAttribute("id");
 		if(auth==null||!auth.equals("helper")||id==null||id.equals("")){
-			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+			response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 		}
 	}catch(Exception e){
-		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
+		response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 	}
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
