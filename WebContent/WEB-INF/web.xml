@@ -38,7 +38,8 @@
 
                 helper.CtrlAdd,
                 helper.CtrlAdd_view,
-                helper.CtrlHelperLogin
+                helper.CtrlHelperLogin,
+                helper.CtrlHelperLogout
             </param-value>
         </init-param>
     </servlet>
