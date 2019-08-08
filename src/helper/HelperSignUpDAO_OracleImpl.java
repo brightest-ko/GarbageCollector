@@ -1,5 +1,6 @@
 package helper;
 
+import javax.servlet.ServletException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             stmt.setString(5, vo.getHelper_Phone());
             stmt.setString(6, vo.getHelper_Name());
             stmt.setString(7, vo.getSex());
-            stmt.setString(8,vo.getBank_Name());
+            stmt.setString(8, vo.getBank_Name());
             stmt.setString(9, vo.getAccount());
             stmt.setString(10, vo.getAccount_Holder());
             stmt.setString(11, vo.getWish_Addr_Front1());
@@ -49,129 +50,42 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
         }
     }
 
-}
 
-
-/*
-    @Override
-    public List<HelperVO> findAll() throws Exception {
-        List<HelperVO> ls = new ArrayList<HelperVO>();
-
+    public boolean checkLoginInfo(String id, String password) throws ServletException, SQLException {   // �α��� üũ �޼���
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
-        try{
+        try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR", "hr");
-            stmt = conn.createStatement();
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE", "HR", "hr");
+            if (conn == null)
+                throw new Exception();
 
-            String sql = "From bangmyung_t order by no desc";
+            String sql = "select helperpw from helper where helperid = ? ";
 
-            rs = stmt.executeQuery(sql);
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, id);
 
-            while( rs.next() ){
-                HelperVO vo  = new HelperVO();
-                vo.setHelperId();
-                vo.setHelper_Phone();
-                vo.setHelper_Name();
-                vo.setSex();
-                vo.setBank_Name();
-                vo.setAccount();
-                vo.setAccount_Holder();
-                vo.setWish_Addr_Front1();
-                vo.setWish_Addr_Detail1();
-                vo.setWish_Addr_Front2();
-                vo.setWish_Addr_Detail2();
-                vo.setWish_Addr_Front3();
-                vo.setWish_Addr_Detail3();
-                vo.setWant_to_say();
+            System.out.println(id);
 
-                vo.setNo(rs.getInt("no"));
-                vo.setGul(rs.getString("gul"));
-                vo.setTheTime(rs.getString("theTime"));
+            rs = stmt.executeQuery();
 
-                ls.add(vo);
+            if (!rs.next())
+                return false;
+
+            String correctPassword = rs.getString("helperpw");
+            if (password.equals(correctPassword)) {
+                System.out.println("correct : " + password.equals(correctPassword));
+                return true;
             }
-        }catch(Exception e){
-
+            else
+                return false;
+        } catch (Exception e) {
+            throw new ServletException(e);
+        } finally {
+            if ( rs != null ) stmt.close();
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
         }
-        finally {
-            if(rs != null) rs.close();
-            if(stmt != null) stmt.close();
-            if(conn != null) conn.close();
-        }
-        return ls;
     }
 }
-
-*/
-/* 이전 코드
-public class BangMyungDAO_OracleImpl implements BangMyungDAO {
-    @Override
-    public void add(BangMyungVO vo) throws Exception {
-
-        Connection conn = null;
-        Statement stmt = null;
-
-        try{
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","hr");
-            System.out.println(conn);
-
-            stmt = conn.createStatement();
-
-            String sql="insert into bangmyung_t values (seq_bangmyung.nextval,'"+ vo.getGul() +"',sysdate)";
-            stmt.executeUpdate(sql);
-        }
-        catch(Exception e){
-            throw e;
-        }
-        finally{
-            try {
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            }catch(SQLException e){ e.printStackTrace(); }
-        }
-
-        //response.sendRedirect("/study10/bangmyung_list");
-    }
-
-    @Override
-    public List<BangMyungVO> findAll() throws Exception{
-        List<BangMyungVO> ls = null;
-        try{
-            //WebContent/WEB-INF/lib에 ojdbc.jar넣고
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","hr");
-
-            Statement stmt = conn.createStatement();
-//          String sql = "select sysdate from dual";
-            String sql = "select no, gul, theTime from bangmyung_t order by no desc";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            ls = new ArrayList<BangMyungVO>();
-            while(rs.next()){
-//            theTime = rs.getString(1);
-                BangMyungVO vo = new BangMyungVO();
-                vo.setNo(rs.getInt(1));
-                vo.setGul(rs.getString(2));
-                vo.setTheTime(rs.getString(3));
-
-                ls.add(vo);
-            }
-
-
-
-            rs.close();
-            stmt.close();
-            conn.close();
-
-        }catch(Exception e){
-            //에러가 난 정보를 역추적해서 출력해 준다.
-            e.printStackTrace();
-        }
-        return ls;
-    }
-
-}
-*/
