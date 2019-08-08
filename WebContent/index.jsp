@@ -25,8 +25,7 @@
     <link rel="stylesheet" href="<%=ctxPath %>/assets/css/index.css">
 	<!--jquery -->	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
+
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
 	

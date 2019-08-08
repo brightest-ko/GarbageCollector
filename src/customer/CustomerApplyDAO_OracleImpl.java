@@ -83,10 +83,12 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 					+ "bag_num,trash_type,wanted_time,price,card_num,helperID,customer_apply_day,certify_status,review_status)"
 					+ " values(customer_apply_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,null,sysdate,0,0)";
 			stmt = conn.prepareStatement(sql);
+			
 			stmt.setString(1, vo.getCustomer_phone());
 			stmt.setString(2, vo.getCustomer_addr_first());
 			stmt.setString(3, vo.getCustomer_addr_second());
 			stmt.setString(4, vo.getCustomer_addr_third());
+			System.out.println("INSERT문: "+vo.getBag_num());
 			stmt.setInt(5, vo.getBag_num());
 			stmt.setInt(6, vo.getTrash_type());
 			
@@ -301,31 +303,31 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 	}
 		
 	@Override
-	public void update(String phone,String card_num) throws Exception
+	public void update(String card_num) throws Exception
 	{
 
 		Connection conn=null;
-
 		PreparedStatement stmt=null;
-		PreparedStatement stmt1=null;
-
+		Statement stmt1=null;
+		ResultSet rs1=null;
 		try{
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			 String sql="update customer_apply set card_num=? where customer_phone=?";
-			 String sql1="select count(*) from customer where customer_phone = ?";
-			 stmt1=conn.prepareStatement(sql1);
-			 stmt1.setString(1,phone);
-			 ResultSet rs1=stmt1.executeQuery();
+			 String sql1="select SerialNo from customer_apply order by serialNo desc";
+			 stmt1=conn.createStatement();
+			 rs1=stmt1.executeQuery(sql1);
+			 String sql="update customer_apply set card_num=? where serialNo=?"; 
 			 stmt=conn.prepareStatement(sql);
 			 //업데이트
 			 if(rs1.next()){
-				 System.out.println("있음");
+				 int SerialNo = rs1.getInt("SerialNo");
+				 System.out.println("card_num: "+SerialNo);
 				 
 				 stmt.setString(1,card_num);
-				 stmt.setString(2,phone);
+				 stmt.setInt(2,SerialNo);
 				 int a=stmt.executeUpdate();
 				 System.out.println("업데이트"+a);
+				
 			 }
 			 else{
 				 System.out.println("없음");
@@ -334,6 +336,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			e.printStackTrace();
 		}
 		finally{try {
+			stmt1.close();rs1.close();
 			if (stmt != null)
 				stmt.close();
 			if (conn != null)
