@@ -246,14 +246,6 @@ window.onload=function(){
 </script>
 
 
-<!-- Second Container -->
-<hr>
-<div class="container bg-white">
-	<%@include file="/map/map_info.jsp"%>
-	<br>
-	<br>
-</div>
-
 </main>
 <%@include file="/footer.jsp"%>
 <%@include file="/script.jsp"%>

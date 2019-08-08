@@ -99,7 +99,7 @@
 
 				</c:if>
 				<c:if test="${empty vo.helperID}">
-					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>
+					<td><button class="btn btn-default" onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">대행고르기</button></td>
 				</c:if>
 							</tr>
 						</c:forEach>
