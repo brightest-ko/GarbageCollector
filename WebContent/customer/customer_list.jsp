@@ -68,9 +68,7 @@
 						<tr class="bg-success" style="font-weight: bold;">
 			<td>No</td>
 			<td>핸드폰번호</td>
-			<td>인근주소</td>
-			<td>둘째주소</td>
-			<td>상세주소</td>
+			<td>주소</td>
 			<td>가방갯수</td>
 			<td>분리수거종류</td>
 			<td>원하는수거시간대</td>
@@ -84,12 +82,10 @@
 					<tbody>
 						<c:forEach var="vo" items="${rl}">
 							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">
+							<tr class="deadline_red" onclick="location.href='customer/apply_detail.jsp?serialNo=${vo.serialNo}'">
 				<td>${vo.serialNo}</td>
 				<td>${vo.customer_phone}</td>
-				<td>${vo.customer_addr_first}</td>
-				<td>${vo.customer_addr_second}</td>
-				<td>${vo.customer_addr_third}</td>
+				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
 				<td>${vo.trash_type}</td>
 				<td>${vo.wanted_time}</td>
