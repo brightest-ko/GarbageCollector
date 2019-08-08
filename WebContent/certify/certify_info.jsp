@@ -39,7 +39,7 @@
 <%@include file="/header.jsp"%>
 <main>
 	<div class="container ">
-	<form method="POST" action="/certify_button.jsp" enctype="multipart/form-data">
+	<form method="POST" action="<%=ctxPath %>/matching/matching_acceptance.jsp" enctype="multipart/form-data">
 		<div style="text-align:left">
 		
 			<div class="container row">
@@ -75,20 +75,17 @@
 				</div>
 			</div>
 
-			<h3 style="color: WHITE">특이사항</h3>
+			<h3>특이사항</h3>
 			<div class="form-group certify_detalis">
-				<textarea class="form-control" rows="5" id="details" name="details" readonly></textarea>
+				<textarea class="form-control" rows="5" id="details" name="details" readonly>${vo.details}</textarea>
 			</div>
 
-		<!-- Trigger the modal with a button -->
 		<div class="container">
-		<button type="button" class="btn btn-success" data-toggle="modal"
-			data-target="#myModal">확인</button>
+		<button type="submit" class="btn btn-success" >확인</button>
 		</div>
 		<div class="col-md-4"></div>
-
-	</div>
 	</form>
+</div>
 </main>
 <%@include file="/footer.jsp"%>
 <%@include file="/script.jsp"%>
