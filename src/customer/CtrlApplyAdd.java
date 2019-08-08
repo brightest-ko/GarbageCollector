@@ -16,11 +16,11 @@ public class CtrlApplyAdd implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("´ëÇà¼­ºñ½º½ÅÃ»");
-		System.out.println("/customer_apply_add.do ÁøÀÔ");
-		
-		
-		//NOTE: ·Î±×ÀÎ ±â´ÉµÇ¸é º¯°æÇÏ±â
+		System.out.println("ï¿½ï¿½ï¿½à¼­ï¿½ñ½º½ï¿½Ã»");
+		System.out.println("/customer_apply_add.do");
+
+
+		//NOTE: ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ÉµÇ¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 		HttpSession session = request.getSession();
 		String auth ="helper";//= null;
 		String helperID ="gobaksa4@naver.com";//= null;
@@ -28,22 +28,22 @@ public class CtrlApplyAdd implements Controller{
 //         auth = (String)session.getAttribute("auth");
 //         helperID =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
-				response.sendRedirect("loginform.jsp"); //login.jspë¡? ë³?ê²?
+				response.sendRedirect("loginform.jsp"); //login.jspï¿½? ï¿½?ï¿½?
 			}
 		}catch(Exception e){
-			response.sendRedirect("loginform.jsp"); //login.jspë¡? ë³?ê²?
+			response.sendRedirect("loginform.jsp"); //login.jspï¿½? ï¿½?ï¿½?
 		}
 
-		
-		//NOTE: getParameter·Î CustomerApplyVO vo Ã¤¿öÁÖ±â
+
+		//NOTE: getParameterï¿½ï¿½ CustomerApplyVO vo Ã¤ï¿½ï¿½ï¿½Ö±ï¿½
 		CustomerApplyVO vo = new CustomerApplyVO();
 		CustomerApplyDAO dao = new CustomerApplyDAO_OracleImpl();
 		dao.add(vo);
-		
 
-		System.out.println("/customer_apply_add.do ¿Ï·á");
-		
-		return "redirect:/½ÅÃ»°á°úÁ¶È¸.do";
+
+		System.out.println("/customer_apply_add.do");
+
+		return "redirect:/customer_apply_list.do";
 	}
 
 }
