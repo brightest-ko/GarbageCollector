@@ -12,7 +12,7 @@
         	customer.CtrlApplyAdd,
         	customer.CtrlApplyList,
         	customer.CtrlApplyList2,
-        	
+        	customer.CtrlList,
         	map.CtrlList,
 
         	certify.CtrlList,

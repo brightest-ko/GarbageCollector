@@ -35,9 +35,6 @@
 <%@include file="/header.jsp"%>
 <main>
 
-
-
-
 	<div class="container" style="padding: 50px 0;">
 		<div class="list_header">
 			<div class="col-xs-9" style="padding: 10px;">
@@ -93,6 +90,7 @@
 				<td>${vo.price}</td>
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
+				
 				<c:if test="${not empty vo.helperID}">
 					<td><button class="btn btn-success" data-doggle="modal" data-target="#review_Modal_upload">후기쓰기</button></td>
 				</c:if>

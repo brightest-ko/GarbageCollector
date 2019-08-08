@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <iframe width=800 name="por" width="0" height="0" frameborder="0" scrolling="no"></iframe>
-
 <!DOCTYPE html>
 <%
 	//String phone=(String)request.getAttribute("phone");
 	//customer_apply_rsult->customer.do(lisT)request.setAttribute();
 %>
 <div class="container"> 
-<form method="POST" action="customer_apply_two.do">
+<form method="POST" action="<%=ctxPath%>/index.do">
   	<div class="modal fade" id="customer_apply_result" role="dialog">
       <div class="modal-dialog">
       <!-- Modal content-->

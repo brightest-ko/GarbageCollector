@@ -8,4 +8,6 @@ public interface CustomerApplyDAO {
 	void update(String phone, int price, String card_num) throws Exception;
 	List<CustomerApplyVO> findAll_nohelper() throws Exception;
 	List<CustomerApplyVO> findAll_helper() throws Exception;
+	CustomerApplyVO findAll_cus(String serialNo) throws Exception;
+
 }
