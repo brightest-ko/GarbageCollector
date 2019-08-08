@@ -120,7 +120,7 @@
 </c:forEach>
 <c:forEach var="vo_review" items="${rl_review}">
 	<c:if test="${not empty vo_review.helperID and vo_review.review_status == 1}">
-		<%@include file="/review/review_modal_view.jsp"%>
+		<%--@include file="/review/review_modal_view.jsp"--%>
 	</c:if>
 </c:forEach>
 <style>
