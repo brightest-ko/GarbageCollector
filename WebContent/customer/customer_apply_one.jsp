@@ -2,12 +2,8 @@
 	pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
-
-<%
-	String customer_phone = request.getParameter("customer_phone");
-%>
 <!-- Modal -->
-<div class="modal fade" id="customer_apply_Modal" role="dialog">
+<div class="modal fade" id="customer_apply_one_modal" role="dialog">
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
@@ -17,14 +13,12 @@
 				<h4 class="modal-title">서비스 신청</h4>
 			</div>
 			<div class="modal-body">
-				<form method="POST" action="customer_apply_two.me">
 
 
 					<div class="row">
 						<div class="col-xs-4 gul">전화번호</div>
 						<div class="col-xs-8 ">
-							<input type="text" class="form-control" name="customer_phone" id="customer_phone"
-								value="01043394609">
+							<input type="text" class="form-control"  id="one_phone">
 						</div>
 					</div>
 
@@ -32,18 +26,18 @@
 						<div class="col-xs-4 gul">주소</div>
 						<div class="col-xs-8 row">
 							<div class="col-xs-4">
-								<input type="text" class="form-control"
-									name="customer_addr_front" value="제주도"
+								<input type="text" class="form-control" id="customer_addr_first"
+									name="customer_addr_first" value="제주도"
 									style="color: #445A3E; text-align: center">
 							</div>
 							<div class="col-xs-4">
-								<input type="text" class="form-control"
-									name="customer_addr_detail" value="이도2동"
+								<input type="text" class="form-control"  id="customer_addr_second"
+									name="customer_addr_second" value="이도2동"
 									style="color: #445A3E; text-align: center">
 							</div>
 							<div class="col-xs-4">
-								<input type="text" class="form-control"
-									name="customer_addr_detail" value="165"
+								<input type="text" class="form-control" id="customer_addr_third"
+									name="customer_addr_third" value="165"
 									style="color: #445A3E; text-align: center">
 							</div>
 						</div>
@@ -53,17 +47,19 @@
 						<div class="col-xs-4 gul">봉투 갯수</div>
 						<div class="col-xs-4">
 							<div class="form-group">
-								<select class="form-control" id="sel1">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+								<select class="form-control" id="bag_num" name="bag_num">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-xs-4">
-							<a role="button"><img class="btn-img"
+							<a role="button" id="help_icon"><img class="btn-img"
 								src="<%=ctxPath%>/assets/img/baseline-help-24px.svg"></a>
+								<img src="<%=ctxPath%>/assets/img/baseline-help-24px.svg" onmouseover="this.src='마우스 오버 상태의 이미지 주소'" 
+								onmouseout="this.src='<%=ctxPath%>/assets/img/baseline-help-24px.svg'">
 						</div>
 					</div>
 
@@ -73,42 +69,34 @@
 						<div class="col-xs-4">
 							<label class="form-check-label" for="radio1"> <input
 								type="radio" class="form-check-input" id="radio1"
-								name="trash_type" value="1" checked>당일수거물품
+								name="trash_type" value="0" checked>당일수거물품
 							</label>
 						</div>
 
 						<div class="col-xs-4">
-							<label class="form-check-label" for="radio2"> <input
+							<label cl ass="form-check-label" for="radio2"> <input
 								type="radio" class="form-check-input" id="radio2"
-								name="trash_type" value="2">혼합
+								name="trash_type" value="1">혼합
 							</label>
 						</div>
 					</div>
 
 
 					<div class="row">
-						<div class="col-xs-4 gul">수거시간</div>
-						<div class="col-xs-8">
-							<div class="input-group date" data-provide="datepicker">
-								<input type="text" class="form-control"
-									value="2019/08/10 -09:05" style="color: #BBC592">
-								<div class="input-group-addon">
-									<span class="glyphicon glyphicon-th"></span>
-								</div>
-							</div>
-						</div>
 
+
+					<div class="col-xs-4 gul">수거시간</div>
+					<div class="col-xs-8">
+					<div class="input-group input-append date" id="dateRangePicker"> </div>
+			</div>
 					</div>
 
 
 
 					<div class="modal-footer">
-						<a role="submit" class="btn btn-lg"
-							style="background-color: #ADCB00; color: black;">다음</a>
-						<!-- <button type="button" class="btn btn-default with-text" id="customer_apply_Modal_btn"><i class="glyphicon glyphicon-search"></i></button>
-    				 -->
+					
+						<a data-dismiss="modal" id="one_finish" href="#customer_apply_two_modal">Click</a>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>

@@ -103,8 +103,7 @@
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="<%=ctxPath%>/assets/js/jquery.raty.js"></script>
+
 	<script>
 		function ChkRating(n)
 		{
@@ -152,9 +151,77 @@
 		     }
 		}
 		function form_submit() {
-	        alert(document.getElementById("serialNo").submit());
-	    } 
+			alert("등록완료");
+		}
+		
+		//
+		var l_serialNo = $("#l_serialNo").text();
+		var l_helperID = $("#l_helperID").text();
+		var l_reviewTitle = $("#l_reviewTitle").text();
+		var l_rating = $("#l_rating").text();
+		
+		// review list에서만 뜸 
+		var action = '';
+		var url = '';
+		var type = '';
+		var del = 0;
+		var mode = 0;
+		$(document).ready(function(){
+			// 수정 버튼 클릭
+			$("button[name='modify']").click(function(){
+				var mode = 1; 
+				$('#review_Modal_view').modal('hide');
+		   	 	$('#chkpwd_Modal').modal('show');	
+			});
+			
+			// 삭제 버튼 클릭
+			$("button[name='delete']").click(function(){
+				var mode = 0;
+				$('#review_Modal_view').modal('hide');
+				$('#chkpwd_Modal').modal('show');
+			});
+		});
 		//rating 선택하지 않았을때 null point오류뜸. 에러잡아야함
+		
+		function replaceAll(str, searchStr, replaceStr) { //필터링함수
+    		return str.split(searchStr).join(replaceStr);
+		}
+
+		function Chk_Auth() { // test
+			var postpwd = "1234"; //임시
+			
+			/* 패스워드 필터링 미구현.
+			var pwd = $('#pwd').val()
+			pwd = pwd.replace("/</g,"&lt;");
+			pwd = pwd.replace("/>/g,"&gt;");
+			pwd = pwd.replace("/\"/g,"&quot;");
+			pwd = pwd.replace("/\'/g,"&#39;");
+			pwd = pwd.replace("/\n/g,"<br />"); */
+			if ( $('#pwd').val() == postpwd ) // 임시
+			{
+				if( mode === 0 ){
+					$('#chkpwd_Modal').modal('hide');
+					window.location.href="/GarbageCollector/review_delete.do?serialNo="+$('#info_serialNo').val();
+				}
+				else if( mode === 1){
+					$('#chkpwd_Modal').modal('hide');
+					$('#review_Modal_modify').modal('show');
+				}
+				
+			}
+			
+			else { // 비밀번호가 공백이거나 일치하지 않을 때 
+				if( $('#pwd').val() =='' || $('#pwd').val() == null) //공백이면
+				{
+					alert('비밀번호를 입력하세요.');
+				}
+				else
+				{
+					alert('비밀번호가 일치하지 않습니다.');
+				}
+			}		
+		}
+
 	</script>
 </head>
 <body>
@@ -196,27 +263,25 @@
 						
 						<c:forEach var="vo" items="${rl}">
 							<tr>
-								<td>${vo.serialNo}</td>
-								<td>${vo.helperID}</td>
-								<td>${vo.reviewTitle}</td>
-								<td>${vo.reviewDay}</td>
-								<td>${vo.rating}</td>
-								<!-- 
-								<td><a href="review_modify.jsp?serialNo=${vo.serialNo}">수정</a></td>
-								<td><a href="review_delete.do?serialNo=${vo.serialNo}">삭제</a></td>-->
+								<td id="l_serialNo">${vo.serialNo}</td>
+								<td id="l_helperID">${vo.helperID}</td>
+								<td id="l_reviewTitle"><a data-toggle="modal" id="gul" href="#review_Modal_view">${vo.reviewTitle}</a></td>
+								<td id="l_reviewDay">${vo.reviewDay}</td>
+								<td id="l_rating">${vo.rating}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
-		<button class="btn btn-info btn-lg" data-toggle="modal" data-target="#reviewModal">글쓰기</button>
+
 
 	<!-- Modal -->
 		
 		
-		
-	<%@include file="/review/review_insert.jsp"%>	
+	<%@include file="/review/review_modal_view.jsp"%>	
+	<%@include file="/review/chkpwd_modal.jsp"%>
+	<%@include file="/review/review_modal_modify.jsp"%>
 </div>
 </main>
 	<!-- include 써주기(모달뺴서) -->

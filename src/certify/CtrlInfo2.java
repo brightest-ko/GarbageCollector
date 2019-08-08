@@ -7,12 +7,15 @@ import common.Controller;
 import common.RequestMapping;
 import common.Util;
 
-@RequestMapping("/certify_info2.do")
+@RequestMapping("/certify/certify_info2.do")
 public class CtrlInfo2 implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int serino = Util.parseInt(request.getParameter("certify_serialNo"));
+		System.out.println("info");
+		System.out.println(request.getParameter("SerailNo"));
+		int serino = Util.parseInt(request.getParameter("SerailNo"));
+		System.out.println(serino);
 		CertifyDAO dao = new CertifyDAO_OracleImpl();
 		CertifyVO vo =null;
 		try{

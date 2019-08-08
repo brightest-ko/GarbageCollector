@@ -1,0 +1,20 @@
+#photo{
+	position: relative;
+    width: 50%;
+    float: left;
+}
+#details{
+	position: relative;
+    width: 50%;
+    float: right;
+}
+#info_photo{
+	position: relative;
+    width: 50%;
+    float: left;
+}
+#info_details{
+	position: relative;
+    width: 50%;
+    float: right;
+}

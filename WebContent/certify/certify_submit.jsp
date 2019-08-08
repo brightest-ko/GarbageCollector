@@ -4,7 +4,7 @@
 	String ctxPath = request.getContextPath();
 	String auth = "helper";//= null;
 	String certify_id = "gobaksa4@naver.com";//= null;
-	String certify_no=null;
+	String certify_no = null;
 	try {
 		//	auth = (String)session.getAttribute("auth");
 		//	id =  (String)session.getAttribute("id");
@@ -14,7 +14,7 @@
 	} catch (Exception e) {
 		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
 	}
-	certify_no=request.getParameter("SerailNo");
+	certify_no = request.getParameter("SerailNo");
 %>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -47,7 +47,7 @@
 }
 
 .certify_detalis {
-	border: solid #ADCB00 3px;
+	border: solid #101820 3px;
 }
 </style>
 </head>
@@ -56,7 +56,7 @@
 	<main>
 	<div class="container ">
 		<div style="text-align: left">
-			<form method="POST" action="<%=ctxPath %>/certify/certify_add2.do"
+			<form method="POST" action="<%=ctxPath%>/certify/certify_add2.do"
 				enctype="multipart/form-data">
 				<div class="container row">
 					<div class="jumbotron certify_temp">
@@ -73,44 +73,74 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group has-success has-feedback">
-					<div class="input-group">
-						<span class="input-group-addon">대행ID</span> <input
-							id="certify_helperID" type="text" class="form-control"
-							name="certify_helperID" value=<%=certify_id%> readonly>
-					</div>
-				</div>
-				<div class="form-group has-success has-feedback">
-					<div class="input-group">
-						<span class="input-group-addon">고객 신청번호</span> <input
-							id="certify_serialNo" type="text" class="form-control"
-							name="certify_serialNo" value=<%=certify_no%> readonly>
-					</div>
-				</div>
-		</div>
-		<div class="form-group has-success has-feedback">
-			<div class="input-group">
-				<span class="input-group-addon">위치</span> <input id="housePlace"
-					type="text" class="form-control" name="housePlace"
-					placeholder="위치를 찍어주세요">
-			</div>
-		</div>
-		<div class="form-group has-success has-feedback">
-			<div class="input-group">
-				<span class="input-group-addon">사진</span> <input type="file"
-					name="photo" camera="camera" class="form-control" />
-			</div>
-		</div>
 
-		<h3 style="color: WHITE">특이사항</h3>
-		<div class="form-group certify_detalis">
-			<textarea class="form-control" rows="5" id="details" name="details"></textarea>
-		</div>
+				<div class="py-5">
+					<div class="container ">
+						<div class="row">
+							<div class="col-md-12">
 
-		<!-- Trigger the modal with a button -->
-		<div class="container">
-			<button type="button" class="btn btn-success" data-toggle="modal"
-				data-target="#myModal">인증완료</button>
+								<div class="form-group row">
+									<label class="col-sm-1 col-form-label">대행ID</label>
+									<div class="col-sm-11">
+										<input type="text" class="form-control" id="certify_helperID"
+											name="certify_helperID" value=<%=certify_id%> readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-1  col-form-label">신청번호</label>
+									<div class="col-sm-11">
+										<input type="text" class="form-control " id="certify_serialNo"
+											name="certify_serialNo" value=<%=certify_no%> readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-1 col-form-label">위치</label>
+									<div class="col-sm-11">
+										<input type="text" class="form-control " id="housePlace"
+											name="housePlace" placeholder="위치를 찍어주세요">
+									</div>
+								</div>
+								<script>
+									function ajaxGet(url, fpOk, fpFail) {
+										var xhr = new XMLHttpRequest();
+										xhr.onreadystatechange = function() {
+											if (xhr.readyState == 4) {
+												if (xhr.status == 200) {
+													//undefined를 피하기 위한 방법
+													if (fpOk) {
+														alert(xhr.responseText);
+													}
+												} else {
+													if (fpFail) {
+														fpFail(xhr.status);
+													}
+												}
+											}
+										};
+										xhr.open("GET", url, true);
+										xhr.send(null);
+									}
+								</script>
+								<div class="form-group row ">
+									<label class="col-sm-1 col-form-label ">사진</label> <div class="col-sm-11"><input
+										type="file" name="photo" camera="camera" class="form-control " />
+										</div>
+								</div>
+								<h3>특이사항</h3>
+								<div class="form-group">
+									<textarea class="form-control" rows="5" id="details"
+										name="details"></textarea>
+
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<button type="button" class="btn btn-success" data-toggle="modal"
+								data-target="#myModal">인증완료</button>
+						</div>
+					</div>
+
+				</div>
 		</div>
 		<div class="col-md-4"></div>
 		<!-- Modal -->
@@ -129,9 +159,41 @@
 
 	</div>
 	</form>
-	</main>
-	<%@include file="/footer.jsp"%>
-	<%@include file="/script.jsp"%>
+	<div class="pt-5 text-center ">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h3 contenteditable="true">인증하는 방법</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-4 p-4">
+					<h4>
+						<b>One</b>
+					</h4>
+					<p>내 위치 버튼을 클릭하여 현재위치의 클린하우스 또는 재활용 도움센터를 찍어주세요</p>
+				</div>
+				<div class="col-lg-4 col-md-4 p-4">
+					<h4>
+						<b>Two</b>
+					</h4>
+					<p style="">
+						클린하우스와 빈 봉투가 보이게&nbsp;<br>사진을 찍어주세요
+					</p>
+				</div>
+				<div class="col-lg-4 col-md-4 p-4">
+					<h4>
+						<b>Three</b>
+					</h4>
+					<p>사진을 첨부한 후 특이사항을 작성하시고 인증완료 버튼을 눌러주세요</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</main>
+<%@include file="/footer.jsp"%>
+<%@include file="/script.jsp"%>
 
 </body>
 </html>

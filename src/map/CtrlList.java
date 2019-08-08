@@ -15,19 +15,21 @@ public class CtrlList implements Controller{
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("auth"));
         System.out.println(session.getAttribute("helperId"));
 	    String l = null;
-		
-        MapDAO dao = new MapDAO_OracleImpl();
-        List<MapVO> rl = dao.findAll();
 
         String search_place= request.getParameter("search_place");
+
+        MapDAO dao = new MapDAO_OracleImpl();
+        List<MapVO> rl = dao.findAll();
+        
         request.setAttribute("rl", rl);
         
 
-		System.out.println("ControllerList TEST" + rl.toString());
+		System.out.println("Index TEST" + rl.toString());
 		return "/index.jsp";
 	}
 

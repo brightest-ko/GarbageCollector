@@ -19,7 +19,6 @@ public class CtrlApplyAdd implements Controller{
 		System.out.println("���༭�񽺽�û");
 		System.out.println("/customer_apply_add.do");
 
-
 		//NOTE: �α��� ��ɵǸ� �����ϱ�
 		HttpSession session = request.getSession();
 		String auth ="helper";//= null;
@@ -33,7 +32,6 @@ public class CtrlApplyAdd implements Controller{
 		}catch(Exception e){
 			response.sendRedirect("loginform.jsp"); //login.jsp�? �?�?
 		}
-
 
 		//NOTE: getParameter�� CustomerApplyVO vo ä���ֱ�
 		CustomerApplyVO vo = new CustomerApplyVO();

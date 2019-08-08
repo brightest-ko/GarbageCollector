@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%
+	String ctxPath = request.getContextPath();
+%>
+<%--
 	System.out.println("matching_suggestion.jsp");
 	String ctxPath = request.getContextPath();
 	String auth ="helper";//= null;
-	String id ="gobaksa4@naver.com";//= null;
 	try{
 //		auth = (String)session.getAttribute("auth");
 //		id =  (String)session.getAttribute("id");
@@ -14,7 +16,7 @@
 	}catch(Exception e){
 		response.sendRedirect("loginform.jsp"); //login.jsp로 변경
 	}
-%>
+--%>
 <%--jstl 을 사용하기 위해 추가 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -95,7 +97,7 @@
 								<td>2019/08/20/17:22:10</td>
 								<td>플라스틱</td>
 								<td>2000원</td>
-								<td><div id="newcountdown" wanted_time_data="08/07/2019 6:00 PM"></div></td>
+								<td><div id="newcountdown" wanted_time_data="08/08/2019 1:43 AM"></div></td>
 								<td>
 									<button type="button" class="btn btn-default btn-success blinkEle">제안하기</button>
 								</td>
@@ -107,7 +109,7 @@
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.customer_addr_first} ${vo.customer_addr_second}</td>
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.wanted_time }</td>
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.trash_type }</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.price }</td>
+								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.price }원</td>
 								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'"><div id="countdown" wanted_time_data="${vo.wanted_time }"></div></td>
 								<td>
 									<button type="button" class="btn btn-success " data-toggle="modal" data-target="#suggestion_ok">제안하기</button>

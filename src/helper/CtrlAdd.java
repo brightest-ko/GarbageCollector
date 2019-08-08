@@ -16,6 +16,9 @@ public class CtrlAdd implements Controller {
         Exception err = null;
 
         String helperId = Util.h( request.getParameter("email"));
+        String helperPw = Util.h( request.getParameter("pw" ));
+       // String helperPhotoOfn = Util.h( request.getParameter("pw" ));
+       //  String helperPhotoFsn = Util.h( request.getParameter("pw" ));
         String phoneNum = Util.h( request.getParameter("phoneNum"));
         String helper_name = Util.h( request.getParameter("helper_name"));
         String sex = Util.h( request.getParameter("sex"));
@@ -33,6 +36,7 @@ public class CtrlAdd implements Controller {
         HelperVO vo = new HelperVO();
 
         vo.setHelperId(helperId);
+        vo.setHelperPw(helperPw);
         vo.setHelper_Phone(phoneNum);
         vo.setHelper_Name(helper_name);
         vo.setSex(sex);
