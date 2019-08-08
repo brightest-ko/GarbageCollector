@@ -1,40 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <!DOCTYPE html>
-    <div class="modal fade" id="reviewModal" role="dialog">
+    <div class="modal fade" id="review_Modal_modify" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->
 		    	<div class="modal-content">
 		        	<div class="modal-header">
 		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
-		          		<h4 class="modal-title" align="center" style="font-weight: bold">고객 리뷰글</h4>
+		          		<h4 class="modal-title" align="center" style="font-weight: bold">수정하기</h4>
 		        	</div>
 		        	<form method="POST" action="/review_modify.do">
 		        	<div class="modal-body">
 		        		 <div class="row">
 					     	<div class="col-md-4" style="text-align:center;">
-					     		<label for="serialNo" style="padding-top:8px">신청번호</label>
+					     		<label for="md_serialNo" style="padding-top:8px">신청번호</label>
 					     	</div>
 					      	<div class="col-md-8">
-					      		<input class="form-control" id="serialNo" type="text" name="serialNo" value="123456" readonly style="margin-left:0px;"/>
+					      		<input class="form-control" id="md_serialNo" type="text" name="md_serialNo" value="123456" readonly style="margin-left:0px;"/>
 					      	</div>
 					   	 </div>
 
 		        		<div class="row">
 		        			<div class="col-md-4" style="text-align:center;">
-								<label for="review_title" style="padding-top:8px">제목</label>
+								<label for="md_review_title" style="padding-top:8px">제목</label>
 							</div>
 							<div class="col-md-8">
-							    <input class="form-control" id="review_title" type="text" name="review_title" placeholder="myTitle" style="margin-left:0px;"/>
+							    <input class="form-control" id="md_review_title" type="text" name="md_review_title" placeholder="myTitle" style="margin-left:0px;"/>
 							</div>
 		        		</div>
 		        		<div class="row">
 		        			<div class="col-md-4" style="text-align:center;">
-								<label for="helperID" style="padding-top:8px">대행자</label>
+								<label for="md_helperID" style="padding-top:8px">대행자</label>
 							</div>
 							<div class="col-md-8">
-								<input class="form-control" id="helperID" type="text" name="helperID" placeholder="myhelperID" readonly style="margin-left:0px;"/>
+								<input class="form-control" id="md_helperID" type="text" name="md_helperID" placeholder="myhelperID" readonly style="margin-left:0px;"/>
 							</div>
 		        		</div>
 						<div class="row">
@@ -63,22 +63,21 @@
 						</div>
 		       			<div class="row">
 		        			<div class="col-md-4" style="text-align:center;">
-								<label for="review_cleanhouse" style="padding-top:8px">클린하우스 위치</label>
+								<label for="md_review_cleanhouse" style="padding-top:8px">클린하우스 위치</label>
 							</div>
 							<div class="col-md-8">
-							    <input class="form-control" id="review_cleanhouse" type="text" name="review_cleanhouse" placeholder="주소검색" style="margin-left:0px;"/>
+							    <input class="form-control" id="md_review_cleanhouse" type="text" name="md_review_cleanhouse" placeholder="주소검색" style="margin-left:0px;"/>
 							</div>
 		        		</div>
 		        		<div class="row">
 		        			<div class="col-md-12" style="text-align:center;">
-		        				<textarea class="form-control ta" id="review_content" name="review_content" scrolling="no" onKeyUp="javascript:fnChkByte(this,'80')" style="margin-left: 0px;"></textarea>
+		        				<textarea class="form-control ta" id="md_review_content" name="md_review_content" scrolling="no" onKeyUp="javascript:fnChkByte(this,'80')" style="margin-left: 0px;"></textarea>
 								<span style="float:right">/ 80bytes</span><span id="byteInfo" style="float:right">0</span>
 							</div>
 		        		</div>
 		        	</div>
 		        	<div class="modal-footer">
-		        		<input type="submit" class="btn btn-md" style="background-color:#ADCB00;color:black;" value="등록" onClick="javascript:alert('수정')"/>
-		        		<input type="submit" class="btn btn-md" style="background-color:#ADCB00;color:black;" value="등록" onClick="javascript:alert('삭제')"/>
+		        		<input type="submit" class="btn btn-md" style="background-color:#ADCB00;color:black;" value="등록" onClick="javascript:alert('등록하기')"/>
 		        	</div>
 		        	</form>		
 		      	</div>

@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%  // Sample Example . ctxPath는 import되서 지정될거임
-	Integer serialNo = 123456;
-	String helperID = "jsb@naver.com";
+	Integer serialNo = 123456; // 클릭한 serialNo
+	String helperID = "jsb@naver.com"; // 클릭한 게시물의 helperID를 가져옴
+	String review_title = "test title"; // 클릭한 serialNo의 게시물을 가져옴
+	Double rate = 3.0;
+	//$('input[name="item"]:radio[value="3"]').prop('checked',true); 라디오체크 
+	//$("[name=Radio name]:not(:checked)").attr('disabled','disabled'); // 값들이 전송x
+	String review_cleanhouse = "cleanhouse place";
 %>
 <!-- ############# Note ################### 
-	matching Page에서 리뷰작성버튼 modal 
-	변수명은 serialNo, helperID로 통일한다.	
+	This is imported by review_list Page.
  -->
     <!DOCTYPE html>
-    <div class="modal fade" id="reviewModal" role="dialog">
+    <div class="modal fade" id="review_Modal_view" role="dialog">
 			<div class="modal-dialog">
 		    
 		      <!-- Modal content-->
@@ -18,7 +22,7 @@
 		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
 		          		<h4 class="modal-title" align="center" style="font-weight: bold">고객 리뷰글</h4>
 		        	</div>
-		        	<form method="POST" action="<%=ctxPath%>/review_insert.do">
+		        	<!--  <form method="POST" action="< %=ctxPath%>/review_insert.do"> -->
 			        	<div class="modal-body">
 			        		 <div class="row">
 						     	<div class="col-md-4" style="text-align:center;">
@@ -34,7 +38,7 @@
 									<label for="review_title" style="padding-top:8px">제목</label>
 								</div>
 								<div class="col-md-8">
-								    <input class="form-control" id="review_title" type="text" name="review_title" placeholder="myTitle" style="margin-left:0px;"/>
+								    <input class="form-control" id="review_title" type="text" name="review_title" value="<%=review_title%>" readonly style="margin-left:0px;"/>
 								</div>
 			        		</div>
 			        		<div class="row">
@@ -74,20 +78,20 @@
 									<label for="review_cleanhouse" style="padding-top:8px">클린하우스 위치</label>
 								</div>
 								<div class="col-md-8">
-								    <input class="form-control" id="review_cleanhouse" type="text" name="review_cleanhouse" placeholder="주소검색" style="margin-left:0px;"/>
+								    <input class="form-control" id="review_cleanhouse" type="text" name="review_cleanhouse" value="<%=review_cleanhouse%>" readonly style="margin-left:0px;"/>
 								</div>
 			        		</div>
 			        		<div class="row">
 			        			<div class="col-md-12" style="text-align:center;">
-			        				<textarea class="form-control ta" id="review_content" name="review_content" scrolling="no" onKeyUp="javascript:fnChkByte(this,'80')" style="margin-left: 0px;"></textarea>
-									<span style="float:right">/ 80bytes</span><span id="byteInfo" style="float:right">0</span>
+			        				<textarea class="form-control ta" id="review_content" name="review_content" scrolling="no" readonly style="margin-left: 0px;"></textarea>
 								</div>
 			        		</div>
 			        	</div>
 			        	<div class="modal-footer">
-			        		<input type="submit" class="btn btn-md" style="background-color:#ADCB00;color:black;" value="등록" onClick="javascript:form_submit()"/>
+			        		<button id="modifyBtn" class="btn btn-md" name="modify" style="background-color:#ADCB00;color:black;" value="수정" >수정</button> <!-- onClick="javascript:Chk_Auth()"/> -->
+			        		<button id="deleteBtn" class="btn btn-md" name="delete" style="background-color:#ADCB00;color:black;" value="삭제" >삭제</button> <!-- onClick="javascript:Chk_Auth()"/> -->
 			        	</div>
-		        	</form>		
+		        	<!-- </form> -->
 		      	</div>
 		  	</div>
 		</div>
