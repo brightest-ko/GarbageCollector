@@ -7,5 +7,4 @@ import javax.servlet.http.HttpSession;
 public interface Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	
 }

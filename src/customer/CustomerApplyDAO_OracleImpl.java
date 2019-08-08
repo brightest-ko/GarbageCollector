@@ -133,9 +133,6 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			}
 			System.out.println("�����ڵ鿡�� ��õ��  끝.");
 			
-			
-			
-			
 			conn.commit();
 			stmt.close();
 			conn.close();
@@ -156,18 +153,20 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			String sql="select * from customer_apply where customer_phone = ? and review_status =0 order by SerialNo, customer_apply_day desc";
+			String sql="select * from customer_apply where customer_phone = '01094589584' and review_status =0 "
+					+ "and (WANTED_TIME >= SYSDATE) "
+					+ "order by SerialNo, customer_apply_day desc";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, customer_phone);
+//			stmt.setString(1, customer_phone);
 			rs=stmt.executeQuery();
 			System.out.println("rs "+rs.toString());
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
 				vo.setSerialNo(rs.getInt("serialNo"));
 				vo.setCustomer_phone(rs.getString("customer_phone"));
-				vo.setCustomer_addr_first(rs.getString("ustomer_addr_first"));
-				vo.setCustomer_addr_second(rs.getString("ustomer_addr_second"));
-				vo.setCustomer_addr_third(rs.getString("ustomer_addr_third"));
+				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
 				vo.setBag_num(rs.getInt("bag_num"));
 				vo.setTrash_type(rs.getInt("trash_type"));
 				vo.setWanted_time(rs.getDate("wanted_time"));
@@ -181,6 +180,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 			}
 			rs.close();
 		}catch(Exception e){
+			e.printStackTrace();
 		}
 		finally{
 			try {
@@ -189,6 +189,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 				if (conn != null)
 					conn.close();
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
 		}
@@ -198,7 +199,7 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 
 	@Override
-	public List<CustomerApplyVO> findAll_helper(String customer_phone) throws Exception {
+	public List<CustomerApplyVO> findAll2(String customer_phone) throws Exception {
 
 		List<CustomerApplyVO> ls=new ArrayList<CustomerApplyVO>();
 		Connection conn=null;
@@ -208,28 +209,33 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
-			String sql="select * from customer_apply where  customer_phone = ? helperID is not null";
+			String sql="select * from customer_apply"
+					+ " where customer_phone = ?"
+					+ " and (WANTED_TIME < SYSDATE or (serialNo in (select serialNo from matching where suggestion = 1 and acceptance = 1)))";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, customer_phone);
 			rs=stmt.executeQuery();
 			while(rs.next()){
 				CustomerApplyVO vo=new CustomerApplyVO();
-				vo.setSerialNo(rs.getInt(1));
-				vo.setCustomer_phone(rs.getString(2));
-				vo.setCustomer_addr_first(rs.getString(3));
-				vo.setCustomer_addr_second(rs.getString(4));
-				vo.setCustomer_addr_third(rs.getString(5));
-				vo.setBag_num(rs.getInt(6));
-				vo.setTrash_type(rs.getInt(7));
-				vo.setWanted_time(rs.getDate(8));
-				vo.setPrice(rs.getInt(9));
-				vo.setCard_num(rs.getString(10));
-				vo.setHelperID(rs.getString(11));
-				vo.setCustomer_apply_day(rs.getDate(12));
+				vo.setSerialNo(rs.getInt("serialNo"));
+				vo.setCustomer_phone(rs.getString("customer_phone"));
+				vo.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				vo.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				vo.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				vo.setBag_num(rs.getInt("bag_num"));
+				vo.setTrash_type(rs.getInt("trash_type"));
+				vo.setWanted_time(rs.getDate("wanted_time"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setCard_num(rs.getString("card_num"));
+				vo.setHelperID(rs.getString("helperID"));
+				vo.setCustomer_apply_day(rs.getDate("customer_apply_day"));
+				vo.setCertify_status(rs.getInt("certify_status"));
+				vo.setReview_status(rs.getInt("review_status"));
 				ls.add(vo);
 			}
 			rs.close();
 		}catch(Exception e){
+			e.printStackTrace();
 		}
 		finally{
 			try {
@@ -245,6 +251,52 @@ public class CustomerApplyDAO_OracleImpl implements CustomerApplyDAO {
 
 	}
 	
+	@Override
+	public CustomerApplyVO findAll_cus(String serialNo) throws Exception{
+		CustomerApplyVO rl=new CustomerApplyVO();
+		Connection conn=null;
+
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		
+		try{
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
+			 conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+			 String sql="select * from customer_apply where serialNo=?";
+			 stmt=conn.prepareStatement(sql);
+			 stmt.setString(1,serialNo);
+			 rs=stmt.executeQuery();
+			 //업데이트
+			 if(rs.next()){
+				 System.out.println("상세있음");
+				 rl.setBag_num(rs.getInt("bag_num"));
+				 rl.setCard_num(rs.getString("card_num"));
+				 rl.setCustomer_addr_first(rs.getString("customer_addr_first"));
+				 rl.setCustomer_addr_second(rs.getString("customer_addr_second"));
+				 rl.setCustomer_addr_third(rs.getString("customer_addr_third"));
+				 rl.setCustomer_phone(rs.getString("customer_phone"));
+				 rl.setPrice(rs.getInt("price"));
+				 rl.setTrash_type(rs.getInt("trash_type"));
+				 rl.setWanted_time(rs.getDate("wanted_time"));
+			 }
+			 else{
+				 System.out.println("상세없음");
+			 }
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			try {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (Exception e) {
+		}
+		}
+		return rl;
+	}
+		
 	@Override
 	public void update(String phone,int price,String card_num) throws Exception
 	{

@@ -61,7 +61,7 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             if (conn == null)
                 throw new Exception();
 
-            String sql = "select helperpw from helper where helperid = ? ";
+            String sql = "select helper_password from helper where helperid = ? ";
 
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, id);
@@ -73,7 +73,7 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             if (!rs.next())
                 return false;
 
-            String correctPassword = rs.getString("helperpw");
+            String correctPassword = rs.getString("helper_password");
             if (password.equals(correctPassword)) {
                 System.out.println("correct : " + password.equals(correctPassword));
                 return true;
@@ -81,6 +81,7 @@ public class HelperSignUpDAO_OracleImpl implements HelperSignUpDAO {
             else
                 return false;
         } catch (Exception e) {
+            System.out.println(e);
             throw new ServletException(e);
         } finally {
             if ( rs != null ) stmt.close();

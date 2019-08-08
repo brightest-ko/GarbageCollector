@@ -35,9 +35,6 @@
 <%@include file="/header.jsp"%>
 <main>
 
-
-
-
 	<div class="container" style="padding: 50px 0;">
 		<div class="list_header">
 			<div class="col-xs-9" style="padding: 10px;">
@@ -81,23 +78,25 @@
 					
 					<tbody>
 						<c:forEach var="vo" items="${rl}">
-							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red" >
+							<tr>
 				<td onclick="location.href='customer/customer_detail.jsp?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
 				<td>${vo.customer_phone}</td>
 				<td>${vo.customer_addr_first} ${vo.customer_addr_second} ${vo.customer_addr_third}</td>
 				<td>${vo.bag_num}</td>
-				<td>${vo.trash_type}</td>
+				
+				<td><c:if test="${vo.trash_type == 0}">오늘의 재활용</c:if>
+				<c:if test="${vo.trash_type == 1}">혼합 재활용</c:if></td>
 				<td>${vo.wanted_time}</td>
 				
 				<td>${vo.price}</td>
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
-				<c:if test="${not empty vo.helperID and vo.certify_status=1 and vo.review_status == 0}">
+				<c:if test="${not empty vo.helperID and vo.certify_status == 1 and vo.review_status == 0}">
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_upload${vo.serialNo }">후기쓰기</button></td>
 				</c:if>
 				<c:if test="${not empty vo.helperID and vo.review_status == 1}">
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_view${vo.serialNo }">후기수정</button></td>
+
 				</c:if>
 				<c:if test="${empty vo.helperID}">
 					<td><button class="btn btn-default" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">대행고르기</button></td>
@@ -120,10 +119,9 @@
 </c:forEach>
 <c:forEach var="vo_review" items="${rl_review}">
 	<c:if test="${not empty vo_review.helperID and vo_review.review_status == 1}">
-		<%@include file="/review/review_modal_view.jsp"%>
+		<%--@include file="/review/review_modal_view.jsp"--%>
 	</c:if>
 </c:forEach>
-  
 <style>
 .btn-outline-success{
 	color: #5cb85c;

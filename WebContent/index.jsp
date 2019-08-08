@@ -29,7 +29,70 @@
 	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datepicker.kr.js"></script>
 	<title>당신의 쓰레기는 안녕하수깡?</title>
 	<link rel="struct icon" href="<%=ctxPath %>/assets/img/brsg.ico">
+	<link rel="stylesheet" href="<%=ctxPath %>/assets/css/bootstrap-datetimepicker.min.css">
+	<script type="text/javascript" src="<%=ctxPath %>/assets/js/bootstrap-datetimepicker.min.js"></script>
+	<script>
 	
+	function myFunction() {
+		var winScroll = document.body.scrollTop
+				|| document.documentElement.scrollTop;
+		var height = document.documentElement.scrollHeight
+				- document.documentElement.clientHeight;
+		var scrolled = (winScroll / height) * 100;
+		document.getElementById("myBar").style.width = scrolled + "%";
+	}
+
+	var good_b = [ "한림읍", "애월읍", "구좌읍", "조천읍", "한경면", "추자면", "우도면", "일도동",
+			"이도동", "삼도동", "용담동", "건입동", "화북동", "삼양동", "봉개동", "아라동", "오라동",
+			"연동", "노형동", "외도동", "이호동", "도두동" ];
+	var good_c = [ "대정읍", "남원읍", "성산읍", "안덕면", "표선면", "송산동", "정방동", "중앙동",
+			"천지동", "효돈동", "영천동", "동흥동", "서홍동", "대륜동", "대천동", "중문동", "예래동" ];
+
+	function categoryChange1(e) {
+
+		var target1 = document.getElementById("good1");
+		
+		if (e.value == "제주시")
+		{	var d = good_b;
+			
+		}
+		else if (e.value == "서귀포시")
+		{	var d = good_c;
+			
+		}
+
+		target1.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target1.appendChild(opt);
+		}
+	}
+	
+	  
+
+	</script>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.css" type="text/css" media="all" />
+    <style>
+    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+    .ui-timepicker-div dl { text-align: left; }
+    .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+    .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+    .ui-timepicker-div td { font-size: 90%; }
+    .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+    .ui-timepicker-rtl{ direction: rtl; }
+    .ui-timepicker-rtl dl { text-align: right; }
+    .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+    </style>
+    
 </head>
 <body>
 <%@include file="/header.jsp"%>
@@ -89,7 +152,7 @@
 		xhr.open("GET",url,true);
 		xhr.send(null);
 	}
-
+	
 window.onload=function(){
 	var apply_do=document.getElementById("apply_do");
 	var apply_result=document.getElementById("apply_result");
@@ -102,26 +165,35 @@ window.onload=function(){
 	    	});
 			$("#one_finish").click(function(){
 				phone=$('#one_phone').val();
-				var first=$('#customer_addr_first').val();
-				var second=$('#customer_addr_second').val();
+				var first_1=document.getElementById("city1");
+				var first_2=first_1.selectedIndex;
+				var first=first_1.options[first_2].value;
+				
+				var second_1=document.getElementById("good1");
+				var second_2=second_1.selectedIndex;
+				var second=second_1.options[second_2].value;
+				
 				var third=$('#customer_addr_third').val();
+				
 				var bag=document.getElementById("bag_num");
 				var num=bag.selectedIndex;
 				bag_num=bag.options[num].value;
 				var trash_type = $('input:radio[name="trash_type"]:checked').val();
 				var date="2019-09-09";
-				/*$('#dateRangePicker').datepicker({
+				/*var a=$('#dateRangePicker').datepicker({
 					 format: "yyyy-mm-dd",
 					 language: "kr"
 					 });
+				alert(a);
 				var imsi=$('#dateRangePicker').datepicker( "getDate" );*/
 			
 				var url="<%=ctxPath%>/customer/customer_test.jsp?temp=temp&one_phone="+phone+"&first="+first+"&second="+second+
 					"&third="+third+"&bag_num="+bag_num+"&trash_type="+trash_type+"&date="+date;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
-					alert(ob.code);
+					
 					if(ob.code=='OK'){
+						document.getElementById("price_ap").innerHTML=bag_num*1500+"원";
 							$('#customer_apply_one_modal').modal('hide');
 							$("#customer_apply_two_modal").modal("show");	
 				}
@@ -130,16 +202,16 @@ window.onload=function(){
 			
 		});
 			$("#two_finish").click(function(){
-				bag_num*=1;
+	
 				
 				var card_num=$('#card_num').val();
 				$("#customer_apply_two_modal").modal("hide");
 		       	$("#customer_apply_result").modal("show");
-		       	document.getElementById("price_ap").innerHTML=bag_num*1500;
+		       
 		       	var url="<%=ctxPath%>/customer/customer_test1.jsp?temp=temp&two_phone="+phone+"&price="+(bag_num*1500)+"&card_num="+card_num;
 				ajaxGet(url,function(rt){
 					var ob=window.eval("("+rt.trim()+")");
-					alert(ob.code);
+					
 					if(ob.code=='OK1'){
 							$('#customer_apply_two_modal').modal('hide');
 							$("#customer_apply_result").modal("show");	
@@ -148,18 +220,21 @@ window.onload=function(){
 				}
 			);
 			$("#apply_do").click(function(){
-				
+				document.getElementById("one_phone").value=$("#customer_phone_in").val();
 				$("#customer_choose").modal("hide");
 				$("#customer_apply_one_modal").modal("show");
-	       		
 	    	});
 			$("#apply_result").click(function(){
-				
 				$("#customer_choose").modal("hide");
-	       		
 	    	});
+			$("#datetimepicker1").click(function() {
+			    $('#datetimepicker1').datetimepicker({
+				      language: 'pt-BR'
+				    });
+			});
 		//var go_list=document.getElementById("go_list");
 	});
+		
 	};
 </script>
 

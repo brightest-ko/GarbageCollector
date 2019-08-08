@@ -22,8 +22,9 @@ public class CtrlAdd implements Controller {
         System.out.println("ddd");
         MultipartRequest mpr = new MultipartRequest( request , path , 1024*1024*20 , "UTF-8" ,
 				new DefaultFileRenamePolicy());
+
         String ofn = mpr.getOriginalFileName("helper_photo");
-		// ¹Ù²ï ÀÌ¸§
+		// ï¿½Ù²ï¿½ ï¿½Ì¸ï¿½
 		String fsn = mpr.getFilesystemName("helper_photo");
 		System.out.println(ofn+"->"+fsn);
 
@@ -50,7 +51,6 @@ public class CtrlAdd implements Controller {
         vo.setHelperPw(helperPw);
         vo.setHelperPhotoOfn(ofn);
         vo.setHelperPhotoFsn(fsn);
-        vo.setHelperPw(helperPw);
         vo.setHelper_Phone(phoneNum);
         vo.setHelper_Name(helper_name);
         vo.setSex(sex);
@@ -69,6 +69,6 @@ public class CtrlAdd implements Controller {
 
         dao.add(vo);
 
-        return "redirect:/helper/register.jsp";
+        return "redirect:/index.do";
     }
 }

@@ -20,22 +20,23 @@ public class CtrlSuggetionList implements Controller{
 		System.out.println("/matching_suggestion_list.do 진입");
 		
 		HttpSession session = request.getSession();
-		String auth ="helper";//= null;
-		String helperID ="gobakse5@naver.com";//= null;
+		String auth = null;
+		String helperID = null;
 		try{
-//         auth = (String)session.getAttribute("auth");
-//         helperID =  (String)session.getAttribute("id");
+			auth = (String)session.getAttribute("auth");
+			helperID =  (String)session.getAttribute("id");
 			if(auth==null||!auth.equals("helper")||helperID==null||helperID.equals("")){
-				response.sendRedirect("loginform.jsp"); //login.jsp濡� 蹂�寃�
+				response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 			}
 		}catch(Exception e){
-			response.sendRedirect("loginform.jsp"); //login.jsp濡� 蹂�寃�
+			response.sendRedirect("helper/login.jsp"); //login.jsp로 변경
 		}
 
 		MatchingDAO dao = new MatchingDAO_OracleImpl();
 		List<CustomerApplyVO> rl = dao.suggestion_list(helperID);
-
+		List<CustomerApplyVO> rl_deadline = dao.suggestion_list_deadline(helperID);
 //		System.out.println("제안 추천 리스트 " + rl.toString());
+		request.setAttribute("rl_deadline", rl_deadline);
 		request.setAttribute("rl", rl);
 
 		System.out.println("/matching_suggestion_list.do 완료");
