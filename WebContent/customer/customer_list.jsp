@@ -91,6 +91,63 @@
 				<td>${vo.price}</td>
 				<td>${vo.card_num}</td>
 				<td>${vo.customer_apply_day}</td>
+				<c:if test="${not empty vo.helperID and vo.certify_status == 0}">
+					<td>
+
+        <div class="loader" id="loader-1"></div>진행중
+      <style>
+  
+/* ALL LOADERS */
+
+.loader{
+ float:right;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* LOADER 1 */
+
+#loader-1:before, #loader-1:after{
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 10px solid transparent;
+  border-top-color: #5cb85c;
+}
+
+#loader-1:before{
+  z-index: 100;
+  animation: spin 1s infinite;
+}
+
+#loader-1:after{
+  border: 10px solid #ccc;
+}
+
+@keyframes spin{
+  0%{
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100%{
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+      </style></td>
+				</c:if>
 				<c:if test="${not empty vo.helperID and vo.certify_status == 1 and vo.review_status == 0}">
 					<td><button class="btn btn-success" data-toggle="modal" data-target="#review_Modal_upload${vo.serialNo }">후기쓰기</button></td>
 				</c:if>

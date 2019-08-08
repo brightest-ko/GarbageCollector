@@ -1,5 +1,6 @@
 package matching;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import customer.CustomerApplyVO;
@@ -19,6 +20,8 @@ public interface MatchingDAO {
 	List<CustomerApplyVO> suggestion_list2_yet(String HelperID) throws Exception;
 
 	List<CustomerApplyVO> suggestion_list2_fail(String HelperID) throws Exception;
+
+	int accept(Integer serialNo, String helperID) throws SQLException;
 
 
 

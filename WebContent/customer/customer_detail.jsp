@@ -99,7 +99,7 @@
 		<div class="list_header">
 			<div class="col-xs-12" style="padding: 10px;">
 				<h3>
-					이 신청에 제안온 <font style="font-weight: bold;">헬퍼</font>
+					이 신청에 제안 온 <font style="font-weight: bold;">헬퍼</font>
 				</h3>
 				<h5>
 					당신의 <font style="font-weight: bold;">대행을 PICK</font> 하세요!
@@ -140,7 +140,7 @@
           <p class="text-center" style="font-size: 20px;">느영(대행맨)에게<br>분리수거를 맡기겠습니까?</p>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
+        <button type="button" class="btn btn-success" onclick="location.href='<%=ctxPath%>/matching_acceptance_add.do?serialNo=${vo.serialNo}&helperID=${vo2.helperId}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> </div>
       </div>
     </div>

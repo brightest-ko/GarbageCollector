@@ -30,6 +30,7 @@
                 matching.CtrlSuggetionAdd,
                 matching.CtrlSuggetionList2,
                 matching.CtrlAcceptanceList,
+                matching.CtrlAcceptanceAdd,
 
                 review.CtrlList,
                 review.CtrlInsert,

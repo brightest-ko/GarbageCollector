@@ -344,6 +344,38 @@ public class MatchingDAO_OracleImpl implements MatchingDAO
 		}
 		return ls;
 	}
+
+	@Override
+	public int accept(Integer serialNo, String helperID) throws SQLException {
+		//�����ϱ�
+		int r = -1;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		try {
+			System.out.println("�����ϱ� DAO");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(
+				"jdbc:oracle:thin:@127.0.0.1:1521/XE","HR","HR");
+
+			String sql = "update matching set acceptance = 1 where serialNo  = ? and helperID=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, serialNo);
+			stmt.setString(2, helperID);
+			r = stmt.executeUpdate();
+
+			sql = "update customer_apply set helperid = ? where serialNo=?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, helperID);
+			stmt.setInt(2, serialNo);
+			r = stmt.executeUpdate();
+		}
+		catch( Exception e ){e.printStackTrace();}
+		finally {
+			if( stmt != null ) stmt.close();
+			if( conn != null ) conn.close();
+		}
+		return r;
+	}
 }
 
 
