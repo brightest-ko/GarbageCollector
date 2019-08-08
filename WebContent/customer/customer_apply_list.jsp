@@ -58,7 +58,7 @@
 	<div class="container" style="padding: 50px 0;">
 		<div class="list_header">
 			<div class="col-xs-9" style="">
-			<h2>대행을 <font style="font-weight: bold;">제안</font>하세요!</h2>
+			<h2><font style="font-weight: bold;">신청</font>을 확인하세요!</h2>
 			</div>
 			<div class="col-xs-3" style="margin: 30px 0 0 0;">
 				<div class="form-group">
@@ -80,58 +80,25 @@
 				<table class="table table-bordered text-center table-hover">
 					<thead>
 						<tr class="bg-success" style="font-weight: bold;">
-							<th class="text-center col-xs-1">No</th>
+							<th class="text-center col-xs-2">No</th>
 							<th class="text-center col-xs-3">지역</th>
-							<th class="text-center col-xs-2">수행 예정 시간</th>
-							<th class="text-center col-xs-1">종류</th>
-							<th class="text-center col-xs-1">금액</th>
-							<th class="text-center col-xs-3">마감 시간</th>
-							<th class="text-center col-xs-1"></th>
+							<th class="text-center col-xs-3">수행 예정 시간</th>
+							<th class="text-center col-xs-2">종류</th>
+							<th class="text-center col-xs-2">금액</th>
 						</tr>
 					</thead>
 					
 					<tbody>
-					
-							<tr>
-								<td>1098</td>
-								<td>제주시 이도1동</td>
-								<td>2019/08/20/17:22:10</td>
-								<td>플라스틱</td>
-								<td>2000원</td>
-								<td><div id="newcountdown" wanted_time_data="08/08/2019 1:43 AM"></div></td>
-								<td>
-									<button type="button" class="btn btn-default btn-success blinkEle">제안하기</button>
-								</td>
-							</tr>
 						<c:forEach var="vo" items="${rl}">
 							<!--if 마감시간 1시간 임박-->
-							<tr class="deadline_red">
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.serialNo}</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.customer_addr_first} ${vo.customer_addr_second}</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.wanted_time }</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.trash_type }</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'">${vo.price }원</td>
-								<td onclick="location.href='apply상세보기.do?serialNo=${vo.serialNo}'"><div id="countdown" wanted_time_data="${vo.wanted_time }"></div></td>
-								<td>
-									<button type="button" class="btn btn-success " data-toggle="modal" data-target="#suggestion_ok">제안하기</button>
-								</td>
+							<tr class="deadline_red" onclick="location.href='apply_detail.do?serialNo=${vo.serialNo}'">
+								<td>${vo.serialNo}</td>
+								<td>${vo.customer_addr_first} ${vo.customer_addr_second}</td>
+								<td>${vo.wanted_time }</td>
+								<td>${vo.trash_type }</td>
+								<td>${vo.price }원</td>
+								
 							</tr>
-							
-  <div class="modal fade" id="suggestion_ok" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" style="float: left; color: #ffffff;"><b>제안</b>하기</h2> <button type="button" class="close" data-dismiss="modal"> <span>×</span> </button>
-        </div>
-        <div class="modal-body">
-          <p class="text-center" style="font-size: 20px;">해당 분리수거를<br>제가<br>진행하고 싶어요!</p>
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-success" onclick="location.href='<%=ctxPath%>/matching_suggetion_add.do?serialNo=${vo.serialNo}'">&nbsp; &nbsp; 예&nbsp; &nbsp;&nbsp;</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> </div>
-      </div>
-    </div>
-  </div>
 						</c:forEach>
 					</tbody>
 				</table>

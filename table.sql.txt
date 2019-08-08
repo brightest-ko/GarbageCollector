@@ -211,3 +211,8 @@ insert into map values (map_no_seq .NEXTVAL,'신설로2길 9 ','신설로2길 9 (혜성무�
 insert into map values (map_no_seq .NEXTVAL,'신설로6길 2-11','신설로6길 2-11(이도농협 동측 주차장)');
 insert into map values (map_no_seq .NEXTVAL,'구남로6길55-1 ','구남로6길55-1 (광명광고 북측 주차장)');
 insert into map values (map_no_seq .NEXTVAL,'구남동 6길 31','구남동 6길 31 이도어린이집 인근 공원 앞');
+insert into map values (map_no_seq .NEXTVAL,'동광로4길 3','백성원해장국 앞');
+insert into map values (map_no_seq .NEXTVAL,'동광로6길 17','(시청5별관 동측)');
+insert into map values (map_no_seq .NEXTVAL,'광양11길 10-1','광양11길 10-1(이도2동 1178-7 시청본관 뒤)');
+insert into map values (map_no_seq .NEXTVAL,'광양11길24','광양11길24(이도2동1177-5 시청제2별관 뒤)');
+insert into map values (map_no_seq .NEXTVAL,'가령로 68','한국전력공사  주전력소 주차장 입구');

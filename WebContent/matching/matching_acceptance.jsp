@@ -4,14 +4,14 @@
 	String ctxPath = request.getContextPath();
 %>
 <%--
-	System.out.println("matching_suggestion.jsp");
+	System.out.println("matching_acceptance.jsp");
 	String ctxPath = request.getContextPath();
-	String auth ="helper";//= null;
+	String auth ="cutomer";//= null;
 	String id ="gobakse5@naver.com";//= null;
 	try{
 //		auth = (String)session.getAttribute("auth");
 //		id =  (String)session.getAttribute("id");
-		if(auth==null||!auth.equals("helper")||id==null||id.equals("")){
+		if(auth==null||!auth.equals("cutomer")||id==null||id.equals("")){
 			response.sendRedirect("loginform.jsp"); //login.jsp로 변경
 		}
 	}catch(Exception e){
